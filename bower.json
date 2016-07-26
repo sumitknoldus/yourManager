@@ -1,0 +1,20 @@
+{
+  "name": "themanager",
+  "version": "1.0.0",
+  "authors": [
+    "Manish"
+  ],
+  "description": "The Manager FrontEnd Dependencies",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}
