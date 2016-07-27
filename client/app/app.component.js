@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,17 +8,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var login_component_1 = require('./login/login.component');
+var dashboard_component_1 = require('./dashboard/dashboard.component');
+var router_1 = require('@angular2/router');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>Your Manager</h1>'
-        }), 
+            template: "\n    <h1>Your Manager</h1>\n    <h5><i>Manage with ease, then rest and sleep</i></h5>\n    <login></login>\n    ",
+            directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
+        }),
+        router_1.RouteConfig([
+            { path: '/home', name: 'Home', component: dashboard_component_1.DashboardComponent, useAsDefault: true },
+            { path: '/login', name: 'Login', component: login_component_1.LoginComponent }
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
-}());
+})();
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
