@@ -1,6 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { User } from '.././user/user'
-
 import {LoginService} from './login.service'
 
 @Component({
@@ -10,17 +9,27 @@ import {LoginService} from './login.service'
     styleUrls:['login.component.css'],
     providers:[LoginService]
 })
+
+
 export class LoginComponent {
     public errorMsg = '';
+    @Input() selectedUser:User;
+    user = {};
 
-    public user = new User('','');
+    constructor(private loginService: LoginService) {}
 
-    constructor(
-        private _service:LoginService) {}
+    login(user:User){
+        this.selectedUser = user;
 
-    login() {
-        if(!this._service.login(this.user)){
+        if(!this.loginService.login(this.selectedUser)){
             this.errorMsg = 'Failed to login';
         }
+        else{
+            this.errorMsg = 'Login Successful';
+        }
     }
+
+    //login() {
+
+    //}
 }

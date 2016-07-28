@@ -12,16 +12,24 @@ var core_1 = require('@angular/core');
 var user_1 = require('.././user/user');
 var login_service_1 = require('./login.service');
 var LoginComponent = (function () {
-    function LoginComponent(_service) {
-        this._service = _service;
+    function LoginComponent(loginService) {
+        this.loginService = loginService;
         this.errorMsg = '';
-        this.user = new user_1.User('', '');
+        this.user = {};
     }
-    LoginComponent.prototype.login = function () {
-        if (!this._service.login(this.user)) {
+    LoginComponent.prototype.login = function (user) {
+        this.selectedUser = user;
+        if (!this.loginService.login(this.selectedUser)) {
             this.errorMsg = 'Failed to login';
         }
+        else {
+            this.errorMsg = 'Login Successful';
+        }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', user_1.User)
+    ], LoginComponent.prototype, "selectedUser", void 0);
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

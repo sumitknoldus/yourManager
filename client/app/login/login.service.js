@@ -8,41 +8,68 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular2/core');
-var router_1 = require('@angular2/router');
-var user_1 = require('.././user/user');
+var core_1 = require('@angular/core');
 var users = [
-    new user_1.User('admin@admin.com', 'adm9'),
-    new user_1.User('user1@gmail.com', 'a23')
+    {
+        email: 'sumit@knoldus.com',
+        password: '11'
+    }
 ];
 var LoginService = (function () {
-    function LoginService(_router) {
-        this._router = _router;
+    function LoginService() {
     }
-    LoginService.prototype.logout = function () {
-        localStorage.removeItem("user");
-        this._router.navigate(['Login']);
-    };
     LoginService.prototype.login = function (user) {
         var authenticatedUser = users.find(function (u) { return u.email === user.email; });
         if (authenticatedUser && authenticatedUser.password === user.password) {
             localStorage.setItem("user", authenticatedUser);
-            this._router.navigate(['Home']);
+            //this._router.navigate(['Home']);
             return true;
         }
         return false;
     };
-    LoginService.prototype.checkCredentials = function () {
-        if (localStorage.getItem("user") === null) {
-            this._router.navigate(['Login']);
-        }
-    };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [])
     ], LoginService);
     return LoginService;
-    var _a;
 }());
 exports.LoginService = LoginService;
+//import {Injectable} from '@angular/core';
+//import {Router} from '@angular/router';
+//import {User} from '.././user/user'
+//
+//
+//var users = [
+//    new User('admin@admin.com','adm9'),
+//    new User('user1@gmail.com','a23')
+//];
+//
+//@Injectable()
+//export class LoginService {
+//
+//    constructor(
+//        private _router: Router){}
+//
+//    logout() {
+//        localStorage.removeItem("user");
+//        this._router.navigate(['Login']);
+//    }
+//
+//    login(user){
+//        var authenticatedUser = users.find(u => u.email === user.email);
+//        if (authenticatedUser && authenticatedUser.password === user.password){
+//            localStorage.setItem("user", authenticatedUser);
+//            this._router.navigate(['Home']);
+//            return true;
+//        }
+//        return false;
+//
+//    }
+//
+//    checkCredentials(){
+//        if (localStorage.getItem("user") === null){
+//            this._router.navigate(['Login']);
+//        }
+//    }
+//} 
 //# sourceMappingURL=login.service.js.map

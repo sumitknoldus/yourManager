@@ -9,22 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var login_component_1 = require('./login/login.component');
-var dashboard_component_1 = require('./dashboard/dashboard.component');
-var router_1 = require('@angular2/router');
+var router_1 = require('@angular/router');
+//import {DashboardComponent} from './dashboard/dashboard.component';
+//import { provideRouter, RouterConfig,ROUTER_DIRECTIVES } from '@angular/router';
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        this.router = router;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.router.navigate(['/login']);
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <h1>Your Manager</h1>\n    <h5><i>Manage with ease, then rest and sleep</i></h5>\n    <login></login>\n    ",
+            template: "\n    <h1>Your Manager</h1>\n    <h5><i>Manage with ease, then rest and sleep</i></h5>\n\n     <router-outlet></router-outlet>\n    ",
             directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
-        }),
-        router_1.RouteConfig([
-            { path: '/home', name: 'Home', component: dashboard_component_1.DashboardComponent, useAsDefault: true },
-            { path: '/login', name: 'Login', component: login_component_1.LoginComponent }
-        ]), 
-        __metadata('design:paramtypes', [])
+        }), 
+        __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);
     return AppComponent;
 })();

@@ -1,9 +1,9 @@
-import {Component} from '@angular2/core';
+import {Component} from '@angular/core';
 import {LoginService} from '.././login/login.service'
 
 @Component({
-    selector: 'login-form',
-    providers: [LoginService],
+    selector: 'dashboard',
+    providers: [],
     template: `
             <div class="container" >
                 <div class="content">
@@ -17,14 +17,14 @@ import {LoginService} from '.././login/login.service'
 
 export class DashboardComponent {
 
-    constructor(
-        private _service:LoginService){}
-
-    ngOnInit(){
-        this._service.checkCredentials();
-    }
-
-    logout() {
-        this._service.logout();
-    }
+    //constructor(
+    //    private _service:LoginService){}
+    //
+    //ngOnInit(){
+    //    this._service.checkCredentials();
+    //}
+    //
+    //logout() {
+    //    this._service.logout();
+    //}
 }

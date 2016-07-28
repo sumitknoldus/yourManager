@@ -1,21 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,Injectable } from '@angular/core';
 import { LoginComponent } from './login/login.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {RouteConfig, ROUTER_DIRECTIVES} from '@angular2/router';
+import { Router,ROUTER_DIRECTIVES } from '@angular/router';
+//import {DashboardComponent} from './dashboard/dashboard.component';
+//import { provideRouter, RouterConfig,ROUTER_DIRECTIVES } from '@angular/router';
+
 
 @Component({
     selector: 'my-app',
     template: `
     <h1>Your Manager</h1>
     <h5><i>Manage with ease, then rest and sleep</i></h5>
-    <login></login>
+
+     <router-outlet></router-outlet>
     `,
-    directives:[LoginComponent,ROUTER_DIRECTIVES]
+    directives:[LoginComponent, ROUTER_DIRECTIVES]
 
 })
-@RouteConfig([
-    { path: '/home', name: 'Home', component: DashboardComponent, useAsDefault:true },
-    { path: '/login', name: 'Login', component: LoginComponent }
-])
 
-export class AppComponent { }
+//@Injectable()
+export class AppComponent implements OnInit{
+
+    constructor(private router: Router){ }
+
+    ngOnInit(){
+        this.router.navigate(['/login']);
+    }
+}

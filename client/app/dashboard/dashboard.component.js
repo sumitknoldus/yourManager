@@ -8,25 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular2/core');
-var login_service_1 = require('.././login/login.service');
+var core_1 = require('@angular/core');
 var DashboardComponent = (function () {
-    function DashboardComponent(_service) {
-        this._service = _service;
+    function DashboardComponent() {
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-        this._service.checkCredentials();
-    };
-    DashboardComponent.prototype.logout = function () {
-        this._service.logout();
-    };
     DashboardComponent = __decorate([
         core_1.Component({
-            selector: 'login-form',
-            providers: [login_service_1.LoginService],
+            selector: 'dashboard',
+            providers: [],
             template: "\n            <div class=\"container\" >\n                <div class=\"content\">\n                    <span>Congratulations, you have successfully logged in!!</span>\n                    <br />\n                    <a (click)=\"logout()\" href=\"#\">Click Here to logout</a>\n                </div>\n            </div>\n    \t"
         }), 
-        __metadata('design:paramtypes', [login_service_1.LoginService])
+        __metadata('design:paramtypes', [])
     ], DashboardComponent);
     return DashboardComponent;
 }());
