@@ -17,10 +17,11 @@ import { Router,ROUTER_DIRECTIVES } from '@angular/router';
 
 })
 
-//@Injectable()
+@Injectable()
 export class AppComponent implements OnInit{
 
     constructor(private router: Router){ }
+
 
     ngOnInit(){
         this.router.navigate(['/login']);

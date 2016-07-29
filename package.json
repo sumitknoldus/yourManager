@@ -1,8 +1,8 @@
 {
-  "name": "themanager",
+  "name": "yourmanager",
   "version": "1.0.0",
   "description": "",
-  "main": "themanager.js",
+  "main": "yourmanager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -13,8 +13,8 @@
     "typings": "typings"
   },
   "keywords": [
-    "The",
-    "Manager"
+    "your",
+    "manager"
   ],
   "author": "Sumit khanduri",
   "license": "ISC",

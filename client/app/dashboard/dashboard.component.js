@@ -16,7 +16,7 @@ var DashboardComponent = (function () {
         core_1.Component({
             selector: 'dashboard',
             providers: [],
-            template: "\n            <div class=\"container\" >\n                <div class=\"content\">\n                    <span>Congratulations, you have successfully logged in!!</span>\n                    <br />\n                    <a (click)=\"logout()\" href=\"#\">Click Here to logout</a>\n                </div>\n            </div>\n    \t"
+            template: "\n            <div class=\"container\" >\n                <div class=\"content\">\n                    <span> <h1>Oops..!! No Component found</h1></span>\n                    <br />\n                    <!--<a (click)=\"logout()\" href=\"#\">Click Here to logout</a>-->\n                </div>\n            </div>\n    \t"
         }), 
         __metadata('design:paramtypes', [])
     ], DashboardComponent);

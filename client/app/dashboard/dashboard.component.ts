@@ -7,9 +7,9 @@ import {LoginService} from '.././login/login.service'
     template: `
             <div class="container" >
                 <div class="content">
-                    <span>Congratulations, you have successfully logged in!!</span>
+                    <span> <h1>Oops..!! No Component found</h1></span>
                     <br />
-                    <a (click)="logout()" href="#">Click Here to logout</a>
+                    <!--<a (click)="logout()" href="#">Click Here to logout</a>-->
                 </div>
             </div>
     	`

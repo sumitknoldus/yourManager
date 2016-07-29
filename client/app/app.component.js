@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,10 +25,11 @@ var AppComponent = (function () {
             selector: 'my-app',
             template: "\n    <h1>Your Manager</h1>\n    <h5><i>Manage with ease, then rest and sleep</i></h5>\n\n     <router-outlet></router-outlet>\n    ",
             directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
-        }), 
+        }),
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);
     return AppComponent;
-})();
+}());
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

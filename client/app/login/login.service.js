@@ -9,27 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var users = [
+var router_1 = require('@angular/router');
+var USERS = [
     {
         email: 'sumit@knoldus.com',
+        password: '11'
+    },
+    {
+        email: 'amit@knoldus.com',
         password: '11'
     }
 ];
 var LoginService = (function () {
-    function LoginService() {
+    function LoginService(router) {
+        this.router = router;
     }
     LoginService.prototype.login = function (user) {
-        var authenticatedUser = users.find(function (u) { return u.email === user.email; });
+        var authenticatedUser = USERS.find(function (u) { return u.email === user.email; });
         if (authenticatedUser && authenticatedUser.password === user.password) {
-            localStorage.setItem("user", authenticatedUser);
-            //this._router.navigate(['Home']);
-            return true;
+            localStorage.setItem("user", JSON.stringify(authenticatedUser));
+            this.router.navigate(['/home']);
         }
         return false;
     };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], LoginService);
     return LoginService;
 }());
@@ -39,7 +44,7 @@ exports.LoginService = LoginService;
 //import {User} from '.././user/user'
 //
 //
-//var users = [
+//var USERS = [
 //    new User('admin@admin.com','adm9'),
 //    new User('user1@gmail.com','a23')
 //];
@@ -56,7 +61,7 @@ exports.LoginService = LoginService;
 //    }
 //
 //    login(user){
-//        var authenticatedUser = users.find(u => u.email === user.email);
+//        var authenticatedUser = USERS.find(u => u.email === user.email);
 //        if (authenticatedUser && authenticatedUser.password === user.password){
 //            localStorage.setItem("user", authenticatedUser);
 //            this._router.navigate(['Home']);
