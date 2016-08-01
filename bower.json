@@ -15,6 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "core-js": "*",
+    "es6-shim": "*",
+    "reflect-metadata": "^*",
+    "rxjs": "*",
+    "systemjs": "*",
+    "zone.js": "*"
   }
 }

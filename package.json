@@ -5,7 +5,7 @@
   "main": "yourmanager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"node server/index.js\" ",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
@@ -22,6 +22,7 @@
     "type": "git",
     "url": "git://github.com/username/repository.git"
   },
+
   "dependencies": {
     "babel": "^6.5.2",
     "babel-cli": "^6.11.4",

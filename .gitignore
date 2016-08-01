@@ -1,4 +1,5 @@
 node_modules
+client/bower_components
 .idea
 /server/config/local.env.js
 npm-debug.log
