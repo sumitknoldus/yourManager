@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
 import {AdminService} from './admin.service';
+import {logistics} from '../shared/model/logistics';
 
 @Component({
     moduleId:module.id,
@@ -10,12 +10,21 @@ import {AdminService} from './admin.service';
     providers:[AdminService]
 })
 
-
-export class AdminComponent {
+export class AdminComponent implements OnInit{
+    allocatedAssetsList: logistics[];
+    mode = 'Observable';
     public errorMsg = '';
     constructor(private adminService: AdminService) {}
 
-    listByEmpId(){
+    ngOnInit(){
 
+        this.listByEmpId("0000")
+    }
+    listByEmpId(empId:string){
+
+        this.adminService.getAllocatedAssets(empId).subscribe(
+        allocatedAssetsList => this.allocatedAssetsList = allocatedAssetsList,
+        error =>  this.errorMessage = <any>error);
+        console.log(JSON.stringify(this.allocatedAssetsList));
     }
 }

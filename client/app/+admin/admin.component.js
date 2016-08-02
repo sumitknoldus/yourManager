@@ -12,9 +12,16 @@ var admin_service_1 = require('./admin.service');
 var AdminComponent = (function () {
     function AdminComponent(adminService) {
         this.adminService = adminService;
+        this.mode = 'Observable';
         this.errorMsg = '';
     }
-    AdminComponent.prototype.listByEmpId = function () {
+    AdminComponent.prototype.ngOnInit = function () {
+        this.listByEmpId("0000");
+    };
+    AdminComponent.prototype.listByEmpId = function (empId) {
+        var _this = this;
+        this.adminService.getAllocatedAssets(empId).subscribe(function (allocatedAssetsList) { return _this.allocatedAssetsList = allocatedAssetsList; }, function (error) { return _this.errorMessage = error; });
+        console.log(JSON.stringify(this.allocatedAssetsList));
     };
     AdminComponent = __decorate([
         core_1.Component({
@@ -24,10 +31,9 @@ var AdminComponent = (function () {
             styleUrls: ['admin.component.css'],
             providers: [admin_service_1.AdminService]
         }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof admin_service_1.AdminService !== 'undefined' && admin_service_1.AdminService) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [admin_service_1.AdminService])
     ], AdminComponent);
     return AdminComponent;
-    var _a;
 })();
 exports.AdminComponent = AdminComponent;
 //# sourceMappingURL=admin.component.js.map
