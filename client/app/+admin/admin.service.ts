@@ -15,11 +15,12 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AdminService {
     constructor (private http: Http) {}
-    private listAssetsURL = 'list/assets/';  // URL to web API
+    private listAssetsURL = '/api/logistics/list/';  // URL to web API
 
     private extractData(res: Response) {
         let body = res.json();
-        return body.data || { };
+        console.log("Inside extract data:"+JSON.stringify(body));
+        return body || { };
     }
 
     private handleError (error: any) {
@@ -37,7 +38,7 @@ export class AdminService {
         //let body = JSON.stringify({ empId });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        console.log(JSON.stringify(this.listAssetsURL));
+
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
             .catch(this.handleError);

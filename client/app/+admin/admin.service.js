@@ -20,11 +20,12 @@ require('rxjs/add/operator/toPromise');
 var AdminService = (function () {
     function AdminService(http) {
         this.http = http;
-        this.listAssetsURL = 'list/assets/'; // URL to web API
+        this.listAssetsURL = '/api/logistics/list/'; // URL to web API
     }
     AdminService.prototype.extractData = function (res) {
         var body = res.json();
-        return body.data || {};
+        console.log("Inside extract data:" + JSON.stringify(body));
+        return body || {};
     };
     AdminService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
@@ -39,7 +40,6 @@ var AdminService = (function () {
         //let body = JSON.stringify({ empId });
         var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         var options = new http_2.RequestOptions({ headers: headers });
-        console.log(JSON.stringify(this.listAssetsURL));
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
             .catch(this.handleError);

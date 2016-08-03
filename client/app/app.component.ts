@@ -8,7 +8,7 @@ import { Router,ROUTER_DIRECTIVES } from '@angular/router';
 @Component({
     selector: 'my-app',
     template: `
-    <h1>Your Manager</h1>
+    <div style="background-color: black; width: 100%; height: 10%; margin-top: -2%;"><span style="color:white; font-weight: 600; font-size: 22px; margin-top: 25px;">You Manager</span></div>
     <h5><i>Manage with ease, then rest and sleep</i></h5>
 
      <router-outlet></router-outlet>
