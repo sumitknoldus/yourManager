@@ -18,23 +18,19 @@ require('rxjs/add/operator/toPromise');
 var AdminComponent = (function () {
     function AdminComponent(adminService) {
         this.adminService = adminService;
+        this.body = {};
         this.mode = 'Observable';
         this.errorMsg = '';
-        console.log(JSON.stringify(this.adminService.data));
     }
     AdminComponent.prototype.ngOnInit = function () {
         this.listByEmpId("123");
     };
-    //ngAfterContentInit() {
-    //    this.getAllvaluesFromFiles()
-    //        .subscribe(data => {
-    //            console.log(this.getSubscribeData);
-    //        })
-    //}
     AdminComponent.prototype.listByEmpId = function (empId) {
         var _this = this;
-        this.adminService.getAllocatedAssets(empId).subscribe(function (allocatedAssetsList) { return _this.allocatedAssetsList = allocatedAssetsList; }, function (error) { return _this.errorMessage = error; });
-        console.log(JSON.stringify(this.allocatedAssetsList));
+        this.adminService.getAllocatedAssets(empId).subscribe(function (res) {
+            _this.allocatedAssetsList = res;
+            console.log(JSON.stringify(_this.allocatedAssetsList));
+        }, function (error) { return _this.errorMessage = error; });
     };
     __decorate([
         core_1.Input(), 

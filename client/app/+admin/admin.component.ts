@@ -8,7 +8,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Observable }     from 'rxjs/Observable';
-
+import {Response } from '@angular/http';
 @Component({
     moduleId:module.id,
     selector: 'admin',
@@ -19,27 +19,29 @@ import { Observable }     from 'rxjs/Observable';
 
 export class AdminComponent implements OnInit{
    @Input() public allocatedAssetsList: logistics[];
+
+    body = {};
     mode = 'Observable';
     public errorMsg = '';
     constructor(private adminService: AdminService) {
-        console.log(JSON.stringify(this.adminService.data));
+
     }
 
     ngOnInit(){
         this.listByEmpId("123");
+
     }
-    //ngAfterContentInit() {
-    //    this.getAllvaluesFromFiles()
-    //        .subscribe(data => {
-    //            console.log(this.getSubscribeData);
-    //        })
-    //}
+
     listByEmpId(empId:string){
 
         this.adminService.getAllocatedAssets(empId).subscribe(
-        allocatedAssetsList => this.allocatedAssetsList = allocatedAssetsList,
-        error =>  this.errorMessage = <any>error);
-
-        console.log(JSON.stringify(this.allocatedAssetsList));
+            res => {
+                this.allocatedAssetsList = res;
+                console.log(JSON.stringify(this.allocatedAssetsList));
+            },
+            error =>  this.errorMessage = <any>error);
     }
+
+
+
 }
