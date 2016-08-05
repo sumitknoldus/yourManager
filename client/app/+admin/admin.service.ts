@@ -19,7 +19,7 @@ export class AdminService {
 
     private extractData(res: Response) {
         let body = res.json();
-        console.log("Inside extract data:"+JSON.stringify(body));
+
         return body || { };
     }
 

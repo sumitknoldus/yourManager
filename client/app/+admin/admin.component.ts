@@ -35,7 +35,7 @@ export class AdminComponent implements OnInit, OnDestroy{
             .subscribe(params => {
                 this.selectedId = params['id'];
                 this.listByEmpId(this.selectedId);
-                console.log(this.selectedId);
+
             });
 
     }

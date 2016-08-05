@@ -4,6 +4,6 @@ function __export(m) {
 /**
  * This barrel file provides the export for the lazy loaded HomeComponent.
  */
-__export(require('./admin.component'));
-__export(require('./admin.route'));
+__export(require('./home.component'));
+__export(require('./home.route'));
 //# sourceMappingURL=index.js.map

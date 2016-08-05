@@ -26,7 +26,7 @@ function handleError(res, statusCode) {
  */
 export function listLogisticsByEmpId(req, res, next) {
     var empId = req.params.id;
-    return Logistics.find(empId).exec()
+    return Logistics.find({"empId":empId}).exec()//({"username" : {$regex : ".*son.*"}});
         .then(user => {
             if (!user) {
                 return res.status(404).end();

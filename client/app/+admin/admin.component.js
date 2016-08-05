@@ -31,7 +31,6 @@ var AdminComponent = (function () {
             .subscribe(function (params) {
             _this.selectedId = params['id'];
             _this.listByEmpId(_this.selectedId);
-            console.log(_this.selectedId);
         });
     };
     AdminComponent.prototype.listByEmpId = function (empId) {

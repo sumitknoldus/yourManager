@@ -1,16 +1,14 @@
 import { provideRouter, RouterConfig } from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {HomeComponent} from './home/home.component';
-import {AdminComponent} from './+admin/admin.component';
+import {LoginRoutes} from './login/login.route';
+import {AdminRoutes} from './+admin/admin.route';
+import {DashboardRoutes} from './dashboard/dashboard.route';
+import {HomeRoutes} from './home/home.route';
 
 const routes: RouterConfig = [
-    { path: 'login', component: LoginComponent, useAsDefault:true },
-    { path: 'dashboard', component: DashboardComponent },
-    { path: 'home', component: HomeComponent },
-    { path: 'admin/:id', component: AdminComponent },
-    { path: '**',redirectTo: '/login', pathMatch: 'full' }
-
+    ...AdminRoutes,
+    ...DashboardRoutes,
+    ...LoginRoutes,
+    ...HomeRoutes
 ];
 
 export const appRouterProviders = [

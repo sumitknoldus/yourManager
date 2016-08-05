@@ -10,15 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var login_component_1 = require('./login/login.component');
 var router_1 = require('@angular/router');
-//import {DashboardComponent} from './dashboard/dashboard.component';
-//import { provideRouter, RouterConfig,ROUTER_DIRECTIVES } from '@angular/router';
 var AppComponent = (function () {
-    function AppComponent(router) {
-        this.router = router;
+    function AppComponent() {
     }
-    AppComponent.prototype.ngOnInit = function () {
-        //this.router.navigate(['/login']);
-    };
+    AppComponent.prototype.ngOnInit = function () { };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
@@ -26,7 +21,7 @@ var AppComponent = (function () {
             directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
         }),
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 })();

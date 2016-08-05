@@ -24,7 +24,6 @@ var AdminService = (function () {
     }
     AdminService.prototype.extractData = function (res) {
         var body = res.json();
-        console.log("Inside extract data:" + JSON.stringify(body));
         return body || {};
     };
     AdminService.prototype.handleError = function (error) {
