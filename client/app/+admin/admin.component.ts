@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {AdminService} from './admin.service';
 import {logistics} from '../shared/model/logistics';
 import 'rxjs/add/operator/map';
@@ -8,7 +8,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Observable }     from 'rxjs/Observable';
-import {Response } from '@angular/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
     moduleId:module.id,
     selector: 'admin',
@@ -17,18 +18,25 @@ import {Response } from '@angular/http';
     providers:[AdminService]
 })
 
-export class AdminComponent implements OnInit{
+export class AdminComponent implements OnInit, OnDestroy{
    @Input() public allocatedAssetsList: logistics[];
-
-    body = {};
+    private sub: any;
     mode = 'Observable';
     public errorMsg = '';
-    constructor(private adminService: AdminService) {
-
+    constructor(private adminService: AdminService,
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
-    ngOnInit(){
-        this.listByEmpId("123");
+    ngOnInit() {
+
+        this.sub = this.route
+            .params
+            .subscribe(params => {
+                this.selectedId = params['id'];
+                this.listByEmpId(this.selectedId);
+                console.log(this.selectedId);
+            });
 
     }
 
@@ -37,11 +45,13 @@ export class AdminComponent implements OnInit{
         this.adminService.getAllocatedAssets(empId).subscribe(
             res => {
                 this.allocatedAssetsList = res;
-                console.log(JSON.stringify(this.allocatedAssetsList));
             },
             error =>  this.errorMessage = <any>error);
     }
 
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
 
 
 }

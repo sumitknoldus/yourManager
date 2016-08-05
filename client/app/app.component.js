@@ -17,7 +17,7 @@ var AppComponent = (function () {
         this.router = router;
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.router.navigate(['/login']);
+        //this.router.navigate(['/login']);
     };
     AppComponent = __decorate([
         core_1.Component({

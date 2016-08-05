@@ -8,7 +8,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 var USERS = [
     {
         email: 'sumit@knoldus.com',
@@ -20,20 +19,20 @@ var USERS = [
     }
 ];
 var LoginService = (function () {
-    function LoginService(router) {
-        this.router = router;
+    function LoginService() {
     }
     LoginService.prototype.login = function (user) {
         var authenticatedUser = USERS.find(function (u) { return u.email === user.email; });
         if (authenticatedUser && authenticatedUser.password === user.password) {
             localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            this.router.navigate(['/home']);
+            //this.router.navigate(['/home']);
+            return true;
         }
         return false;
     };
     LoginService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [])
     ], LoginService);
     return LoginService;
 })();

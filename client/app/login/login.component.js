@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var user_1 = require('.././user/user');
 var login_service_1 = require('./login.service');
+var router_1 = require('@angular/router');
 var LoginComponent = (function () {
-    function LoginComponent(loginService) {
+    function LoginComponent(loginService, router) {
         this.loginService = loginService;
+        this.router = router;
         this.errorMsg = '';
         this.user = {};
     }
@@ -22,7 +24,7 @@ var LoginComponent = (function () {
             this.errorMsg = 'Failed to login';
         }
         else {
-            this.errorMsg = 'Login Successful';
+            this.router.navigate(['/dashboard']);
         }
     };
     __decorate([
@@ -37,7 +39,7 @@ var LoginComponent = (function () {
             styleUrls: ['login.component.css'],
             providers: [login_service_1.LoginService]
         }), 
-        __metadata('design:paramtypes', [login_service_1.LoginService])
+        __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
     ], LoginComponent);
     return LoginComponent;
 })();

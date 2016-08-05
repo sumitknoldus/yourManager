@@ -1,5 +1,5 @@
 import { Component, OnInit,Injectable } from '@angular/core';
-import { Router,ROUTER_DIRECTIVES } from '@angular/router';
+
 import {User} from '.././user/user';
 
 var USERS =  [
@@ -16,7 +16,7 @@ var USERS =  [
 @Injectable()
 export class LoginService implements OnInit{
 
-    constructor(private router: Router){ }
+    constructor(){ }
 
 
 
@@ -25,8 +25,8 @@ export class LoginService implements OnInit{
         var authenticatedUser = USERS.find(u => u.email === user.email);
         if (authenticatedUser && authenticatedUser.password === user.password){
             localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            this.router.navigate(['/home']);
-            //return true;
+            //this.router.navigate(['/home']);
+            return true;
         }
         return false;
 

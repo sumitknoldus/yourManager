@@ -14,16 +14,18 @@ import { Router,ROUTER_DIRECTIVES } from '@angular/router';
      <router-outlet></router-outlet>
     `,
     directives:[LoginComponent, ROUTER_DIRECTIVES]
-
 })
 
 @Injectable()
 export class AppComponent implements OnInit{
 
-    constructor(private router: Router){ }
+    constructor(private router: Router){
+
+    }
 
 
     ngOnInit(){
-        this.router.navigate(['/login']);
+
+        //this.router.navigate(['/login']);
     }
 }

@@ -5,12 +5,12 @@ import {HomeComponent} from './home/home.component';
 import {AdminComponent} from './+admin/admin.component';
 
 const routes: RouterConfig = [
+    { path: 'login', component: LoginComponent, useAsDefault:true },
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'admin', component: AdminComponent },
-    //{ path: 'hero/:id', component: HeroDetailComponent },
-    { path: '**', component: DashboardComponent }
+    { path: 'admin/:id', component: AdminComponent },
+    { path: '**',redirectTo: '/login', pathMatch: 'full' }
+
 ];
 
 export const appRouterProviders = [

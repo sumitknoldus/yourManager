@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '.././user/user'
 import {LoginService} from './login.service'
+import { Router,ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
     moduleId:module.id,
@@ -16,7 +17,7 @@ export class LoginComponent {
     @Input() selectedUser:User;
     user = {};
 
-    constructor(private loginService: LoginService) {}
+    constructor(private loginService: LoginService, private router: Router) {}
 
     login(user:User){
         this.selectedUser = user;
@@ -25,11 +26,7 @@ export class LoginComponent {
             this.errorMsg = 'Failed to login';
         }
         else{
-            this.errorMsg = 'Login Successful';
+            this.router.navigate(['/dashboard']);
         }
     }
-
-    //login() {
-
-    //}
 }

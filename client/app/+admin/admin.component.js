@@ -15,22 +15,33 @@ require('rxjs/add/operator/debounceTime');
 require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
+var router_1 = require('@angular/router');
 var AdminComponent = (function () {
-    function AdminComponent(adminService) {
+    function AdminComponent(adminService, router, route) {
         this.adminService = adminService;
-        this.body = {};
+        this.router = router;
+        this.route = route;
         this.mode = 'Observable';
         this.errorMsg = '';
     }
     AdminComponent.prototype.ngOnInit = function () {
-        this.listByEmpId("123");
+        var _this = this;
+        this.sub = this.route
+            .params
+            .subscribe(function (params) {
+            _this.selectedId = params['id'];
+            _this.listByEmpId(_this.selectedId);
+            console.log(_this.selectedId);
+        });
     };
     AdminComponent.prototype.listByEmpId = function (empId) {
         var _this = this;
         this.adminService.getAllocatedAssets(empId).subscribe(function (res) {
             _this.allocatedAssetsList = res;
-            console.log(JSON.stringify(_this.allocatedAssetsList));
         }, function (error) { return _this.errorMessage = error; });
+    };
+    AdminComponent.prototype.ngOnDestroy = function () {
+        this.sub.unsubscribe();
     };
     __decorate([
         core_1.Input(), 
@@ -44,7 +55,7 @@ var AdminComponent = (function () {
             styleUrls: ['admin.component.css'],
             providers: [admin_service_1.AdminService]
         }), 
-        __metadata('design:paramtypes', [admin_service_1.AdminService])
+        __metadata('design:paramtypes', [admin_service_1.AdminService, router_1.Router, router_1.ActivatedRoute])
     ], AdminComponent);
     return AdminComponent;
 })();

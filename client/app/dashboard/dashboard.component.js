@@ -8,16 +8,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var dashboard_service_1 = require('./dashboard.service');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/catch');
+require('rxjs/add/operator/debounceTime');
+require('rxjs/add/operator/distinctUntilChanged');
+require('rxjs/add/operator/switchMap');
+require('rxjs/add/operator/toPromise');
+var router_1 = require('@angular/router');
+//import {LoginService} from '.././login/login.service'
 var DashboardComponent = (function () {
-    function DashboardComponent() {
+    function DashboardComponent(searchService, router, route) {
+        this.searchService = searchService;
+        this.router = router;
+        this.route = route;
+        this.search = {};
     }
+    DashboardComponent.prototype.ngOnInit = function () { };
+    DashboardComponent.prototype.onSubmit = function () {
+        this.listByEmpId(this.search.value);
+    };
+    DashboardComponent.prototype.listByEmpId = function (empId) {
+        this.router.navigate(['/admin', empId]);
+        //this.searchService.getAllocatedAssets(empId).subscribe(
+        //    res => {
+        //        this.allocatedAssetsList = res;
+        //
+        //
+        //    },
+        //    error =>  this.errorMessage = <any>error);
+    };
     DashboardComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'dashboard',
-            providers: [],
-            template: "\n            <div class=\"container\" >\n                <div class=\"content\">\n                    <span> <h1>Oops..!! No Component found</h1></span>\n                    <br />\n                    <!--<a (click)=\"logout()\" href=\"#\">Click Here to logout</a>-->\n                </div>\n            </div>\n    \t"
+            providers: [dashboard_service_1.SearchService],
+            templateUrl: 'dashboard.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [dashboard_service_1.SearchService, router_1.Router, router_1.ActivatedRoute])
     ], DashboardComponent);
     return DashboardComponent;
 })();
