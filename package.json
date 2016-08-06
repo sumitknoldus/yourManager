@@ -40,6 +40,7 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.6",
     "bower": "^1.7.9",
+    "codelyzer": "0.0.26",
     "composable-middleware": "^0.3.0",
     "compression": "^1.6.2",
     "connect-livereload": "^0.5.4",

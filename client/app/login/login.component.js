@@ -34,7 +34,7 @@ var LoginComponent = (function () {
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'login',
+            selector: 'ym-login',
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css'],
             providers: [login_service_1.LoginService]

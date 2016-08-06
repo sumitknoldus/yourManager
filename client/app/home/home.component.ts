@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {LoginService} from '.././login/login.service'
-import { Router,ROUTER_DIRECTIVES } from '@angular/router';
+import { Router} from '@angular/router';
 @Component({
-    selector: 'dashboard',
+    selector: 'ym-home',
     providers: [],
     template: `
             <div class="container" >
@@ -28,7 +27,7 @@ export class HomeComponent {
     }
 
     checkCredentials(){
-        if (localStorage.getItem("user") === null){
+        if (localStorage.getItem('user') === null){
             this.router.navigate(['/login']);
         }
     }
