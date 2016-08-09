@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Observable_1 = require('rxjs/Observable');
-var http_2 = require('@angular/http');
 require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/debounceTime');
@@ -22,9 +21,17 @@ var SearchService = (function () {
         this.http = http;
         this.listAssetsURL = '/api/logistics/list/'; // URL to web API
     }
+    SearchService.prototype.getAllocatedAssets = function (empId) {
+        this.listAssetsURL += empId;
+        //let body = JSON.stringify({ empId });
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
+        //let options = new RequestOptions({ headers: headers });
+        return this.http.get(this.listAssetsURL)
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
     SearchService.prototype.extractData = function (res) {
         var body = res.json();
-        console.log("Inside extract data:" + JSON.stringify(body));
         return body || {};
     };
     SearchService.prototype.handleError = function (error) {
@@ -34,15 +41,6 @@ var SearchService = (function () {
             error.status ? error.status + " - " + error.statusText : 'Server error';
         console.error(errMsg); // log to console instead
         return Observable_1.Observable.throw(errMsg);
-    };
-    SearchService.prototype.getAllocatedAssets = function (empId) {
-        this.listAssetsURL += empId;
-        //let body = JSON.stringify({ empId });
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this.http.get(this.listAssetsURL)
-            .map(this.extractData)
-            .catch(this.handleError);
     };
     SearchService = __decorate([
         core_1.Injectable(), 

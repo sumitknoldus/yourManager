@@ -16,6 +16,7 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var router_1 = require('@angular/router');
+var header_component_1 = require('../shared/header/header.component');
 var AdminComponent = (function () {
     function AdminComponent(adminService, router, route) {
         this.adminService = adminService;
@@ -49,10 +50,11 @@ var AdminComponent = (function () {
     AdminComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'admin',
+            selector: 'ym-admin',
             templateUrl: 'admin.component.html',
             styleUrls: ['admin.component.css'],
-            providers: [admin_service_1.AdminService]
+            providers: [admin_service_1.AdminService],
+            directives: [header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [admin_service_1.AdminService, router_1.Router, router_1.ActivatedRoute])
     ], AdminComponent);

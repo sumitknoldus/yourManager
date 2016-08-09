@@ -13,11 +13,10 @@ var router_1 = require('@angular/router');
 var AppComponent = (function () {
     function AppComponent() {
     }
-    AppComponent.prototype.ngOnInit = function () { };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <div style=\"background-color: black; width: 100%; height: 10%; margin-top: -2%;\"><span style=\"color:white; font-weight: 600; font-size: 22px; margin-top: 25px;\">You Manager</span></div>\n    <h5><i>Manage with ease, then rest and sleep</i></h5>\n\n     <router-outlet></router-outlet>\n    ",
+            template: "\n     <router-outlet></router-outlet>\n    ",
             directives: [login_component_1.LoginComponent, router_1.ROUTER_DIRECTIVES]
         }),
         core_1.Injectable(), 

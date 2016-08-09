@@ -16,6 +16,7 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var router_1 = require('@angular/router');
+var header_component_1 = require('../shared/header/header.component');
 //import {LoginService} from '.././login/login.service'
 var DashboardComponent = (function () {
     function DashboardComponent(searchService, router, route) {
@@ -24,7 +25,9 @@ var DashboardComponent = (function () {
         this.route = route;
         this.search = {};
     }
-    DashboardComponent.prototype.ngOnInit = function () { };
+    DashboardComponent.prototype.ngOnInit = function () {
+        this.fullpath = 'assets/images/sample.png';
+    };
     DashboardComponent.prototype.onSubmit = function () {
         this.listByEmpId(this.search.value);
     };
@@ -41,9 +44,10 @@ var DashboardComponent = (function () {
     DashboardComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'dashboard',
+            selector: 'ym-dashboard',
             providers: [dashboard_service_1.SearchService],
-            templateUrl: 'dashboard.component.html'
+            templateUrl: 'dashboard.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [dashboard_service_1.SearchService, router_1.Router, router_1.ActivatedRoute])
     ], DashboardComponent);

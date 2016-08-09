@@ -5,10 +5,11 @@ import {DashboardRoutes} from './dashboard/dashboard.route';
 import {HomeRoutes} from './home/home.route';
 
 const routes: RouterConfig = [
+    ...HomeRoutes,
     ...AdminRoutes,
     ...DashboardRoutes,
     ...LoginRoutes,
-    ...HomeRoutes
+
 ];
 
 export const appRouterProviders = [

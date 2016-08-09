@@ -1,39 +1,44 @@
-import {Component, OnInit, Input} from '@angular/core';
-import { NgForm }    from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 import {SearchService} from './dashboard.service';
-import {logistics} from '../shared/model/logistics';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
-import { Observable }     from 'rxjs/Observable';
-import {Response } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
+import { HeaderComponent } from '../shared/header/header.component';
 
 //import {LoginService} from '.././login/login.service'
 
 @Component({
     moduleId:module.id,
-    selector: 'dashboard',
+    selector: 'ym-dashboard',
     providers: [SearchService],
-    templateUrl:'dashboard.component.html'
+    templateUrl:'dashboard.component.html',
+    directives:[ROUTER_DIRECTIVES, HeaderComponent]
 })
 
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
 
     search = {};
-    constructor(private searchService: SearchService,  private router: Router,  private route: ActivatedRoute){}
+    public fullpath:string;
+    constructor(private searchService: SearchService,  private router: Router,  private route: ActivatedRoute) {
 
-    ngOnInit(){}
+    }
 
-    onSubmit(){
+    ngOnInit() {
+        this.fullpath = 'assets/images/sample.png';
+    }
+
+
+
+    onSubmit() {
 
         this.listByEmpId(this.search.value);
     }
 
-    listByEmpId(empId:string){
+    listByEmpId(empId:string) {
 
         this.router.navigate(['/admin',empId]);
 

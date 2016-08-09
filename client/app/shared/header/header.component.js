@@ -9,24 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var header_component_1 = require('../shared/header/header.component');
-var HomeComponent = (function () {
-    function HomeComponent(router) {
+var HeaderComponent = (function () {
+    function HeaderComponent(router) {
         this.router = router;
+        this.show = true;
     }
-    HomeComponent.prototype.ngOnInit = function () {
-        this.fullpath = 'assets/images/your.jpg';
+    ;
+    HeaderComponent.prototype.ngOnInit = function () {
+        if (localStorage.getItem('user') === null) {
+            this.show = false;
+            this.router.navigate(['/login']);
+        }
     };
-    HomeComponent = __decorate([
+    HeaderComponent.prototype.logout = function () {
+        localStorage.removeItem('user');
+        this.router.navigate(['/login']);
+    };
+    HeaderComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'ym-home',
-            templateUrl: 'home.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent]
+            selector: 'ym-header-shared',
+            templateUrl: 'header.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES],
+            styleUrls: ['header.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router])
-    ], HomeComponent);
-    return HomeComponent;
+    ], HeaderComponent);
+    return HeaderComponent;
 })();
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.HeaderComponent = HeaderComponent;
+//# sourceMappingURL=header.component.js.map

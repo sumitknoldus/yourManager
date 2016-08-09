@@ -7,18 +7,20 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
-import { Observable }     from 'rxjs/Observable';
+
 import { Router, ActivatedRoute } from '@angular/router';
+import { HeaderComponent } from '../shared/header/header.component';
 
 @Component({
     moduleId:module.id,
-    selector: 'admin',
+    selector: 'ym-admin',
     templateUrl: 'admin.component.html',
     styleUrls:['admin.component.css'],
-    providers:[AdminService]
+    providers:[AdminService],
+    directives:[HeaderComponent]
 })
 
-export class AdminComponent implements OnInit, OnDestroy{
+export class AdminComponent implements OnInit, OnDestroy {
    @Input() public allocatedAssetsList: logistics[];
     private sub: any;
     mode = 'Observable';

@@ -24,8 +24,7 @@ var LoginService = (function () {
     LoginService.prototype.login = function (user) {
         var authenticatedUser = USERS.find(function (u) { return u.email === user.email; });
         if (authenticatedUser && authenticatedUser.password === user.password) {
-            localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            //this.router.navigate(['/home']);
+            localStorage.setItem('user', JSON.stringify(authenticatedUser));
             return true;
         }
         return false;

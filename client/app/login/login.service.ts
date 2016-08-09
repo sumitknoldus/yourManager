@@ -1,4 +1,4 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { OnInit,Injectable } from '@angular/core';
 
 import {User} from '.././user/user';
 
@@ -14,18 +14,13 @@ var USERS =  [
 ];
 
 @Injectable()
-export class LoginService implements OnInit{
+export class LoginService implements OnInit {
 
-    constructor(){ }
-
-
-
-    login(user:User){
+    login(user:User) {
 
         var authenticatedUser = USERS.find(u => u.email === user.email);
-        if (authenticatedUser && authenticatedUser.password === user.password){
-            localStorage.setItem("user", JSON.stringify(authenticatedUser));
-            //this.router.navigate(['/home']);
+        if (authenticatedUser && authenticatedUser.password === user.password) {
+            localStorage.setItem('user', JSON.stringify(authenticatedUser));
             return true;
         }
         return false;

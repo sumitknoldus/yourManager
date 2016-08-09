@@ -15,12 +15,13 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6",
+    "bootstrap": "~3.3.7",
     "core-js": "*",
     "es6-shim": "*",
     "reflect-metadata": "^*",
     "rxjs": "*",
     "systemjs": "*",
-    "zone.js": "*"
+    "zone.js": "*",
+    "jquery": "~3.1.0"
   }
 }
