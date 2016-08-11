@@ -1,4 +1,4 @@
-import { OnInit,Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import {User} from '.././user/user';
 
@@ -14,7 +14,7 @@ var USERS =  [
 ];
 
 @Injectable()
-export class LoginService implements OnInit {
+export class LoginService {
 
     login(user:User) {
 

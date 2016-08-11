@@ -24,7 +24,8 @@ export class AdminComponent implements OnInit, OnDestroy {
    @Input() public allocatedAssetsList: logistics[];
     private sub: any;
     mode = 'Observable';
-    public errorMsg = '';
+    public errorMessage = '';
+    public selectedId: string;
     constructor(private adminService: AdminService,
                 private router: Router,
                 private route: ActivatedRoute) {
@@ -42,7 +43,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     }
 
-    listByEmpId(empId:string){
+    listByEmpId(empId:string) {
 
         this.adminService.getAllocatedAssets(empId).subscribe(
             res => {

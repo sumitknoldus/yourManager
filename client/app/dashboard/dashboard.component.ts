@@ -21,7 +21,7 @@ import { HeaderComponent } from '../shared/header/header.component';
 
 export class DashboardComponent implements OnInit {
 
-    search = {};
+    search = {value:''};
     public fullpath:string;
     constructor(private searchService: SearchService,  private router: Router,  private route: ActivatedRoute) {
 

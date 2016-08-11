@@ -1,6 +1,5 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Hero }           from './hero';
 import { Observable }     from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
 import {logistics} from '../shared/model/logistics';

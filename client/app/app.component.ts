@@ -1,4 +1,4 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component,Injectable } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
@@ -11,6 +11,6 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 })
 
 @Injectable()
-export class AppComponent implements OnInit {
+export class AppComponent {
 
 }
