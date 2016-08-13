@@ -1,3 +1,4 @@
+"use strict";
 var router_1 = require('@angular/router');
 var login_route_1 = require('./login/login.route');
 var admin_route_1 = require('./+admin/admin.route');
@@ -7,4 +8,3 @@ var routes = home_route_1.HomeRoutes.concat(admin_route_1.AdminRoutes, dashboard
 exports.appRouterProviders = [
     router_1.provideRouter(routes)
 ];
-//# sourceMappingURL=app.routes.js.map

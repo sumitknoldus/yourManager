@@ -1,3 +1,4 @@
+"use strict";
 var admin_component_1 = require('./admin.component');
 exports.AdminRoutes = [
     {
@@ -5,4 +6,3 @@ exports.AdminRoutes = [
         component: admin_component_1.AdminComponent
     },
 ];
-//# sourceMappingURL=admin.route.js.map
