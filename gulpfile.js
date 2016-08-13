@@ -10,26 +10,28 @@ var paths = {
 
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest("client/dist"));
 });
 
-gulp.task("default", ["copy-html"], function () {
-    return browserify({
-        basedir: '.',
-        debug: true,
-        entries: ['client/app/boot.ts'],
-        cache: {},
-        packageCache: {}
-    })
-        .plugin(tsify)
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest("dist"));
+
+gulp.task("copy-js", function () {
+    return tsProject.src()
+        .pipe(ts(tsProject))
+        .js.pipe(gulp.dest("client/dist"));
 });
 
-//gulp.task("default", function () {
-//    return tsProject.src()
-//        .pipe(ts(tsProject))
-//        .js.pipe(gulp.dest("dist"));
-//});
+gulp.task("default", ["copy-html", "copy-js"], function () {
+    //return browserify({
+    //    basedir: '.',
+    //    debug: true,
+    //    entries: ['client/app/boot.ts'],
+    //    cache: {},
+    //    packageCache: {}
+    //})
+    //    .plugin(tsify)
+    //    .bundle()
+    //    .pipe(source('bundle.js'))
+    //    .pipe(gulp.dest("dist"));
+});
+
 
