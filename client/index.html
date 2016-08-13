@@ -23,8 +23,19 @@
 
 
 <script src="system.config.js"></script>
+
 <script>
-    System.import('app').catch(function(err){
+
+
+    System.config({
+        packages: {
+            build: {
+                format: 'register',
+                defaultExtension: 'js'
+            }
+        }
+    });
+    System.import('dist').catch(function(err){
           console.error(err);
     });
     console.log("here..............");

@@ -1,31 +1,35 @@
-var gulp = require('gulp');
-var ts = require('gulp-typescript');
+var gulp = require("gulp");
+var ts = require("gulp-typescript");
+var tsProject = ts.createProject("./client/tsconfig.json");
+var browserify = require("browserify");
+var source = require('vinyl-source-stream');
+var tsify = require("tsify");
+var paths = {
+    pages: ['client/app/**/*.html']
+};
 
-
-
-var tsProject = ts.createProject('./client/tsconfig.json', {
-    typescript: require('typescript'),
-    outFile: './dist/prod/app.js'
+gulp.task("copy-html", function () {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest("dist"));
 });
 
-//gulp.task('tscompile', function () {
-//    var tsResult = gulp.src('./client/app/**/*.ts')
-//        .pipe(ts(tsProject));
-//
-//    return tsResult.js.pipe(gulp.dest('./dist'));
+gulp.task("default", ["copy-html"], function () {
+    return browserify({
+        basedir: '.',
+        debug: true,
+        entries: ['client/app/boot.ts'],
+        cache: {},
+        packageCache: {}
+    })
+        .plugin(tsify)
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest("dist"));
+});
+
+//gulp.task("default", function () {
+//    return tsProject.src()
+//        .pipe(ts(tsProject))
+//        .js.pipe(gulp.dest("dist"));
 //});
-//
 
-gulp.task('copy', function () {
-    return gulp.src([
-            './client/app/**/*.js',
-            './client/app/**/*.js.map',
-            './client/app/**/*.css',
-            './client/app/**/*.html'
-
-        ])
-        .pipe(gulp.dest('./dist'));
-});
-
-
-gulp.task('default', ['copy']);
