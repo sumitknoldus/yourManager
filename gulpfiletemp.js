@@ -1,6 +1,6 @@
 var gulp = require("gulp"),
     sourcemaps = require("gulp-sourcemaps"),
-    typescript = require("gulp-typescript"),
+    clean = require("gulp-typescript"),
     tsProject = typescript.createProject('./client/tsconfig.json'),
     config = require("./gulp.config.js")(),
     //precss = require("precss"),
