@@ -1,0 +1,1 @@
+{"version":3,"sources":["+admin/index.ts"],"names":[],"mappings":";;;;AAAA;;GAEG;AACH,iBAAc,mBAAmB,CAAC,EAAA;AAClC,iBAAc,eAAe,CAAC,EAAA","file":"index.js","sourcesContent":["/**\n * This barrel file provides the export for the lazy loaded HomeComponent.\n */\nexport * from './admin.component';\nexport * from './admin.route';"]}

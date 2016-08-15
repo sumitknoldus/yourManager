@@ -10,7 +10,10 @@ var paths = {
     cssPages:'client/app/**/*.css',
     rootFiles:'client/*.*',
     copyServer:'server/**/*.*',
-    copyeServerRootFiles:'server/*.*'
+    copyeServerRootFiles:'server/*.*',
+    copyPackageJSON:'package.json',
+    copyBowerJSON:'bower.json',
+    copyBowerrc:'.bowerrc'
 
 };
 var gulpsync = require('gulp-sync')(gulp);
@@ -18,6 +21,7 @@ var imagemin = require("gulp-imagemin");
 var del = require('del');
 var plumber = require("gulp-plumber");
 var runSequence = require('run-sequence');
+var sourceMaps = require('gulp-sourcemaps');
 var PATH = {
     dest: {
         all: 'dist',
@@ -65,7 +69,9 @@ gulp.task('clean', function (done) {
 gulp.task('ts-compile', function () {
     return gulp
         .src('client/app/**/*.ts')
+        .pipe(sourceMaps.init())
         .pipe(tsc(tsConfig))
+        .pipe(sourceMaps.write('.'))
         .pipe(gulp.dest('dist/dev/client/app'));
 });
 
@@ -116,28 +122,20 @@ gulp.task('start-server', function () {
         , env: { 'NODE_ENV': 'development' }
     })
 });
-gulp.task('default', function(callback) {
-    runSequence([
-            "copy-rootfiles",
-            "copy-css",
-            "copy-corelib",
-            "minify-images",
-            "copy-html",
-            "copy-server",
-            "start-server"
-        ],
-        callback);
+
+gulp.task("copy-components", function () {
+    return gulp.src([paths.copyBowerrc, paths.copyBowerJSON, paths.copyPackageJSON])
+        .pipe(gulp.dest('dist/dev/'));
 });
 
-
-//gulp.task('default', function(callback) {
-//    runSequence(
-//        //['clean', 'ts-compile'],
-//        //[ 'ts-compile'],
-//        [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
-//        [ 'start-server'],
-//        callback);
-//});
+gulp.task('default', function(callback) {
+    runSequence(
+        //['clean', 'ts-compile'],
+        //[ 'ts-compile'],
+        [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
+        [ 'start-server'],
+        callback);
+});
 //gulp.task("default", gulpsync.sync([
 //    "clean",
 //    "ts-compile",

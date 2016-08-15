@@ -1,0 +1,1 @@
+{"version":3,"sources":["dashboard/index.ts"],"names":[],"mappings":";;;;AAAA;;GAEG;AACH,iBAAc,uBAAuB,CAAC,EAAA;AACtC,iBAAc,mBAAmB,CAAC,EAAA","file":"index.js","sourcesContent":["/**\n * This barrel file provides the export for the lazy loaded HomeComponent.\n */\nexport * from './dashboard.component';\nexport * from './dashboard.route';"]}

@@ -62,3 +62,5 @@ var AdminComponent = (function () {
     return AdminComponent;
 }());
 exports.AdminComponent = AdminComponent;
+
+//# sourceMappingURL=admin.component.js.map

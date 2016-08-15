@@ -50,3 +50,5 @@ var SearchService = (function () {
     return SearchService;
 }());
 exports.SearchService = SearchService;
+
+//# sourceMappingURL=dashboard.service.js.map

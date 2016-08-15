@@ -7,3 +7,5 @@ function __export(m) {
  */
 __export(require('./login.component'));
 __export(require('./login.route'));
+
+//# sourceMappingURL=index.js.map

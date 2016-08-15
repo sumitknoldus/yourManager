@@ -6,3 +6,5 @@ exports.DashboardRoutes = [
         component: dashboard_component_1.DashboardComponent
     },
 ];
+
+//# sourceMappingURL=dashboard.route.js.map

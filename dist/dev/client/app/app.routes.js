@@ -8,3 +8,5 @@ var routes = home_route_1.HomeRoutes.concat(admin_route_1.AdminRoutes, dashboard
 exports.appRouterProviders = [
     router_1.provideRouter(routes)
 ];
+
+//# sourceMappingURL=app.routes.js.map

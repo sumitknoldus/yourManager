@@ -5,3 +5,5 @@ var logistics = (function () {
     return logistics;
 }());
 exports.logistics = logistics;
+
+//# sourceMappingURL=logistics.js.map

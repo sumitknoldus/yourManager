@@ -6,3 +6,5 @@ exports.AdminRoutes = [
         component: admin_component_1.AdminComponent
     },
 ];
+
+//# sourceMappingURL=admin.route.js.map

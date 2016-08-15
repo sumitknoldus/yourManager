@@ -1,0 +1,27 @@
+{
+  "name": "themanager",
+  "version": "1.0.0",
+  "authors": [
+    "Manish"
+  ],
+  "description": "The Manager FrontEnd Dependencies",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.7",
+    "core-js": "*",
+    "es6-shim": "*",
+    "reflect-metadata": "^*",
+    "rxjs": "*",
+    "systemjs": "*",
+    "zone.js": "*",
+    "jquery": "~3.1.0"
+  }
+}

@@ -11,3 +11,5 @@ exports.LoginRoutes = [
         component: login_component_1.LoginComponent
     },
 ];
+
+//# sourceMappingURL=login.route.js.map
