@@ -115,11 +115,9 @@ gulp.task('start-server', function () {
         , ext: 'js html'
         , env: { 'NODE_ENV': 'development' }
     })
-})
+});
 gulp.task('default', function(callback) {
     runSequence([
-            "clean",
-            "ts-compile",
             "copy-rootfiles",
             "copy-css",
             "copy-corelib",
@@ -131,6 +129,15 @@ gulp.task('default', function(callback) {
         callback);
 });
 
+
+//gulp.task('default', function(callback) {
+//    runSequence(
+//        //['clean', 'ts-compile'],
+//        //[ 'ts-compile'],
+//        [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
+//        [ 'start-server'],
+//        callback);
+//});
 //gulp.task("default", gulpsync.sync([
 //    "clean",
 //    "ts-compile",
