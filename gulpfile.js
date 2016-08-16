@@ -13,43 +13,17 @@ var paths = {
     copyeServerRootFiles:'server/*.*',
     copyPackageJSON:'package.json',
     copyBowerJSON:'bower.json',
-    copyBowerrc:'.bowerrc'
+    copyBowerrc:'.bowerrc',
+    copyBabelrc:'.babelrc'
 
 };
-var gulpsync = require('gulp-sync')(gulp);
+var tslint = require("gulp-tslint");
 var imagemin = require("gulp-imagemin");
 var del = require('del');
 var plumber = require("gulp-plumber");
 var runSequence = require('run-sequence');
 var sourceMaps = require('gulp-sourcemaps');
-var PATH = {
-    dest: {
-        all: 'dist',
-        dev: {
-            all: 'dist/dev/client',
-            app:'dist/dev/client/app',
-            assets: 'dist/dev/client/assets',
-            lib: 'dist/dev/client/assets/lib',
-            css:'dist/dev/client/assets/styles',
-            images:'dist/dev/client/assets/images'
-        },
-        prod: {
-            all: 'dist/prod',
-            assets: 'dist/dev/client/assets',
-            css:'dist/dev/client/assets/styles',
-            images:'dist/dev/client/assets/images'
-        }
-    },
-    src: {
-        // Order is quite important here for the HTML tag injection.
-        lib: [
-            'node_modules/core-js/client/shim.min.js',
-            'node_modules/zone.js/dist/zone.js',
-            'node_modules/reflect-metadata/Reflect.js',
-            'node_modules/systemjs/dist/system.src.js'
-        ]
-    }
-};
+
 
 var lib = [
     'node_modules/core-js/client/shim.min.js',
@@ -63,8 +37,14 @@ var lib = [
 ];
 
 gulp.task('clean', function (done) {
-    del(PATH.dest.all, done);
+    del('dist/dev', done);
 });
+
+gulp.task('clean-junkjs', function (done) {
+    del(['client/app/**/*.js', 'client/app/**/*.js.map'], done);
+
+});
+
 
 gulp.task('ts-compile', function () {
     return gulp
@@ -128,10 +108,19 @@ gulp.task("copy-components", function () {
         .pipe(gulp.dest('dist/dev/'));
 });
 
+gulp.task("ts-lint", function() {
+    return gulp.src("client/app/**/*.ts")
+        .pipe(tslint())
+        .pipe(tslint("verbose", {
+            emitError: false
+        }))
+        .pipe(tslint.report())
+});
+
 gulp.task('default', function(callback) {
     runSequence(
-        //['clean', 'ts-compile'],
-        //[ 'ts-compile'],
+        //['ts-lint'],
+        ['ts-compile'],
         [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
         [ 'start-server'],
         callback);

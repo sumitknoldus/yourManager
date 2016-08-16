@@ -3,3 +3,8 @@ client/bower_components
 .idea
 /server/config/local.env.js
 npm-debug.log
+gulpfile.js
+gulpfiletemp.js
+gulpfile1.js
+gulp.config.js
+samplegulpfile.js

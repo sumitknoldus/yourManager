@@ -1,3 +1,32 @@
+var PATH = {
+    dest: {
+        all: 'dist',
+        dev: {
+            all: 'dist/dev/client',
+            app:'dist/dev/client/app',
+            assets: 'dist/dev/client/assets',
+            lib: 'dist/dev/client/assets/lib',
+            css:'dist/dev/client/assets/styles',
+            images:'dist/dev/client/assets/images'
+        },
+        prod: {
+            all: 'dist/prod',
+            assets: 'dist/dev/client/assets',
+            css:'dist/dev/client/assets/styles',
+            images:'dist/dev/client/assets/images'
+        }
+    },
+    src: {
+        // Order is quite important here for the HTML tag injection.
+        lib: [
+            'node_modules/core-js/client/shim.min.js',
+            'node_modules/zone.js/dist/zone.js',
+            'node_modules/reflect-metadata/Reflect.js',
+            'node_modules/systemjs/dist/system.src.js'
+        ]
+    }
+};
+
 var gulp = require("gulp"),
     sourcemaps = require("gulp-sourcemaps"),
     clean = require("gulp-typescript"),
