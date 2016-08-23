@@ -12,7 +12,6 @@ var core_1 = require('@angular/core');
 var user_1 = require('.././user/user');
 var login_service_1 = require('./login.service');
 var router_1 = require('@angular/router');
-var header_component_1 = require('../shared/header/header.component');
 var LoginComponent = (function () {
     function LoginComponent(loginService, router) {
         this.loginService = loginService;
@@ -26,7 +25,8 @@ var LoginComponent = (function () {
             this.errorMsg = 'Failed to login';
         }
         else {
-            this.router.navigate(['/home']);
+            this.errorMsg = 'zzzzzzzzzz';
+            this.router.navigate(['home']);
         }
     };
     __decorate([
@@ -39,8 +39,7 @@ var LoginComponent = (function () {
             selector: 'ym-login',
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css'],
-            providers: [login_service_1.LoginService],
-            directives: [header_component_1.HeaderComponent]
+            providers: [login_service_1.LoginService]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
     ], LoginComponent);

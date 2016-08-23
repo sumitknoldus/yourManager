@@ -16,7 +16,7 @@ import { HeaderComponent } from '../shared/header/header.component';
     selector: 'ym-dashboard',
     providers: [SearchService],
     templateUrl:'dashboard.component.html',
-    directives:[ROUTER_DIRECTIVES, HeaderComponent]
+    directives:[HeaderComponent]
 })
 
 export class DashboardComponent implements OnInit {

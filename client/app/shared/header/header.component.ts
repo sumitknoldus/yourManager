@@ -5,7 +5,7 @@ import { Router,ROUTER_DIRECTIVES } from '@angular/router';
     moduleId:module.id,
     selector: 'ym-header-shared',
     templateUrl:'header.component.html',
-    directives:[ROUTER_DIRECTIVES],
+    //directives:[ROUTER_DIRECTIVES],
     styleUrls: ['header.css']
 })
 

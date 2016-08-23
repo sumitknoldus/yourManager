@@ -48,7 +48,7 @@ var DashboardComponent = (function () {
             selector: 'ym-dashboard',
             providers: [dashboard_service_1.SearchService],
             templateUrl: 'dashboard.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent]
+            directives: [header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [dashboard_service_1.SearchService, router_1.Router, router_1.ActivatedRoute])
     ], DashboardComponent);

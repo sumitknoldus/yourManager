@@ -10,6 +10,7 @@
     <!-- Polyfill(s) for older browsers -->
 
 </head>
+<base href="/">
 <!-- 3. Display the application -->
 <body>
 <my-app>Loading...</my-app>
@@ -27,14 +28,6 @@
 <script>
 
 
-    System.config({
-        packages: {
-            build: {
-                format: 'register',
-                defaultExtension: 'js'
-            }
-        }
-    });
     System.import('app').catch(function(err){
           console.error(err);
     });

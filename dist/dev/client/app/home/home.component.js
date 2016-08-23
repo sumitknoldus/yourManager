@@ -23,7 +23,7 @@ var HomeComponent = (function () {
             moduleId: module.id,
             selector: 'ym-home',
             templateUrl: 'home.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent]
+            directives: [header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], HomeComponent);

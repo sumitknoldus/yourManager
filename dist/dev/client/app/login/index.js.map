@@ -1,1 +1,1 @@
-{"version":3,"sources":["login/index.ts"],"names":[],"mappings":";;;;AAAA;;GAEG;AACH,iBAAc,mBAAmB,CAAC,EAAA;AAClC,iBAAc,eAAe,CAAC,EAAA","file":"index.js","sourcesContent":["/**\n * This barrel file provides the export for the lazy loaded HomeComponent.\n */\nexport * from './login.component';\nexport * from './login.route';"]}
+{"version":3,"sources":["login/index.ts"],"names":[],"mappings":";;;;AACA,iBAAc,mBAAmB,CAAC,EAAA;AAClC,iBAAc,eAAe,CAAC,EAAA","file":"index.js","sourcesContent":["\nexport * from './login.component';\nexport * from './login.route';"]}

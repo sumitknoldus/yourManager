@@ -9,8 +9,7 @@ import { HeaderComponent } from '../shared/header/header.component';
     selector: 'ym-login',
     templateUrl: 'login.component.html',
     styleUrls:['login.component.css'],
-    providers:[LoginService],
-    directives:[HeaderComponent]
+    providers:[LoginService]
 })
 
 
@@ -27,7 +26,8 @@ export class LoginComponent {
         if(!this.loginService.login(this.selectedUser)) {
             this.errorMsg = 'Failed to login';
         } else {
-                this.router.navigate(['/home']);
+            this.errorMsg = 'zzzzzzzzzz'
+                this.router.navigate(['home']);
         }
     }
 }
