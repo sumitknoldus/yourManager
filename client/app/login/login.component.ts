@@ -26,7 +26,6 @@ export class LoginComponent {
         if(!this.loginService.login(this.selectedUser)) {
             this.errorMsg = 'Failed to login';
         } else {
-            this.errorMsg = 'zzzzzzzzzz'
                 this.router.navigate(['home']);
         }
     }
