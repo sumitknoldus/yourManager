@@ -8,8 +8,10 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir":"dist/dev/client"
   },
+  "compileOnSave":false,
   "exclude":[
     "node_modules"
   ]

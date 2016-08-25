@@ -1,4 +1,6 @@
 var gulp = require("gulp");
+var gzip = require("gulp-gzip");
+
 var tsc = require("gulp-typescript");
 var tsConfig = tsc.createProject('./client/tsconfig.json');
 var browserify = require("browserify");
@@ -26,6 +28,7 @@ var sourceMaps = require('gulp-sourcemaps');
 
 
 var lib = [
+    'node_modules/@angular',
     'node_modules/core-js/client/shim.min.js',
     'node_modules/zone.js/dist/zone.js',
     'node_modules/reflect-metadata/Reflect.js',
@@ -35,6 +38,8 @@ var lib = [
     './client/bower_components/bootstrap/dist/css/bootstrap.min.css'
 
 ];
+
+
 
 gulp.task('clean', function (done) {
     del('dist/dev', done);
@@ -83,7 +88,7 @@ gulp.task("minify-images", function() {
 gulp.task("copy-corelib", function(){
 
     return gulp.src(lib)
-        .pipe(gulp.dest('dist/dev/client/assets/lib'));
+        .pipe(gulp.dest(['dist/dev/client/assets/lib']));
 });
 gulp.task("copy-rootfiles", function () {
     return gulp.src(paths.rootFiles)
