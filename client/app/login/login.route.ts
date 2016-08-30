@@ -7,5 +7,11 @@ const loginRoutes: Routes = [
         path: 'login',
         component: LoginComponent
     }
+    //,
+    //{
+    //    path: '**',
+    //    redirectTo: '/login',
+    //    pathMatch: 'full'
+    //}
 ];
 export const loginRouting: ModuleWithProviders = RouterModule.forChild(loginRoutes);

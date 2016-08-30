@@ -17,8 +17,6 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var router_1 = require('@angular/router');
-var header_component_1 = require('../shared/header/header.component');
-//import {LoginService} from '.././login/login.service'
 var DashboardComponent = (function () {
     function DashboardComponent(searchService, router, route) {
         this.searchService = searchService;
@@ -46,9 +44,7 @@ var DashboardComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'ym-dashboard',
-            providers: [dashboard_service_1.SearchService],
             templateUrl: 'dashboard.component.html',
-            directives: [header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [dashboard_service_1.SearchService, router_1.Router, router_1.ActivatedRoute])
     ], DashboardComponent);

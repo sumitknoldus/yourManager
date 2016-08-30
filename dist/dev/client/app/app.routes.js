@@ -7,6 +7,10 @@ var router_1 = require('@angular/router');
 var routes = [
     { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
     { path: 'admin', loadChildren: 'app/+admin/admin.module#AdminModule' },
+    {
+        path: 'dashboard',
+        loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+    }
 ];
 exports.routing = router_1.RouterModule.forRoot(routes);
 
