@@ -125,10 +125,15 @@ gulp.task("ts-lint", function() {
 gulp.task('build-dev', function(callback) {
     runSequence(
         //['ts-lint'],
-        ['ts-compile'],
+        'ts-compile',
         [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
-        [ 'start-server'],
+        'start-server',
+        'gulp-watch',
         callback);
+});
+gulp.task('gulp-watch', function() {
+    return gulp.watch(['client/app/**/*.ts'], ['ts-compile']);
+
 });
 
 
