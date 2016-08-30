@@ -10,27 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
+/* App root*/
 var app_component_1 = require('./app.component');
+/*
+ @Feature Modules
+**/
 var app_routes_1 = require('./app.routes');
-var admin_component_1 = require('./+admin/admin.component');
-var home_component_1 = require('./home/home.component');
-var login_component_1 = require('./login/login.component');
-var header_component_1 = require('./shared/header/header.component');
-var dashboard_component_1 = require('./dashboard/dashboard.component');
-var http_1 = require('@angular/http');
+//import {AdminComponent} from './+admin/admin.component';
+//import {HomeComponent} from './home/home.component';
+var login_module_1 = require('./login/login.module');
+//import {HeaderComponent} from './shared/header/header.component';
+//import {DashboardComponent} from './dashboard/dashboard.component';
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, app_routes_1.routing, forms_1.FormsModule, http_1.HttpModule],
-            declarations: [app_component_1.AppComponent,
-                admin_component_1.AdminComponent,
-                home_component_1.HomeComponent,
-                login_component_1.LoginComponent,
-                header_component_1.HeaderComponent,
-                dashboard_component_1.DashboardComponent],
+            imports: [
+                platform_browser_1.BrowserModule,
+                app_routes_1.routing,
+                login_module_1.LoginModule
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+            ],
             bootstrap: [app_component_1.AppComponent],
         }), 
         __metadata('design:paramtypes', [])

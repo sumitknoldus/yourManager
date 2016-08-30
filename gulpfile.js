@@ -88,7 +88,7 @@ gulp.task("minify-images", function() {
 gulp.task("copy-corelib", function(){
 
     return gulp.src(lib)
-        .pipe(gulp.dest(['dist/dev/client/assets/lib']));
+        .pipe(gulp.dest('dist/dev/client/assets/lib'));
 });
 gulp.task("copy-rootfiles", function () {
     return gulp.src(paths.rootFiles)
@@ -122,7 +122,7 @@ gulp.task("ts-lint", function() {
         .pipe(tslint.report())
 });
 
-gulp.task('default', function(callback) {
+gulp.task('build-dev', function(callback) {
     runSequence(
         //['ts-lint'],
         ['ts-compile'],
@@ -130,28 +130,5 @@ gulp.task('default', function(callback) {
         [ 'start-server'],
         callback);
 });
-//gulp.task("default", gulpsync.sync([
-//    "clean",
-//    "ts-compile",
-//    "copy-rootfiles",
-//    "copy-css",
-//    "copy-corelib",
-//    "minify-images",
-//    "copy-html"
-//
-//]), function () {
-//
-//    //return browserify({
-//    //    basedir: '.',
-//    //    debug: true,
-//    //    entries: ['client/app/boot.ts'],
-//    //    cache: {},
-//    //    packageCache: {}
-//    //})
-//    //    .plugin(tsify)
-//    //    .bundle()
-//    //    .pipe(source('bundle.js'))
-//    //    .pipe(gulp.dest("dist"));
-//});
 
 

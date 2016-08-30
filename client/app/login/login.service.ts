@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {User} from '.././user/user';
+import {User} from '../shared/model/user';
 
 var USERS =  [
     {

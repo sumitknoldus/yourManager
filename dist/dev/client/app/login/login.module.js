@@ -1,3 +1,4 @@
+"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,32 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-/* App root*/
-var app_component_1 = require('./app.component');
-/*
- @Feature Modules
-**/
-var app_routes_1 = require('./app.routes');
-var login_module_1 = require('./login/login.module');
-var AppModule = (function () {
-    function AppModule() {
+var common_1 = require('@angular/common');
+var forms_1 = require('@angular/forms');
+var login_component_1 = require('./login.component');
+var login_service_1 = require('./login.service');
+var login_route_1 = require('./login.route');
+var LoginModule = (function () {
+    function LoginModule() {
     }
-    AppModule = __decorate([
+    LoginModule = __decorate([
         core_1.NgModule({
-            imports: [
-                platform_browser_1.BrowserModule,
-                app_routes_1.routing,
-                login_module_1.LoginModule
-            ],
-            declarations: [
-                app_component_1.AppComponent,
-            ],
-            bootstrap: [app_component_1.AppComponent],
+            imports: [forms_1.FormsModule, common_1.CommonModule, login_route_1.loginRouting],
+            declarations: [login_component_1.LoginComponent],
+            providers: [login_service_1.LoginService]
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
-})();
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+    ], LoginModule);
+    return LoginModule;
+}());
+exports.LoginModule = LoginModule;
+/*
+ Copyright 2016 Google Inc. All Rights Reserved.
+ Use of this source code is governed by an MIT-style license that
+ can be found in the LICENSE file at http://angular.io/license
+ */ 
+
+//# sourceMappingURL=login.module.js.map

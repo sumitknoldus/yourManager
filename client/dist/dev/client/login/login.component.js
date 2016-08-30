@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var user_1 = require('.././user/user');
+var user_1 = require('../shared/model/user');
 var login_service_1 = require('./login.service');
 var router_1 = require('@angular/router');
 var LoginComponent = (function () {
@@ -37,7 +37,6 @@ var LoginComponent = (function () {
             selector: 'ym-login',
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css'],
-            providers: [login_service_1.LoginService]
         }), 
         __metadata('design:paramtypes', [login_service_1.LoginService, router_1.Router])
     ], LoginComponent);
