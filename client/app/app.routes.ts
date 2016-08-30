@@ -7,11 +7,11 @@ const routes: Routes = [
 
   {
     path: 'admin',
-    loadChildren: '+admin/admin.module#AdminModule'
+    loadChildren: 'app/+admin/admin.module#AdminModule'
   },
   {
     path: 'dashboard',
-    loadChildren: 'dashboard/dashboard.module#DashboardModule'
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
   }
 ];
 export const routing = RouterModule.forRoot(routes);
