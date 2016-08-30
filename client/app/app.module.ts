@@ -11,18 +11,17 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
-
+import {HomeModule} from './home/home.module';
 
 
 @NgModule({
   imports: [
     BrowserModule ,
     routing,
+    HomeModule,
     LoginModule
   ],
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule { }

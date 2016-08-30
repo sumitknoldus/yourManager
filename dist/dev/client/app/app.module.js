@@ -16,11 +16,8 @@ var app_component_1 = require('./app.component');
  @Feature Modules
 **/
 var app_routes_1 = require('./app.routes');
-//import {AdminComponent} from './+admin/admin.component';
-//import {HomeComponent} from './home/home.component';
 var login_module_1 = require('./login/login.module');
-//import {HeaderComponent} from './shared/header/header.component';
-//import {DashboardComponent} from './dashboard/dashboard.component';
+var home_module_1 = require('./home/home.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,11 +26,10 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routes_1.routing,
+                home_module_1.HomeModule,
                 login_module_1.LoginModule
             ],
-            declarations: [
-                app_component_1.AppComponent,
-            ],
+            declarations: [app_component_1.AppComponent],
             bootstrap: [app_component_1.AppComponent],
         }), 
         __metadata('design:paramtypes', [])

@@ -17,6 +17,10 @@ var USERS = [
     {
         email: 'amit@knoldus.com',
         password: '11'
+    },
+    {
+        email: 'akshayrana@knoldus.in',
+        password: '11'
     }
 ];
 var LoginService = (function () {

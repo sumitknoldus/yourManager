@@ -9,21 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var shared_module_1 = require("../shared/shared.module");
-var home_route_1 = require("./home.route");
-var home_component_1 = require("./home.component");
-var HomeModule = (function () {
-    function HomeModule() {
+var common_1 = require('@angular/common');
+var forms_1 = require('@angular/forms');
+var header_component_1 = require('./header/header.component');
+var SharedModule = (function () {
+    function SharedModule() {
     }
-    HomeModule = __decorate([
+    SharedModule = __decorate([
         core_1.NgModule({
-            imports: [shared_module_1.SharedModule, home_route_1.homeRouting],
-            declarations: [home_component_1.HomeComponent],
+            imports: [common_1.CommonModule],
+            declarations: [header_component_1.HeaderComponent],
+            exports: [header_component_1.HeaderComponent,
+                common_1.CommonModule,
+                forms_1.FormsModule]
         }), 
         __metadata('design:paramtypes', [])
-    ], HomeModule);
-    return HomeModule;
+    ], SharedModule);
+    return SharedModule;
 }());
-exports.HomeModule = HomeModule;
+exports.SharedModule = SharedModule;
 
-//# sourceMappingURL=home.module.js.map
+//# sourceMappingURL=shared.module.js.map
