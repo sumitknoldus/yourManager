@@ -1,1 +1,0 @@
-{"version":3,"sources":["+admin/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,mBAAmB,CAAC,EAAA;AAClC,iBAAc,eAAe,CAAC,EAAA","file":"index.js","sourcesContent":["export * from './admin.component';\nexport * from './admin.route';"]}
