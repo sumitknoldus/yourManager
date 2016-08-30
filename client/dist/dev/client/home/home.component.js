@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var header_component_1 = require('../shared/header/header.component');
 var HomeComponent = (function () {
     function HomeComponent(router) {
         this.router = router;
@@ -22,7 +21,6 @@ var HomeComponent = (function () {
             moduleId: module.id,
             selector: 'ym-home',
             templateUrl: 'home.component.html',
-            directives: [header_component_1.HeaderComponent]
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], HomeComponent);

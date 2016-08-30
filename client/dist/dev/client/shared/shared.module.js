@@ -1,4 +1,3 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,26 +8,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var header_component_1 = require('../shared/header/header.component');
-var HomeComponent = (function () {
-    function HomeComponent(router) {
-        this.router = router;
+var common_1 = require('@angular/common');
+var forms_1 = require('@angular/forms');
+var header_component_1 = require('./header/header.component');
+var SharedModule = (function () {
+    function SharedModule() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
-        this.fullpath = 'assets/images/your.jpg';
-    };
-    HomeComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'ym-home',
-            templateUrl: 'home.component.html',
-            directives: [header_component_1.HeaderComponent]
+    SharedModule = __decorate([
+        core_1.NgModule({
+            imports: [common_1.CommonModule],
+            declarations: [header_component_1.HeaderComponent],
+            exports: [header_component_1.HeaderComponent,
+                common_1.CommonModule,
+                forms_1.FormsModule]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
-    ], HomeComponent);
-    return HomeComponent;
-}());
-exports.HomeComponent = HomeComponent;
-
-//# sourceMappingURL=home.component.js.map
+        __metadata('design:paramtypes', [])
+    ], SharedModule);
+    return SharedModule;
+})();
+exports.SharedModule = SharedModule;
+//# sourceMappingURL=shared.module.js.map

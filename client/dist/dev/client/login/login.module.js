@@ -8,17 +8,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var forms_1 = require('@angular/forms');
 var login_component_1 = require('./login.component');
 var login_service_1 = require('./login.service');
 var login_route_1 = require('./login.route');
+var shared_module_1 = require("../shared/shared.module");
 var LoginModule = (function () {
     function LoginModule() {
     }
     LoginModule = __decorate([
         core_1.NgModule({
-            imports: [forms_1.FormsModule, common_1.CommonModule, login_route_1.loginRouting],
+            imports: [shared_module_1.SharedModule, login_route_1.loginRouting],
             declarations: [login_component_1.LoginComponent],
             providers: [login_service_1.LoginService]
         }), 

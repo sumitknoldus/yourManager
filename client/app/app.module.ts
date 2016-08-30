@@ -12,6 +12,7 @@ import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
 import {AdminModule} from './+admin/admin.module';
+import {HomeModule} from './home/home.module';
 
 
 
@@ -19,12 +20,11 @@ import {AdminModule} from './+admin/admin.module';
   imports: [
     BrowserModule ,
     routing,
-    LoginModule,
-    AdminModule
+    AdminModule,
+    HomeModule,
+    LoginModule
   ],
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule { }

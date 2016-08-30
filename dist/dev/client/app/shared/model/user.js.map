@@ -1,1 +1,0 @@
-{"version":3,"sources":["shared/model/user.ts"],"names":[],"mappings":";AAAA;IAAA;IAMA,CAAC;IAAD,WAAC;AAAD,CANA,AAMC,IAAA;AANY,YAAI,OAMhB,CAAA","file":"user.js","sourcesContent":["export class User {\n         email: string;\n        password: string;\n    //constructor(\n    //    public email: string,\n    //    public password: string) { }\n}\n\n\n"]}

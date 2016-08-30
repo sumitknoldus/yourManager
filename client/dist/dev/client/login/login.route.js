@@ -4,6 +4,10 @@ var loginRoutes = [
     {
         path: 'login',
         component: login_component_1.LoginComponent
+    }, {
+        path: '**',
+        redirectTo: '/login',
+        pathMatch: 'full'
     }
 ];
 exports.loginRouting = router_1.RouterModule.forChild(loginRoutes);

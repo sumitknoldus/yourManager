@@ -3,12 +3,6 @@ var router_1 = require('@angular/router');
 //import {AdminRoutes} from './+admin/admin.route';
 //import {DashboardRoutes} from './dashboard/dashboard.route';
 //import {HomeRoutes} from './home/home.route';
-var routes = [
-    {
-        path: '**',
-        redirectTo: '/login',
-        pathMatch: 'full'
-    }
-];
+var routes = [];
 exports.routing = router_1.RouterModule.forRoot(routes);
 //# sourceMappingURL=app.routes.js.map
