@@ -4,9 +4,9 @@ import { HomeComponent } from './home.component';
 
 export const homeRoutes: Routes = [
     {
-        path: 'home',
+        path: '',
         component: HomeComponent
-    },
+    }
 ];
 
 export const homeRouting = RouterModule.forChild(homeRoutes)
