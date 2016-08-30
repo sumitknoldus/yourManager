@@ -30,7 +30,6 @@ var HeaderComponent = (function () {
             moduleId: module.id,
             selector: 'ym-header-shared',
             templateUrl: 'header.component.html',
-            //directives:[ROUTER_DIRECTIVES],
             styleUrls: ['header.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router])

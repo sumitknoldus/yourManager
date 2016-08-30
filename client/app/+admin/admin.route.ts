@@ -5,8 +5,8 @@ import { AdminComponent } from './admin.component';
 const adminRoutes: Routes = [
 
     {
-        path: 'heroes',
-        loadChildren: 'admin.module#AdminModule'
+        path: 'admin',
+        component: AdminComponent
     }
 ];
 export const adminRouting: ModuleWithProviders = RouterModule.forChild(adminRoutes);

@@ -7,16 +7,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute, ROUTER_DIRECTIVES } from '@angular/router';
-import { HeaderComponent } from '../shared/header/header.component';
-
-//import {LoginService} from '.././login/login.service'
 
 @Component({
     moduleId:module.id,
     selector: 'ym-dashboard',
-    providers: [SearchService],
     templateUrl:'dashboard.component.html',
-    directives:[HeaderComponent]
 })
 
 export class DashboardComponent implements OnInit {
