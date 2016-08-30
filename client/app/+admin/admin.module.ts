@@ -1,13 +1,13 @@
 import { NgModule }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
 import { HttpModule }  from '@angular/http';
-import { FormsModule }         from '@angular/forms';
 import { AdminComponent }    from './admin.component';
 import { AdminService } from './admin.service';
 import { adminRouting }       from './admin.route';
+import { SharedModule }       from '../shared/shared.module';
+
 
 @NgModule({
-  imports:      [ CommonModule, adminRouting, HttpModule ],
+  imports:      [ SharedModule, adminRouting, HttpModule ],
   declarations: [ AdminComponent ],
   providers:    [ AdminService ]
 })

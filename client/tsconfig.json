@@ -9,7 +9,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir":"dist/dev/client"
+    "outDir":"../dist/dev/client"
   },
   "compileOnSave":false,
   "exclude":[
