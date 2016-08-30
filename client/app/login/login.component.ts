@@ -23,7 +23,7 @@ export class LoginComponent {
         this.selectedUser = user;
 
         if(!this.loginService.login(this.selectedUser)) {
-            this.errorMsg = 'Failed to login';
+            this.errorMsg = 'Failed to login...';
         } else {
             this.router.navigate(['home']);
         }
