@@ -1,1 +1,0 @@
-{"version":3,"sources":["dashboard/index.ts"],"names":[],"mappings":";;;;AACA,iBAAc,uBAAuB,CAAC,EAAA;AACtC,iBAAc,mBAAmB,CAAC,EAAA","file":"index.js","sourcesContent":["\nexport * from './dashboard.component';\nexport * from './dashboard.route';"]}

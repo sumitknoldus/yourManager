@@ -1,1 +1,0 @@
-{"version":3,"sources":["boot.ts"],"names":[],"mappings":";AAAA,yCAAuC,mCAAmC,CAAC,CAAA;AAC3E,2BAA0B,cAAc,CAAC,CAAA;AAEzC,iDAAsB,EAAE,CAAC,eAAe,CAAC,sBAAS,CAAC,CAAC","file":"boot.js","sourcesContent":["import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\nimport { AppModule } from './app.module';\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n"]}
