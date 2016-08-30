@@ -7,17 +7,16 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
-
 import { Router, ActivatedRoute } from '@angular/router';
-import { HeaderComponent } from '../shared/header/header.component';
+
 
 @Component({
     moduleId:module.id,
     selector: 'ym-admin',
     templateUrl: 'admin.component.html',
     styleUrls:['admin.component.css'],
-    providers:[AdminService],
-    directives:[HeaderComponent]
+
+
 })
 
 export class AdminComponent implements OnInit, OnDestroy {
