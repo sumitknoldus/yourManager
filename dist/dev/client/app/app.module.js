@@ -16,11 +16,8 @@ var app_component_1 = require('./app.component');
  @Feature Modules
 **/
 var app_routes_1 = require('./app.routes');
-//import {AdminComponent} from './+admin/admin.component';
-//import {HomeComponent} from './home/home.component';
 var login_module_1 = require('./login/login.module');
-//import {HeaderComponent} from './shared/header/header.component';
-//import {DashboardComponent} from './dashboard/dashboard.component';
+var admin_module_1 = require('./+admin/admin.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,7 +26,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routes_1.routing,
-                login_module_1.LoginModule
+                login_module_1.LoginModule,
+                admin_module_1.AdminModule
             ],
             declarations: [
                 app_component_1.AppComponent,

@@ -1,10 +1,11 @@
 "use strict";
-var admin_component_1 = require('./admin.component');
-exports.AdminRoutes = [
+var router_1 = require('@angular/router');
+var adminRoutes = [
     {
-        path: 'admin/:id',
-        component: admin_component_1.AdminComponent
-    },
+        path: 'heroes',
+        loadChildren: 'admin.module#AdminModule'
+    }
 ];
+exports.adminRouting = router_1.RouterModule.forChild(adminRoutes);
 
 //# sourceMappingURL=admin.route.js.map

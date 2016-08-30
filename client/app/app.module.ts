@@ -11,6 +11,7 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
+import {AdminModule} from './+admin/admin.module';
 
 
 
@@ -18,7 +19,8 @@ import {LoginModule} from './login/login.module';
   imports: [
     BrowserModule ,
     routing,
-    LoginModule
+    LoginModule,
+    AdminModule
   ],
   declarations: [
     AppComponent,

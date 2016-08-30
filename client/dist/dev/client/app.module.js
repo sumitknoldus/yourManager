@@ -16,6 +16,7 @@ var app_component_1 = require('./app.component');
 **/
 var app_routes_1 = require('./app.routes');
 var login_module_1 = require('./login/login.module');
+var admin_module_1 = require('./+admin/admin.module');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routes_1.routing,
-                login_module_1.LoginModule
+                login_module_1.LoginModule,
+                admin_module_1.AdminModule
             ],
             declarations: [
                 app_component_1.AppComponent,
