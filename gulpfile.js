@@ -125,7 +125,8 @@ gulp.task("ts-lint", function() {
 gulp.task('copy-system-lib', function () {
     var libs = [
         "@angular",
-        "rxjs"
+        "rxjs",
+        "jasmine-core"
     ];
 
     var promises = [];
