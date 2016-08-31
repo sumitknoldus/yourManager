@@ -1,6 +1,6 @@
 var gulp = require("gulp");
 var gzip = require("gulp-gzip");
-
+var Q = require('q');
 var tsc = require("gulp-typescript");
 var tsConfig = tsc.createProject('./client/tsconfig.json');
 var browserify = require("browserify");
@@ -122,12 +122,35 @@ gulp.task("ts-lint", function() {
         .pipe(tslint.report())
 });
 
+gulp.task('copy-system-lib', function () {
+    var libs = [
+        "@angular",
+        "rxjs"
+    ];
+
+    var promises = [];
+
+    libs.forEach(function (lib) {
+        var defer = Q.defer();
+        var pipeline = gulp
+            .src('node_modules/' + lib + '/**/*')
+            .pipe(gulp.dest('dist/dev/client/assets/system-lib/' + lib));
+
+        pipeline.on('end', function () {
+            defer.resolve();
+        });
+        promises.push(defer.promise);
+    });
+
+    return Q.all(promises);
+});
+
 gulp.task('build-dev', function(callback) {
     runSequence(
         //['ts-lint'],
         'ts-compile',
         [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
-        'start-server',
+        ['copy-system-lib','start-server'],
         'gulp-watch',
         callback);
 });
