@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import {User} from '../shared/model/user';
+import { Headers, Http, Response } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 var USERS =  [
     {
@@ -20,16 +22,32 @@ var USERS =  [
 @Injectable()
 export class LoginService {
 
-    login(user:User) {
+  constructor(private http: Http){}
+  loginUrl = 'signin';
 
-        var authenticatedUser = USERS.find(u => u.email === user.email);
-        if (authenticatedUser && authenticatedUser.password === user.password) {
-            localStorage.setItem('user', JSON.stringify(authenticatedUser));
-            return true;
-        }
-        return false;
+  login(user:User) {
 
+    var authenticatedUser = USERS.find(u => u.email === user.email);
+    if (authenticatedUser && authenticatedUser.password === user.password) {
+      localStorage.setItem('user', JSON.stringify(authenticatedUser));
+      return true;
     }
+    return false;
+  }
+
+  /*login(user: User) {
+    console.log(JSON.stringify(user))
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http
+      .post(this.loginUrl, JSON.stringify(user), {headers: headers})
+      .toPromise()
+      .then(response => response.json().data as User)
+      .catch(this.handleError);
+  }*/
+
 }
 
 //import {Injectable} from '@angular/core';

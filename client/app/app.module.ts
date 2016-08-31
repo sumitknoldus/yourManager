@@ -13,13 +13,15 @@ import {routing} from './app.routes';
 import {LoginModule} from './login/login.module';
 import {AdminModule} from './+admin/admin.module';
 import {HomeModule} from './home/home.module';
+import {SignupModule} from "./signup/signup.module";
 
 
 @NgModule({
   imports: [
     BrowserModule ,
     routing,
-    LoginModule
+    LoginModule,
+    SignupModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],

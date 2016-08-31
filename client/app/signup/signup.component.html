@@ -1,0 +1,107 @@
+<ym-header-shared></ym-header-shared>
+<div class="container" >
+        <div class="title">
+            Sign Up
+        </div>
+        <div class="panel panel-body">
+            <form (ngSubmit)="signup(user)" #signupForm="ngForm">
+            <div class="row">
+                <div class="form-group">
+                    <label for="fName">First Name</label>
+                    <input [(ngModel)]="user.firstName" class="input-box form-control" id="fName"
+                           type="text" name = "firstName" required #fName="ngModel">
+                    <div [hidden]="fName.valid || fName.pristine"
+                         class="alert alert-danger">
+                        First Name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="mName">Middle Name</label>
+                    <input [(ngModel)]="user.middleName" class="input-box form-control" id="mName"
+                           type="text" name = "middleName">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group ">
+                    <label for="lName">Last Name</label>
+                    <input [(ngModel)]="user.lastName" class="input-box form-control" id="lName"
+                           type="text" name = "lastName" required #lName="ngModel">
+                    <div [hidden]="lName.valid || lName.pristine"
+                         class="alert alert-danger">
+                        Last Name is required
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group input-field">
+                    <label for="number">Ph. Number</label>
+                    <input [(ngModel)]="user.number" class="input-box form-control" id="number"
+                           type="number" name = "number" required #number="ngModel">
+                    <div [hidden]="number.valid || number.pristine"
+                         class="alert alert-danger">
+                        Phone Number is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group input-field">
+                    <label for="number">Employee Id</label>
+                    <input [(ngModel)]="user.empId" class="input-box form-control" id="empCode"
+                           type="text" name = "empId" required #empId="ngModel">
+                    <div [hidden]="empId.valid || empId.pristine"
+                         class="alert alert-danger">
+                        Employee Id is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group input-field">
+                    <label for="gender">Gender</label>
+                    <input [(ngModel)]="user.gender" class="input-box form-control" id="gender"
+                           type="text" name = "gender" required #gender="ngModel">
+                    <div [hidden]="gender.valid || gender.pristine"
+                         class="alert alert-danger">
+                        Gender is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group input-field">
+                    <label for="email">Email</label>
+                    <input [(ngModel)]="user.email" class="input-box  form-control" id="email"
+                           type="email" name = "email" required #email="ngModel">
+                    <div [hidden]="email.valid || email.pristine"
+                         class="alert alert-danger">
+                        Email is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group input-field">
+                    <label for="password">Password</label>
+                    <input [(ngModel)]="user.password" class="input-box  form-control" id="password"
+                           type="password" name = "password" required #password="ngModel">
+                    <div [hidden]="password.valid || password.pristine"
+                         class="alert alert-danger">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-2"><button class="btn btn-warning" (click)="goBack()" type="button">Back</button></div>
+                    <button class="btn waves-effect waves-light col-sm-2 col-sm-offset-8" type="submit" name="action" [disabled]="!signupForm.form.valid">Sign Up</button>
+            </div>
+            </form>
+
+        </div>
+</div>

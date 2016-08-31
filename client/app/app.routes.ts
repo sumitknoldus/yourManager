@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: 'app/dashboard/dashboard.module#DashboardModule'
+  },
+  {
+    path: 'signup',
+    loadChildren: 'app/signup/signup.module#SignupModule'
   }
 ];
 export const routing = RouterModule.forRoot(routes);
