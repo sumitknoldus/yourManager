@@ -12,6 +12,7 @@ import {SignupService} from './signup.service';
 })
 
 export class SignupComponent {
+
     @Input()
     user = {};
 

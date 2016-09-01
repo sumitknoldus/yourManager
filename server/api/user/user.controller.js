@@ -35,6 +35,7 @@ export function index(req, res) {
  * Creates a new user
  */
 export function create(req, res, next) {
+    console.log(JSON.stringify(req.body));
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
