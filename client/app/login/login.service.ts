@@ -24,19 +24,10 @@ export class LoginService {
     loginUrl = '/api/users/signin';
     constructor(private http: Http) {}
 
-  responseUser: User;
+  email: string = '';
+  password: string= '';
 
-  login(user:User) {
-    this.getLoginData(user).then(userData => this.responseUser = userData);
-    if (this.responseUser.email === user.email && this.responseUser.password === user.password) {
-      localStorage.setItem('user', JSON.stringify(this.responseUser));
-      return true;
-    }
-    return false;
-  }
-
-  getLoginData(user: User) {
-    console.log(JSON.stringify(user))
+  login(user: User) {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -44,8 +35,13 @@ export class LoginService {
     return this.http
       .post(this.loginUrl, JSON.stringify(user), {headers: headers})
       .toPromise()
-      .then(response => response.json().data as User)
+      .then(this.extractData)
       .catch(this.handleError);
+  }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body || { };
   }
 
 }

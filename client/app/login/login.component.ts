@@ -21,12 +21,15 @@ export class LoginComponent {
 
     login(user:User) {
         this.selectedUser = user;
-
-        if(!this.loginService.login(this.selectedUser)) {
-            this.errorMsg = 'Failed to login...';
-        } else {
-            this.router.navigate(['home']);
-        }
+        this.loginService.login(this.selectedUser)
+        .then(data => {
+            console.log(JSON.stringify(data));
+            if(JSON.stringify(data) != '{}'){
+                localStorage.setItem('user', JSON.stringify(data))
+                this.router.navigate(['home'])
+            }
+            else this.errorMsg = 'Failed to login...';
+        })
     }
 
     goToSignup() {
