@@ -20,8 +20,7 @@ import {SignupModule} from "./signup/signup.module";
   imports: [
     BrowserModule ,
     routing,
-    LoginModule,
-    SignupModule
+    LoginModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],

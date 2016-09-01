@@ -24,18 +24,18 @@ export class LoginService {
 
   constructor(private http: Http){}
   loginUrl = 'signin';
+  responseUser: User;
 
   login(user:User) {
-
-    var authenticatedUser = USERS.find(u => u.email === user.email);
-    if (authenticatedUser && authenticatedUser.password === user.password) {
-      localStorage.setItem('user', JSON.stringify(authenticatedUser));
+    this.getLoginData(user).then(userData => this.responseUser = userData);
+    if (this.responseUser.email === user.email && this.responseUser.password === user.password) {
+      localStorage.setItem('user', JSON.stringify(this.responseUser));
       return true;
     }
     return false;
   }
 
-  /*login(user: User) {
+  getLoginData(user: User) {
     console.log(JSON.stringify(user))
     let headers = new Headers({
       'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ export class LoginService {
       .toPromise()
       .then(response => response.json().data as User)
       .catch(this.handleError);
-  }*/
+  }
 
 }
 

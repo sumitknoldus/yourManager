@@ -4,7 +4,6 @@
   "description": "",
   "boot": "./dist/boot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && concurrently \"npm run tsc:w\" \"node server/index.js\" ",
     "lite": "lite-server",
     "lite-server-test": "lite-server --config=liteserver-test-config.json",

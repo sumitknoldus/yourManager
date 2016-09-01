@@ -20,18 +20,10 @@ export class LoginComponent {
     constructor(private loginService: LoginService, private router: Router) {}
 
     login(user:User) {
-        /*this.selectedUser = user;
+        this.selectedUser = user;
 
         if(!this.loginService.login(this.selectedUser)) {
             this.errorMsg = 'Failed to login...';
-        } else {
-            this.router.navigate(['home']);
-        }*/
-        this.selectedUser = user;
-        this.loginService.login(this.selectedUser).then(data => data)
-
-        if(!this.loginService.login(this.selectedUser)) {
-            this.errorMsg = 'Failed to login';
         } else {
             this.router.navigate(['home']);
         }
