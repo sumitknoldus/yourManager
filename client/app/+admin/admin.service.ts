@@ -1,7 +1,7 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
-import { Headers, RequestOptions } from '@angular/http';
+//import { Headers, RequestOptions } from '@angular/http';
 import {logistics} from '../shared/model/logistics';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -13,8 +13,21 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AdminService {
-    constructor (private http: Http) {}
+
     private listAssetsURL = '/api/logistics/list/';  // URL to web API
+    constructor (private http: Http) {}
+    getAllocatedAssets (empId: string): Observable<logistics[]> {
+
+        this.listAssetsURL+= empId;
+        //let body = JSON.stringify({ empId });
+        //let headers = new Headers({ 'Content-Type': 'application/json' });
+        //let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(this.listAssetsURL)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
 
     private extractData(res: Response) {
         let body = res.json();
@@ -31,15 +44,5 @@ export class AdminService {
         return Observable.throw(errMsg);
     }
 
-    getAllocatedAssets (empId: string): Observable<logistics[]> {
 
-        this.listAssetsURL+= empId;
-        //let body = JSON.stringify({ empId });
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.get(this.listAssetsURL)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
 }

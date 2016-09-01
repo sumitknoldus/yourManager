@@ -23,8 +23,9 @@ export class SignupComponent {
         console.log(JSON.stringify(selectedUser));
         this.signupService.signup(selectedUser)
             .then(data => {
+                console.log(">>>>>>>>>>>>>>"+JSON.stringify(data));
                     localStorage.setItem('user', JSON.stringify(data));
-                    this.router.navigate(['login']);
+                    this.router.navigate(['home']);
                 }
             );
     }

@@ -8,7 +8,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class SignupService {
 
-    private postUrl:string = 'signup';
+    private postUrl:string = '/api/users/signup';
     constructor(private http:Http) {
     }
 
