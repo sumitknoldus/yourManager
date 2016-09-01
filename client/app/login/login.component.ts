@@ -30,7 +30,6 @@ export class LoginComponent {
     }
 
     goToSignup() {
-        alert('dsfa');
         this.router.navigate(['signup']);
     }
 }
