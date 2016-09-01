@@ -31,7 +31,6 @@ export class AdminService {
 
     private extractData(res: Response) {
         let body = res.json();
-
         return body || { };
     }
 

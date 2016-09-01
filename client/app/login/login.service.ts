@@ -21,9 +21,9 @@ var USERS =  [
 
 @Injectable()
 export class LoginService {
+    loginUrl = '/api/users/signin';
+    constructor(private http: Http) {}
 
-  constructor(private http: Http){}
-  loginUrl = 'signin';
   responseUser: User;
 
   login(user:User) {
