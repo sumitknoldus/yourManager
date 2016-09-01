@@ -1,9 +1,12 @@
 export class User {
-         email: string;
-        password: string;
-    //constructor(
-    //    public email: string,
-    //    public password: string) { }
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  phone: number;
+  empId: string;
+  gender: string;
+  password: string;
 }
 
 
