@@ -4,31 +4,31 @@ import {User} from '../shared/model/user';
 import {SignupService} from './signup.service';
 
 @Component({
-    moduleId: module.id,
-    selector: 'ym-signup',
-    templateUrl: 'signup.component.html',
-    styleUrls: ['signup.component.css'],
-    providers: [SignupService]
+  moduleId: module.id,
+  selector: 'ym-signup',
+  templateUrl: 'signup.component.html',
+  styleUrls: ['signup.component.css'],
+  providers: [SignupService]
 })
 
 export class SignupComponent {
 
-    @Input()
-    user = {};
+  @Input()
+  user = {};
 
-    constructor(private router:Router, private signupService:SignupService) {
-    }
+  constructor(private router:Router, private signupService:SignupService) {
+  }
 
-    signup(selectedUser:User) {
-        this.signupService.signup(selectedUser)
-            .then(data => {
-                    localStorage.setItem('user', JSON.stringify(data));
-                    this.router.navigate(['home']);
-                }
-            );
-    }
+  signup(selectedUser:User) {
+    this.signupService.signup(selectedUser)
+      .then(data => {
+          localStorage.setItem('user', JSON.stringify(data));
+          this.router.navigate(['home']);
+        },
+       error => alert(error));
+  }
 
-    goBack() {
-        this.router.navigate(['login']);
-    }
+  goBack() {
+    this.router.navigate(['login']);
+  }
 }
