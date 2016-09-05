@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { User } from '../shared/model/user';
 import {LoginService} from './login.service';
 import { Router } from '@angular/router';
-import {error} from "util";
+//import {error} from "util";
 
 @Component({
     moduleId:module.id,
@@ -11,7 +11,6 @@ import {error} from "util";
     styleUrls:['login.component.css'],
 
 })
-
 
 export class LoginComponent {
     public errorMsg = '';
@@ -23,13 +22,14 @@ export class LoginComponent {
     login() {
         this.loginService.login(this.user)
         .then(data => {
-            if(JSON.stringify(data) != '{}'){
-                localStorage.setItem('user', JSON.stringify(data))
-                this.router.navigate(['home'])
+            if(JSON.stringify(data) !== '{}') {
+                localStorage.setItem('user', JSON.stringify(data));
+                this.router.navigate(['home']);
+            } else {
+                this.errorMsg = 'Failed to login...';
             }
-            else this.errorMsg = 'Failed to login...';
         },
-        error => alert(error))
+        error => alert(error));
     }
 
     goToSignup() {
