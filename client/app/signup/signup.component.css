@@ -1,7 +1,4 @@
-.container{
-    width:600px;
-    height:900px;
-    margin:100px auto;
+.panel-body{
     box-shadow: 2px 3px 15px -8px;
 }
 
