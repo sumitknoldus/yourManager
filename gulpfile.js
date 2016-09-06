@@ -6,6 +6,8 @@ var tsConfig = tsc.createProject('./client/tsconfig.json');
 var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var tsify = require("tsify");
+var embedTemplates = require('gulp-angular-embed-templates');
+var embedSass = require('gulp-angular2-embed-sass');
 var nodemon = require("nodemon");
 var paths = {
     htmlPages: ['client/app/**/*.html'],
@@ -53,7 +55,7 @@ gulp.task('clean-junkjs', function (done) {
 
 gulp.task('ts-compile', function () {
     return gulp
-        .src('client/app/**/*.ts')
+        .src('dist/temp/client/app/**/*.ts')
         .pipe(sourceMaps.init())
         .pipe(tsc(tsConfig))
         .pipe(sourceMaps.write('.'))
@@ -107,6 +109,19 @@ gulp.task('start-server', function () {
         , env: { 'NODE_ENV': 'development' }
     })
 });
+
+gulp.task('prep-env', function (done) {
+    return gulp
+        .src(['client/app/**/*.ts','client/app/**/*.html', 'client/app/**/*.css'])
+        .pipe(gulp.dest('dist/temp/client/app'));
+});
+
+gulp.task('inline-html-css', function (done) {
+    return gulp.src('dist/temp/client/app/**/*.ts', {base: 'dist/temp/client/app/'})
+        .pipe(embedTemplates())
+        .pipe(embedSass())
+        .pipe(gulp.dest('dist/temp/client/app'));
+})
 
 gulp.task("copy-components", function () {
     return gulp.src([paths.copyBowerrc, paths.copyBowerJSON, paths.copyPackageJSON])
