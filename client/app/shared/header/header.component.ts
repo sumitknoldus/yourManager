@@ -12,9 +12,17 @@ export class HeaderComponent implements OnInit {
     show: boolean = true;
     constructor(private router: Router) {};
     ngOnInit() {
-        if (localStorage.getItem('user') === null && this.router.url != '/signup') {
-            this.show = false;
-            this.router.navigate(['/login']);
+        if (localStorage.getItem('user') === null) {
+            if (this.router.url != '/signup') {
+                this.show = false;
+                this.router.navigate(['login']);
+            } else {
+                this.show = false;
+            }
+        } else {
+            if (this.router.url === '/login' || this.router.url === '/signup') {
+                this.router.navigate(['home'])
+            }
         }
     }
     logout() {
