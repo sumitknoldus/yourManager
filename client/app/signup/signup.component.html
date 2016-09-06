@@ -1,107 +1,128 @@
 <ym-header-shared></ym-header-shared>
-<div class="container" >
-        <div class="title">
-            Sign Up
+<div class="container">
+    <div class="row" style="margin-top: 4%">
+        <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+            <div class="panel panel-body">
+                <div class="title">
+                    Sign Up
+                </div>
+                <form (ngSubmit)="signup(user)" #signupForm="ngForm" class="form-horizontal">
+                    <div class="form-group" style="margin-top: 15px">
+                        <div class="col-xs-2 text-center">
+                            <label for="fName">First Name: </label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="user.firstName" class="form-control" id="fName"
+                                   type="text" name="firstName" required #fName="ngModel">
+                            <div [hidden]="fName.valid || fName.pristine"
+                                 class="alert alert-danger">
+                                First Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-2 text-center">
+                            <label for="mName">Middle Name: </label>
+                        </div>
+                        <div class="col-xs-4">
+                            <input [(ngModel)]="user.middleName" class="form-control" id="mName"
+                                   type="text" name="middleName">
+                        </div>
+
+                        <div class="col-xs-2 text-center">
+                            <label for="lName">Last Name: </label>
+                        </div>
+                        <div class="col-xs-4">
+
+                            <input [(ngModel)]="user.lastName" class="form-control" id="lName"
+                                   type="text" name="lastName" required #lName="ngModel">
+                            <div [hidden]="lName.valid || lName.pristine"
+                                 class="alert alert-danger">
+                                Last Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-field">
+                        <div class="col-xs-2 text-center">
+                            <label for="number">Phone no: </label>
+                        </div>
+                        <div class="col-xs-4">
+                            <input [(ngModel)]="user.number" class=" form-control" id="number"
+                                   type="number" name="number" required #number="ngModel">
+                            <div [hidden]="number.valid || number.pristine"
+                                 class="alert alert-danger">
+                                Phone Number is required
+                            </div>
+                        </div>
+                        <div class="col-xs-2 text-center">
+                            <label for="number">Employee Id: </label>
+                        </div>
+                        <div class="col-xs-4">
+                            <input [(ngModel)]="user.empId" class=" form-control" id="empCode"
+                                   type="text" name="empId" required #empId="ngModel">
+                            <div [hidden]="empId.valid || empId.pristine"
+                                 class="alert alert-danger">
+                                Employee Id is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-2 text-center">
+                            <label for="gender">Gender: </label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="user.gender" class=" form-control" id="gender"
+                                   type="text" name="gender" required #gender="ngModel">
+                            <div [hidden]="gender.valid || gender.pristine"
+                                 class="alert alert-danger">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-2 text-center">
+                            <label for="email">Email: </label>
+                        </div>
+
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="user.email" class="  form-control" id="email"
+                                   type="email" name="email" required #email="ngModel">
+                            <div [hidden]="email.valid || email.pristine"
+                                 class="alert alert-danger">
+                                Email is required
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-xs-2 text-center">
+                            <label for="password">Password: </label>
+                        </div>
+                        <div class="col-xs-10">
+                            <input [(ngModel)]="user.password" class="  form-control" id="password"
+                                   type="password" name="password" required #password="ngModel">
+                            <div [hidden]="password.valid || password.pristine"
+                                 class="alert alert-danger">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 text-center">
+                        <button class="btn btn-warning" (click)="goBack()" type="button">Back</button>
+                    </div>
+                    <div class="col-xs-3 col-xs-offset-6 text-center">
+                        <button class="btn waves-effect waves-light" type="submit" name="action"
+                                [disabled]="!signupForm.form.valid">Sign Up
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="panel panel-body">
-            <form (ngSubmit)="signup(user)" #signupForm="ngForm">
-            <div class="row">
-                <div class="form-group">
-                    <label for="fName">First Name</label>
-                    <input [(ngModel)]="user.firstName" class="input-box form-control" id="fName"
-                           type="text" name = "firstName" required #fName="ngModel">
-                    <div [hidden]="fName.valid || fName.pristine"
-                         class="alert alert-danger">
-                        First Name is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <label for="mName">Middle Name</label>
-                    <input [(ngModel)]="user.middleName" class="input-box form-control" id="mName"
-                           type="text" name = "middleName">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group ">
-                    <label for="lName">Last Name</label>
-                    <input [(ngModel)]="user.lastName" class="input-box form-control" id="lName"
-                           type="text" name = "lastName" required #lName="ngModel">
-                    <div [hidden]="lName.valid || lName.pristine"
-                         class="alert alert-danger">
-                        Last Name is required
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="form-group input-field">
-                    <label for="number">Ph. Number</label>
-                    <input [(ngModel)]="user.number" class="input-box form-control" id="number"
-                           type="number" name = "number" required #number="ngModel">
-                    <div [hidden]="number.valid || number.pristine"
-                         class="alert alert-danger">
-                        Phone Number is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group input-field">
-                    <label for="number">Employee Id</label>
-                    <input [(ngModel)]="user.empId" class="input-box form-control" id="empCode"
-                           type="text" name = "empId" required #empId="ngModel">
-                    <div [hidden]="empId.valid || empId.pristine"
-                         class="alert alert-danger">
-                        Employee Id is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group input-field">
-                    <label for="gender">Gender</label>
-                    <input [(ngModel)]="user.gender" class="input-box form-control" id="gender"
-                           type="text" name = "gender" required #gender="ngModel">
-                    <div [hidden]="gender.valid || gender.pristine"
-                         class="alert alert-danger">
-                        Gender is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group input-field">
-                    <label for="email">Email</label>
-                    <input [(ngModel)]="user.email" class="input-box  form-control" id="email"
-                           type="email" name = "email" required #email="ngModel">
-                    <div [hidden]="email.valid || email.pristine"
-                         class="alert alert-danger">
-                        Email is required
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group input-field">
-                    <label for="password">Password</label>
-                    <input [(ngModel)]="user.password" class="input-box  form-control" id="password"
-                           type="password" name = "password" required #password="ngModel">
-                    <div [hidden]="password.valid || password.pristine"
-                         class="alert alert-danger">
-                        Password is required
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col-sm-2"><button class="btn btn-warning" (click)="goBack()" type="button">Back</button></div>
-                    <button class="btn waves-effect waves-light col-sm-2 col-sm-offset-8" type="submit" name="action" [disabled]="!signupForm.form.valid">Sign Up</button>
-            </div>
-            </form>
-
-        </div>
+    </div>
 </div>
