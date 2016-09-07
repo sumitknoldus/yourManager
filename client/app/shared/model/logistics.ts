@@ -1,3 +1,4 @@
+import {Specs} from "./specs";
 export class logistics {
     empId:string;
     empName: string;
@@ -8,10 +9,12 @@ export class logistics {
     serialNo:string;
     DOI:string;
     warrantyPeriod:string;
-    specs:string[];
+    specs:Specs[];
     shippingDate: string;
     purchaseDate:string;
     warrantyEndDate:string;
     lastMaintenanceDate:string;
 }
+
+
 

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {AdminService} from './admin.service';
 import {logistics} from '../shared/model/logistics';
+import {Specs} from '../shared/model/specs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';

@@ -33,7 +33,7 @@
                 <td>{{asset.serialNo}}</td>
                 <td>{{asset.DOI}}</td>
                 <td>{{asset.warrantyPeriod}}</td>
-                <td>{{asset.specs}}</td>
+                <td *ngFor="let spec of asset.specs">{{spec.RAM}}, {{spec.HD}}, {{spec.Processor}}</td>
                 <td>{{asset.shippingDate}}</td>
                 <td>{{asset.purchaseDate}}</td>
                 <td>{{asset.warrantyEndDate}}</td>

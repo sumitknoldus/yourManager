@@ -13,7 +13,7 @@ class RollupNG2 {
 const rollupNG2 = (config) => new RollupNG2(config);
 
 export default {
-    entry: 'dist/dev/client/app/boot.js',
+    entry: 'dist/temp/client/app/boot.js',
     //format:'iife',
     sourceMap: true,
     moduleName: 'main',

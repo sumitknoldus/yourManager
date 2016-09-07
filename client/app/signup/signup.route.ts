@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SignupComponent } from './signup.component';
 
 export const signupRoutes: Routes = [{
-    path: '',
+    path: 'signup',
     component: SignupComponent
   }
 ];

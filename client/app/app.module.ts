@@ -13,6 +13,7 @@ import {routing} from './app.routes';
 import {LoginModule} from './login/login.module';
 import {AdminModule} from './+admin/admin.module';
 import {HomeModule} from './home/home.module';
+import {DashboardModule} from './dashboard/dashboard.module';
 import {SignupModule} from "./signup/signup.module";
 
 
@@ -20,7 +21,11 @@ import {SignupModule} from "./signup/signup.module";
   imports: [
     BrowserModule ,
     routing,
-    LoginModule
+    LoginModule,
+    SignupModule,
+    DashboardModule,
+      HomeModule,
+      AdminModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],

@@ -17,7 +17,7 @@ var LogisticsSchema = new Schema({
     serialNo: String,
     DOI: String,
     warrantyPeriod: String,
-    specs: [String],
+    specs: [{}],
     shippingDate: String,
     purchaseDate: String,
     warrantyEndDate: String,
