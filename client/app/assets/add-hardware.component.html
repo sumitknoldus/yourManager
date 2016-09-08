@@ -1,0 +1,26 @@
+
+<div class="col-lg-6 col-lg-offset-3">
+    <div class="form-group" >
+        Choose Hardware type
+        <select class="form-control" [(ngModel)] = "selectedHardwareType" (change) = onSelect()>
+            <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
+        </select>
+    </div>
+
+    <input class="form-control">
+    <div *ngIf="selectedHardwareType === 'mouse'">
+        <h1>{{selectedHardwareType }} List</h1>
+    </div>
+
+    <div *ngIf="selectedHardwareType === 'keyboard'">
+        <h1>{{selectedHardwareType }} List</h1>
+    </div>
+
+    <div *ngIf="selectedHardwareType === 'laptop'">
+        <h1>{{selectedHardwareType }} List</h1>
+    </div>
+
+    <div *ngIf="selectedHardwareType === 'monitor'">
+        <h1>{{selectedHardwareType }} List</h1>
+    </div>
+</div>

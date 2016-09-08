@@ -7,11 +7,11 @@ import {AppComponent} from './app.component';
 
 /*
  @Feature Modules
-**/
+ **/
 import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
-import {AdminModule} from './+admin/admin.module';
+import {AdminModule} from './assets/admin.module';
 import {HomeModule} from './home/home.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {SignupModule} from "./signup/signup.module";
@@ -24,8 +24,8 @@ import {SignupModule} from "./signup/signup.module";
     LoginModule,
     SignupModule,
     DashboardModule,
-      HomeModule,
-      AdminModule
+    HomeModule,
+    AdminModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
