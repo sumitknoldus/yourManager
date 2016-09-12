@@ -11,17 +11,14 @@ var AssetsSchema = new Schema({
     empId: String,
     empName: String,
     deviceName: String,
-    modelNo: String,
-    serviceTag: String,
+    model: String,
     deviceCode: String,
-    serialNo: String,
-    DOI: String,
-    warrantyPeriod: String,
-    specs: {},
     shippingDate: String,
-    purchaseDate: String,
+    dateOfIssue: String,
+    dateOfReturn: String,
     warrantyEndDate: String,
-    lastMaintenanceDate: String
+    lastMaintenanceDate: String,
+    specs: {}
 });
 
 /**
@@ -234,5 +231,5 @@ var AssetsSchema = new Schema({
 //    }
 //};
 
-export default mongoose.model('Assets', AssetsSchema);
+export default mongoose.model('assets', AssetsSchema);
 

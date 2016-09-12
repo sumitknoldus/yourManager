@@ -45,6 +45,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
         this.adminService.getAllocatedAssets(empId).subscribe(
             res => {
+                
                 this.allocatedAssetsList = res;
             },
             error =>  this.errorMessage = <any>error);
