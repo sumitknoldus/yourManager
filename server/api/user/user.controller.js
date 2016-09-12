@@ -57,8 +57,10 @@ export function signIn(req, res, next) {
 
     //loginUser.provider = 'local';
     //loginUser.role = 'user';
-    User.findOne({'email':req.body.email, 'password':req.body.password}).exec()
+    console.log(">>>>>>>>"+JSON.stringify(req.body));
+    User.findOne({'email':req.body.email, 'password':req.body.password})
         .then(function(user) {
+            console.log("+++++++++++"+JSON.stringify(user));
             var token = jwt.sign({ _id: user._id }, config.secrets.session, {
                 expiresIn: 60 * 60 * 5
             });

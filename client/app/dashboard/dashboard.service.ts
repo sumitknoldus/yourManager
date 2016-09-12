@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import { Observable }     from 'rxjs/Observable';
 //import { Headers, RequestOptions } from '@angular/http';
-import {logistics} from '../shared/model/logistics';
+import {Asset} from '../shared/model/asset';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SearchService {
     constructor (private http: Http) {}
-    getAllocatedAssets (empId: string): Observable<logistics[]> {
+    getAllocatedAssets (empId: string): Observable<Asset[]> {
 
         this.listAssetsURL+= empId;
         //let body = JSON.stringify({ empId });
@@ -43,5 +43,5 @@ export class SearchService {
         return Observable.throw(errMsg);
     }
 
-    private listAssetsURL = '/api/logistics/list/';  // URL to web API
+    private listAssetsURL = '/api/Asset/list/';  // URL to web API
 }

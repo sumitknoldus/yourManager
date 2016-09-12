@@ -26,7 +26,9 @@ export class DashboardComponent implements OnInit {
         this.fullpath = 'assets/images/sample.png';
     }
 
-
+    addHardware() {
+        this.router.navigate(['hardware/add'])
+    }
 
     onSubmit() {
         console.log(JSON.stringify(this.search));

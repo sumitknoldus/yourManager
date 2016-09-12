@@ -1,8 +1,8 @@
 import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers} from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 //import { Headers, RequestOptions } from '@angular/http';
-import {logistics} from '../shared/model/logistics';
+import {Asset} from '../shared/model/asset';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -15,8 +15,10 @@ import 'rxjs/add/operator/toPromise';
 export class AdminService {
 
     private listAssetsURL = '/api/assets/list/';  // URL to web API
+    private addAssetUrl = '/api/assets/add';
+
     constructor (private http: Http) {}
-    getAllocatedAssets (empId: string): Observable<logistics[]> {
+    getAllocatedAssets (empId: string): Observable<Asset[]> {
 
         this.listAssetsURL+= empId;
         //let body = JSON.stringify({ empId });
@@ -26,6 +28,17 @@ export class AdminService {
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
             .catch(this.handleError);
+    }
+
+    addAsset(asset: Asset): Observable<>{
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        return this.http
+          .post(this.addAssetUrl, JSON.stringify(asset), {headers: headers})
+          .map(this.extractData)
+          .catch(this.handleError);
     }
 
 

@@ -1,7 +1,7 @@
 <ym-header-shared></ym-header-shared>
 <div class ="container" style="padding-top: 70px;">
 
-    <form (ngSubmit)="onSubmit()" class="col-lg-6">
+    <form (ngSubmit)="onSubmit()" class="col-lg-2 col-sm-2">
         <div class="form-group">
             <!--<label for="name">Name</label>-->
             <input type="text" class="form-control" style="width:25%;" required  [(ngModel)]="search.value" name="search" placeholder="Search..">
@@ -9,13 +9,20 @@
         <button type="submit" class="btn btn-default">Submit</button>
 
         <button type="button" class="btn btn-default" (click)="listAllAssets()">List All Assets</button>
-
     </form>
 
-    <div class="col-sm-6">
+    <div class="col-lg-2 col-sm-2">
+        <button type="button" (click) = "addHardware()" class="btn btn-default"> Add Hardware </button>
+    </div>
 
+    <div class="col-lg-2 col-sm-2">
+        <button type="button" class="btn btn-default"> List Hardware </button>
+    </div>
+    <div class="col-sm-6 col-lg-6">
         <img [src]= "fullpath">
     </div>
+</div>
+<div style="background-color: black">
 </div>
 
     <!--<div class="form-group">-->

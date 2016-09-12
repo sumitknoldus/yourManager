@@ -7,7 +7,7 @@ const routes: Routes = [
   //
   //{
   //  path: 'admin',
-  //  loadChildren: 'app/+admin/admin.module#AdminModule'
+  //  loadChildren: 'app/assets/admin.module#AdminModule'
   //},
   //{
   //  path: 'dashboard',

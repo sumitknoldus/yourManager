@@ -235,3 +235,4 @@ var AssetsSchema = new Schema({
 //};
 
 export default mongoose.model('Assets', AssetsSchema);
+
