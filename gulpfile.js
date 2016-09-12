@@ -262,6 +262,7 @@ gulp.task('gulp-watch', function() {
     return gulp.watch(['client/app/**/*.ts'], ['ts-compile']);
 });
 
+
 gulp.task('build-prod', function(callback) {
     runSequence(
         'prep-env',

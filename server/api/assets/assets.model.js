@@ -7,7 +7,7 @@ import {Schema} from 'mongoose';
 
 const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
-var LogisticsSchema = new Schema({
+var AssetsSchema = new Schema({
     empId: String,
     empName: String,
     deviceName: String,
@@ -17,7 +17,7 @@ var LogisticsSchema = new Schema({
     serialNo: String,
     DOI: String,
     warrantyPeriod: String,
-    specs: [{}],
+    specs: {},
     shippingDate: String,
     purchaseDate: String,
     warrantyEndDate: String,
@@ -29,7 +29,7 @@ var LogisticsSchema = new Schema({
  */
 
 // Public profile information
-//LogisticsSchema
+//AssetsSchema
 //    .virtual('profile')
 //    .get(function () {
 //        return {
@@ -39,7 +39,7 @@ var LogisticsSchema = new Schema({
 //    });
 //
 //// Non-sensitive info we'll be putting in the token
-//LogisticsSchema
+//AssetsSchema
 //    .virtual('token')
 //    .get(function () {
 //        return {
@@ -53,7 +53,7 @@ var LogisticsSchema = new Schema({
  */
 
 // Validate empty email
-//LogisticsSchema
+//AssetsSchema
 //    .path('email')
 //    .validate(function (email) {
 //        if (authTypes.indexOf(this.provider) !== -1) {
@@ -63,7 +63,7 @@ var LogisticsSchema = new Schema({
 //    }, 'Email cannot be blank');
 //
 //// Validate empty password
-//LogisticsSchema
+//AssetsSchema
 //    .path('password')
 //    .validate(function (password) {
 //        if (authTypes.indexOf(this.provider) !== -1) {
@@ -73,7 +73,7 @@ var LogisticsSchema = new Schema({
 //    }, 'Password cannot be blank');
 //
 //// Validate email is not taken
-//LogisticsSchema
+//AssetsSchema
 //    .path('email')
 //    .validate(function (value, respond) {
 //        var self = this;
@@ -102,7 +102,7 @@ var LogisticsSchema = new Schema({
 ///**
 // * Pre-save hook
 // */
-//LogisticsSchema
+//AssetsSchema
 //    .pre('save', function (next) {
 //        // Handle new/update passwords
 //        if (!this.isModified('password')) {
@@ -136,7 +136,7 @@ var LogisticsSchema = new Schema({
 /**
  * Methods
  */
-//LogisticsSchema.methods = {
+//AssetsSchema.methods = {
 //    /**
 //     * Authenticate - check if the passwords are the same
 //     *
@@ -234,4 +234,4 @@ var LogisticsSchema = new Schema({
 //    }
 //};
 
-export default mongoose.model('Logistics', LogisticsSchema);
+export default mongoose.model('Assets', AssetsSchema);

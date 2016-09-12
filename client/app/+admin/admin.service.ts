@@ -14,7 +14,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AdminService {
 
-    private listAssetsURL = '/api/logistics/list/';  // URL to web API
+    private listAssetsURL = '/api/assets/list/';  // URL to web API
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<logistics[]> {
 
