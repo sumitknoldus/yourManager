@@ -1,5 +1,5 @@
 import {Specs} from "./specs";
-export class Logistics {
+export class Asset {
     empId:string;
     empName: string;
     deviceName: string;

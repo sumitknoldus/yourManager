@@ -1,9 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes,RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
-import {AddHardwareComponent} from "./add-hardware.component";
+import { AdminComponent } from './search-asset.component';
+import {AddHardwareComponent} from "./add-asset.component";
 
-const adminRoutes: Routes = [
+const assetRoutes: Routes = [
 
     {
         path: 'admin/:id',
@@ -15,6 +15,6 @@ const adminRoutes: Routes = [
         //outlet: 'asset'
     }
 ];
-export const adminRouting: ModuleWithProviders = RouterModule.forChild(adminRoutes);
+export const assetRouting: ModuleWithProviders = RouterModule.forChild(assetRoutes);
 
 

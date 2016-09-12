@@ -234,4 +234,4 @@ var LogisticsSchema = new Schema({
 //    }
 //};
 
-export default mongoose.model('Logistics', LogisticsSchema);
+export default mongoose.model('Asset', LogisticsSchema);

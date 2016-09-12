@@ -11,7 +11,7 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
-import {AdminModule} from './assets/admin.module';
+import {AdminModule} from './assets/asset.module';
 import {HomeModule} from './home/home.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {SignupModule} from "./signup/signup.module";
@@ -30,4 +30,4 @@ import {SignupModule} from "./signup/signup.module";
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
 })
-export class AppModule { }
+export class AssetModule { }

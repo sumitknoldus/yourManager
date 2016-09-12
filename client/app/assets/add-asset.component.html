@@ -8,7 +8,7 @@
 
                 <div class="form-group">
                     Choose Hardware type
-                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.deviceName" (change) = onSelect() #hardwareType = "ngModel" required>
+                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.deviceName" #hardwareType = "ngModel" required>
                         <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
                     </select>
                     <div class="col-xs-12" [hidden]="hardwareType.valid || hardwareType.pristine"
@@ -165,7 +165,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Hardware</button>
+                    <button type="submit" class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Asset</button>
                 </div>
             </form>
         </div>

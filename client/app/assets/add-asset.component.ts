@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import {Logistics} from "../shared/model/logistics";
-import {AdminService} from "./admin.service";
+import {Asset} from "../shared/model/asset";
+import {AdminService} from "./asset.service";
 
 @Component({
   moduleId:module.id,
   selector: 'ym-hardare',
-  templateUrl: 'add-hardware.component.html',
-  styleUrls: ['add-hardware.component.css']
+  templateUrl: 'add-asset.component.html',
+  styleUrls: ['add-asset.component.css']
 })
 
 export class AddHardwareComponent{
@@ -37,14 +37,10 @@ export class AddHardwareComponent{
   selectedHardwareType = '';
   @Input() selectedHardwareType;
 
-  addHardware(asset: Logistics){
-    console.log("asset data of " + this.selectedHardwareType +"::::::::" + JSON.stringify(asset))
+  addHardware(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
       res => this.router.navigate(['/dashboard']),
       error =>  alert(error))
-  }
-  onSelect(){
-    console.log(this.selectedHardwareType)
   }
 
 }

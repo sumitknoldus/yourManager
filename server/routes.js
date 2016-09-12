@@ -10,7 +10,7 @@ import path from 'path';
 export default function(app) {
   // Insert routes below
   app.use('/api/users', require('./api/user'));
-  app.use('/api/Logistics', require('./api/logistics'));
+  app.use('/api/Asset', require('./api/logistics'));
   app.use('/auth', require('./auth').default);
 
   // All undefined asset or api routes should return a 404

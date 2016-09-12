@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import {AdminService} from './admin.service';
-import {Logistics} from '../shared/model/logistics';
+import {AdminService} from './asset.service';
+import {Asset} from '../shared/model/asset';
 import {Specs} from '../shared/model/specs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,12 +14,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     moduleId:module.id,
     selector: 'ym-admin',
-    templateUrl: 'admin.component.html',
-    styleUrls:['admin.component.css'],
+    templateUrl: 'search-asset.component.html',
+    styleUrls:['search-asset.component.css'],
 })
 
 export class AdminComponent implements OnInit, OnDestroy {
-   @Input() public allocatedAssetsList: Logistics[];
+   @Input() public allocatedAssetsList: Asset[];
     private sub: any;
     mode = 'Observable';
     public errorMessage = '';
