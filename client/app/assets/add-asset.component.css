@@ -1,6 +1,6 @@
 .panel-body{
     box-shadow: 2px 3px 15px -8px;
-    margin-top: 5%;
+    margin-top: 8%;
 }
 
 input{
@@ -9,6 +9,10 @@ input{
 
 label{
     margin-top: 3%;
+}
+
+button{
+    margin-top: 15%;
 }
 
 .ng-valid[required] {

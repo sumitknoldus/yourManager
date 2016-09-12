@@ -1,9 +1,8 @@
 <ym-header-shared></ym-header-shared>
 
 <div class="container container-fluid">
-    <div class="panel panel-body">
         <div class="col-lg-6 col-lg-offset-3">
-
+            <div class="panel panel-body">
             <form (ngSubmit) = addHardware(asset) #assetForm = "ngForm">
 
                 <div class="form-group">
@@ -164,8 +163,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Asset</button>
+                    <div class="col-xs-3 col-xs-offset-9">
+                        <button type="submit" class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Asset</button>
+                    </div>
                 </div>
             </form>
         </div>
