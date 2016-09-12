@@ -1,17 +1,20 @@
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+.panel-body{
+    box-shadow: 2px 3px 15px -8px;
+    margin-top: 5%;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
+input{
+    margin-top: 3%;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+label{
+    margin-top: 3%;
 }
 
+.ng-valid[required] {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+}

@@ -1,20 +1,14 @@
 import {Specs} from "./specs";
-export class logistics {
+export class Logistics {
     empId:string;
     empName: string;
     deviceName: string;
-    modelNo: string;
-    serviceTag: string;
-    deviceCode:string;
-    serialNo:string;
-    DOI:string;
-    warrantyPeriod:string;
-    specs:Specs[];
+    model: string;
+    deviceCode: string;
     shippingDate: string;
-    purchaseDate:string;
+    dateOfIssue: string;
+    dateOfReturn: string;
     warrantyEndDate:string;
     lastMaintenanceDate:string;
+    specs:Specs;
 }
-
-
-

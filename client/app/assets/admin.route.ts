@@ -12,7 +12,7 @@ const adminRoutes: Routes = [
     {
         path: 'hardware/add',
         component: AddHardwareComponent,
-        //outlet: 'hardware'
+        //outlet: 'asset'
     }
 ];
 export const adminRouting: ModuleWithProviders = RouterModule.forChild(adminRoutes);

@@ -5,7 +5,12 @@ import { LoginComponent } from './login/login.component';
     selector: 'my-app',
     template: `
      <router-outlet></router-outlet>
-    `
+    `,
+    styles : [`
+    body {
+     background-color: #dff0d8;
+    }
+  `]
 })
 
 @Injectable()

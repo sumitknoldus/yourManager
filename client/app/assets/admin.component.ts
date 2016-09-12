@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import {AdminService} from './admin.service';
-import {logistics} from '../shared/model/logistics';
+import {Logistics} from '../shared/model/logistics';
 import {Specs} from '../shared/model/specs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AdminComponent implements OnInit, OnDestroy {
-   @Input() public allocatedAssetsList: logistics[];
+   @Input() public allocatedAssetsList: Logistics[];
     private sub: any;
     mode = 'Observable';
     public errorMessage = '';
