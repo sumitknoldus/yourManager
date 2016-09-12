@@ -252,7 +252,7 @@ gulp.task('build-dev', function(callback) {
     runSequence(
         'prep-env',
         'ts-compile',
-        [ 'copy-system-lib','copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
+        [ 'copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
         ['start-server'],
         'gulp-watch',
         callback);
