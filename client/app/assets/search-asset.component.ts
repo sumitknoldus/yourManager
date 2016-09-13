@@ -9,6 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
+import {error} from "util";
 
 
 @Component({
@@ -18,9 +19,8 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls:['search-asset.component.css'],
 })
 
-export class AdminComponent implements OnInit, OnDestroy {
+export class AdminComponent implements OnInit {
    @Input() public allocatedAssetsList: Asset[] = [];
-    private sub: any;
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
@@ -36,7 +36,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
 
   returnAsset(objId: string) {
-    this.assetService.returnAsset(objId)
+    console.log(objId);
+    this.assetService.returnAsset(objId).subscribe(
+      data => console.log(data),
+      error => alert(error)
+    )
   }
 
   editAsset(id){

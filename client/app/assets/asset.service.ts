@@ -18,6 +18,7 @@ export class AssetService {
     private addAssetUrl = '/api/assets/add';
     private getAssetUrl = '/api/assets/get';
     private editAssetUrl = '/api/assets/save';
+    private returnAssetUrl = '/api/assets/return';
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
@@ -62,7 +63,7 @@ export class AssetService {
             'Content-Type': 'application/json'
         });
         return this.http
-          .post(this.editAssetUrl, JSON.stringify("_id" : objId), {headers: headers})
+          .post(this.returnAssetUrl, JSON.stringify({"_id" : objId}), {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
     }
