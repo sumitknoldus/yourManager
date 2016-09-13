@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AdminComponent implements OnInit, OnDestroy {
-   @Input() public allocatedAssetsList: Asset[];
+   @Input() public allocatedAssetsList;
     private sub: any;
     mode = 'Observable';
     public errorMessage = '';
@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit, OnDestroy {
             .subscribe(params => {
                 this.selectedId = params['id'];
                 this.listByEmpId(this.selectedId);
-
             });
 
     }
@@ -45,10 +44,13 @@ export class AdminComponent implements OnInit, OnDestroy {
 
         this.adminService.getAllocatedAssets(empId).subscribe(
             res => {
-                
-                this.allocatedAssetsList = res;
+              this.allocatedAssetsList = res;
             },
             error =>  this.errorMessage = <any>error);
+    }
+
+    editAsset(id){
+      this.router.navigate(['hardware/edit', id])
     }
 
     ngOnDestroy() {

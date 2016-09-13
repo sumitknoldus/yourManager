@@ -16,14 +16,13 @@ export class AdminService {
 
     private listAssetsURL = '/api/assets/list/';  // URL to web API
     private addAssetUrl = '/api/assets/add';
+    private editAssetUrl = '/api/assets/edit';
+
 
     constructor (private http: Http) {}
-    getAllocatedAssets (empId: string): Observable<Asset[]> {
+    getAllocatedAssets (empId: string): Observable<> {
 
         this.listAssetsURL+= empId;
-        //let body = JSON.stringify({ empId });
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
 
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
@@ -41,10 +40,20 @@ export class AdminService {
           .catch(this.handleError);
     }
 
+    editAsset(id: number): Observable<>{
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        return this.http
+          .post(this.addAssetUrl, JSON.stringify(id), {headers: headers})
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
 
     private extractData(res: Response) {
         let body = res.json();
-        return body || { };
+        return body || {};
     }
 
     private handleError (error: any) {

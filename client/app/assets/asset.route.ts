@@ -1,7 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes,RouterModule } from '@angular/router';
 import { AdminComponent } from './search-asset.component';
-import {AddHardwareComponent} from "./add-asset.component";
+import {AddAssetComponent} from "./add-asset.component";
+import {EditAssetComponent} from "./edit-asset.component";
 
 const assetRoutes: Routes = [
 
@@ -11,7 +12,11 @@ const assetRoutes: Routes = [
     },
     {
         path: 'hardware/add',
-        component: AddHardwareComponent,
+        component: AddAssetComponent,
+        //outlet: 'asset'
+    }, {
+        path: 'hardware/edit/:id',
+        component: EditAssetComponent,
         //outlet: 'asset'
     }
 ];
