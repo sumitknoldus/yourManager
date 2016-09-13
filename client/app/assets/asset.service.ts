@@ -17,25 +17,7 @@ export class AdminService {
     private listAssetsURL = '/api/assets/list/';  // URL to web API
     private addAssetUrl = '/api/assets/add';
     private getAssetUrl = '/api/assets/get';
-    private editAssetUrl = '/api/assets/edit';
-
-    zzz = {"empId":"1",
-        "empName": "Akshay",
-        "deviceName": "Laptop",
-        "model": "lenovo",
-        "deviceCode": "3560",
-        "shippingDate": "08/12/2016",
-        "dateOfIssue": "08/12/2016",
-        "dateOfReturn": "",
-        "warrantyEndDate":"08/12/2026",
-        'lastMaintenanceDate':"",
-        "specs":{
-            "RAM":"8GB",
-            "HD":"500GB",
-            "Processor":"i5"
-        }
-    };
-
+    private editAssetUrl = '/api/assets/save';
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
@@ -58,17 +40,14 @@ export class AdminService {
           .catch(this.handleError);
     }
 
-    editAsset(_id: number): Observable<>{
-        /*let headers = new Headers({
+    getById(_id: string): Observable<>{
+        let headers = new Headers({
             'Content-Type': 'application/json'
         });
-
         return this.http
-          .post(this.editAssetUrl, JSON.stringify(id), {headers: headers})
+          .post(this.getAssetUrl, JSON.stringify({'_id':_id}), {headers: headers})
           .map(this.extractData)
-          .catch(this.handleError);*/
-        return this.zzz
-
+          .catch(this.handleError);
     }
 
     private extractData(res: Response) {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AdminService} from "./asset.service";
 
@@ -21,9 +21,9 @@ export class EditAssetComponent{
 
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      let id = +params['id'];
-      this.asset = this.assetService.editAsset(id)
+    this.route.params.forEach((params: Params) => {
+      let id = params['id'];
+      this.asset = this.assetService.getById(id).subscribe(data => this.asset = data, error => alert(error))
     });
   }
 
