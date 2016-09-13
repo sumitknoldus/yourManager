@@ -21,7 +21,7 @@ export class AddAssetComponent{
   empName: "",
   deviceName: "",
   model: "",
-  deviceCode: "",
+  assetCode: "",
   shippingDate: "",
   dateOfIssue: "",
   dateOfReturn: "",

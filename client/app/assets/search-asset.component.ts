@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
-    constructor(private adminService: AssetService,
+    constructor(private assetService: AssetService,
                 private router: Router,
                 private route: ActivatedRoute) {
     }
@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
 
   returnAsset(objId: string) {
-      console.log("id:::::" + objId)
+    this.assetService.returnAsset(objId)
   }
 
   editAsset(id){

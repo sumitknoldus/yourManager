@@ -57,6 +57,16 @@ export class AssetService {
           .catch(this.handleError);
     }
 
+    returnAsset(objId: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+          .post(this.editAssetUrl, JSON.stringify("_id" : objId), {headers: headers})
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         let body = res.json();
         return body || {};

@@ -56,12 +56,12 @@
 
                     <div class="form-group">
                         <div class="col-xs-5">
-                            <label for="deviceCode">Device Code : </label>
+                            <label for="assetCode">Device Code : </label>
                         </div>
                         <div class="col-xs-7">
-                            <input type="text" name="deviceCode" id="deviceCode" class="form-control" [(ngModel)] = "asset.deviceCode" #deviceCode="ngModel" required>
+                            <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required>
                         </div>
-                        <div [hidden]="deviceCode.valid || model.pristine"
+                        <div [hidden]="assetCode.valid || model.pristine"
                              class="alert alert-danger">
                             Device Code Id is required
                         </div>
