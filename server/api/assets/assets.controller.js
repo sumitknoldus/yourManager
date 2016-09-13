@@ -154,7 +154,7 @@ export function availableAsset(req, res, next) {
                 return res.status(404).end();
             }
             for(var i = 0; i< assets.length;i++ ){
-                temp.push({deviceCode:assets[i].deviceCode});
+                temp.push({assetCode:assets[i].assetCode, _id:assets[i]._id});
             }
             res.json({availableStock:assets.length, assetList:temp});
         })
