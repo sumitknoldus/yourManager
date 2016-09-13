@@ -12,7 +12,10 @@ router.get('/listall',controller.listAssets);
 router.post('/add',controller.addAssets);
 router.post('/get',controller.getAssetById);
 router.post('/save',controller.saveAssetById);
-router.get('/delete/:id',controller.deleteAssets);
+router.post('/return',controller.returnAsset);
+router.get('/fetch/:id',controller.availableAsset);
+
+
 //router.get('/', auth.hasRole('admin'), controller.index);
 //router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 //router.get('/me', auth.isAuthenticated(), controller.me);

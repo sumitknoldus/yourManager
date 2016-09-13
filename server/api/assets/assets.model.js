@@ -14,10 +14,11 @@ var AssetsSchema = new Schema({
     model: String,
     deviceCode: String,
     shippingDate: String,
-    dateOfIssue: String,
-    dateOfReturn: String,
-    warrantyEndDate: String,
+    dateOfIssue: Date,
+    dateOfReturn: Date,
+    warrantyEndDate: Date,
     lastMaintenanceDate: String,
+    isAvailable:Boolean,
     specs: {}
 });
 

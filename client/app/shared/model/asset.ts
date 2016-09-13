@@ -11,4 +11,5 @@ export class Asset {
     warrantyEndDate:string;
     lastMaintenanceDate:string;
     specs:Specs;
+    isAvailable:boolean;
 }

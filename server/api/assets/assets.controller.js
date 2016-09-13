@@ -113,6 +113,52 @@ export function deleteAssets(req, res, next) {
         })
         .catch(handleError(res));
 }
+
+/**
+ * Get delete of Assets
+ * restriction: 'admin'
+ */
+export function returnAsset(req, res, next) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    }
+
+    if(mm<10) {
+        mm='0'+mm
+    }
+
+    today = mm+'/'+dd+'/'+yyyy;
+    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{'isAvailable':true,'returnDate': today }).exec()
+        .then(function() {
+            res.status(204).end();
+        })
+        .catch(handleError(res));
+}
+
+
+
+/**
+ * Get delete of Assets
+ * restriction: 'admin'
+ */
+export function availableAsset(req, res, next) {
+    var temp= [];
+    return Assets.find({assetType:req.params.id, isAvailable:true}).exec()
+        .then(assets => {
+            if (!assets) {
+                return res.status(404).end();
+            }
+            for(var i = 0; i< assets.length;i++ ){
+                temp.push({deviceCode:assets[i].deviceCode});
+            }
+            res.json({availableStock:assets.length, assetList:temp});
+        })
+}
 //
 ///**
 // * Get list of users
