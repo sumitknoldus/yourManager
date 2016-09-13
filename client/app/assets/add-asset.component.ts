@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from "../shared/model/asset";
-import {AdminService} from "./asset.service";
+import {AssetService} from "./asset.service";
 
 @Component({
   moduleId:module.id,
@@ -12,7 +12,7 @@ import {AdminService} from "./asset.service";
 
 export class AddAssetComponent{
 
-  constructor(private assetService: AdminService, private router: Router){}
+  constructor(private assetService: AssetService, private router: Router){}
 
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
@@ -37,7 +37,7 @@ export class AddAssetComponent{
   selectedHardwareType = '';
   @Input() selectedHardwareType;
 
-  addHardware(asset: Asset){
+  addAsset(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
       res => this.router.navigate(['/dashboard']),
       error =>  alert(error))

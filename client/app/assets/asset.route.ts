@@ -3,12 +3,16 @@ import { Routes,RouterModule } from '@angular/router';
 import { AdminComponent } from './search-asset.component';
 import {AddAssetComponent} from "./add-asset.component";
 import {EditAssetComponent} from "./edit-asset.component";
+import {SearchAssetResolve} from "./search-asset-resolve";
 
 const assetRoutes: Routes = [
 
     {
         path: 'admin/:id',
-        component: AdminComponent
+        component: AdminComponent,
+        resolve: {
+            assets: SearchAssetResolve
+        }
     },
     {
         path: 'hardware/add',

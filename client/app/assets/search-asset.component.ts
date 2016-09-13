@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import {AdminService} from './asset.service';
+import {AssetService} from './asset.service';
 import {Asset} from '../shared/model/asset';
 import {Specs} from '../shared/model/specs';
 import 'rxjs/add/operator/map';
@@ -19,43 +19,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class AdminComponent implements OnInit, OnDestroy {
-   @Input() public allocatedAssetsList;
+   @Input() public allocatedAssetsList: Asset[] = [];
     private sub: any;
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
-    constructor(private adminService: AdminService,
+    constructor(private adminService: AssetService,
                 private router: Router,
                 private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-
-        this.sub = this.route
-            .params
-            .subscribe(params => {
-                this.selectedId = params['id'];
-                this.listByEmpId(this.selectedId);
-            });
-
+      this.route.data.forEach((data: { assets: Asset[]}) => {
+        this.allocatedAssetsList = data.assets
+      });
     }
 
-    listByEmpId(empId:string) {
+  returnAsset(objId: string) {
+      console.log("id:::::" + objId)
+  }
 
-        this.adminService.getAllocatedAssets(empId).subscribe(
-            res => {
-              this.allocatedAssetsList = res;
-            },
-            error =>  this.errorMessage = <any>error);
-    }
-
-    editAsset(id){
+  editAsset(id){
       this.router.navigate(['hardware/edit', id])
     }
-
-    ngOnDestroy() {
-        this.sub.unsubscribe();
-    }
-
 
 }

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 
 @Injectable()
-export class AdminService {
+export class AssetService {
 
     private listAssetsURL = '/api/assets/list/';  // URL to web API
     private addAssetUrl = '/api/assets/add';
@@ -21,10 +21,7 @@ export class AdminService {
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
-
-        this.listAssetsURL+= empId;
-
-        return this.http.get(this.listAssetsURL)
+        return this.http.get(this.listAssetsURL + empId)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -46,6 +43,16 @@ export class AdminService {
         });
         return this.http
           .post(this.getAssetUrl, JSON.stringify({'_id':_id}), {headers: headers})
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    editAsset(asset: Asset): Observable<> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+          .post(this.editAssetUrl, JSON.stringify(asset), {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
     }
