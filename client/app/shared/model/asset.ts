@@ -4,11 +4,12 @@ export class Asset {
     empName: string;
     assetType: string;
     model: string;
-    deviceCode: string;
+    assetCode: string;
     shippingDate: string;
     dateOfIssue: string;
     dateOfReturn: string;
     warrantyEndDate:string;
     lastMaintenanceDate:string;
     specs:Specs;
+    isAvailable:boolean;
 }
