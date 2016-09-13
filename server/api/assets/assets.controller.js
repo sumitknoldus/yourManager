@@ -135,7 +135,7 @@ export function returnAsset(req, res, next) {
     today = mm+'/'+dd+'/'+yyyy;
     return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{'isAvailable':true,'returnDate': today }).exec()
         .then(function() {
-            res.status(204).end();
+            res.status(200).send({"status":"success"});
         })
         .catch(handleError(res));
 }
@@ -159,6 +159,22 @@ export function availableAsset(req, res, next) {
             res.json({availableStock:assets.length, assetList:temp});
         })
 }
+
+/**
+ * Get delete of Assets
+ * restriction: 'admin'
+ */
+export function assignAsset(req, res, next) {
+    var temp= [];
+    return Assets.findOneUpdate({_id: new ObjectId(req.body._id), isAvailable:true}).exec()
+        .then(assets => {
+            if (!assets) {
+                return res.status(404).end();
+            }
+            res.status(200).send({"status":"success"});
+        })
+}
+
 //
 ///**
 // * Get list of users
