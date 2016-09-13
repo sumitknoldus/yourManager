@@ -4,6 +4,7 @@ import Assets from './assets.model.js';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+var ObjectId = require('mongoose').Types.ObjectId;
 
 function validationError(res, statusCode) {
     statusCode = statusCode || 422;
@@ -41,8 +42,8 @@ export function listAssetsByEmpId(req, res, next) {
  * restriction: 'admin'
  */
 export function listAssets(req, res, next) {
-    console.log(">>>>>>>>>>>>>>>>"+JSON.stringify(req.body));
-    return Assets.find({}, '-salt -password').exec()
+
+    return Assets.find({}).exec()
         .then(users => {
             res.status(200).json(users);
         })
@@ -54,7 +55,7 @@ export function listAssets(req, res, next) {
  * restriction: 'admin'
  */
 export function addAssets(req, res, next) {
-    console.log(">>>>>>>>>>>>>>>>"+JSON.stringify(req.body));
+
     var newAssets = new Assets(req.body);
     //newAssets.provider = 'local';
     //newAssets.role = 'user';
@@ -73,14 +74,30 @@ export function addAssets(req, res, next) {
  * Get edit of Assets
  * restriction: 'admin'
  */
-export function editAssets(req, res, next) {
-    var empId = req.params.id;
-    return Assets.find({"empId":empId}).exec()//({"username" : {$regex : ".*son.*"}});
+export function getAssetById(req, res, next) {
+
+    return Assets.findOne({_id: new ObjectId(req.body._id)}).exec()//({"username" : {$regex : ".*son.*"}});
         .then(user => {
             if (!user) {
                 return res.status(404).end();
             }
             res.json(user);
+        })
+        .catch(err => next(err));
+}
+
+/**
+ * Get edit of Assets
+ * restriction: 'admin'
+ */
+export function saveAssetById(req, res, next) {
+
+    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},req.body).exec()//({"username" : {$regex : ".*son.*"}});
+        .then(user => {
+            if (!user) {
+                return res.status(404).end();
+            }
+            res.json({'status':'success'});
         })
         .catch(err => next(err));
 }

@@ -8,9 +8,10 @@ var router = new Router();
 
 
 router.get('/list/:id',controller.listAssetsByEmpId);
-router.get('/list',controller.listAssets);
+router.get('/listall',controller.listAssets);
 router.post('/add',controller.addAssets);
-router.post('/edit/:id',controller.editAssets);
+router.post('/get',controller.getAssetById);
+router.post('/save',controller.saveAssetById);
 router.get('/delete/:id',controller.deleteAssets);
 //router.get('/', auth.hasRole('admin'), controller.index);
 //router.delete('/:id', auth.hasRole('admin'), controller.destroy);

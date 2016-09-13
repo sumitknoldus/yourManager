@@ -10,7 +10,7 @@ const authTypes = ['github', 'twitter', 'facebook', 'google'];
 var AssetsSchema = new Schema({
     empId: String,
     empName: String,
-    deviceName: String,
+    assetType: String,
     model: String,
     deviceCode: String,
     shippingDate: String,
