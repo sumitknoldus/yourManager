@@ -16,7 +16,25 @@ export class AdminService {
 
     private listAssetsURL = '/api/assets/list/';  // URL to web API
     private addAssetUrl = '/api/assets/add';
+    private getAssetUrl = '/api/assets/get';
     private editAssetUrl = '/api/assets/edit';
+
+    zzz = {"empId":"1",
+        "empName": "Akshay",
+        "deviceName": "Laptop",
+        "model": "lenovo",
+        "deviceCode": "3560",
+        "shippingDate": "08/12/2016",
+        "dateOfIssue": "08/12/2016",
+        "dateOfReturn": "",
+        "warrantyEndDate":"08/12/2026",
+        'lastMaintenanceDate':"",
+        "specs":{
+            "RAM":"8GB",
+            "HD":"500GB",
+            "Processor":"i5"
+        }
+    };
 
 
     constructor (private http: Http) {}
@@ -40,15 +58,17 @@ export class AdminService {
           .catch(this.handleError);
     }
 
-    editAsset(id: number): Observable<>{
-        let headers = new Headers({
+    editAsset(_id: number): Observable<>{
+        /*let headers = new Headers({
             'Content-Type': 'application/json'
         });
 
         return this.http
-          .post(this.addAssetUrl, JSON.stringify(id), {headers: headers})
+          .post(this.editAssetUrl, JSON.stringify(id), {headers: headers})
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError);*/
+        return this.zzz
+
     }
 
     private extractData(res: Response) {

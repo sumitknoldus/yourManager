@@ -16,13 +16,14 @@ export class EditAssetComponent{
 
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
-  @Input() asset;
+  @Input() asset = {};
   selectedHardwareType = '';
+
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       let id = +params['id'];
-      this.assetService.editAsset(id).subscribe(data => this.asset = data)
+      this.asset = this.assetService.editAsset(id)
     });
   }
 
@@ -30,10 +31,6 @@ export class EditAssetComponent{
     this.assetService.addAsset(asset).subscribe(
       res => this.router.navigate(['/dashboard']),
       error =>  alert(error))
-  }
-
-  editAsset(){
-
   }
 
 }
