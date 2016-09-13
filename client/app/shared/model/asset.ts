@@ -2,7 +2,7 @@ import {Specs} from "./specs";
 export class Asset {
     empId:string;
     empName: string;
-    deviceName: string;
+    assetType: string;
     model: string;
     deviceCode: string;
     shippingDate: string;
