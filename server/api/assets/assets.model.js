@@ -12,7 +12,7 @@ var AssetsSchema = new Schema({
     empName: String,
     assetType: String,
     model: String,
-    deviceCode: String,
+    assetCode:String,
     shippingDate: String,
     dateOfIssue: Date,
     dateOfReturn: Date,
