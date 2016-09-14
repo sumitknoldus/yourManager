@@ -252,16 +252,30 @@ gulp.task('build-dev', function(callback) {
     runSequence(
         'prep-env',
         'ts-compile',
-        [ 'copy-system-lib','copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
+        ['copy-rootfiles', 'copy-css', 'copy-corelib', 'minify-images', 'copy-html', 'copy-server', 'copy-components'],
         ['start-server'],
-        'gulp-watch',
+        'gulp-watch-ts',
+        'gulp-watch-html',
+        'gulp-watch-css',
+        'gulp-watch-men',
         callback);
 });
 
-gulp.task('gulp-watch', function() {
+gulp.task('gulp-watch-ts', function() {
     return gulp.watch(['client/app/**/*.ts'], ['ts-compile']);
 });
 
+gulp.task('gulp-watch-men', function() {
+    return gulp.watch(['server/api/**/*.js'], ['copy-server'],['start-server']);
+});
+
+gulp.task('gulp-watch-html', function() {
+    return gulp.watch(['client/app/**/*.html'], ['copy-html']);
+});
+
+gulp.task('gulp-watch-css', function() {
+    return gulp.watch(['client/app/**/*.css'], ['copy-css']);
+});
 
 gulp.task('build-prod', function(callback) {
     runSequence(
