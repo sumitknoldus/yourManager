@@ -20,14 +20,24 @@ function handleError(res, statusCode) {
     };
 }
 
+function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 /**
  * Get list of assets by employee Id
  * restriction: 'admin'
  */
 export function listAssetsByEmpId(req, res, next) {
-    var empId = req.params.id;
-    return Assets.find({"empId":empId}).exec()//({"username" : {$regex : ".*son.*"}});
+    var param = req.params.id;
+    isNumeric = isNumeric(param);
+    if(isNumeric === true) {
+        var query = {"empId":param};
+    }
+    else {
+        var query = { "empName" : { $regex : new RegExp(param, "i") } }
+    }
+    return Assets.find(query).exec()//({"username" : {$regex : ".*son.*"}});
         .then(user => {
             if (!user) {
                 return res.status(404).end();
