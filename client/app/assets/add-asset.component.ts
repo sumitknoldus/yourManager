@@ -44,11 +44,10 @@ export class AddAssetComponent{
   }
 
   getAvailableAssetList(asset: string){
-    /*this.assetService.getAvailableAssetList(asset).subscribe(
+    this.assetService.getAvailableAssetList(asset).subscribe(
       data => console.log(JSON.stringify(data)),
       error => alert(error)
-    )*/
-    console.log("^^^^^^^^^^^^^"+asset)
+    )
   }
 
 }
