@@ -47,4 +47,7 @@ export class AdminComponent implements OnInit {
       this.router.navigate(['hardware/edit', id])
     }
 
+  getAvailableAssetList(asset: string){
+    console.log("called with asset :::::::::" + asset)
+  }
 }

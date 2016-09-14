@@ -7,7 +7,7 @@
 
                 <div class="form-group">
                     Choose Hardware type
-                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.deviceName" #hardwareType = "ngModel" required>
+                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.deviceName" #hardwareType = "ngModel" (change)="getAvailableAssetList(hardwareType.value)"  required>
                         <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
                     </select>
                     <div class="col-xs-12" [hidden]="hardwareType.valid || hardwareType.pristine"

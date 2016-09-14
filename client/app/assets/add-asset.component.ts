@@ -43,4 +43,12 @@ export class AddAssetComponent{
       error =>  alert(error))
   }
 
+  getAvailableAssetList(asset: string){
+    /*this.assetService.getAvailableAssetList(asset).subscribe(
+      data => console.log(JSON.stringify(data)),
+      error => alert(error)
+    )*/
+    console.log("^^^^^^^^^^^^^"+asset)
+  }
+
 }
