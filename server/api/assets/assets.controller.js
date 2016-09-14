@@ -30,8 +30,9 @@ function isNumeric(n) {
  */
 export function listAssetsByEmpId(req, res, next) {
     var param = req.params.id;
-    isNumeric = isNumeric(param);
-    if(isNumeric === true) {
+    var isNumber = isNumeric(param);
+    if(isNumber === true) {
+        console.log("here")
         var query = {"empId":param};
     }
     else {
