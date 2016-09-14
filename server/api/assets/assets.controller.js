@@ -133,7 +133,8 @@ export function returnAsset(req, res, next) {
     }
 
     today = mm+'/'+dd+'/'+yyyy;
-    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{'isAvailable':true,'returnDate': today }).exec()
+    console.log(">>>>>>>>>>>>"+JSON.stringify(today));
+    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{'isAvailable':true,'dateOfReturn': today }).exec()
         .then(function() {
             res.status(200).send({"status":"success"});
         })
