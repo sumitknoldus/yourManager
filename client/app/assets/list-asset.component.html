@@ -1,0 +1,46 @@
+
+<ym-header-shared></ym-header-shared>
+<div class="container" style="padding-top: 70px;">
+    <div class="title">
+
+    </div>
+    <div class="panel-body" style="overflow-x:auto;">
+        <table *ngIf="allocatedAssetsList">
+            <tr>
+                <th>EmployeeId</th>
+                <th>Employee Name</th>
+                <th>Asset Type</th>
+                <th>Model</th>
+                <th>Asset Code</th>
+                <th>shipping Date</th>
+                <th>Date Of Issue</th>
+                <th>Date Of Return</th>
+                <th>Warranty End Date</th>
+                <th>Last Maintenance Date</th>
+                <th>specification</th>
+                <th>Edit</th>
+                <th>Return</th>
+
+            </tr>
+            <tr *ngFor = "let asset of allocatedAssetsList">
+                <td>{{asset.empId}}</td>
+                <td>{{asset.empName}}</td>
+                <td>{{asset.assetType}}</td>
+                <td>{{asset.model}}</td>
+                <td>{{asset.assetCode}}</td>
+                <td>{{asset.shippingDate}}</td>
+                <td>{{asset.dateOfIssue}}</td>
+                <td>{{asset.dateOfReturn}}</td>
+                <td>{{asset.warrantyEndDate}}</td>
+                <td>{{asset.lastMaintenanceDate}}</td>
+                <td>{{asset.specs.RAM}} ,{{asset.specs.HD}} ,{{asset.specs.Processor}}</td>
+                <td><button class="btn btn-default" (click) = editAsset(asset._id)>Edit</button></td>
+                <td><button class="btn btn-danger" (click) = returnAsset(asset._id)>Return</button></td>
+            </tr>
+
+        </table>
+
+
+
+    </div>
+</div>

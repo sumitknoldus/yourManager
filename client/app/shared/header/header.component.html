@@ -5,7 +5,7 @@
             <a class="navbar-brand" href="#">Your Manager</a>
         </div>
         <ul class="nav navbar-nav pull-right" *ngIf="show" >
-            <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+            <!--<li><a routerLink="/home" routerLinkActive="active">Home</a></li>-->
             <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
             <!--<li><a (click)="logout()">logout</a></li>-->
             <!--<ul class="nav navbar-nav navbar-right">-->
@@ -63,7 +63,7 @@
         </li>
         <li><a href="/asset/add"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Add Hardware</span></a></li>
         <li><a href="/asset/assign"><i class="fa fa-paperclip"></i> <span class="collapse in hidden-xs">Assign Existing Asset</span></a></li>
-        <li><a href="#"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">List All Assets</span></a></li>
+        <li><a href="/asset/list"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">List All Assets</span></a></li>
        <!-- <li>
             <a href="#" data-target="#item1" data-toggle="collapse"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Menu <span class="caret"></span></span></a>
             <ul class="nav nav-stacked collapse left-submenu" id="item1">
