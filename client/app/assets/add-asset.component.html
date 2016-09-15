@@ -7,7 +7,7 @@
 
                 <div class="form-group">
                     Choose Hardware type
-                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.deviceName" #hardwareType = "ngModel" (click)="getAvailableAssetList(hardwareType.value)"  required>
+                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.assetName" #hardwareType = "ngModel" (click)="getAvailableAssetList(hardwareType.value)"  required>
                         <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
                     </select>
                     <div class="col-xs-12" [hidden]="hardwareType.valid || hardwareType.pristine"
@@ -15,7 +15,7 @@
                         Hardware Type is required
                     </div>
                 </div>
-                <div *ngIf= "asset.deviceName != ''">
+                <div *ngIf= "asset.assetName != ''">
                     <div class="form-group">
                         <div class="col-xs-5">
                             <label for="empId">Employee ID: </label>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div *ngIf = "asset.deviceName === 'Laptop'" class="form-group">
+                    <div *ngIf = "asset.assetName === 'Laptop'" class="form-group">
                         <div class="form-group">
                             <div class="col-xs-5">
                                 <label for="warrantyEndDate">Warranty End Date : </label>

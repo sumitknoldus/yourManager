@@ -17,21 +17,22 @@ export class AddAssetComponent{
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
   @Input()
-  asset = {empId:"",
-  empName: "",
-  deviceName: "",
-  model: "",
-  assetCode: "",
-  shippingDate: "",
-  dateOfIssue: "",
-  dateOfReturn: "",
-  warrantyEndDate:"",
-  lastMaintenanceDate:"",
-  specs:{
-    RAM:"",
-    HD:"",
-    Processor:""
-  }
+  asset = {
+    empId:"",
+    empName: "",
+    assetName: "",
+    model: "",
+    assetCode: "",
+    shippingDate: "",
+    dateOfIssue: "",
+    dateOfReturn: "",
+    warrantyEndDate:"",
+    lastMaintenanceDate:"",
+    specs:{
+      RAM:"",
+      HD:"",
+      Processor:""
+    }
   };
 
   selectedHardwareType = '';

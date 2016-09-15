@@ -75,8 +75,8 @@ export function addAssets(req, res, next) {
             var token = jwt.sign({ _id: user._id }, config.secrets.session, {
                 expiresIn: 60 * 60 * 5
             });
-            res.json({ token });
-            //res.json({ 'status': 'success'});
+            //res.json({ token });
+              res.status(200).send({"status":"success"});
         })
         .catch(validationError(res));
 }
@@ -144,7 +144,7 @@ export function returnAsset(req, res, next) {
     }
 
     today = mm+'/'+dd+'/'+yyyy;
-    console.log(">>>>>>>>>>>>"+JSON.stringify(today));
+
     return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{'isAvailable':true,'dateOfReturn': today }).exec()
         .then(function() {
             res.status(200).send({"status":"success"});
@@ -173,20 +173,24 @@ export function availableAsset(req, res, next) {
 }
 
 /**
- * Get delete of Assets
+ * Get assign Assets
  * restriction: 'admin'
  */
 export function assignAsset(req, res, next) {
     var temp= [];
-    return Assets.findOneUpdate({_id: new ObjectId(req.body._id), isAvailable:true}).exec()
+    var objId = req.body._id;
+    var newRecord =  delete req.body._id;
+    return Assets.findOneUpdate({_id: new ObjectId(req.body._id), isAvailable:false}).exec()
         .then(assets => {
             if (!assets) {
                 return res.status(404).end();
             }
-            res.status(200).send({"status":"success"});
+            else{
+                addAssets(delete req.body._id);
+            }
+          //  res.status(200).send({"status":"success"});
         })
 }
-
 //
 ///**
 // * Get list of users
