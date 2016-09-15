@@ -16,26 +16,36 @@ export class AddAssetComponent{
 
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
-  @Input()
-  asset = {empId:"",
-  empName: "",
-  deviceName: "",
-  model: "",
-  assetCode: "",
-  shippingDate: "",
-  dateOfIssue: "",
-  dateOfReturn: "",
-  warrantyEndDate:"",
-  lastMaintenanceDate:"",
-  specs:{
-    RAM:"",
-    HD:"",
-    Processor:""
-  }
+  availableAssets = {
+    availableStock: "",
+    assetList:[{
+      assetCode: "",
+      _id:""
+    }]
   };
 
-  selectedHardwareType = '';
-  @Input() selectedHardwareType;
+  isAssign: boolean = false;
+  objectId = ""
+
+  @Input()
+  asset = {empId:"",
+    empName: "",
+    assetType: "",
+    model: "",
+    assetCode: "",
+    shippingDate: "",
+    dateOfIssue: "",
+    dateOfReturn: "",
+    warrantyEndDate:"",
+    lastMaintenanceDate:"",
+    specs:{
+      RAM:"",
+      HD:"",
+      Processor:""
+    },
+    isAvailable:""
+  };
+
 
   addAsset(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
@@ -44,9 +54,28 @@ export class AddAssetComponent{
   }
 
   getAvailableAssetList(asset: string){
+    this.isAssign = true;
     this.assetService.getAvailableAssetList(asset).subscribe(
-      data => console.log(JSON.stringify(data)),
+      data => {
+        console.log(JSON.stringify(data))
+        this.availableAssets = data;
+      },
       error => alert(error)
+    )
+  }
+
+  assignAsset(objectId: string, asset: Asset) {
+    this.assetService.assignAsset(objectId, asset).subscribe(data =>
+      console.log(JSON.stringify(data)),
+      error =>  alert(error)
+  )
+  }
+
+  getAsset(objectId: string) {
+    this.assetService.getById(objectId).subscribe(data =>{
+      this.asset = data
+    },
+      error =>  alert(error)
     )
   }
 
