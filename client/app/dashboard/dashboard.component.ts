@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.fullpath = 'assets/images/sample.png';
+        this.router.navigate(['asset/list'])
     }
 
     addHardware() {

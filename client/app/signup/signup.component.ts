@@ -23,7 +23,7 @@ export class SignupComponent {
     this.signupService.signup(selectedUser)
       .then(data => {
           localStorage.setItem('user', JSON.stringify(data));
-          this.router.navigate(['home']);
+          this.router.navigate(['dashboard']);
         },
        error => alert(error));
   }
