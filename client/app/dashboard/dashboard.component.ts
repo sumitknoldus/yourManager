@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(JSON.stringify(this.search));
+
         this.listByEmpId(this.search.value);
     }
 
