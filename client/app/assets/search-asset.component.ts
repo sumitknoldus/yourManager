@@ -38,13 +38,16 @@ export class AdminComponent implements OnInit {
   returnAsset(objId: string) {
     console.log(objId);
     this.assetService.returnAsset(objId).subscribe(
-      data => console.log(data),
+      data =>{
+        alert("Asset Returned");
+        console.log(data)
+      },
       error => alert(error)
     )
   }
 
   editAsset(id){
-      this.router.navigate(['hardware/edit', id])
+      this.router.navigate(['asset/edit', id])
     }
 
   getAvailableAssetList(asset: string){

@@ -7,11 +7,12 @@ import { SharedModule }       from '../shared/shared.module';
 import {AddAssetComponent} from "./add-asset.component";
 import {EditAssetComponent} from "./edit-asset.component";
 import {SearchAssetResolve} from "./search-asset-resolve";
+import {AssignAssetComponent} from "./assign-asset.component";
 
 
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule ],
-  declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent],
+  declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent],
   providers:    [ AssetService, SearchAssetResolve ]
 })
 export class AdminModule {}

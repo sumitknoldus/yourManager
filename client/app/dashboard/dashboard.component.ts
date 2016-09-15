@@ -27,9 +27,13 @@ export class DashboardComponent implements OnInit {
     }
 
     addHardware() {
-        this.router.navigate(['hardware/add'])
+        this.router.navigate(['asset/add'])
     }
 
+    goToAssignAsset(){
+        this.router.navigate(['asset/assign'])
+
+    }
     onSubmit() {
 
         this.listByEmpId(this.search.value);

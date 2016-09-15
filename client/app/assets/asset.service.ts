@@ -20,7 +20,7 @@ export class AssetService {
     private editAssetUrl = '/api/assets/save';
     private returnAssetUrl = '/api/assets/return';
     private fetchAvailableAssetUrl = '/api/assets/fetch/';
-    private assignAssetUrl = '/api/assets/save';
+    private assignAssetUrl = '/api/assets/assign';
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
@@ -40,7 +40,7 @@ export class AssetService {
           .catch(this.handleError);
     }
 
-    getById(_id: string): Observable<>{
+    getById(_id: string): Observable<Asset>{
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -76,12 +76,14 @@ export class AssetService {
           .map(this.extractData)
           .catch(this.handleError);
     }
-    assignAsset(id: string, asset: Asset) {
+
+    assignAsset(asset: Asset) {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
+        console.log("asset assign service::::::: " + JSON.stringify(asset));
         return this.http
-          .post(this.assignAssetUrl, JSON.stringify({"_id" : id, "assetData" : asset}), {headers: headers})
+          .post(this.assignAssetUrl, JSON.stringify({"assetData" : asset}), {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
     }

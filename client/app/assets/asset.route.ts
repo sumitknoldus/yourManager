@@ -4,6 +4,7 @@ import { AdminComponent } from './search-asset.component';
 import {AddAssetComponent} from "./add-asset.component";
 import {EditAssetComponent} from "./edit-asset.component";
 import {SearchAssetResolve} from "./search-asset-resolve";
+import {AssignAssetComponent} from "./assign-asset.component";
 
 const assetRoutes: Routes = [
 
@@ -15,11 +16,14 @@ const assetRoutes: Routes = [
         }
     },
     {
-        path: 'hardware/add',
+        path: 'asset/add',
         component: AddAssetComponent,
         //outlet: 'asset'
     }, {
-        path: 'hardware/edit/:id',
+        path: 'asset/assign',
+        component: AssignAssetComponent,
+    }, {
+        path: 'asset/edit/:id',
         component: EditAssetComponent,
         //outlet: 'asset'
     }

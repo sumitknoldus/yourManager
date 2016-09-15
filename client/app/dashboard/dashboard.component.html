@@ -12,13 +12,17 @@
     </form>
 
     <div class="col-lg-2 col-sm-2">
-        <button type="button" (click) = "addHardware()" class="btn btn-default"> Add Hardware </button>
+        <button type="button" (click) = "addHardware()" class="btn btn-default"> Add New Asset </button>
+    </div>
+
+    <div class="col-lg-2 col-sm-2">
+        <button type="button" (click) = "goToAssignAsset()" class="btn btn-default"> Assign Existing Asset </button>
     </div>
 
     <div class="col-lg-2 col-sm-2">
         <button type="button" class="btn btn-default"> List Hardware </button>
     </div>
-    <div class="col-sm-6 col-lg-6">
+    <div class="col-sm-4 col-lg-4">
         <img [src]= "fullpath">
     </div>
 </div>

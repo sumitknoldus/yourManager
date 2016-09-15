@@ -13,10 +13,10 @@ import {AssetService} from "./asset.service";
 export class EditAssetComponent{
 
   constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
-
+  isAssign: boolean = false;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
-  @Input() asset = {};
+  @Input() asset = new Asset();
   selectedHardwareType = '';
 
 
@@ -27,7 +27,7 @@ export class EditAssetComponent{
     });
   }
 
-  addAsset(asset: Asset){
+  submit(asset: Asset){
     console.log(":::"+ asset.empId);
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin', asset.empId]),
