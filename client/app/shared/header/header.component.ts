@@ -12,10 +12,12 @@ import {User} from "../model/user";
 export class HeaderComponent implements OnInit {
     show: boolean = true;
     @Input
+
     user = new User();
     constructor(private router: Router) {};
     ngOnInit() {
         if (localStorage.getItem('user') === null) {
+            this.show = false;
             if (this.router.url != '/signup') {
                 this.show = false;
                 this.router.navigate(['login']);
@@ -23,7 +25,7 @@ export class HeaderComponent implements OnInit {
                 this.show = false;
             }
         } else {
-
+            this.show= true;
             user= JSON.parse(localStorage.getItem('user'));
             this.firstName = user.firstName
             this.email = user.email;

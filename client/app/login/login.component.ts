@@ -24,7 +24,7 @@ export class LoginComponent {
         .then(data => {
             if(JSON.stringify(data) !== '{}') {
                 localStorage.setItem('user', JSON.stringify(data));
-                this.router.navigate(['home']);
+                this.router.navigate(['dashboard']);
             } else {
                 this.errorMsg = 'Failed to login...';
             }
