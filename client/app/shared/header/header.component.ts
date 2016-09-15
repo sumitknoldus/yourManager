@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {User} from "../model/user";
 
 @Component({
     moduleId:module.id,
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 
 export class HeaderComponent implements OnInit {
     show: boolean = true;
+    @Input
+    user = {firstName:''};
     constructor(private router: Router) {};
     ngOnInit() {
         if (localStorage.getItem('user') === null) {
@@ -20,6 +23,11 @@ export class HeaderComponent implements OnInit {
                 this.show = false;
             }
         } else {
+            console.log(localStorage.getItem('user'));
+            this.user= localStorage.getItem('user');
+            this.firstName = localStorage.getItem('user');
+            alert(this.user);
+            this.email = localStorage.getItem('user').email;
             if (this.router.url === '/login' || this.router.url === '/signup') {
                 this.router.navigate(['home'])
             }
