@@ -5,6 +5,7 @@ import {AddAssetComponent} from "./add-asset.component";
 import {EditAssetComponent} from "./edit-asset.component";
 import {SearchAssetResolve} from "./search-asset-resolve";
 import {AssignAssetComponent} from "./assign-asset.component";
+import {ListComponent} from "./list-asset.component";
 
 const assetRoutes: Routes = [
 
@@ -25,6 +26,11 @@ const assetRoutes: Routes = [
     }, {
         path: 'asset/edit/:id',
         component: EditAssetComponent,
+        //outlet: 'asset'
+    },
+    {
+        path: 'asset/list',
+        component: ListComponent
         //outlet: 'asset'
     }
 ];

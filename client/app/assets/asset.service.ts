@@ -21,6 +21,7 @@ export class AssetService {
     private returnAssetUrl = '/api/assets/return';
     private fetchAvailableAssetUrl = '/api/assets/fetch/';
     private assignAssetUrl = '/api/assets/assign';
+    private listAllAssetUrl = '/api/assets/listall';
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
@@ -58,6 +59,16 @@ export class AssetService {
           .post(this.editAssetUrl, JSON.stringify(asset), {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
+    }
+
+    listAllAsset(): Observable<> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .get(this.listAllAssetUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     returnAsset(objId: string) {

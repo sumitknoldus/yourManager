@@ -30,6 +30,10 @@ export class DashboardComponent implements OnInit {
         this.router.navigate(['asset/add'])
     }
 
+    goToListAllAsset() {
+        this.router.navigate(['asset/list'])
+    }
+
     goToAssignAsset(){
         this.router.navigate(['asset/assign'])
 
