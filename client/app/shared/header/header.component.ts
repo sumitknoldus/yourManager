@@ -12,7 +12,6 @@ import {User} from "../model/user";
 export class HeaderComponent implements OnInit {
     show: boolean = true;
     @Input
-
     user = new User();
     constructor(private router: Router) {};
     ngOnInit() {
@@ -26,9 +25,7 @@ export class HeaderComponent implements OnInit {
             }
         } else {
             this.show= true;
-            user= JSON.parse(localStorage.getItem('user'));
-            this.firstName = user.firstName
-            this.email = user.email;
+            this.user= JSON.parse(localStorage.getItem('user'));
             if (this.router.url === '/login' || this.router.url === '/signup') {
                 this.router.navigate(['home'])
             }
