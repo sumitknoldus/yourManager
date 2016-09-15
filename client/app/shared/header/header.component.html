@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse navbar-fixed-top" >
     <div class="container-fluid">
         <div class="navbar-header">
@@ -14,7 +15,7 @@
                         <strong>{{firstName}}</strong>
                         <span class="glyphicon glyphicon-chevron-down"></span>
                     </a>
-                    <ul class="dropdown-menu" style="margin-left:-193%;">
+                    <ul class="dropdown-menu" style="margin-left:-290%;">
                         <li>
                             <div class="navbar-login">
                                 <div class="row">
@@ -33,15 +34,15 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="divider navbar-login-session-bg"></li>
-                        <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                        <li class="divider"></li>
+                        <!--<li class="divider navbar-login-session-bg"></li>-->
+                        <!--<li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>-->
+                        <!--<li class="divider"></li>-->
                         <li><a (click)="logout()">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                     </ul>
                 </li>
@@ -50,3 +51,31 @@
 
     </div>
 </nav>
+
+<!-- sidebar -->
+
+<div class="column col-sm-2  col-xs-1 sidebar-offcanvas no-padding" id="sidebar">
+    <ul class="nav" id="menu">
+        <li><a href="#"><i class="fa fa-list-alt"></i> <span class="collapse in hidden-xs">Link 1</span></a></li>
+        <li><a href="#"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Stories</span></a></li>
+        <li><a href="#"><i class="fa fa-paperclip"></i> <span class="collapse in hidden-xs">Saved</span></a></li>
+        <li><a href="#"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">Refresh</span></a></li>
+        <li>
+            <a href="#" data-target="#item1" data-toggle="collapse"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Menu <span class="caret"></span></span></a>
+            <ul class="nav nav-stacked collapse left-submenu" id="item1">
+                <li><a href="google.com">View One</a></li>
+                <li><a href="gmail.com">View Two</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" data-target="#item2" data-toggle="collapse"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Menu <span class="caret"></span></span></a>
+            <ul class="nav nav-stacked collapse" id="item2">
+                <li><a href="#">View One</a></li>
+                <li><a href="#">View Two</a></li>
+                <li><a href="#">View Three</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span class="collapse in hidden-xs">Link</span></a></li>
+    </ul>
+</div>
+<!-- /sidebar -->

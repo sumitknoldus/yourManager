@@ -66,7 +66,7 @@ export function listAssets(req, res, next) {
  * restriction: 'admin'
  */
 export function addAssets(req, res, next) {
-
+    console.log("-------------------------------");
     var newAssets = new Assets(req.body);
     //newAssets.provider = 'local';
     //newAssets.role = 'user';
@@ -179,14 +179,24 @@ export function availableAsset(req, res, next) {
 export function assignAsset(req, res, next) {
     var temp= [];
     var objId = req.body._id;
-    var newRecord =  delete req.body._id;
-    return Assets.findOneUpdate({_id: new ObjectId(req.body._id), isAvailable:false}).exec()
+    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},{isAvailable:false}).exec()
         .then(assets => {
             if (!assets) {
                 return res.status(404).end();
             }
             else{
-                addAssets(delete req.body._id);
+                var newAssets = new Assets(req.body.assetData);
+                //newAssets.provider = 'local';
+                //newAssets.role = 'user';
+                newAssets.save()
+                    .then(function(user) {
+                        var token = jwt.sign({ _id: user._id }, config.secrets.session, {
+                            expiresIn: 60 * 60 * 5
+                        });
+                        //res.json({ token });
+                        res.status(200).send({"status":"success"});
+                    })
+                    .catch(validationError(res));
             }
           //  res.status(200).send({"status":"success"});
         })
