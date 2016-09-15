@@ -10,6 +10,7 @@ var router = new Router();
 router.get('/list/:id',controller.listAssetsByEmpId);
 router.get('/listall',controller.listAssets);
 router.post('/add',controller.addAssets);
+router.post('/assign',controller.assignAsset);
 router.post('/get',controller.getAssetById);
 router.post('/save',controller.saveAssetById);
 router.post('/return',controller.returnAsset);
