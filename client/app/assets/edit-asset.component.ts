@@ -16,7 +16,7 @@ export class EditAssetComponent{
   isAssign: boolean = false;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
 
-  @Input() asset = new Asset();
+  @Input() asset = {};
   selectedHardwareType = '';
 
 
@@ -28,7 +28,6 @@ export class EditAssetComponent{
   }
 
   submit(asset: Asset){
-    console.log(":::"+ asset.empId);
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin', asset.empId]),
       error => alert(error)

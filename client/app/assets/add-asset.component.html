@@ -51,7 +51,21 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-5">
+                                <label for="dateOfIssue">Date of Issue : </label>
+                            </div>
+                            <div class="col-xs-7">
+                                <input type="date" name="dateOfIssue" id="dateOfIssue" class="form-control" [(ngModel)] = "asset.dateOfIssue" #dateOfIssue="ngModel" required>
+                            </div>
+                            <div [hidden]="dateOfIssue.valid || dateOfIssue.pristine"
+                                 class="alert alert-danger">
+                                Date of issue Id is required
+                            </div>
+                        </div>
                     </div>
+
                     <div *ngIf = "!isAssign">
                         <div class="form-group">
                             <div class="col-xs-5">
@@ -67,134 +81,99 @@
                         </div>
                     </div>
 
-                <!--  <div class="form-group">
-                      <div class="col-xs-5">
-                          <label for="assetCode">Device Code : </label>
-                      </div>
-                      <div class="col-xs-7">
-                          <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required>
-                      </div>
-                      <div [hidden]="assetCode.valid || model.pristine"
-                           class="alert alert-danger">
-                          Device Code Id is required
-                      </div>
-                  </div>-->
-
-                <div class="form-group">
-                    <div class="col-xs-5">
-                        <label for="model">Model : </label>
-                    </div>
-                    <div class="col-xs-7">
-                        <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required>
-                    </div>
-                    <div class="col-xs-12" [hidden]="model.valid || model.pristine"
-                         class="alert alert-danger">
-                        Model is required
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-5">
-                        <label for="shippingDate">Shipping Date : </label>
-                    </div>
-                    <div class="col-xs-7">
-                        <input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>
-                    </div>
-                    <div [hidden]="shippingDate.valid || shippingDate.pristine"
-                         class="alert alert-danger">
-                        Shipping Date Id is required
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-5">
-                        <label for="dateOfIssue">Date of Issue : </label>
-                    </div>
-                    <div class="col-xs-7">
-                        <input type="date" name="dateOfIssue" id="dateOfIssue" class="form-control" [(ngModel)] = "asset.dateOfIssue" #dateOfIssue="ngModel" required>
-                    </div>
-                    <div [hidden]="dateOfIssue.valid || dateOfIssue.pristine"
-                         class="alert alert-danger">
-                        Date of issue Id is required
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-xs-5">
-                        <label for="dateOfReturn">Date of Return : </label>
-                    </div>
-                    <div class="col-xs-7">
-                        <input type="date" name="dateOfReturn" id="dateOfReturn" class="form-control" [(ngModel)] = "asset.dateOfReturn">
-                    </div>
-                </div>
-
-                <div *ngIf = "asset.assetType === 'Laptop'" class="form-group">
                     <div class="form-group">
                         <div class="col-xs-5">
-                            <label for="warrantyEndDate">Warranty End Date : </label>
+                            <label for="model">Model : </label>
                         </div>
                         <div class="col-xs-7">
-                            <input type="date" name="warrantyEndDate" id="warrantyEndDate" class="form-control" [(ngModel)] = "asset.warrantyEndDate" #warrantyEndDate="ngModel" required>
+                            <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required>
                         </div>
-                        <div [hidden]="warrantyEndDate.valid || warrantyEndDate.pristine"
+                        <div class="col-xs-12" [hidden]="model.valid || model.pristine"
                              class="alert alert-danger">
-                            warrantyEndDate Id is required
+                            Model is required
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-5">
-                            <label for="lastMaintenanceDate">Last Maintainance Date : </label>
+                            <label for="shippingDate">Shipping Date : </label>
                         </div>
                         <div class="col-xs-7">
-                            <input type="date" name="lastMaintenanceDate" id="lastMaintenanceDate" class="form-control" [(ngModel)] = "asset.lastMaintenanceDate">
+                            <input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>
+                        </div>
+                        <div [hidden]="shippingDate.valid || shippingDate.pristine"
+                             class="alert alert-danger">
+                            Shipping Date Id is required
                         </div>
                     </div>
 
-                    <div class="col-xs-5">
-                        <label>Specs : </label>
-                    </div>
-                    <div class="col-xs-3 col-xs-offset-5">
-                        <label for="ram">RAM : </label>
-                    </div>
-                    <div class="col-xs-4">
-                        <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required>
-                    </div>
-                    <div [hidden]="ram.valid || ram.pristine"
-                         class="alert alert-danger">
-                        Ram is required
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-3 col-xs-offset-5">
-                            <label for="hd">HD : </label>
+                    <div *ngIf = "asset.assetType === 'Laptop'" class="form-group">
+                        <div class="form-group">
+                            <div class="col-xs-5">
+                                <label for="warrantyEndDate">Warranty End Date : </label>
+                            </div>
+                            <div class="col-xs-7">
+                                <input type="date" name="warrantyEndDate" id="warrantyEndDate" class="form-control" [(ngModel)] = "asset.warrantyEndDate" #warrantyEndDate="ngModel" required>
+                            </div>
+                            <div [hidden]="warrantyEndDate.valid || warrantyEndDate.pristine"
+                                 class="alert alert-danger">
+                                warrantyEndDate Id is required
+                            </div>
                         </div>
-                        <div class="col-xs-4">
-                            <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required>
-                        </div>
-                        <div [hidden]="hd.valid || hd.pristine"
-                             class="alert alert-danger">
-                            Hard disk is required
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-3 col-xs-offset-5">
-                            <label for="processor">Processor : </label>
-                        </div>
-                        <div class="col-xs-4">
-                            <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required>
-                        </div>
-                        <div [hidden]="processor.valid || processor.pristine"
-                             class="alert alert-danger">
-                            Processor is required
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-xs-3 col-xs-offset-9">
-                    <button type="submit"  class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Asset</button>
+                        <div class="form-group">
+                            <div class="col-xs-5">
+                                <label for="lastMaintenanceDate">Last Maintainance Date : </label>
+                            </div>
+                            <div class="col-xs-7">
+                                <input type="date" name="lastMaintenanceDate" id="lastMaintenanceDate" class="form-control" [(ngModel)] = "asset.lastMaintenanceDate">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-5">
+                            <label>Specs : </label>
+                        </div>
+                        <div class="col-xs-3 col-xs-offset-5">
+                            <label for="ram">RAM : </label>
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required>
+                        </div>
+                        <div [hidden]="ram.valid || ram.pristine"
+                             class="alert alert-danger">
+                            Ram is required
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-3 col-xs-offset-5">
+                                <label for="hd">HD : </label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required>
+                            </div>
+                            <div [hidden]="hd.valid || hd.pristine"
+                                 class="alert alert-danger">
+                                Hard disk is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-3 col-xs-offset-5">
+                                <label for="processor">Processor : </label>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required>
+                            </div>
+                            <div [hidden]="processor.valid || processor.pristine"
+                                 class="alert alert-danger">
+                                Processor is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-xs-offset-9">
+                        <button type="submit"  class="btn btn-default" [disabled] = "!assetForm.form.valid">Add Asset</button>
+                    </div>
                 </div>
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>

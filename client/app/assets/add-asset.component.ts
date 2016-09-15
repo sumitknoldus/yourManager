@@ -25,10 +25,24 @@ export class AddAssetComponent {
     }]
   };
 
-  objectId = "";
-
   @Input()
-  asset: Asset = new Asset();
+  asset = {empId:"",
+    empName: "",
+    assetType: "",
+    model: "",
+    assetCode: "",
+    shippingDate: "",
+    dateOfIssue: "",
+    dateOfReturn: "",
+    warrantyEndDate:"",
+    lastMaintenanceDate:"",
+    specs:{
+      RAM:"",
+      HD:"",
+      Processor:""
+    },
+    isAvailable:""
+  };
 
   submit(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
@@ -39,7 +53,6 @@ export class AddAssetComponent {
   getAvailableAssetList(asset: string){
     this.assetService.getAvailableAssetList(asset).subscribe(
       data => {
-        console.log(JSON.stringify(data))
         this.availableAssets = data;
       },
       error => alert(error)

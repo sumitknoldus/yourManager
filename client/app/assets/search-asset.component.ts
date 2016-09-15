@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit {
     }
 
   returnAsset(objId: string) {
-    console.log(objId);
     this.assetService.returnAsset(objId).subscribe(
       data =>{
         alert("Asset Returned");

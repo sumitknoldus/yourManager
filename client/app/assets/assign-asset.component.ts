@@ -28,14 +28,30 @@ export class AssignAssetComponent{
   objectId = "";
 
   @Input()
-  asset: Asset = new Asset();
+  @Input()
+  asset = {empId:"",
+    empName: "",
+    assetType: "",
+    model: "",
+    assetCode: "",
+    shippingDate: "",
+    dateOfIssue: "",
+    dateOfReturn: "",
+    warrantyEndDate:"",
+    lastMaintenanceDate:"",
+    specs:{
+      RAM:"",
+      HD:"",
+      Processor:""
+    },
+    isAvailable:""
+  };
 
 
   getAvailableAssetList(asset: string){
-    this.isAssign = true;
     this.assetService.getAvailableAssetList(asset).subscribe(
       data => {
-        console.log(JSON.stringify(data))
+        console.log(JSON.stringify(data));
         this.availableAssets = data;
       },
       error => alert(error)
@@ -43,17 +59,17 @@ export class AssignAssetComponent{
   }
 
   submit(asset: Asset) {
-    console.log("assign asset --------" + JSON.stringify(asset))
-    this.assetService.assignAsset(asset).subscribe(data =>
-        console.log(JSON.stringify(data)),
+    this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
       error =>  alert(error)
     )
   }
 
   getAsset(objectId: string) {
+    console.log("caaaaaalllllleeeeeddddddddddddddd");
     this.assetService.getById(objectId).subscribe(data =>{
         this.asset.shippingDate = data.shippingDate;
         this.asset.model= data.model;
+        this.objectId = data._id;
       },
       error =>  alert(error)
     )

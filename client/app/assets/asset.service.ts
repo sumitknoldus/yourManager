@@ -33,14 +33,14 @@ export class AssetService {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
-
+        asset.isAvailable = true;
         return this.http
           .post(this.addAssetUrl, JSON.stringify(asset), {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
     }
 
-    getById(_id: string): Observable<Asset>{
+    getById(_id: string): Observable<>{
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -77,13 +77,12 @@ export class AssetService {
           .catch(this.handleError);
     }
 
-    assignAsset(asset: Asset) {
+    assignAsset(objectId: string, asset: Asset) {
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
-        console.log("asset assign service::::::: " + JSON.stringify(asset));
         return this.http
-          .post(this.assignAssetUrl, JSON.stringify({"assetData" : asset}), {headers: headers})
+          .post(this.assignAssetUrl, {"_id" : objectId, "assetData" : asset}, {headers: headers})
           .map(this.extractData)
           .catch(this.handleError);
     }
