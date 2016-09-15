@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  imports:      [ CommonModule, RouterModule ],
+  imports:      [ CommonModule, RouterModule, FormsModule],
   declarations: [ HeaderComponent],
   exports:      [ HeaderComponent,
     CommonModule,
