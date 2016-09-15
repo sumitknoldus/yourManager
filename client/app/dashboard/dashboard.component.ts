@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
+import {User} from "../shared/model/user";
 
 @Component({
     moduleId:module.id,
@@ -40,7 +41,6 @@ export class DashboardComponent implements OnInit {
 
     }
     onSubmit() {
-
         this.listByEmpId(this.search.value);
     }
 

@@ -19,6 +19,6 @@ button{
     border-left: 5px solid #42A948; /* green */
 }
 
-.ng-invalid {
+.form-group .ng-invalid{
     border-left: 5px solid #a94442; /* red */
 }

@@ -11,9 +11,11 @@ import {User} from "../model/user";
 
 export class HeaderComponent implements OnInit {
     show: boolean = true;
+    search = {value:''};
     @Input
     user = new User();
     constructor(private router: Router) {};
+
     ngOnInit() {
         if (localStorage.getItem('user') === null) {
             this.show = false;
@@ -31,6 +33,15 @@ export class HeaderComponent implements OnInit {
             }
         }
     }
+
+    searchAsset() {
+        this.listByEmpId(this.search.value);
+    }
+
+    listByEmpId(empId:string) {
+        this.router.navigate(['/admin',empId]);
+    }
+
     logout() {
         localStorage.removeItem('user');
         this.router.navigate(['/login']);
