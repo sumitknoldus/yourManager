@@ -28,11 +28,11 @@
                 <td>{{asset.assetType}}</td>
                 <td>{{asset.model}}</td>
                 <td>{{asset.assetCode}}</td>
-                <td>{{asset.shippingDate}}</td>
-                <td>{{asset.dateOfIssue}}</td>
-                <td>{{asset.dateOfReturn}}</td>
-                <td>{{asset.warrantyEndDate}}</td>
-                <td>{{asset.lastMaintenanceDate}}</td>
+                <td><span *ngIf="asset.shippingDate">{{asset.shippingDate | date:'shortDate'}}</span></td>
+                <td><span *ngIf="asset.dateOfIssue">{{asset.dateOfIssue | date:'shortDate'}}</span></td>
+                <td><span *ngIf="asset.dateOfReturn">{{asset.dateOfReturn | date:'shortDate'}}</span></td>
+                <td><span *ngIf="asset.warrantyEndDate">{{asset.warrantyEndDate | date:'shortDate'}}</span></td>
+                <td><span *ngIf="asset.lastMaintenanceDate">{{asset.lastMaintenanceDate | date:'shortDate'}}</span></td>
                 <td>{{asset.specs.RAM}} ,{{asset.specs.HD}} ,{{asset.specs.Processor}}</td>
                 <td><button class="btn btn-default" (click) = editAsset(asset._id)>Edit</button></td>
                 <td><button class="btn btn-danger" (click) = returnAsset(asset._id)>Return</button></td>
