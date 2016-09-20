@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input,Output, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import {AssetService} from './asset.service';
 import {Asset} from '../shared/model/asset';
 import {Specs} from '../shared/model/specs';
@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
 import {error} from "util";
 import {GridOptions} from "ag-grid/main";
+import {AgRendererComponent} from "ag-grid-ng2/main";
 
 
 @Component({
@@ -20,13 +21,17 @@ import {GridOptions} from "ag-grid/main";
     styleUrls:['search-asset.component.css'],
 })
 
-export class ListComponent implements OnInit {
-    @Input() public allocatedAssetsList: Asset[] = [];
+export class ListComponent implements OnInit, AgRendererComponent{
+    @Input()
+    public allocatedAssetsList: Asset[] = [];
+    cell:any;
+
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
 
     private gridOptions:GridOptions =  <GridOptions>{};
+ // @Output() onClicked = new EventEmitter<boolean>();
 
     constructor(private assetService: AssetService,
                 private router: Router,
@@ -36,10 +41,8 @@ export class ListComponent implements OnInit {
     ngOnInit() {
         this.route.data.forEach((data: { assets: Asset[]}) => {
             console.log("<button type=\"button\">Click Me!<\/button>");
-            for(let i=0;i<data.assets.length;i++){
-
-                data.assets[i].update = '<button type="button">Click Me!</button>';
-            }
+            //for(let i=0;i<data.assets.length;i++){
+            //}
             this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
             console.log(">>>>>>>>>"+JSON.stringify(data.assets[0]));
             this.gridOptions.rowData = this.createDataRows(data.assets)
@@ -61,24 +64,38 @@ export class ListComponent implements OnInit {
         )
     }
 
-    editAsset(id){
-        this.router.navigate(['asset/edit', id])
-    }
-
     getAvailableAssetList(asset: string){
         console.log("called with asset :::::::::" + asset)
     }
+
+
+
+
     private createColumnDefs(asset) {
         let keyNames = Object.keys(asset);
         let headers = []
-        keyNames.filter(key => key != '__v' && key != '_id').map(key => headers.push({
-            headerName: key,
-            field: key,
-            width: 100
-        }));
+        keyNames.filter(key => key != '__v' && key != '_id').map(key => {
+            headers.push({
+                headerName: key,
+                field: key,
+                width: 100
+            })
+        });
 
+        headers.push({
+            headerName: 'update',
+            field: 'update',
+            cellRendererFramework: {
+                template: '<button (click)="editAsset()" class="btn btn-default">Edit</button>',
+            },
+            width: 100
+        });
         return headers;
     }
+
+  editAsset(): void {
+    alert("here");
+  }
 
     private createDataRows(assets) {
         let updatedAssets = [];
@@ -99,7 +116,8 @@ export class ListComponent implements OnInit {
                 warrantyEndDate:assets[i].warrantyEndDate,
                 lastMaintenanceDate:assets[i].lastMaintenanceDate,
                 specs: JSON.stringify(assets[i].specs),
-                isAvailable:assets[i].isAvailable
+                isAvailable:assets[i].isAvailable,
+                update:assets[i].update
             })
         }
         return updatedAssets;
