@@ -54,7 +54,7 @@ export function hasRole(roleRequired) {
           config.userRoles.indexOf(roleRequired)) {
         next();
       } else {
-          console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+
         res.status(403).send('Forbidden...');
       }
     });

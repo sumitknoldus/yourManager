@@ -57,6 +57,7 @@
     "cookie-parser": "^1.4.3",
     "core-js": "^2.4.0",
     "ejs": "^2.4.2",
+    "email-templates": "^2.4.1",
     "errorhandler": "^1.4.3",
     "es6-shim": "^0.35.1",
     "express": "^4.14.0",

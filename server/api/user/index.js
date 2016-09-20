@@ -14,5 +14,6 @@ var router = new Router();
 //router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/signup', controller.create);
 router.post('/signin', controller.signIn);
+router.post('/verify', controller.verficationEmail);
 
 module.exports = router;
