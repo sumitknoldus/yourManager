@@ -10,6 +10,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
 import {error} from "util";
+import {GridOptions} from "ag-grid/main";
 
 
 @Component({
@@ -24,24 +25,20 @@ export class ListComponent implements OnInit {
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
+    private gridOptions:GridOptions =  <GridOptions>{};
+
     constructor(private assetService: AssetService,
                 private router: Router,
                 private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.assetService.listAllAsset().subscribe(
-            data =>{
-
-                this.allocatedAssetsList = data;
-
-            },
-            error => alert(error)
-        )
-        //this.route.data.forEach((data: { assets: Asset[]}) => {
-        //    this.allocatedAssetsList = data.assets
-        //});
+        this.route.data.forEach((data: { assets: Asset[]}) => {
+            this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+            this.gridOptions.rowData = this.createDataRows(data.assets)
+        });
     }
+
 
     returnAsset(objId: string) {
         this.assetService.returnAsset(objId).subscribe(
@@ -53,22 +50,47 @@ export class ListComponent implements OnInit {
         )
     }
 
-    //listAllAsset() {
-    //    this.assetService.listAllAsset().subscribe(
-    //        data =>{
-    //
-    //            this.allocatedAssetsList = data.assets;
-    //        },
-    //        error => alert(error)
-    //    )
-    //}
-
-
     editAsset(id){
         this.router.navigate(['asset/edit', id])
     }
 
     getAvailableAssetList(asset: string){
         console.log("called with asset :::::::::" + asset)
+    }
+    private createColumnDefs(asset) {
+        let keyNames = Object.keys(asset);
+        let headers = []
+        keyNames.filter(key => key != '__v' && key != '_id').map(key => headers.push({
+            headerName: key,
+            field: key,
+            width: 100
+        }));
+
+        return headers;
+    }
+
+    private createDataRows(assets) {
+        let updatedAssets = [];
+        let specs = [];
+        //assets.map(data => specs.push(assets.specs.HD + "," +assets.specs.RAM + "," + assets.specs.Processor));
+        //specs.map(spec => console.log(spec.HD))
+        for(let i in assets){
+            updatedAssets.push({
+                _id:assets[i]._id,
+                empId:assets[i].empId,
+                empName: assets[i].empName,
+                assetType: assets[i].assetType,
+                model: assets[i].model,
+                assetCode: assets[i].assetCode,
+                shippingDate: assets[i].shippingDate,
+                dateOfIssue: assets[i].dateOfIssue,
+                dateOfReturn: assets[i].dateOfReturn,
+                warrantyEndDate:assets[i].warrantyEndDate,
+                lastMaintenanceDate:assets[i].lastMaintenanceDate,
+                specs: JSON.stringify(assets[i].specs),
+                isAvailable:assets[i].isAvailable
+            })
+        }
+        return updatedAssets;
     }
 }

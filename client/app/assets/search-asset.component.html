@@ -1,10 +1,11 @@
-
 <ym-header-shared></ym-header-shared>
 <div class="container" style="padding-top: 70px;">
-    <div class="title">
 
-    </div>
-    <div class="panel-body" style="overflow-x:auto;">
+    <ag-grid-ng2 style="width: 80%; height: 200px; margin-left: 5%" #agGrid class="ag-fresh"
+                 [gridOptions]="gridOptions">
+    </ag-grid-ng2>
+
+    <!--<div class="panel-body" style="overflow-x:scroll; overflow-y:visible;">
         <table *ngIf="allocatedAssetsList">
             <tr>
                 <th>EmployeeId</th>
@@ -18,8 +19,8 @@
                 <th>Warranty End Date</th>
                 <th>Last Maintenance Date</th>
                 <th>specification</th>
-                <th>Edit</th>
-                <th>Return</th>
+                <th style="position:absolute;width: 8%;height: 16%;">Update</th>
+                &lt;!&ndash;<th style="position:absolute;">Return</th>&ndash;&gt;
 
             </tr>
             <tr *ngFor = "let asset of allocatedAssetsList">
@@ -34,13 +35,16 @@
                 <td><span *ngIf="asset.warrantyEndDate">{{asset.warrantyEndDate | date:'shortDate'}}</span></td>
                 <td><span *ngIf="asset.lastMaintenanceDate">{{asset.lastMaintenanceDate | date:'shortDate'}}</span></td>
                 <td>{{asset.specs.RAM}} ,{{asset.specs.HD}} ,{{asset.specs.Processor}}</td>
-                <td><button class="btn btn-default" (click) = editAsset(asset._id)>Edit</button></td>
-                <td><button class="btn btn-danger" (click) = returnAsset(asset._id)>Return</button></td>
+                <td style="position:absolute;width: 8%;"><button class="btn btn-xs btn-default" (click) = editAsset(asset._id)>Edit</button>
+                    <button class="btn btn-xs btn-danger" (click) = returnAsset(asset._id)>Return</button>
+                </td>
+                &lt;!&ndash;<td style="position:absolute;"></td>&ndash;&gt;
             </tr>
 
         </table>
 
 
 
-    </div>
+    </div>-->
+
 </div>

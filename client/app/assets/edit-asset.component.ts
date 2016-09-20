@@ -14,7 +14,7 @@ export class EditAssetComponent{
 
   constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
   isAssign: boolean = false;
-  hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
+  hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
 
   @Input() asset = {};
   selectedHardwareType = '';

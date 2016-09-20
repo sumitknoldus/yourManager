@@ -51,12 +51,14 @@ export class AddAssetComponent {
   }
 
   getAvailableAssetList(asset: string){
-    this.assetService.getAvailableAssetList(asset).subscribe(
-      data => {
-        this.availableAssets = data;
-      },
-      error => alert(error)
-    )
+    if(asset != ""){
+      this.assetService.getAvailableAssetList(asset).subscribe(
+        data => {
+          this.availableAssets = data;
+        },
+        error => alert(error)
+      )
+    }
   }
 
 }

@@ -79,7 +79,9 @@
     "serve-favicon": "^2.3.0",
     "systemjs": "0.19.27",
     "tslint": "^3.14.0",
-    "zone.js": "^0.6.12"
+    "zone.js": "^0.6.12",
+    "ag-grid": "6.0.1",
+    "ag-grid-ng2": "6.0.1"
   },
   "devDependencies": {
     "@angular/tsc-wrapped": "^0.2.2",

@@ -6,6 +6,7 @@ import {EditAssetComponent} from "./edit-asset.component";
 import {SearchAssetResolve} from "./search-asset-resolve";
 import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
+import {ListAssetResolve} from "./list-asset-resolve";
 
 const assetRoutes: Routes = [
 
@@ -30,8 +31,10 @@ const assetRoutes: Routes = [
     },
     {
         path: 'asset/list',
-        component: ListComponent
-        //outlet: 'asset'
+        component: ListComponent,
+        resolve: {
+            assets: ListAssetResolve
+        }
     }
 ];
 export const assetRouting: ModuleWithProviders = RouterModule.forChild(assetRoutes);

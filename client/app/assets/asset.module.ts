@@ -9,11 +9,13 @@ import {EditAssetComponent} from "./edit-asset.component";
 import {SearchAssetResolve} from "./search-asset-resolve";
 import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
+import {AgGridModule} from "ag-grid-ng2/main";
+import {ListAssetResolve} from "./list-asset-resolve";
 
 
 @NgModule({
-  imports:      [ SharedModule, assetRouting, HttpModule ],
+  imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
   declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent],
-  providers:    [ AssetService, SearchAssetResolve ]
+  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve ]
 })
 export class AdminModule {}
