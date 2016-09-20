@@ -4,19 +4,44 @@ import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport';
+
+//smtpTransport = nodemailer.createTransport("SMTP",{
+//    service: "Gmail",  // sets automatically host, port and connection security settings
+//    auth: {
+//        user: "email@gmail.com",
+//        pass: "gmailPassword"
+//    }
+//});
+var smtpConfig = {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+        user: 'yourmanager.knoldus@gmail.com',
+        pass: 'yourmanager'
+    }
+};
+// create reusable transporter object using the default SMTP transport
+var transporter = nodemailer.createTransport(smtpConfig);
+var newUser = {};
+var verifyTokenNo = 0 ;
+// setup e-mail data with unicode symbols
+
 
 function validationError(res, statusCode) {
-  statusCode = statusCode || 422;
-  return function(err) {
-    res.status(statusCode).json(err);
-  }
+    statusCode = statusCode || 422;
+    return function(err) {
+        res.status(statusCode).json(err);
+    }
 }
 
 function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
-  return function(err) {
-    res.status(statusCode).send(err);
-  };
+    statusCode = statusCode || 500;
+    return function(err) {
+        res.status(statusCode).send(err);
+    };
 }
 
 /**
@@ -24,30 +49,60 @@ function handleError(res, statusCode) {
  * restriction: 'admin'
  */
 export function index(req, res) {
-  return User.find({}, '-salt -password').exec()
-    .then(users => {
-      res.status(200).json(users);
-    })
-    .catch(handleError(res));
+    return User.find({}, '-salt -password').exec()
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(handleError(res));
+}
+
+
+
+export function verficationEmail(req, res, next){
+    newUser = new User(req.body);
+    verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
+    var mailOptions = {
+        from: '"sumit ?" <yourmanager.knoldus@gmail.com>', // sender address
+        to: newUser.email, // list of receivers
+        subject: 'Account Verification', // Subject line
+       text: "Your Verification Token is: " + verifyTokenNo, // plaintext body
+       // html:'<b>verifyTokenNo</b>'
+        //html: ' your token is: " +verifyTokenNo+ " ' // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            res.status(403).send({"status": error});
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+        res.status(200).send({"status":"success"});
+    });
 }
 
 /**
  * Creates a new user
  */
 export function create(req, res, next) {
-    console.log(JSON.stringify(req.body));
-  var newUser = new User(req.body);
-  newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save()
-    .then(function(user) {
-      var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-        expiresIn: 60 * 60 * 5
-      });
 
-      res.json( user );
-    })
-    .catch(validationError(res));
+    //var newUser = new User(req.body);
+    // newUser.provider = 'local';
+    //newUser.role = 'user';
+    if(req.body.verificationToken === verifyTokenNo){
+        newUser.save()
+            .then(function(user) {
+                var token = jwt.sign({ _id: user._id }, config.secrets.session, {
+                    expiresIn: 60 * 60 * 5
+                });
+
+                res.json( user );
+            })
+            .catch(validationError(res));
+    }
+    else{
+        res.status(403).send({'status':'token mismatch'} );
+    }
 }
 
 /**
@@ -57,10 +112,10 @@ export function signIn(req, res, next) {
 
     //loginUser.provider = 'local';
     //loginUser.role = 'user';
-    console.log(">>>>>>>>"+JSON.stringify(req.body));
+
     User.findOne({'email':req.body.email, 'password':req.body.password})
         .then(function(user) {
-            console.log("+++++++++++"+JSON.stringify(user));
+
             var token = jwt.sign({ _id: user._id }, config.secrets.session, {
                 expiresIn: 60 * 60 * 5
             });
@@ -73,16 +128,16 @@ export function signIn(req, res, next) {
  * Get a single user
  */
 export function show(req, res, next) {
-  var userId = req.params.id;
+    var userId = req.params.id;
 
-  return User.findById(userId).exec()
-    .then(user => {
-      if (!user) {
-        return res.status(404).end();
-      }
-      res.json(user.profile);
-    })
-    .catch(err => next(err));
+    return User.findById(userId).exec()
+        .then(user => {
+            if (!user) {
+                return res.status(404).end();
+            }
+            res.json(user.profile);
+        })
+        .catch(err => next(err));
 }
 
 /**
@@ -90,55 +145,55 @@ export function show(req, res, next) {
  * restriction: 'admin'
  */
 export function destroy(req, res) {
-  return User.findByIdAndRemove(req.params.id).exec()
-    .then(function() {
-      res.status(204).end();
-    })
-    .catch(handleError(res));
+    return User.findByIdAndRemove(req.params.id).exec()
+        .then(function() {
+            res.status(204).end();
+        })
+        .catch(handleError(res));
 }
 
 /**
  * Change a users password
  */
 export function changePassword(req, res, next) {
-  var userId = req.user._id;
-  var oldPass = String(req.body.oldPassword);
-  var newPass = String(req.body.newPassword);
+    var userId = req.user._id;
+    var oldPass = String(req.body.oldPassword);
+    var newPass = String(req.body.newPassword);
 
-  return User.findById(userId).exec()
-    .then(user => {
-      if (user.authenticate(oldPass)) {
-        user.password = newPass;
-        return user.save()
-          .then(() => {
-            res.status(204).end();
-          })
-          .catch(validationError(res));
-      } else {
-        return res.status(403).end();
-      }
-    });
+    return User.findById(userId).exec()
+        .then(user => {
+            if (user.authenticate(oldPass)) {
+                user.password = newPass;
+                return user.save()
+                    .then(() => {
+                        res.status(204).end();
+                    })
+                    .catch(validationError(res));
+            } else {
+                return res.status(403).end();
+            }
+        });
 }
 
 /**
  * Get my info
  */
 export function me(req, res, next) {
-  var userId = req.user._id;
+    var userId = req.user._id;
 
-  return User.findOne({ _id: userId }, '-salt -password').exec()
-    .then(user => { // don't ever give out the password or salt
-      if (!user) {
-        return res.status(401).end();
-      }
-      res.json(user);
-    })
-    .catch(err => next(err));
+    return User.findOne({ _id: userId }, '-salt -password').exec()
+        .then(user => { // don't ever give out the password or salt
+            if (!user) {
+                return res.status(401).end();
+            }
+            res.json(user);
+        })
+        .catch(err => next(err));
 }
 
 /**
  * Authentication callback
  */
 export function authCallback(req, res, next) {
-  res.redirect('/');
+    res.redirect('/');
 }
