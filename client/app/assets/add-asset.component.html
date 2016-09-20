@@ -43,7 +43,7 @@
                             </div>
                             <div *ngIf = "availableAssets" class="col-xs-7">
                                 <select  style="margin-top: 3%;" name="assetCode" id="assetCodeAssign" class="form-control" [(ngModel)]="asset.assetCode" #assetCode = "ngModel" (click) = "getAsset(assetCode.value)">
-                                    <option *ngFor="let asset of availableAssets.assetList" [value]="asset._id">{{asset.assetCode}}</option>
+                                    <option *ngFor="let asset of availableAssets.assetList" [value]="asset.assetCode">{{asset.assetCode}}</option>
                                 </select>
                                 <div [hidden]="assetCode.valid || model.pristine"
                                      class="alert alert-danger">

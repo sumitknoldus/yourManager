@@ -62,16 +62,14 @@ export class AssignAssetComponent{
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
         {
           this.router.navigate(['dashboard']);
-          //console.log(JSON.stringify(data));
-          //this.availableAssets = data;
         },
       error =>  alert(error)
     )
   }
 
-  getAsset(objectId: string) {
-
-    this.assetService.getById(objectId).subscribe(data =>{
+  getAsset(assetCode: string) {
+    let objId = this.availableAssets.assetList.find(record => record.assetCode === assetCode)._id
+    this.assetService.getById(objId).subscribe(data =>{
         this.asset.shippingDate = data.shippingDate;
         this.asset.model= data.model;
         this.objectId = data._id;
