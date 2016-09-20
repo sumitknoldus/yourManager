@@ -1,8 +1,14 @@
 <ym-header-shared></ym-header-shared>
 <div class="container" style="padding-top: 70px;">
 
-    <ag-grid-ng2 style="width: 80%; height: 200px; margin-left: 5%" #agGrid class="ag-fresh"
-                 [gridOptions]="gridOptions">
+    <ag-grid-ng2 style="width: 80%; height: 70%; margin-left: 5%" #agGrid class="ag-fresh"
+
+                 [gridOptions]="gridOptions"
+                 enableSorting
+                 enableFilter
+                 rowHeight="50"
+                 rowSelection="multiple"
+                 (cellDoubleClicked)="onCellDoubleClicked($event)">
     </ag-grid-ng2>
 
     <!--<div class="panel-body" style="overflow-x:scroll; overflow-y:visible;">

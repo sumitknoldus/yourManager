@@ -25,6 +25,7 @@ export class ListComponent implements OnInit {
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
+
     private gridOptions:GridOptions =  <GridOptions>{};
 
     constructor(private assetService: AssetService,
@@ -34,10 +35,20 @@ export class ListComponent implements OnInit {
 
     ngOnInit() {
         this.route.data.forEach((data: { assets: Asset[]}) => {
+            console.log("<button type=\"button\">Click Me!<\/button>");
+            for(let i=0;i<data.assets.length;i++){
+
+                data.assets[i].update = '<button type="button">Click Me!</button>';
+            }
             this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+            console.log(">>>>>>>>>"+JSON.stringify(data.assets[0]));
             this.gridOptions.rowData = this.createDataRows(data.assets)
         });
     }
+
+    onCellDoubleClicked(event){
+   // console.log(event.data);
+}
 
 
     returnAsset(objId: string) {
