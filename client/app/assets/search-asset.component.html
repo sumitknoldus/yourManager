@@ -1,7 +1,6 @@
 <ym-header-shared></ym-header-shared>
 <div class="container" style="padding-top: 70px;">
 
-    <button (click)="editAsset()" class="btn btn-default">Edit</button>
     <ag-grid-ng2 style="width: 80%; height: 70%; margin-left: 5%" #agGrid class="ag-fresh"
 
                  [gridOptions]="gridOptions"
@@ -11,47 +10,5 @@
                  rowSelection="multiple"
                  (cellDoubleClicked)="onCellDoubleClicked($event)">
     </ag-grid-ng2>
-
-    <!--<div class="panel-body" style="overflow-x:scroll; overflow-y:visible;">
-        <table *ngIf="allocatedAssetsList">
-            <tr>
-                <th>EmployeeId</th>
-                <th>Employee Name</th>
-                <th>Device Name</th>
-                <th>Model</th>
-                <th>Asset Code</th>
-                <th>shipping Date</th>
-                <th>Date Of Issue</th>
-                <th>Date Of Return</th>
-                <th>Warranty End Date</th>
-                <th>Last Maintenance Date</th>
-                <th>specification</th>
-                <th style="position:absolute;width: 8%;height: 16%;">Update</th>
-                &lt;!&ndash;<th style="position:absolute;">Return</th>&ndash;&gt;
-
-            </tr>
-            <tr *ngFor = "let asset of allocatedAssetsList">
-                <td>{{asset.empId}}</td>
-                <td>{{asset.empName}}</td>
-                <td>{{asset.assetType}}</td>
-                <td>{{asset.model}}</td>
-                <td>{{asset.assetCode}}</td>
-                <td><span *ngIf="asset.shippingDate">{{asset.shippingDate | date:'shortDate'}}</span></td>
-                <td><span *ngIf="asset.dateOfIssue">{{asset.dateOfIssue | date:'shortDate'}}</span></td>
-                <td><span *ngIf="asset.dateOfReturn">{{asset.dateOfReturn | date:'shortDate'}}</span></td>
-                <td><span *ngIf="asset.warrantyEndDate">{{asset.warrantyEndDate | date:'shortDate'}}</span></td>
-                <td><span *ngIf="asset.lastMaintenanceDate">{{asset.lastMaintenanceDate | date:'shortDate'}}</span></td>
-                <td>{{asset.specs.RAM}} ,{{asset.specs.HD}} ,{{asset.specs.Processor}}</td>
-                <td style="position:absolute;width: 8%;"><button class="btn btn-xs btn-default" (click) = editAsset(asset._id)>Edit</button>
-                    <button class="btn btn-xs btn-danger" (click) = returnAsset(asset._id)>Return</button>
-                </td>
-                &lt;!&ndash;<td style="position:absolute;"></td>&ndash;&gt;
-            </tr>
-
-        </table>
-
-
-
-    </div>-->
 
 </div>

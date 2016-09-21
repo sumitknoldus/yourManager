@@ -11,6 +11,7 @@ import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
 import {error} from "util";
 import {GridOptions} from "ag-grid/main";
+import {ClickableComponent} from "./clickable-update.component";
 
 
 @Component({
@@ -61,24 +62,32 @@ export class AdminComponent implements OnInit {
 
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
-    let headers = []
-    keyNames.filter(key => key != '__v' && key != '_id').map(key => headers.push({
-      headerName: key,
-      field: key,
-      width: 100
-    }));
-    headers.push({headerName: 'Edit',
-      field: 'Edit',
-      width: 100});
+    let headers = [];
+    keyNames.filter(key => key != '__v' && key != '_id').map(key => {
+      headers.push({
+        headerName: key,
+        field: key,
+        width: 100
+      })
+    });
+
+    headers.push({
+      headerName: 'update',
+      field: 'update',
+      cellRendererFramework: {
+        component: ClickableComponent
+      },
+      pinned: 'right',
+      width: 120
+    });
     return headers;
   }
 
   private createDataRows(assets) {
     let updatedAssets = [];
-    //let specs = [];
-    //assets.map(data => specs.push(JSON.stringify(data.specs)));
     for(let i in assets){
       updatedAssets.push({
+        _id:assets[i]._id,
         empId:assets[i].empId,
         empName: assets[i].empName,
         assetType: assets[i].assetType,
@@ -90,7 +99,8 @@ export class AdminComponent implements OnInit {
         warrantyEndDate:assets[i].warrantyEndDate,
         lastMaintenanceDate:assets[i].lastMaintenanceDate,
         specs: JSON.stringify(assets[i].specs),
-        isAvailable:assets[i].isAvailable
+        isAvailable:assets[i].isAvailable,
+        update:assets[i].update
       })
     }
     return updatedAssets;

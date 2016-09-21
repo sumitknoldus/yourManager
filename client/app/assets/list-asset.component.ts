@@ -12,6 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {error} from "util";
 import {GridOptions} from "ag-grid/main";
 import {AgRendererComponent} from "ag-grid-ng2/main";
+import {ClickableComponent} from "./clickable-update.component";
+import {AssetModule} from "../app.module";
 
 
 @Component({
@@ -31,77 +33,50 @@ export class ListComponent implements OnInit, AgRendererComponent{
     public selectedId: string;
 
     private gridOptions:GridOptions =  <GridOptions>{};
- // @Output() onClicked = new EventEmitter<boolean>();
 
     constructor(private assetService: AssetService,
                 private router: Router,
                 private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
+  ngOnInit() {
         this.route.data.forEach((data: { assets: Asset[]}) => {
-            console.log("<button type=\"button\">Click Me!<\/button>");
-            //for(let i=0;i<data.assets.length;i++){
-            //}
             this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-            console.log(">>>>>>>>>"+JSON.stringify(data.assets[0]));
             this.gridOptions.rowData = this.createDataRows(data.assets)
         });
     }
 
-    onCellDoubleClicked(event){
-   // console.log(event.data);
-}
-
-
-    returnAsset(objId: string) {
-        this.assetService.returnAsset(objId).subscribe(
-            data =>{
-                alert("Asset Returned");
-                console.log(data)
-            },
-            error => alert(error)
-        )
-    }
 
     getAvailableAssetList(asset: string){
         console.log("called with asset :::::::::" + asset)
     }
 
-
-
-
     private createColumnDefs(asset) {
-        let keyNames = Object.keys(asset);
-        let headers = []
-        keyNames.filter(key => key != '__v' && key != '_id').map(key => {
-            headers.push({
-                headerName: key,
-                field: key,
-                width: 100
-            })
-        });
-
+      let keyNames = Object.keys(asset);
+      let headers = [];
+      keyNames.filter(key => key != '__v' && key != '_id').map(key => {
         headers.push({
-            headerName: 'update',
-            field: 'update',
-            cellRendererFramework: {
-                template: '<button (click)="editAsset()" class="btn btn-default">Edit</button>',
-            },
-            width: 100
-        });
-        return headers;
-    }
+          headerName: key,
+          field: key,
+          width: 100
+        })
+      });
 
-  editAsset(): void {
-    alert("here");
-  }
+      headers.push({
+        headerName: 'update',
+        field: 'update',
+        cellRendererFramework: {
+          //template: '<button (onClicked) = "editAsset()"> Edit </button>'
+          component: ClickableComponent
+        },
+        pinned: 'right',
+        width: 120
+      });
+      return headers;
+    }
 
     private createDataRows(assets) {
         let updatedAssets = [];
-        let specs = [];
-        //assets.map(data => specs.push(assets.specs.HD + "," +assets.specs.RAM + "," + assets.specs.Processor));
-        //specs.map(spec => console.log(spec.HD))
         for(let i in assets){
             updatedAssets.push({
                 _id:assets[i]._id,

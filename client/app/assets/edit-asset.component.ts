@@ -16,17 +16,23 @@ export class EditAssetComponent{
   isAssign: boolean = false;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
 
-  @Input() asset = {};
+  asset = {};
   selectedHardwareType = '';
 
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let id = params['id'];
-      this.asset = this.assetService.getById(id).subscribe(data => this.asset = data, error => alert(error))
+      this.getData(id)
     });
   }
 
+  getData(id:string){
+    this.assetService.getById(id).subscribe(data =>
+      this.asset = data,
+      error => alert(error)
+    )
+  }
   submit(asset: Asset){
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin', asset.empId]),
@@ -34,5 +40,10 @@ export class EditAssetComponent{
     )
   }
 
+
+  getAvailableAssetList(asset: string){
+    console.log("asset===========" +JSON.stringify(this.asset))
+
+  }
 
 }

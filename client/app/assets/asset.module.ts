@@ -11,6 +11,7 @@ import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
 import {AgGridModule} from "ag-grid-ng2/main";
 import {ListAssetResolve} from "./list-asset-resolve";
+import {ClickableComponent} from "./clickable-update.component";
 
 
 @NgModule({
