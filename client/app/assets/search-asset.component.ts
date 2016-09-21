@@ -26,19 +26,20 @@ export class AdminComponent implements OnInit {
     mode = 'Observable';
     public errorMessage = '';
     public selectedId: string;
-    private gridOptions:GridOptions =  <GridOptions>{};
-    headers = [];
+    private gridOptions:GridOptions = <GridOptions>{};
+  columnDefs = {};
+  rowData = {};
+  headers = [];
 
 
   constructor(private assetService: AssetService,
                 private router: Router,
-                private route: ActivatedRoute) {
-    }
+                private route: ActivatedRoute) {}
 
     ngOnInit() {
       this.route.data.forEach((data: { assets: Asset[]}) => {
-        this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-        this.gridOptions.rowData = this.createDataRows(data.assets)
+        this.columnDefs = this.createColumnDefs(data.assets[0]);
+        this.rowData = this.createDataRows(data.assets);
       });
     }
 

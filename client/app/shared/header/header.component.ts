@@ -20,13 +20,10 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
 
         if (localStorage.getItem('user') === null) {
+            this.showSidebar = false;
+            this.show = false;
             if (this.router.url != '/signup') {
-                this.showSidebar = false;
-                this.show = false;
                 this.router.navigate(['login']);
-            } else {
-                this.show = false;
-                this.showSidebar = false;
             }
         } else {
             this.show= true;

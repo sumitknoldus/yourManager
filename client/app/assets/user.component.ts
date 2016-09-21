@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 
-//import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {AssetService} from "./asset.service";
 import {OnInit} from "angular2/core";
 import {GridOptions} from "ag-grid/main";
+import {Asset} from "../shared/model/asset";
 
 @Component({
   moduleId:module.id,
@@ -13,25 +14,17 @@ import {GridOptions} from "ag-grid/main";
 })
 
 export class UserComponent {
-  constructor(private assetService: AssetService){}
+  constructor(private assetService: AssetService, private route: ActivatedRoute){}
   private gridOptions:GridOptions =  <GridOptions>{};
   headers = [];
 
   ngOnInit() {
-    let id = JSON.parse(localStorage.getItem("user")).empId;
-    console.log("====================" + id);
-    this.assetService.getAllocatedAssets(id).subscribe(
-      data =>{
-        console.log("data" + data.length);
-        this.gridOptions.columnDefs = this.createColumnDefs(data[0]);
-        this.gridOptions.rowData = this.createDataRows(data)
-      },
-      error => {swal({
-        title: 'No Data Yet !!!',
-      })}
-    )
-  }
-
+      this.route.data.forEach((data: { assets: Asset[]}) => {
+        console.log(data.assets)
+        this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+        this.gridOptions.rowData = this.createDataRows(data.assets)
+      });
+    }
 
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);

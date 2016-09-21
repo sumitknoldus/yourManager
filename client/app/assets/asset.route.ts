@@ -8,6 +8,7 @@ import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
 import {ListAssetResolve} from "./list-asset-resolve";
 import {UserComponent} from "./user.component";
+import {UserResolve} from "./user-resolve";
 
 const assetRoutes: Routes = [
 
@@ -20,6 +21,9 @@ const assetRoutes: Routes = [
     },{
         path: 'user',
         component: UserComponent,
+        resolve: {
+            assets: UserResolve
+        }
     },
     {
         path: 'asset/add',

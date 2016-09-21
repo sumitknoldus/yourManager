@@ -42,6 +42,8 @@
     "@angular/router-deprecated": "2.0.0-rc.2",
     "@angular/upgrade": "2.0.0-rc.5",
     "@angular2-material/core": "^2.0.0-alpha.7-4",
+    "ag-grid": "6.0.1",
+    "ag-grid-ng2": "6.0.1",
     "angular2-in-memory-web-api": "0.0.15",
     "babel": "^6.5.2",
     "babel-cli": "^6.11.4",
@@ -70,6 +72,7 @@
     "method-override": "^2.3.6",
     "mongoose": "^4.5.6",
     "morgan": "^1.7.0",
+    "nodemailer": "^2.6.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
@@ -80,9 +83,7 @@
     "serve-favicon": "^2.3.0",
     "systemjs": "0.19.27",
     "tslint": "^3.14.0",
-    "zone.js": "^0.6.12",
-    "ag-grid": "6.0.1",
-    "ag-grid-ng2": "6.0.1"
+    "zone.js": "^0.6.12"
   },
   "devDependencies": {
     "@angular/tsc-wrapped": "^0.2.2",
