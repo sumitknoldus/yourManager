@@ -7,6 +7,7 @@ export class User {
   empId: string;
   gender: string;
   password: string;
+  role: string;
 }
 
 

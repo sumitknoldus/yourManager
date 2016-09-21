@@ -26,6 +26,8 @@ export class SignupComponent {
     }
 
     signup(selectedUser:User) {
+      selectedUser.role = 'user';
+      console.log("--------selected user" + JSON.stringify(selectedUser))
         this.signupService.verification(selectedUser)
             .subscribe(data => {
                     swal({
@@ -41,7 +43,7 @@ export class SignupComponent {
                         this.signupService.signup(password)
                             .subscribe(data => {
                                     localStorage.setItem('user', JSON.stringify(data));
-                                    this.router.navigate(['dashboard']);
+                                    this.router.navigate(['user']);
                                 },
                                 error => alert(error));
                     })

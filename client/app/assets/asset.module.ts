@@ -12,11 +12,12 @@ import {ListComponent} from "./list-asset.component";
 import {AgGridModule} from "ag-grid-ng2/main";
 import {ListAssetResolve} from "./list-asset-resolve";
 import {ClickableComponent} from "./clickable-update.component";
+import {UserComponent} from "./user.component";
 
 
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
-  declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent],
+  declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
   providers:    [ AssetService, SearchAssetResolve, ListAssetResolve ]
 })
 export class AdminModule {}

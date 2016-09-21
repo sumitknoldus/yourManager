@@ -7,6 +7,7 @@ import {SearchAssetResolve} from "./search-asset-resolve";
 import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
 import {ListAssetResolve} from "./list-asset-resolve";
+import {UserComponent} from "./user.component";
 
 const assetRoutes: Routes = [
 
@@ -16,6 +17,9 @@ const assetRoutes: Routes = [
         resolve: {
             assets: SearchAssetResolve
         }
+    },{
+        path: 'user',
+        component: UserComponent,
     },
     {
         path: 'asset/add',

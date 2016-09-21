@@ -54,7 +54,7 @@
 
 <!-- sidebar -->
 
-<div *ngIf="show" class="column col-sm-2  col-xs-1 sidebar-offcanvas no-padding" id="sidebar">
+<div *ngIf="showSidebar" class="column col-sm-2  col-xs-1 sidebar-offcanvas no-padding" id="sidebar">
     <ul class="nav" id="menu">
         <li><i class="fa fa-list-alt"></i> <span class="collapse in hidden-xs inline-block">
              <input type="text" class="form-control" required  [(ngModel)]="search.value" name="search" placeholder="Search by id or Name">

@@ -11,22 +11,29 @@ import {User} from "../model/user";
 
 export class HeaderComponent implements OnInit {
     show: boolean = true;
+    showSidebar: boolean = true;
     search = {value:''};
     @Input
     user = new User();
     constructor(private router: Router) {};
 
     ngOnInit() {
+
         if (localStorage.getItem('user') === null) {
-            this.show = false;
             if (this.router.url != '/signup') {
+                this.showSidebar = false;
                 this.show = false;
                 this.router.navigate(['login']);
             } else {
                 this.show = false;
+                this.showSidebar = false;
             }
         } else {
             this.show= true;
+            if(JSON.parse(localStorage.getItem('user')).role === 'user'){
+                this.showSidebar = false;
+            }
+
             this.user= JSON.parse(localStorage.getItem('user'));
             if (this.router.url === '/login' || this.router.url === '/signup') {
                 this.router.navigate(['home'])

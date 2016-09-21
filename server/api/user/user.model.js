@@ -16,7 +16,8 @@ var UserSchema = new Schema({
   empId:String,
   gender:String,
   email: String,
-  password:String
+  password:String,
+  role:String
   //email: {
   //  l: String,
   //  lowercase: true,

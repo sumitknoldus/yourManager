@@ -23,7 +23,7 @@ import {AssetModule} from "../app.module";
     styleUrls:['search-asset.component.css'],
 })
 
-export class ListComponent implements OnInit, AgRendererComponent{
+export class ListComponent implements OnInit{
     @Input()
     public allocatedAssetsList: Asset[] = [];
     cell:any;
