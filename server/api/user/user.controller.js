@@ -60,6 +60,7 @@ export function index(req, res) {
 
 export function verficationEmail(req, res, next){
     newUser = new User(req.body);
+    console.log(">>>>>>>>>>>>>>>>>>>>"+JSON.stringify(newUser));
     verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
     var mailOptions = {
         from: '"sumit ?" <yourmanager.knoldus@gmail.com>', // sender address
@@ -70,15 +71,28 @@ export function verficationEmail(req, res, next){
         //html: ' your token is: " +verifyTokenNo+ " ' // html body
     };
 
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            res.status(403).send({"status": error});
-            return console.log(error);
+    User.findOne({email:newUser.email}).then(user => {
+        if(!user) {
+            // send mail with defined transport object
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    res.status(403).send({"status": error});
+                    return console.log(error);
+                }
+                console.log('Message sent: ' + info.response);
+                res.status(200).send({"status":"success"});
+            });
         }
-        console.log('Message sent: ' + info.response);
-        res.status(200).send({"status":"success"});
-    });
+
+        else{
+            res.status(409).send({'status':'Duplicate record'});
+        }
+
+
+
+    })
+    .catch(validationError(res));
+
 }
 
 /**
