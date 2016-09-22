@@ -27,7 +27,7 @@ export class LoginComponent {
                 if(data.role === 'user'){
                     this.router.navigate(['user']);
                 }else{
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate(['asset/list']);
                 }
             } else {
                 this.errorMsg = 'Failed to login...';

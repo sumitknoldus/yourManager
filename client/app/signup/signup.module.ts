@@ -4,6 +4,7 @@ import {SharedModule} from '../shared/shared.module';
 import {SignupComponent} from './signup.component';
 import {SignupService} from './signup.service';
 import {signupRouting} from './signup.route';
+import {LoginGuard} from "../login.guard";
 
 @NgModule({
   imports:      [ SharedModule,  HttpModule, signupRouting ],

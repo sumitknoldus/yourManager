@@ -6,6 +6,7 @@ import { LoginComponent }    from './login.component';
 import { LoginService } from './login.service';
 import { loginRouting }       from './login.route';
 import {SharedModule} from "../shared/shared.module";
+import {LoginGuard} from "../login.guard";
 
 @NgModule({
     imports:      [ SharedModule, loginRouting, HttpModule ],

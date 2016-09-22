@@ -14,6 +14,8 @@ import {ListAssetResolve} from "./list-asset-resolve";
 import {ClickableComponent} from "./clickable-update.component";
 import {UserComponent} from "./user.component";
 import {UserResolve} from "./user-resolve";
+import {UserGuard} from "../user.guard";
+import {AdminGuard} from "../admin.guard";
 
 
 @NgModule({

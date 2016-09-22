@@ -17,6 +17,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {SignupModule} from "./signup/signup.module";
 import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
+import {LoginGuard} from "./login.guard";
 
 
 @NgModule({
@@ -31,6 +32,6 @@ import {UserGuard} from "./user.guard";
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
-  providers: [AdminGuard, UserGuard]
+  providers: [LoginGuard, UserGuard, AdminGuard]
 })
 export class AssetModule { }
