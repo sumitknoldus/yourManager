@@ -6,8 +6,8 @@ import {AdminGuard} from "../admin.guard";
 export const homeRoutes: Routes = [
     {
         path: 'home',
-        component: HomeComponent
-        canActivate: AdminGuard,
+        component: HomeComponent,
+        canActivate: [AdminGuard],
     }
 ];
 

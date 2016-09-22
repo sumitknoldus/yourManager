@@ -6,8 +6,8 @@ import {AdminGuard} from "../admin.guard";
 const dashboardRoutes: Routes = [
     {
         path: 'dashboard',
-        component: DashboardComponent
-        canActivate: AdminGuard,
+        component: DashboardComponent,
+        canActivate: [AdminGuard],
     }
 ];
 export const dashboardRouting: ModuleWithProviders = RouterModule.forChild(dashboardRoutes);

@@ -22,19 +22,12 @@ export class HeaderComponent implements OnInit {
         if (localStorage.getItem('user') === null) {
             this.showSidebar = false;
             this.show = false;
-            if (this.router.url != '/signup') {
-                this.router.navigate(['login']);
-            }
         } else {
             this.show= true;
             if(JSON.parse(localStorage.getItem('user')).role === 'user'){
                 this.showSidebar = false;
             }
-
             this.user= JSON.parse(localStorage.getItem('user'));
-            if (this.router.url === '/login' || this.router.url === '/signup') {
-                this.router.navigate(['home'])
-            }
         }
     }
 
