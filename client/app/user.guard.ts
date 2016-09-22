@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, CanActivate } from '@angular/router';
 import { LoginService } from './login/login.service';
 
 @Injectable()
 export class UserGuard implements CanActivate {
-  constructor() {}
+  constructor(private location: Location) {}
 
   canActivate() {
     if(localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'user') {
       return true
     }
-    return false;
+    this.location.back()
+    return false
   }
 }

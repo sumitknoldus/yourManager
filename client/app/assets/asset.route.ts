@@ -9,22 +9,22 @@ import {ListComponent} from "./list-asset.component";
 import {ListAssetResolve} from "./list-asset-resolve";
 import {UserComponent} from "./user.component";
 import {UserResolve} from "./user-resolve";
-import {AdminGuard} from "../admin-guard";
-import {UserGuard} from "../user-guard";
+import {AdminGuard} from "../admin.guard";
+import {UserGuard} from "../user.guard";
 
 const assetRoutes: Routes = [
 
     {
         path: 'admin/:id',
         component: AdminComponent,
-        canActivate: AdminGuard,
+        canActivate: [AdminGuard],
         resolve: {
             assets: SearchAssetResolve
         }
     },{
         path: 'user',
         component: UserComponent,
-        canAvtivate: UserGuard,
+        canActivate: [UserGuard],
         resolve: {
             assets: UserResolve
         }
@@ -32,7 +32,7 @@ const assetRoutes: Routes = [
     {
         path: 'asset/add',
         component: AddAssetComponent,
-        canActivate: AdminGuard,
+        canActivate: [AdminGuard],
         //outlet: 'asset'
     }, {
         path: 'asset/assign',
@@ -40,14 +40,14 @@ const assetRoutes: Routes = [
         component: AssignAssetComponent,
     }, {
         path: 'asset/edit/:id',
-        canActivate: AdminGuard,
+        canActivate: [AdminGuard],
         component: EditAssetComponent,
         //outlet: 'asset'
     },
     {
         path: 'asset/list',
         component: ListComponent,
-        canActivate: AdminGuard,
+        canActivate: [AdminGuard],
         resolve: {
             assets: ListAssetResolve
         }

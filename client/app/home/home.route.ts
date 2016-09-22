@@ -1,7 +1,7 @@
 import { RouterConfig, Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import {AdminGuard} from "../admin-guard";
+import {AdminGuard} from "../admin.guard";
 
 export const homeRoutes: Routes = [
     {
