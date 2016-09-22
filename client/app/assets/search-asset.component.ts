@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
     public selectedId: string;
     private gridOptions:GridOptions = <GridOptions>{};
   columnDefs = {};
-  rowData = {};
+  rowData = [];
   headers = [];
 
 
@@ -38,9 +38,15 @@ export class AdminComponent implements OnInit {
 
     ngOnInit() {
       this.route.data.forEach((data: { assets: Asset[]}) => {
-        this.columnDefs = this.createColumnDefs(data.assets[0]);
-        this.rowData = this.createDataRows(data.assets);
+        if(data.assets.length > 0){
+          this.columnDefs = this.createColumnDefs(data.assets[0]);
+          this.rowData = this.createDataRows(data.assets);
+        } else {
+          this.columnDefs = [];
+          this.rowData = [];
+        }
       });
+
     }
 
   returnAsset(objId: string) {
