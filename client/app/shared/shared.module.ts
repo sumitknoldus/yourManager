@@ -1,15 +1,13 @@
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 import { FormsModule }         from '@angular/forms';
-import { HeaderComponent }         from './header/header.component';
+import { HeaderComponent }         from './../admin/header.component.ts';
 import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  imports:      [ CommonModule, RouterModule, FormsModule],
-  declarations: [ HeaderComponent],
-  exports:      [ HeaderComponent,
-    CommonModule,
+  imports:      [ CommonModule, FormsModule],
+  exports:      [CommonModule,
     FormsModule ]
 })
 export class SharedModule { }

@@ -34,16 +34,9 @@ export class AdminComponent{
   //  this.router.navigate(['/admin/asset/add']);
   //}
 
-  searchAsset() {
-    this.listByEmpId(this.search.value);
-  }
 
-  listByEmpId(empId:string) {
-    this.router.navigate(['/admin/admin',empId]);
-  }
-
-  logout() {
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
-  }
+  //logout() {
+  //  localStorage.removeItem('user');
+  //  this.router.navigate(['/login']);
+  //}
 }

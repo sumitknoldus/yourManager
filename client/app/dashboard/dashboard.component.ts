@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
     listByEmpId(empId:string) {
 
-        this.router.navigate(['/admin',empId]);
+        this.router.navigate(['admin',empId]);
 
         //this.searchService.getAllocatedAssets(empId).subscribe(
         //    res => {

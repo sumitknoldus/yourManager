@@ -10,6 +10,7 @@ import {AddAssetComponent} from "../assets/add-asset.component";
 import {UserResolve} from "../assets/user-resolve";
 import {UserComponent} from "../assets/user.component";
 import {UserGuard} from "../user.guard";
+import {NewUserComponent} from "../assets/new-employee.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
         path: 'asset/assign',
         canActivate: [AdminGuard],
         component: AssignAssetComponent,
+      },
+      {
+        path: 'asset/new/user',
+        canActivate: [AdminGuard],
+        component: NewUserComponent,
       },
       {
         path: 'user',
