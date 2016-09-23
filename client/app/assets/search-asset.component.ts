@@ -21,7 +21,7 @@ import {ClickableComponent} from "./clickable-update.component";
     styleUrls:['search-asset.component.css'],
 })
 
-export class AdminComponent implements OnInit {
+export class SearchAssetComponent implements OnInit {
    @Input() public allocatedAssetsList: Asset[] = [];
     mode = 'Observable';
     public errorMessage = '';

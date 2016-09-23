@@ -25,9 +25,9 @@ export class LoginComponent {
             if(JSON.stringify(data) !== '{}') {
                 localStorage.setItem('user', JSON.stringify(data));
                 if(data.role === 'user'){
-                    this.router.navigate(['user']);
+                    this.router.navigate(['admin/user']);
                 }else{
-                    this.router.navigate(['asset/list']);
+                    this.router.navigate(['admin/asset/list']);
                 }
             } else {
                 this.errorMsg = 'Failed to login...';

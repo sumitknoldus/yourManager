@@ -12,7 +12,7 @@ export class UserGuard implements CanActivate {
     } else if (localStorage.getItem('user') === null){
       this.router.navigate(['login'])
     } else {
-      this.router.navigate(['asset/list'])
+      this.router.navigate(['admin/asset/list'])
       return false
     }
   }

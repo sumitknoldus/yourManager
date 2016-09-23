@@ -11,13 +11,14 @@ import {AppComponent} from './app.component';
 import {routing} from './app.routes';
 
 import {LoginModule} from './login/login.module';
-import {AdminModule} from './assets/asset.module';
+import {AssetModule} from './assets/asset.module';
 import {HomeModule} from './home/home.module';
 import {DashboardModule} from './dashboard/dashboard.module';
 import {SignupModule} from "./signup/signup.module";
 import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
 import {LoginGuard} from "./login.guard";
+import {AdminModule} from "./admin/admin.module";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {LoginGuard} from "./login.guard";
     SignupModule,
     DashboardModule,
     HomeModule,
+    AssetModule,
     AdminModule
   ],
   declarations: [ AppComponent ],

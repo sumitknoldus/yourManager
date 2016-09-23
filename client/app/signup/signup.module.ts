@@ -7,7 +7,7 @@ import {signupRouting} from './signup.route';
 import {LoginGuard} from "../login.guard";
 
 @NgModule({
-  imports:      [ SharedModule,  HttpModule, signupRouting ],
+  imports:      [ SharedModule, HttpModule, signupRouting ],
   declarations: [ SignupComponent ],
   providers:    [ SignupService ]
 })

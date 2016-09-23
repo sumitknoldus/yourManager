@@ -10,7 +10,7 @@ export class LoginGuard implements CanActivate {
     if(localStorage.getItem('user') === null) {
       return true
     } else if (JSON.parse(localStorage.getItem('user')).role === 'admin') {
-      this.router.navigate(['asset/list']);
+      this.router.navigate(['admin/asset/list']);
       return false
     } else if (JSON.parse(localStorage.getItem('user')).role === 'user') {
       this.router.navigate(['user']);

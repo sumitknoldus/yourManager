@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { HttpModule }  from '@angular/http';
-import { AdminComponent }    from './search-asset.component';
+import { SearchAssetComponent }    from './search-asset.component';
 import { AssetService } from './asset.service';
 import { assetRouting }       from './asset.route';
 import { SharedModule }       from '../shared/shared.module';
@@ -20,7 +20,7 @@ import {AdminGuard} from "../admin.guard";
 
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
-  declarations: [ AdminComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
+  declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
   providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, UserResolve ]
 })
-export class AdminModule {}
+export class AssetModule {}
