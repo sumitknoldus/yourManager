@@ -16,12 +16,12 @@ import {UserComponent} from "./user.component";
 import {UserResolve} from "./user-resolve";
 import {UserGuard} from "../user.guard";
 import {AdminGuard} from "../admin.guard";
-import {NewUserComponent} from "./new-employee.component";
+//import {NewUserComponent} from "./new-employee.component";
 
 
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
-  declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent, NewUserComponent],
+  declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
   providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, UserResolve ]
 })
 export class AssetModule {}

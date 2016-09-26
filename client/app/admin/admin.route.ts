@@ -11,53 +11,57 @@ import {UserResolve} from "../assets/user-resolve";
 import {UserComponent} from "../assets/user.component";
 import {UserGuard} from "../user.guard";
 import {NewUserComponent} from "../assets/new-employee.component";
+import {EditAssetComponent} from "../assets/edit-asset.component";
 
-const routes: Routes = [
-  {
-    path: 'admin',
-    component: AdminComponent,
-    children: [
-      {
-        path: 'asset/list',
-        component: ListComponent,
-        canActivate: [AdminGuard],
-        resolve: {
-          assets: ListAssetResolve
-        }
-      },
-      {
-        path: 'admin/:id',
-        component: SearchAssetComponent,
-        canActivate: [AdminGuard],
-        resolve: {
-          assets: SearchAssetResolve
-        }
-      },
-      {
-        path: 'asset/add',
-        component: AddAssetComponent,
-        canActivate: [AdminGuard],
-        //outlet: 'asset'
-      }, {
-        path: 'asset/assign',
-        canActivate: [AdminGuard],
-        component: AssignAssetComponent,
-      },
-      {
-        path: 'asset/new/user',
-        canActivate: [AdminGuard],
-        component: NewUserComponent,
-      },
-      {
-        path: 'user',
-        component: UserComponent,
-        canActivate: [UserGuard],
-        resolve: {
-          assets: UserResolve
-        }
-      },
-    ]
-  }
+const routes:Routes = [
+    {
+        path: 'admin',
+        component: AdminComponent,
+        children: [
+            {
+                path: 'asset/list',
+                component: ListComponent,
+                canActivate: [AdminGuard],
+                resolve: {
+                    assets: ListAssetResolve
+                }
+            },
+            {
+                path: 'admin/:id',
+                component: SearchAssetComponent,
+                canActivate: [AdminGuard],
+                resolve: {
+                    assets: SearchAssetResolve
+                }
+            },
+            {
+                path: 'asset/add',
+                component: AddAssetComponent,
+                canActivate: [AdminGuard],
+
+            },
+            {
+                path: 'asset/edit/:id',
+                canActivate: [AdminGuard],
+                component: EditAssetComponent,
+
+            },
+            {
+                path: 'asset/assign',
+                canActivate: [AdminGuard],
+                component: AssignAssetComponent,
+            },
+
+            {
+                path: 'user',
+                component: UserComponent,
+                canActivate: [UserGuard],
+                resolve: {
+                    assets: UserResolve
+                }
+            },
+        ]
+    }
 ];
 export const adminRouting = RouterModule.forChild(routes);
 

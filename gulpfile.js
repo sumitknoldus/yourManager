@@ -284,7 +284,6 @@ gulp.task('build-prod', function(callback) {
         'ts-compile-prod',
         [ 'copy-system-lib-prod','copy-rootfiles-prod','copy-corelib-prod', 'minify-images-prod', 'copy-server-prod', 'copy-components-prod'],
         ['start-server-prod'],
-        'gulp-watch',
         callback);
 });
 

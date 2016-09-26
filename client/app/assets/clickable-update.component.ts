@@ -20,7 +20,7 @@ export class ClickableComponent implements AgRendererComponent {
   }
 
   editAsset() {
-    this.router.navigate(['asset/edit', this.params.data._id]);
+    this.router.navigate(['/admin/asset/edit', this.params.data._id]);
   }
 
   returnAsset() {

@@ -22,6 +22,4 @@ export class NewUserComponent {
             error =>  alert(error)
         )
     }
-
-
 }

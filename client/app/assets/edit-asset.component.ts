@@ -35,7 +35,7 @@ export class EditAssetComponent{
   }
   submit(asset: Asset){
     this.assetService.editAsset(asset).subscribe(
-      data => this.router.navigate(['admin', asset.empId]),
+      data => this.router.navigate(['admin/admin', asset.empId]),
       error => alert(error)
     )
   }

@@ -40,12 +40,7 @@ const assetRoutes: Routes = [
     //    canActivate: [AdminGuard],
     //    component: AssignAssetComponent,
     //},
-    {
-        path: 'asset/edit/:id',
-        canActivate: [AdminGuard],
-        component: EditAssetComponent,
-        //outlet: 'asset'
-    }
+
     //{
     //    path: 'asset/list',
     //    component: ListComponent,

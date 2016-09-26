@@ -60,7 +60,7 @@ export class SearchAssetComponent implements OnInit {
   }
 
   editAsset(id){
-      this.router.navigate(['asset/edit', id])
+      this.router.navigate(['/admin/asset/edit', id])
     }
 
   getAvailableAssetList(asset: string){
