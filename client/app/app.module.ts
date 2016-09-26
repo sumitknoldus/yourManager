@@ -21,6 +21,7 @@ import {LoginGuard} from "./login.guard";
 import {AdminModule} from "./admin/admin.module";
 
 
+
 @NgModule({
   imports: [
     BrowserModule ,
@@ -36,4 +37,4 @@ import {AdminModule} from "./admin/admin.module";
   bootstrap: [ AppComponent ],
   providers: [LoginGuard, UserGuard, AdminGuard]
 })
-export class AssetModule { }
+export class AppModule { }
