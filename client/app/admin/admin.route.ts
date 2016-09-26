@@ -10,7 +10,7 @@ import {AddAssetComponent} from "../assets/add-asset.component";
 import {UserResolve} from "../assets/user-resolve";
 import {UserComponent} from "../assets/user.component";
 import {UserGuard} from "../user.guard";
-import {NewUserComponent} from "../assets/new-employee.component";
+//import {NewUserComponent} from "../assets/new-employee.component";
 import {EditAssetComponent} from "../assets/edit-asset.component";
 
 const routes:Routes = [
