@@ -46,7 +46,7 @@ export class AddAssetComponent {
 
   submit(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
-      res => this.router.navigate(['/dashboard']),
+      res => this.router.navigate(['admin/asset/list']),
       error =>  alert(error))
   }
 
