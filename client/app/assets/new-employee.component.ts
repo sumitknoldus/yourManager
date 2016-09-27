@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AssetService} from "./asset.service";
+import 'rxjs/add/observable/throw';
 
 
 @Component({
@@ -38,10 +39,18 @@ export class NewEmployeeComponent {
                     data => {
                         this.users = data;
                     },
-                    error => console.log("+++++++++++++"+JSON.stringify(error))
+                    error => swal(
+                        'error',
+                        ''+JSON.stringify(error),
+                        'error'
+                    )
                 )
             },
-            error =>  console.log( ">>>>>>>>>>>>>>>"+JSON.stringify(error))
+            errMsg =>   swal(
+                'error',
+                ''+JSON.stringify(errMsg),
+                'error'
+            )
         )
     }
 }
