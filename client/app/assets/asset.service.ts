@@ -14,14 +14,16 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AssetService {
 
-  private listAssetsURL = '/api/assets/list/';  // URL to web API
-  private addAssetUrl = '/api/assets/add';
-  private getAssetUrl = '/api/assets/get';
-  private editAssetUrl = '/api/assets/save';
-  private returnAssetUrl = '/api/assets/return';
-  private fetchAvailableAssetUrl = '/api/assets/fetch/';
-  private assignAssetUrl = '/api/assets/assign';
-  private listAllAssetUrl = '/api/assets/listall';
+    private listAssetsURL = '/api/assets/list/';  // URL to web API
+    private addAssetUrl = '/api/assets/add';
+    private getAssetUrl = '/api/assets/get';
+    private editAssetUrl = '/api/assets/save';
+    private returnAssetUrl = '/api/assets/return';
+    private fetchAvailableAssetUrl = '/api/assets/fetch/';
+    private assignAssetUrl = '/api/assets/assign';
+    private listAllAssetUrl = '/api/assets/listall';
+    private listEmail = '/api/users/listemail';
+    private assignEmpIdUrl = '/api/users/assignempid';
 
   constructor (private http: Http) {}
 
@@ -93,20 +95,30 @@ export class AssetService {
       .catch(this.handleError);
   }
 
+  listEmpEmail(): Observable<> {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http
+      .get(this.listEmail)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /**
    * Makes a post request to update 'isAvailable' to true by the object ID
    * @param objId
    * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
    */
-  returnAsset(objId: string) {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    return this.http
-      .post(this.returnAssetUrl, JSON.stringify({"_id" : objId}), {headers: headers})
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
+    returnAsset(objId: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+          .post(this.returnAssetUrl, JSON.stringify({"_id" : objId}), {headers: headers})
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
 
   /**
    * Makes a get request to get all Assets whose 'isAvailable' is true
@@ -116,6 +128,16 @@ export class AssetService {
   getAvailableAssetList(assetName: string){
     return this.http
       .get(this.fetchAvailableAssetUrl + assetName)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  assignEmpId(employee: {}) {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http
+      .post(this.assignEmpIdUrl, employee, {headers: headers})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -151,14 +173,15 @@ export class AssetService {
    * @param error
    * @returns {ErrorObservable}
    */
-  private handleError (error: any) {
-    // In a real world app, we might use a remote logging infrastructure
-    // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
-    return Observable.throw(errMsg);
-  }
+    private handleError (error: any) {
+        console.log(JSON.stringify(error));
+        // In a real world app, we might use a remote logging infrastructure
+        // We'd also dig deeper into the error to get a better message
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(">>>>>>>>>>>>>>>"+errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
 
 
 }
