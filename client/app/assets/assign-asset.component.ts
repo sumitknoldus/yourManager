@@ -63,7 +63,7 @@ export class AssignAssetComponent{
   submit(asset: Asset) {
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
         {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['admin/asset/list']);
         },
       error =>  alert(error)
     )

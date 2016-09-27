@@ -15,7 +15,6 @@ export class SearchAssetResolve implements Resolve<Asset[]> {
       if (assets) {
         return assets
       } else {
-        this.router.navigate(['dashboard']);
         return false
       }
     }
