@@ -22,6 +22,8 @@ export class AssetService {
     private fetchAvailableAssetUrl = '/api/assets/fetch/';
     private assignAssetUrl = '/api/assets/assign';
     private listAllAssetUrl = '/api/assets/listall';
+    private listEmail = '/api/users/listemail';
+    private assignEmpIdUrl = '/api/users/assignempid';
 
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<> {
@@ -71,6 +73,16 @@ export class AssetService {
             .catch(this.handleError);
     }
 
+    listEmpEmail(): Observable<> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .get(this.listEmail)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     returnAsset(objId: string) {
         let headers = new Headers({
             'Content-Type': 'application/json'
@@ -86,6 +98,16 @@ export class AssetService {
           .get(this.fetchAvailableAssetUrl + assetName)
           .map(this.extractData)
           .catch(this.handleError);
+    }
+
+    assignEmpId(employee: {}) {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .post(this.assignEmpIdUrl, employee, {headers: headers})
+            .map(this.extractData)
+            .catch(this.handleError);
     }
 
     assignAsset(objectId: string, asset: Asset) {
@@ -104,11 +126,12 @@ export class AssetService {
     }
 
     private handleError (error: any) {
+        console.log(JSON.stringify(error));
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
+        console.error(">>>>>>>>>>>>>>>"+errMsg); // log to console instead
         return Observable.throw(errMsg);
     }
 

@@ -122,6 +122,31 @@ export function create(req, res, next) {
 /**
  * Login a user
  */
+export function assignEmpId(req, res, next) {
+
+    //loginUser.provider = 'local';
+    //loginUser.role = 'user';
+    User.findOne({'empId':req.body.empId})
+        .then(function(user) {
+            if(user){
+                res.status(409).send({'message':'Duplicate record.'});
+            }else {
+                User.findOneAndUpdate({'email':req.body.email},{empId:req.body.empId})
+                    .then(function(user) {
+
+                        res.status(200).send({'status':'success'});
+                    })
+                    .catch(validationError(res));
+            }
+        })
+        .catch(validationError(res));
+
+}
+
+
+/**
+ * Assign empId's to new Joinee
+ */
 export function signIn(req, res, next) {
 
     //loginUser.provider = 'local';
@@ -150,6 +175,20 @@ export function show(req, res, next) {
                 return res.status(404).end();
             }
             res.json(user.profile);
+        })
+        .catch(err => next(err));
+}
+
+/**
+ * List the emails and names of all users whose empId is not assigned
+ */
+export function listEmail(req, res, next) {
+    return User.find({empId:""},'email firstName middleName lastName').exec()
+        .then(user => {
+            if (!user) {
+                return res.status(404).end();
+            }
+            res.json(user);
         })
         .catch(err => next(err));
 }

@@ -23,6 +23,7 @@ export class SignupComponent {
     user = {};
 
     constructor(private router:Router, private signupService:SignupService) {
+
     }
 
     signup(selectedUser:User) {
