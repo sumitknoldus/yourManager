@@ -17,84 +17,89 @@ import {AssetModule} from "../app.module";
 
 
 @Component({
-    moduleId:module.id,
-    selector: 'ym-list',
-    templateUrl: 'search-asset.component.html',
-    styleUrls:['search-asset.component.css'],
+  moduleId:module.id,
+  selector: 'ym-list',
+  templateUrl: 'search-asset.component.html',
+  styleUrls:['search-asset.component.css'],
 })
 
 export class ListComponent implements OnInit{
-    @Input()
-    public allocatedAssetsList: Asset[] = [];
-    cell:any;
+  @Input()
+  public allocatedAssetsList: Asset[] = [];
+  cell:any;
 
-    mode = 'Observable';
-    public errorMessage = '';
-    public selectedId: string;
+  mode = 'Observable';
+  public errorMessage = '';
+  public selectedId: string;
 
-    private gridOptions:GridOptions =  <GridOptions>{};
+  private gridOptions:GridOptions =  <GridOptions>{};
 
-    constructor(private assetService: AssetService,
-                private router: Router,
-                private route: ActivatedRoute) {
-    }
+  constructor(private assetService: AssetService,
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-        this.route.data.forEach((data: { assets: Asset[]}) => {
-            this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-            this.gridOptions.rowData = this.createDataRows(data.assets)
-        });
-    }
+    this.route.data.forEach((data: { assets: Asset[]}) => {
+      this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+      this.gridOptions.rowData = this.createDataRows(data.assets)
+    });
+  }
 
-
-    getAvailableAssetList(asset: string){
-        console.log("called with asset :::::::::" + asset)
-    }
-
-    private createColumnDefs(asset) {
-      let keyNames = Object.keys(asset);
-      let headers = [];
-      keyNames.filter(key => key != '__v' && key != '_id').map(key => {
-        headers.push({
-          headerName: key,
-          field: key,
-          width: 100
-        })
-      });
-
+  /**
+   * This method returns column headers for ag-Grid
+   * @param asset
+   * @returns {Array}
+   */
+  private createColumnDefs(asset) {
+    let keyNames = Object.keys(asset);
+    let headers = [];
+    keyNames.filter(key => key != '__v' && key != '_id').map(key => {
       headers.push({
-        headerName: 'update',
-        field: 'update',
-        cellRendererFramework: {
-          //template: '<button (onClicked) = "editAsset()"> Edit </button>'
-          component: ClickableComponent
-        },
-        pinned: 'right',
-        width: 120
-      });
-      return headers;
-    }
+        headerName: key,
+        field: key,
+        width: 100
+      })
+    });
 
-    private createDataRows(assets) {
-        let updatedAssets = [];
-        for(let i in assets){
-            updatedAssets.push({
-                _id:assets[i]._id,
-                empId:assets[i].empId,
-                empName: assets[i].empName,
-                assetType: assets[i].assetType,
-                model: assets[i].model,
-                assetCode: assets[i].assetCode,
-                shippingDate: assets[i].shippingDate,
-                dateOfIssue: assets[i].dateOfIssue,
-                dateOfReturn: assets[i].dateOfReturn,
-                warrantyEndDate:assets[i].warrantyEndDate,
-                lastMaintenanceDate:assets[i].lastMaintenanceDate,
-                specs: JSON.stringify(assets[i].specs),
-                isAvailable:assets[i].isAvailable,
-                update:assets[i].update
-            })
-        }
-        return updatedAssets;
+    headers.push({
+      headerName: 'update',
+      field: 'update',
+      cellRendererFramework: {
+        //template: '<button (onClicked) = "editAsset()"> Edit </button>'
+        component: ClickableComponent
+      },
+      pinned: 'right',
+      width: 120
+    });
+    return headers;
+  }
+
+  /**
+   * This method returns rows for the ag-Grid
+   * @param assets
+   * @returns {Array}
+   */
+  private createDataRows(assets) {
+    let updatedAssets = [];
+    for(let i in assets){
+      updatedAssets.push({
+        _id:assets[i]._id,
+        empId:assets[i].empId,
+        empName: assets[i].empName,
+        assetType: assets[i].assetType,
+        model: assets[i].model,
+        assetCode: assets[i].assetCode,
+        shippingDate: assets[i].shippingDate,
+        dateOfIssue: assets[i].dateOfIssue,
+        dateOfReturn: assets[i].dateOfReturn,
+        warrantyEndDate:assets[i].warrantyEndDate,
+        lastMaintenanceDate:assets[i].lastMaintenanceDate,
+        specs: JSON.stringify(assets[i].specs),
+        isAvailable:assets[i].isAvailable,
+        update:assets[i].update
+      })
     }
+    return updatedAssets;
+  }
 }

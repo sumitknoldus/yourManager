@@ -25,6 +25,11 @@ export class SignupComponent {
     constructor(private router:Router, private signupService:SignupService) {
     }
 
+  /**
+   * This method calls the service to verify the email and then calls the service
+   * to get the user signed up
+   * @param selectedUser
+   */
     signup(selectedUser:User) {
       selectedUser.role = 'user';
       console.log("--------selected user" + JSON.stringify(selectedUser))
@@ -51,7 +56,9 @@ export class SignupComponent {
                 error => alert(error));
     }
 
-
+  /**
+   * This method navigates the user to the login page
+   */
     goBack() {
         this.router.navigate(['login']);
     }

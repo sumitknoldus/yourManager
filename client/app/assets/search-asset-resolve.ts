@@ -9,6 +9,11 @@ export class SearchAssetResolve implements Resolve<Asset[]> {
 
   constructor(private assetService: AssetService, private router: Router) {}
 
+  /**
+   * This method calls the service to get assets by ID.
+   * @param route
+   * @returns {any}
+   */
   resolve(route: ActivatedRouteSnapshot): Observable<> | Promise<any> | any {
     let id = route.params['id'];
     return this.assetService.getAllocatedAssets(id).map( assets => {

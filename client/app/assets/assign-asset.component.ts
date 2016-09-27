@@ -47,7 +47,11 @@ export class AssignAssetComponent{
     isAvailable:""
   };
 
-
+  /**
+   * This method is called when user selects an asset type,
+   * it calls the service method to get all the available assets of that type.
+   * @param asset
+   */
   getAvailableAssetList(asset: string){
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
@@ -60,15 +64,24 @@ export class AssignAssetComponent{
     }
   }
 
+  /**
+   * This method calls the service method to assign an asset
+   * @param asset
+   */
   submit(asset: Asset) {
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
-        {
-          this.router.navigate(['admin/asset/list']);
-        },
+      {
+        this.router.navigate(['admin/asset/list']);
+      },
       error =>  alert(error)
     )
   }
 
+  /**
+   * This method is called when a user selects an assetCode from the available asset list,
+   * and calls service to get asset corresponding to that assetCode.
+   * @param assetCode
+   */
   getAsset(assetCode: string) {
     if(assetCode != ""){
       let objId = this.availableAssets.assetList.find(record => record.assetCode === assetCode)._id

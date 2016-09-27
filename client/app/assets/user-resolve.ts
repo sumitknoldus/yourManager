@@ -9,10 +9,13 @@ export class UserResolve implements Resolve<Asset[]> {
 
   constructor(private assetService: AssetService, private router: Router) {}
 
+  /**
+   * This method calls the service to get allocated assets.
+   * @param route
+   * @returns {any}
+   */
   resolve(route: ActivatedRouteSnapshot): Observable<> | Promise<any> | any {
-    console.log("---------")
     let id = JSON.parse(localStorage.getItem("user")).empId;
-    console.log("========" + id)
     return this.assetService.getAllocatedAssets(id).map( assets => {
         if (assets) {
           return assets

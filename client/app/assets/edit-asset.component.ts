@@ -15,7 +15,7 @@ export class EditAssetComponent{
   constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
   isAssign: boolean = false;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
-
+  isEdit= true;
   asset = {};
   selectedHardwareType = '';
 
@@ -27,23 +27,26 @@ export class EditAssetComponent{
     });
   }
 
+  /**
+   * This method calls the service get asset by object ID
+   * @param id
+   */
   getData(id:string){
     this.assetService.getById(id).subscribe(data =>
       this.asset = data,
       error => alert(error)
     )
   }
+
+  /**
+   * This method calls the service method to edit the asset
+   * @param asset
+   */
   submit(asset: Asset){
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin/admin', asset.empId]),
       error => alert(error)
     )
-  }
-
-
-  getAvailableAssetList(asset: string){
-    console.log("asset===========" +JSON.stringify(this.asset))
-
   }
 
 }

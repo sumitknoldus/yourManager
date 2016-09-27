@@ -19,10 +19,16 @@ export class ClickableComponent implements AgRendererComponent {
     this.params = params;
   }
 
+  /**
+   * This method redirects to the edit form
+   */
   editAsset() {
     this.router.navigate(['/admin/asset/edit', this.params.data._id]);
   }
 
+  /**
+   * This method calls the service to return an asset
+   */
   returnAsset() {
     this.assetService.returnAsset(this.params.data._id).subscribe(
       data =>{

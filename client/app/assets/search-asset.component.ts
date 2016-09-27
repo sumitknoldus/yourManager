@@ -49,24 +49,11 @@ export class SearchAssetComponent implements OnInit {
 
     }
 
-  returnAsset(objId: string) {
-    this.assetService.returnAsset(objId).subscribe(
-      data =>{
-        alert("Asset Returned");
-        console.log(data)
-      },
-      error => alert(error)
-    )
-  }
-
-  editAsset(id){
-      this.router.navigate(['/admin/asset/edit', id])
-    }
-
-  getAvailableAssetList(asset: string){
-    console.log("called with asset :::::::::" + asset)
-  }
-
+  /**
+   * This method returns column headers for ag-Grid
+   * @param asset
+   * @returns {Array}
+   */
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
     let headers = [];
@@ -90,6 +77,11 @@ export class SearchAssetComponent implements OnInit {
     return headers;
   }
 
+  /**
+   * This method returns rows for the ag-Grid
+   * @param assets
+   * @returns {Array}
+   */
   private createDataRows(assets) {
     let updatedAssets = [];
     for(let i in assets){

@@ -19,13 +19,18 @@ export class UserComponent {
   headers = [];
 
   ngOnInit() {
-      this.route.data.forEach((data: { assets: Asset[]}) => {
-        console.log(data.assets)
-        this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-        this.gridOptions.rowData = this.createDataRows(data.assets)
-      });
-    }
+    this.route.data.forEach((data: { assets: Asset[]}) => {
+      console.log(data.assets)
+      this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+      this.gridOptions.rowData = this.createDataRows(data.assets)
+    });
+  }
 
+  /**
+   * This method returns column headers for ag-Grid
+   * @param asset
+   * @returns {Array}
+   */
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
     let headers = [];
@@ -40,6 +45,11 @@ export class UserComponent {
     return headers;
   }
 
+  /**
+   * This method returns rows for the ag-Grid
+   * @param assets
+   * @returns {Array}
+   */
   private createDataRows(assets) {
     let updatedAssets = [];
     for(let i in assets){

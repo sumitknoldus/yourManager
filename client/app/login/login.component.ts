@@ -19,7 +19,12 @@ export class LoginComponent {
 
     constructor(private loginService: LoginService, private router: Router) {}
 
-    login() {
+  /**
+   * This method is called when user clicks on login.
+   * It calls the service to get the user logged in,
+   * and redirects it to the page depending on the user role.
+   */
+  login() {
         this.loginService.login(this.user)
         .then(data => {
             if(JSON.stringify(data) !== '{}') {
@@ -36,7 +41,10 @@ export class LoginComponent {
         error => alert(error));
     }
 
-    goToSignup() {
+  /**
+   * this method navigates the user to sign up page.
+   */
+  goToSignup() {
         this.router.navigate(['signup']);
     }
 }

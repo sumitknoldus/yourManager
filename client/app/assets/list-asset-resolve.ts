@@ -9,12 +9,17 @@ export class ListAssetResolve implements Resolve<Asset[]> {
 
   constructor(private assetService: AssetService, private router: Router) {}
 
+  /**
+   * This method calls the service to get all assets.
+   * @param route
+   * @returns {any}
+   */
   resolve(route: ActivatedRouteSnapshot): Observable<> | Promise<any> | any {
     return this.assetService.listAllAsset().map( assets => {
         if (assets) {
           return assets
         } else {
-         alert("NO DATA")
+         alert("NO DATA");
           return false
         }
       }

@@ -5,9 +5,15 @@
         <div class="panel panel-body">
             <form (ngSubmit) = submit(asset) #assetForm = "ngForm">
 
-                <div class="form-group">
+                <div *ngIf="!isEdit" class="form-group">
                     Choose Hardware type
                     <select name="hardwareType" class="form-control" [(ngModel)]="asset.assetType" #hardwareType = "ngModel" (click)="getAvailableAssetList(hardwareType.value)"  required>
+                        <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
+                    </select>
+                </div>
+                <div *ngIf="isEdit" class="form-group">
+                    Choose Hardware type
+                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.assetType" #hardwareType = "ngModel" required disabled>
                         <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
                     </select>
                 </div>

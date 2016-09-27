@@ -6,6 +6,11 @@ export class LoginGuard implements CanActivate {
   constructor(private router:Router) {
   }
 
+  /**Overriding canActivate to guard routes
+   *
+   * This method returns true if no user is logged in.
+   * @returns {boolean}
+   */
   canActivate() {
     if(localStorage.getItem('user') === null) {
       return true
