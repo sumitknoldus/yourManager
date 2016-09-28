@@ -27,7 +27,7 @@ export class SearchAssetComponent implements OnInit {
     public errorMessage = '';
     public selectedId: string;
     private gridOptions:GridOptions = <GridOptions>{};
-  columnDefs = {};
+  columnDefs = [];
   rowData = [];
   headers = [];
 
@@ -42,8 +42,11 @@ export class SearchAssetComponent implements OnInit {
           this.columnDefs = this.createColumnDefs(data.assets[0]);
           this.rowData = this.createDataRows(data.assets);
         } else {
-          this.columnDefs = [];
-          this.rowData = [];
+          swal(
+            'error',
+          'No Data Found',
+          'error'
+          )
         }
       });
 

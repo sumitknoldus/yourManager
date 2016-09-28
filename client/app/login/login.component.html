@@ -1,36 +1,52 @@
 <!--<ym-header-shared></ym-header-shared>-->
 <div class="container">
-    <div class="title">
-        Login
-    </div>
-    <div class="panel panel-body login-panel">
-        <div class="row">
-            <div class="input-field col s12">
-                <input [(ngModel)]="user.email" class="input-box validate" id="email"
-                       (keyup.enter) = "login()" type="email">
-                <label for="email">Email</label>
-            </div>
-        </div>
+    <div class="row" style="margin-top: 10%">
+        <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 ">
+            <div class="panel panel-body">
+                <div class="title">
+                    Login
+                </div>
+                <form #loginForm="ngForm" >
+                    <div class="row" style="margin-top: 6%">
+                        <div class="form-group">
+                            <!--<div class="col-lg-4 col-lg-offset-4">-->
+                            <!--<label for="email">Email</label>-->
+                            <!--</div>-->
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <input [(ngModel)]="user.email" class="input-box validate form-control" id="email"
+                                       (keyup.enter) = "login()" placeholder="Enter Email" name="email" type="email">
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="row">
-            <div class="input-field col s12">
-                <input [(ngModel)]="user.password" class="input-box validate" id="password"
-                       (keyup.enter) = "login()" type="password">
-                <label for="password">Password</label>
-            </div>
-        </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <!--<div class="col-lg-4 col-lg-offset-1">-->
+                            <!--<label for="password">Password</label>                </div>-->
+                            <div class="col-lg-8 col-lg-offset-2">
+                                <input [(ngModel)]="user.password" class="input-box validate form-control" id="password"
+                                       (keyup.enter) = "login()" placeholder="Enter Password" name="password" type="password">
+                            </div>
+                        </div>
+                    </div>
 
-        <span>{{errorMsg}}</span>
+                    <span>{{errorMsg}}</span>
 
-        <div class="row">
-            <div class="col-sm-2 col-sm-offset-7">
-                <button (click)="login()" class="btn waves-effect waves-light login-button"
-                        type="submit" name="action">Login
-                </button>
-            </div>
-            <div class="col-sm-2 col-sm-offset-1">
-                <button class="btn waves-effect waves-light signup-button" (click) = "goToSignup()">Sign Up</button>
-
+                    <div class="row">
+                        <div class="form-group col-lg-8 col-lg-offset-2">
+                            <button style="float: left" (click)="login()" class=" btn btn-sm btn-block login-button"
+                                    type="submit" name="action">Login
+                            </button>
+                            <div class="col-lg-2"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <!--<button class="btn waves-effect waves-light signup-button" (click) = "goToSignup()">Sign Up</button>-->
+                            <a routerLink="/signup">Sign up?</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

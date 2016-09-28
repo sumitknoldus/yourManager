@@ -20,7 +20,7 @@ export class UserResolve implements Resolve<Asset[]> {
         if (assets) {
           return assets
         } else {
-          return false
+          return []
         }
     }
     )

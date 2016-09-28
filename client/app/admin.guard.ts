@@ -17,7 +17,7 @@ export class AdminGuard implements CanActivate {
     } else if (localStorage.getItem('user') === null){
       this.router.navigate(['login'])
     } else {
-      this.router.navigate(['user'])
+      this.router.navigate(['admin/user'])
       return false
     }
   }

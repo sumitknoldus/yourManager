@@ -14,15 +14,25 @@ import {Asset} from "../shared/model/asset";
 })
 
 export class UserComponent {
-  constructor(private assetService: AssetService, private route: ActivatedRoute){}
+
   private gridOptions:GridOptions =  <GridOptions>{};
+  private columnDefs = [];
+  private rowData = [];
+
+  constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
 
   ngOnInit() {
     this.route.data.forEach((data: { assets: Asset[]}) => {
-      console.log(data.assets)
-      this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-      this.gridOptions.rowData = this.createDataRows(data.assets)
+      if(data.assets.length > 0) {
+        this.columnDefs = this.createColumnDefs(data.assets[0]);
+        this.rowData = this.createDataRows(data.assets)
+      } else {
+        console.log("erorrrrrrrrrrrrrrrrrrrrrrrr")
+        swal(
+          'No Data Found',
+        )
+      }
     });
   }
 
