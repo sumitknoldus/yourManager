@@ -24,7 +24,11 @@ export class NewEmployeeComponent {
             data => {
                 this.users = data;
             },
-            error => alert(error)
+            error => swal(
+              'error',
+              ''+JSON.stringify(error),
+              'error'
+            )
         )
     }
 
@@ -46,7 +50,7 @@ export class NewEmployeeComponent {
                     )
                 )
             },
-            errMsg =>   swal(
+            errMsg => swal(
                 'error',
                 ''+JSON.stringify(errMsg),
                 'error'

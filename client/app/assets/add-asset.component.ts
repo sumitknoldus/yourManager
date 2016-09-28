@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AssetService} from "./asset.service";
+import 'rxjs/add/observable/throw';
+
 
 @Component({
   moduleId:module.id,
@@ -50,7 +52,11 @@ export class AddAssetComponent {
   submit(asset: Asset){
     this.assetService.addAsset(asset).subscribe(
       res => this.router.navigate(['admin/asset/list']),
-      error =>  alert(error))
+      error =>  swal(
+        'error',
+        ''+JSON.stringify(error),
+        'error'
+      ))
   }
 
   /**
@@ -64,7 +70,11 @@ export class AddAssetComponent {
         data => {
           this.availableAssets = data;
         },
-        error => alert(error)
+        error => swal(
+          'error',
+          ''+JSON.stringify(error),
+          'error'
+        )
       )
     }
   }

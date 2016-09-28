@@ -8,6 +8,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
 
 @Component({
     moduleId: module.id,
@@ -51,10 +52,18 @@ export class SignupComponent {
                                     localStorage.setItem('user', JSON.stringify(data));
                                     this.router.navigate(['admin/user']);
                                 },
-                                error => alert(error));
+                                error => swal(
+                                  'error',
+                                  ''+JSON.stringify(error),
+                                  'error'
+                                ));
                     })
                 },
-                error => alert(error));
+                error => swal(
+                  'error',
+                  ''+JSON.stringify(error),
+                  'error'
+                ));
     }
 
   /**

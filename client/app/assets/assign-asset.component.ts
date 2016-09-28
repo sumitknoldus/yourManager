@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AssetService} from "./asset.service";
+import 'rxjs/add/observable/throw';
 
 @Component({
   moduleId:module.id,
@@ -27,8 +28,6 @@ export class AssignAssetComponent{
 
   objectId = "";
 
-  @Input()
-  @Input()
   asset = {empId:"",
     empName: "",
     assetType: "",
@@ -59,7 +58,11 @@ export class AssignAssetComponent{
           console.log(JSON.stringify(data));
           this.availableAssets = data;
         },
-        error => alert(error)
+        error => swal(
+          'error',
+          ''+JSON.stringify(error),
+          'error'
+        )
       )
     }
   }
@@ -73,7 +76,11 @@ export class AssignAssetComponent{
       {
         this.router.navigate(['admin/asset/list']);
       },
-      error =>  alert(error)
+      error => swal(
+        'error',
+        ''+JSON.stringify(error),
+        'error'
+      )
     )
   }
 
@@ -93,7 +100,11 @@ export class AssignAssetComponent{
           this.asset.specs= data.specs;
           this.objectId = data._id;
         },
-        error =>  alert(error)
+        error => swal(
+          'error',
+          ''+JSON.stringify(error),
+          'error'
+        )
       )
     }
   }

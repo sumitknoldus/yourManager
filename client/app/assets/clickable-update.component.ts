@@ -3,6 +3,8 @@ import {Component} from '@angular/core';
 import {AgRendererComponent} from 'ag-grid-ng2/main';
 import {Router} from "@angular/router";
 import {AssetService} from "./asset.service";
+import 'rxjs/add/observable/throw';
+
 
 @Component({
   selector: 'clickable-cell',
@@ -35,7 +37,11 @@ export class ClickableComponent implements AgRendererComponent {
         location.reload();
         console.log(data)
       },
-      error => alert(error)
+      error => swal(
+        'error',
+        ''+JSON.stringify(error),
+        'error'
+      )
     )
   }
 

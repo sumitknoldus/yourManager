@@ -19,7 +19,11 @@ export class ListAssetResolve implements Resolve<Asset[]> {
         if (assets) {
           return assets
         } else {
-         alert("NO DATA");
+          swal(
+            'error',
+            ''+JSON.stringify('NO DATA !!!'),
+            'error'
+          )
           return false
         }
       }

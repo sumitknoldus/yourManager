@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AssetService} from "./asset.service";
+import 'rxjs/add/observable/throw';
 
 @Component({
   moduleId:module.id,
@@ -34,18 +35,26 @@ export class EditAssetComponent{
   getData(id:string){
     this.assetService.getById(id).subscribe(data =>
       this.asset = data,
-      error => alert(error)
+      error => swal(
+        'error',
+        ''+JSON.stringify(error),
+        'error'
+      )
     )
   }
 
   /**
-   * This method calls the service method to edit the asset
+   * This method calls the service method to edit a new asset
    * @param asset
    */
   submit(asset: Asset){
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin/admin', asset.empId]),
-      error => alert(error)
+      error => swal(
+        'error',
+        ''+JSON.stringify(error),
+        'error'
+      )
     )
   }
 

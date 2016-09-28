@@ -30,7 +30,7 @@ export class UserComponent {
       } else {
         console.log("erorrrrrrrrrrrrrrrrrrrrrrrr")
         swal(
-          'No Data Found',
+          'No Data Found'
         )
       }
     });
