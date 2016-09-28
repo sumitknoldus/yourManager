@@ -7,7 +7,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <input [(ngModel)]="user.email" class="input-box validate" id="email"
-                       type="email">
+                       (keyup.enter) = "login()" type="email">
                 <label for="email">Email</label>
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <input [(ngModel)]="user.password" class="input-box validate" id="password"
-                       type="password">
+                       (keyup.enter) = "login()" type="password">
                 <label for="password">Password</label>
             </div>
         </div>
@@ -24,13 +24,12 @@
 
         <div class="row">
             <div class="col-sm-2 col-sm-offset-7">
-                <button (click)="login()"
-                        class="btn waves-effect waves-light login-button"
+                <button (click)="login()" class="btn waves-effect waves-light login-button"
                         type="submit" name="action">Login
                 </button>
             </div>
             <div class="col-sm-2 col-sm-offset-1">
-                <button class="btn waves-effect waves-light signup-button" (click)="goToSignup()">Sign Up</button>
+                <button class="btn waves-effect waves-light signup-button">Sign Up</button>
 
             </div>
         </div>
