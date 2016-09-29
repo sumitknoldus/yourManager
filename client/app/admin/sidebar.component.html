@@ -5,18 +5,26 @@
                 <li>
                     <i class="fa fa-list-alt"></i>
                     <span class="collapse in hidden-xs inline-block">
-                    <input type="text" class="form-control" required  [(ngModel)]="search.value"
-                        (keyup.enter) = "searchAsset()" name="search" placeholder="Search by id or Name">
-                    <!--<button class="btn" (click)="searchAsset()">Search</button>-->
+                    <div class="input-group">
+                        <input type="text" placeholder="Search by Id/Name" class="form-control" required
+                               [(ngModel)]="search.value" (keyup.enter) = "searchAsset()" name="search" />
+                        <div class="input-group-btn search-btn">
+                            <button class="btn search-btn" (click) = "searchAsset()">
+                                <span class="glyphicon glyphicon-search search-btn"></span>
+                                <!--GO-->
+                            </button>
+                        </div>
+                    </div>
+
                     </span>
                 </li>
             </div>
         </div>
 
-        <li><a routerLink="/admin/asset/add"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Add Hardware</span></a></li>
-        <li><a routerLink="/admin/asset/assign"><i class="fa fa-paperclip"></i> <span class="collapse in hidden-xs">Assign Existing Asset</span></a></li>
-        <li><a routerLink="/admin/asset/list"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">List All Assets</span></a></li>
-        <li><a routerLink="/admin/new/emp"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">New Employee</span></a></li>
+        <li><a routerLink="/admin/asset/add"><span class="collapse in hidden-xs">Add Hardware</span></a></li>
+        <li><a routerLink="/admin/asset/assign"><span class="collapse in hidden-xs">Assign Existing Asset</span></a></li>
+        <li><a routerLink="/admin/asset/list"><span class="collapse in hidden-xs">List All Assets</span></a></li>
+        <li><a routerLink="/admin/new/emp"><span class="collapse in hidden-xs">New Employee</span></a></li>
 
     </ul>
 </div>

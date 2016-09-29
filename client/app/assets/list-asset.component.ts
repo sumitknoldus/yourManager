@@ -41,8 +41,16 @@ export class ListComponent implements OnInit{
 
   ngOnInit() {
     this.route.data.forEach((data: { assets: Asset[]}) => {
-      this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-      this.gridOptions.rowData = this.createDataRows(data.assets)
+      if(data.assets.length > 0) {
+        this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
+        this.gridOptions.rowData = this.createDataRows(data.assets)
+      } else {
+        swal(
+          'Error !!!',
+          'No Record Found',
+          'error'
+        )
+      }
     });
   }
 

@@ -9,17 +9,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/5.0.3/sweetalert2.min.css" />
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 
 </head>
 <!-- 3. Display the application -->
 <body>
-<my-app>Loading...</my-app>
+<my-app>
+    <div class="container">
+        <div class="row" style="margin-top: 20%">
+            <div class="col-lg-2 col-lg-offset-5 col-sm-2 col-sm-offset-5 col-xs-1 col-xs-offset-5">
+                <i class="fa fa-spinner fa-spin" style="font-size:10vw; color: #26A69A;">
+                </i>
+            </div>
+        </div>
+    </div>
+</my-app>
 
 <script src="assets/lib/shim.min.js"></script>
 <!--<script src="assets/lib/zone.js"></script>-->
 <script src="https://unpkg.com/zone.js@0.6.21/dist/zone.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/6.0.1/styles/ag-grid.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/6.0.1/styles/theme-material.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 <script src="assets/lib/Reflect.js"></script>
 <script src="assets/lib/system.src.js"></script>
 <script src="assets/lib/jquery.min.js"></script>
