@@ -23,7 +23,6 @@ var paths = {
     copyBowerJSON:'bower.json',
     copyBowerrc:'.bowerrc',
     copyBabelrc:'.babelrc'
-
 };
 var tslint = require("gulp-tslint");
 var imagemin = require("gulp-imagemin");
@@ -49,6 +48,10 @@ var lib = [
 
 gulp.task('clean', function (done) {
     del('dist/dev', done);
+});
+
+gulp.task('clean-all', function (done) {
+    del('dist/', done);
 });
 
 gulp.task('clean-junkjs', function (done) {

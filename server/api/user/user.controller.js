@@ -7,13 +7,7 @@ import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 
-//smtpTransport = nodemailer.createTransport("SMTP",{
-//    service: "Gmail",  // sets automatically host, port and connection security settings
-//    auth: {
-//        user: "email@gmail.com",
-//        pass: "gmailPassword"
-//    }
-//});
+
 var smtpConfig = {
     host: 'smtp.gmail.com',
     port: 465,
@@ -56,14 +50,45 @@ export function index(req, res) {
         .catch(handleError(res));
 }
 
+/**
+ * Get list of EmpWithNoAssets
+ * restriction: 'admin'
+ */
+export function getAllEmps(req, res) {
+    return User.find({empId:{$ne: ''} },'empId firstName middleName lastName email').exec()
+        .then(users => {
+            if(users.length >= 0 ){
+                res.status(200).send(users);
+            }
+            else{
+                res.status(204).send({status:'No Record Found'});
+            }
+        })
+        .catch(handleError(res));
+}
 
+/**
+ * verify user asset
+ * restriction: 'admin'
+ */
+export function verifyUserAsset(req, res) {
+    return User.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
+        .then(users => {
+            if(users){
+                res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
+            }
+            else{
+                res.status(200).send({status:'success'});
+            }
+        })
+        .catch(handleError(res));
+}
 
 export function verficationEmail(req, res, next){
     newUser = new User(req.body);
-    console.log(">>>>>>>>>>>>>>>>>>>>"+JSON.stringify(newUser));
     verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
     var mailOptions = {
-        from: '"sumit ?" <yourmanager.knoldus@gmail.com>', // sender address
+        from: '"Admin ?" <yourmanager.knoldus@gmail.com>', // sender address
         to: newUser.email, // list of receivers
         subject: 'Account Verification', // Subject line
        text: "Your Verification Token is: " + verifyTokenNo, // plaintext body
