@@ -5,7 +5,7 @@ export class Asset {
     assetType: string;
     model: string;
     assetCode: string;
-    shippingDate: string;
+    shippingDate: Date;
     dateOfIssue: string;
     dateOfReturn: string;
     warrantyEndDate:string;

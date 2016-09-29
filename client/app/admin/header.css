@@ -35,3 +35,16 @@
     padding-left:0;
     padding-right: 0;
 }
+
+.search{
+    font-size: small;
+}
+
+.search-btn{
+    background: #26A69A;
+}
+
+.input-group-btn{
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
