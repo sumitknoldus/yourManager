@@ -67,22 +67,7 @@ export function getAllEmps(req, res) {
         .catch(handleError(res));
 }
 
-/**
- * verify user asset
- * restriction: 'admin'
- */
-export function verifyUserAsset(req, res) {
-    return User.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
-        .then(users => {
-            if(users){
-                res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
-            }
-            else{
-                res.status(200).send({status:'success'});
-            }
-        })
-        .catch(handleError(res));
-}
+
 
 export function verficationEmail(req, res, next){
     newUser = new User(req.body);

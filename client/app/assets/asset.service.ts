@@ -26,7 +26,7 @@ export class AssetService {
     private assignEmpIdUrl = '/api/users/assignempid';
     //private empWithoutAssetType = '/api/users/emps/noassets/';
     private listAllEmp = '/api/users/getallemps';
-    private verifyUserAsset = '/api/users/verifyuserasset';
+    private verifyUserAsset = '/api/assets/verifyuserasset';
 
 
   constructor (private http: Http) {}

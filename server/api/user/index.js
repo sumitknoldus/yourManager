@@ -18,7 +18,7 @@ router.post('/verify', controller.verficationEmail);
 router.get('/listemail', controller.listEmail);
 router.post('/assignempid', controller.assignEmpId);
 router.get('/getallemps', controller.getAllEmps);
-router.post('/verifyuserasset', controller.verifyUserAsset);
+
 
 
 

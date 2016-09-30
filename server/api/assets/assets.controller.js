@@ -81,6 +81,27 @@ export function addAssets(req, res, next) {
         .catch(validationError(res));
 }
 
+
+/**
+ * verify user asset
+ * restriction: 'admin'
+ */
+export function verifyUserAsset(req, res) {
+    return Assets.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
+        .then(users => {
+            console.log(">>>>>>>XXXXXXXXXXXX>>>>>>>"+JSON.stringify(users.length));
+            if(users.length > 0){
+                console.log(">>>>>YYY>>>>>>>>>"+JSON.stringify(users));
+                res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
+            }
+            else{
+                console.log(">>>>>>zzzzz>>>>>>>>"+JSON.stringify(users));
+                res.status(200).send({status:'success'});
+            }
+        })
+        .catch(handleError(res));
+}
+
 /**
  * Get edit of Assets
  * restriction: 'admin'

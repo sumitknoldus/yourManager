@@ -15,7 +15,7 @@ router.post('/get',controller.getAssetById);
 router.post('/save',controller.saveAssetById);
 router.post('/return',controller.returnAsset);
 router.get('/fetch/:id',controller.availableAsset);
-
+router.post('/verifyuserasset', controller.verifyUserAsset);
 
 //router.get('/', auth.hasRole('admin'), controller.index);
 //router.delete('/:id', auth.hasRole('admin'), controller.destroy);

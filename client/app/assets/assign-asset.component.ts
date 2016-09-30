@@ -53,7 +53,7 @@ export class AssignAssetComponent{
   };
     users = [{}];
     selectedEmployee = {email:'',empId:''};
-
+    errorMsg = false;
     users:User = {
         empId:'',
         empName:'',
@@ -64,17 +64,14 @@ export class AssignAssetComponent{
     }
 
     verifyUserRequest(){
-        console.log(JSON.stringify(this.selectedEmployee));
         this.selectedEmployee.assetType = this.asset.assetType;
-        console.log(JSON.stringify(this.selectedEmployee));
         this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
             if(data.status === 203){
-                errorMsg = "";
-                this.errorMsg = data.result.status;
+                this.errorMsg = true;
 
             }
             else{
-
+                this.errorMsg = false;
             }
         },error => swal(
             'error',
@@ -121,6 +118,8 @@ export class AssignAssetComponent{
    * @param asset
    */
   submit(asset: Asset) {
+      this.asset.empId = this.selectedEmployee.empId;
+      //this.asset.empName =;
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);
