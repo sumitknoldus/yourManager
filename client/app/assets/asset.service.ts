@@ -24,6 +24,10 @@ export class AssetService {
     private listAllAssetUrl = '/api/assets/listall';
     private listEmail = '/api/users/listemail';
     private assignEmpIdUrl = '/api/users/assignempid';
+    //private empWithoutAssetType = '/api/users/emps/noassets/';
+    private listAllEmp = '/api/users/getallemps';
+    private verifyUserAsset = '/api/assets/verifyuserasset';
+
 
   constructor (private http: Http) {}
 
@@ -37,6 +41,22 @@ export class AssetService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
+    getAllEmp(): Observable<> {
+
+        return this.http.get(this.listAllEmp )
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    verifyUserRequest(employee:{}): Observable<> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http.post(this.verifyUserAsset, employee,{headers: headers})
+            .map(this.extractCompleteData)
+            .catch(this.handleError);
+    }
 
   /**
    * Makes a post request to add a new asset.
@@ -54,7 +74,12 @@ export class AssetService {
       .catch(this.handleError);
   }
 
-  /**
+
+
+
+
+
+    /**
    * Makes a post request to get an Asset by the object ID
    * @param _id
    * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
@@ -132,15 +157,21 @@ export class AssetService {
       .catch(this.handleError);
   }
 
-  assignEmpId(employee: {}) {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    return this.http
-      .post(this.assignEmpIdUrl, employee, {headers: headers})
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
+    /**
+     * Makes a post request to assign empId to newly signedUp employees
+     * @param employee object
+     * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
+     */
+
+    assignEmpId(employee:{}) {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .post(this.assignEmpIdUrl, employee, {headers: headers})
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
 
   /**
    * Makes a post request to assign an available asset to an Employee
@@ -168,18 +199,24 @@ export class AssetService {
     return body || {};
   }
 
+    private extractCompleteData(res: Response) {
+        let body = {result:res.json(), status:res.status, statusText:res.statusText};
+        return body || {};
+    }
+
+
+
   /**
    * Handles error if there is an error in http request
    * @param error
    * @returns {ErrorObservable}
    */
     private handleError (error: any) {
-        console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error.json()));
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(">>>>>>>>>>>>>>>"+errMsg); // log to console instead
+        let errMsg = (error.json().message) ? error.json().message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+
         return Observable.throw(errMsg);
     }
 

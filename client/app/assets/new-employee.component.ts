@@ -8,8 +8,8 @@ import 'rxjs/add/observable/throw';
 @Component({
     moduleId:module.id,
     selector: 'ym-new-emp',
-    templateUrl: 'new-employee.component.html',
-    styleUrls: []
+    templateUrl: 'new-employee.component.html'
+
 })
 
 export class NewEmployeeComponent {

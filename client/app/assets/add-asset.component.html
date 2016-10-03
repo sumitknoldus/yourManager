@@ -19,29 +19,41 @@
                 </div>
                 <div *ngIf= "asset.assetType">
                     <div *ngIf="isAssign">
+
+
+                        <div>
                         <div class="form-group">
                             <div class="col-xs-5">
-                                <label for="empId">Employee ID: </label>
+                                <label for="">Employee ID: </label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "asset.empId" #empId="ngModel" required>
+                                <select name="employee" class="form-control" [(ngModel)]="selectedEmployee.empId" required #empId="ngModel" (click)="verifyUserRequest()">
+                                    <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
+                                </select>
                             </div>
-                            <div class="col-xs-12" [hidden]="empId.valid || empId.pristine"
+                            <div *ngIf="!errorMsg" class="col-xs-12" [hidden]="empId.valid || empId.pristine"
                                  class="alert alert-danger">
                                 Employee Id is required
                             </div>
+                            <div class="col-xs-12 alert alert-danger" *ngIf="errorMsg">
+                                Cannot assign asset, user already have an asset
+                            </div>
+
                         </div>
-                        <div class="form-group">
-                            <div class="col-xs-5">
-                                <label for="empName">Employee Name : </label>
-                            </div>
-                            <div class="col-xs-7">
-                                <input type="text" name="empName" id="empName" class="form-control" [(ngModel)] = "asset.empName" #empName = "ngModel" required>
-                            </div>
-                            <div class="col-xs-12" [hidden]="empName.valid || empName.pristine"
-                                 class="alert alert-danger">
-                                Employee Name is required
-                            </div>
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-xs-5">-->
+                                <!--<label for="">Employee Name : </label>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-7">-->
+                                <!--<select name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required #empName="ngModel">-->
+                                    <!--<option *ngFor="let user of users" [value]="user.email">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>-->
+                                <!--</select>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-12" [hidden]="empName.valid || empName.pristine"-->
+                                 <!--class="alert alert-danger">-->
+                                <!--Employee Name is required-->
+                            <!--</div>-->
+                        <!--</div>-->
                         </div>
                         <div class="form-group">
                             <div class="col-xs-5">

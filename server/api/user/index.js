@@ -17,6 +17,9 @@ router.post('/signin', controller.signIn);
 router.post('/verify', controller.verficationEmail);
 router.get('/listemail', controller.listEmail);
 router.post('/assignempid', controller.assignEmpId);
+router.get('/getallemps', controller.getAllEmps);
+
+
 
 
 module.exports = router;

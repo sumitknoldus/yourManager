@@ -14,7 +14,7 @@ const rollupNG2 = (config) => new RollupNG2(config);
 
 export default {
     entry: 'dist/temp/client/app/boot.js',
-    //format:'iife',
+   // format:'iife',
     sourceMap: true,
     moduleName: 'main',
     plugins: [

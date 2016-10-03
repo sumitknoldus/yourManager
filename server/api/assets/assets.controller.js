@@ -66,19 +66,43 @@ export function listAssets(req, res, next) {
  * restriction: 'admin'
  */
 export function addAssets(req, res, next) {
-    console.log("-------------------------------");
+
     var newAssets = new Assets(req.body);
-    //newAssets.provider = 'local';
-    //newAssets.role = 'user';
-    newAssets.save()
-        .then(function(user) {
-            var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-                expiresIn: 60 * 60 * 5
-            });
-            //res.json({ token });
-              res.status(200).send({"status":"success"});
-        })
+    Assets.findOne({assetCode:req.body.assetCode}).exec().then(function(asset){
+        if(asset){
+            res.status(401).send({"message": "Asset already exist."});
+        } else {
+            return newAssets.save()
+                .then(function (user) {
+                    var token = jwt.sign({_id: user._id}, config.secrets.session, {
+                        expiresIn: 60 * 60 * 5
+                    });
+                    res.status(200).send({"status": "success"});
+                })
+                .catch(validationError(res));
+        }
+    })
+
         .catch(validationError(res));
+}
+
+
+/**
+ * verify user asset
+ * restriction: 'admin'
+ */
+export function verifyUserAsset(req, res) {
+    return Assets.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
+        .then(users => {
+
+            if(users.length > 0){
+               res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
+            }
+            else{
+                res.status(200).send({status:'success'});
+            }
+        })
+        .catch(handleError(res));
 }
 
 /**

@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from "../shared/model/asset";
+import {User} from "../shared/model/user";
 import {AssetService} from "./asset.service";
 import 'rxjs/add/observable/throw';
 
@@ -15,6 +16,10 @@ export class AssignAssetComponent{
 
   constructor(private assetService: AssetService, private router: Router){}
 
+   ngOnInit(){
+       this.getAllEmp();
+   }
+
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
   isAssign: boolean = true;
 
@@ -28,7 +33,8 @@ export class AssignAssetComponent{
 
   objectId = "";
 
-  asset = {empId:"",
+  asset = {
+    empId:"",
     empName: "",
     assetType: "",
     model: "",
@@ -45,6 +51,46 @@ export class AssignAssetComponent{
     },
     isAvailable:""
   };
+    users = [{}];
+    selectedEmployee = {email:'',empId:''};
+    errorMsg = false;
+    users:User = {
+        empId:'',
+        empName:'',
+        email:'',
+        firstName:'',
+        lastName:'',
+        middleName:''
+    }
+
+    verifyUserRequest(){
+        this.selectedEmployee.assetType = this.asset.assetType;
+        this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
+            if(data.status === 203){
+                this.errorMsg = true;
+
+            }
+            else{
+                this.errorMsg = false;
+            }
+        },error => swal(
+            'error',
+            ''+JSON.stringify(error),
+            'error'
+        ))
+    }
+
+    getAllEmp(){
+
+      this.assetService.getAllEmp().subscribe(data => {
+           this.users = data;
+
+      },error => swal(
+          'error',
+          ''+JSON.stringify(error),
+          'error'
+      ))
+  }
 
   /**
    * This method is called when user selects an asset type,
@@ -55,7 +101,7 @@ export class AssignAssetComponent{
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
         data => {
-          console.log(JSON.stringify(data));
+
           this.availableAssets = data;
         },
         error => swal(
@@ -72,6 +118,8 @@ export class AssignAssetComponent{
    * @param asset
    */
   submit(asset: Asset) {
+      this.asset.empId = this.selectedEmployee.empId;
+      //this.asset.empName =;
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);
