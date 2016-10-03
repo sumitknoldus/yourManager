@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
   selector: 'clickable-cell',
   template: `
    <button (click)="editAsset()" class="btn btn-default btn-sm"> Edit </button>
-   <button (click)="returnAsset()" class="btn btn-danger btn-sm">Return</button>
+   <button (click)="returnAsset()"  class="btn btn-danger btn-sm">Return</button>
     `
 })
 export class ClickableComponent implements AgRendererComponent {
@@ -20,7 +20,7 @@ export class ClickableComponent implements AgRendererComponent {
   agInit(params:any):void {
     this.params = params;
   }
-
+  //isReturn = false;
   /**
    * This method redirects to the edit form
    */
@@ -34,7 +34,7 @@ export class ClickableComponent implements AgRendererComponent {
   returnAsset() {
     this.assetService.returnAsset(this.params.data._id).subscribe(
       data =>{
-        location.reload();
+        this.router.navigate(['/admin/asset/list']);
         console.log(data)
       },
       error => swal(

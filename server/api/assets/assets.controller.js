@@ -66,18 +66,23 @@ export function listAssets(req, res, next) {
  * restriction: 'admin'
  */
 export function addAssets(req, res, next) {
-    console.log("-------------------------------");
+
     var newAssets = new Assets(req.body);
-    //newAssets.provider = 'local';
-    //newAssets.role = 'user';
-    newAssets.save()
-        .then(function(user) {
-            var token = jwt.sign({ _id: user._id }, config.secrets.session, {
-                expiresIn: 60 * 60 * 5
-            });
-            //res.json({ token });
-              res.status(200).send({"status":"success"});
-        })
+    Assets.findOne({assetCode:req.body.assetCode}).exec().then(function(asset){
+        if(asset){
+            res.status(401).send({"message": "Asset already exist."});
+        } else {
+            return newAssets.save()
+                .then(function (user) {
+                    var token = jwt.sign({_id: user._id}, config.secrets.session, {
+                        expiresIn: 60 * 60 * 5
+                    });
+                    res.status(200).send({"status": "success"});
+                })
+                .catch(validationError(res));
+        }
+    })
+
         .catch(validationError(res));
 }
 
@@ -89,13 +94,11 @@ export function addAssets(req, res, next) {
 export function verifyUserAsset(req, res) {
     return Assets.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
         .then(users => {
-            console.log(">>>>>>>XXXXXXXXXXXX>>>>>>>"+JSON.stringify(users.length));
+
             if(users.length > 0){
-                console.log(">>>>>YYY>>>>>>>>>"+JSON.stringify(users));
-                res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
+               res.status(203).send({status: 'Cannot assign asset, user already have an asset.'});
             }
             else{
-                console.log(">>>>>>zzzzz>>>>>>>>"+JSON.stringify(users));
                 res.status(200).send({status:'success'});
             }
         })

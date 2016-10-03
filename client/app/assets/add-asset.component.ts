@@ -53,7 +53,7 @@ export class AddAssetComponent {
     this.assetService.addAsset(asset).subscribe(
       res => this.router.navigate(['admin/asset/list']),
       error =>  swal(
-        'error',
+        'Error',
         ''+JSON.stringify(error),
         'error'
       ))

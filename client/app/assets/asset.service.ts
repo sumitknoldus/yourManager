@@ -212,11 +212,10 @@ export class AssetService {
    * @returns {ErrorObservable}
    */
     private handleError (error: any) {
-        console.log(JSON.stringify(error));
+        console.log(JSON.stringify(error.json()));
         // In a real world app, we might use a remote logging infrastructure
         // We'd also dig deeper into the error to get a better message
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        let errMsg = (error.json().message) ? error.json().message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
 
         return Observable.throw(errMsg);
     }
