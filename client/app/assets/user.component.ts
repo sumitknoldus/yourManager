@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import {AssetService} from "./asset.service";
 import {OnInit} from "angular2/core";
 import {GridOptions} from "ag-grid/main";
@@ -18,6 +18,7 @@ export class UserComponent {
   private gridOptions:GridOptions =  <GridOptions>{};
   private columnDefs = [];
   private rowData = [];
+  newUserMessage = "";
 
   constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
@@ -28,12 +29,21 @@ export class UserComponent {
         this.columnDefs = this.createColumnDefs(data.assets[0]);
         this.rowData = this.createDataRows(data.assets)
       } else {
-        console.log("erorrrrrrrrrrrrrrrrrrrrrrrr")
         swal(
           'No Data Found'
         )
       }
     });
+
+    this.route.params.forEach((params: Params) => {
+      this.newUserMessage = params['user'];
+    });
+
+    if(this.newUserMessage == 'new'){
+      let name = JSON.parse(localStorage.getItem('user')).firstName;
+      this.newUserMessage = "Welcome " + name + ". You have successfully signed up"
+    }
+
   }
 
   /**
