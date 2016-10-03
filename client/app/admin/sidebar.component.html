@@ -1,4 +1,4 @@
-<div *ngIf="showSidebar" class="column col-md-2  col-sm-2 col-xs-5 sidebar-offcanvas no-padding" id="sidebar">
+<div *ngIf="showSidebar" class="column col-md-2  col-sm-2 col-xs-3 sidebar-offcanvas no-padding" id="sidebar">
     <ul class="nav" id="menu">
         <div class="row">
             <div class="col-lg-12 ">
@@ -21,13 +21,13 @@
             </div>
         </div>
 
-        <li><a routerLink="/admin/asset/add"><span class="collapse in hidden-xs">Add Hardware</span></a></li>
-        <li><a routerLink="/admin/asset/assign"><span class="collapse in hidden-xs">Assign Existing Asset</span></a></li>
-        <li><a routerLink="/admin/asset/list"><span class="collapse in hidden-xs">List All Assets</span></a></li>
-        <li><a routerLink="/admin/new/emp"><span class="collapse in hidden-xs">New Employee</span></a></li>
+        <li><a routerLink="/admin/asset/add">Add Hardware</a></li>
+        <li><a routerLink="/admin/asset/assign">Assign Existing Asset</a></li>
+        <li><a routerLink="/admin/asset/list">List All Assets</a></li>
+        <li><a routerLink="/admin/new/emp">New Employee</a></li>
 
     </ul>
 </div>
-<div class="col-md-10 col-sm-10 col-xs-7" style="margin-top: 5%">
+<div class="col-md-10 col-sm-10 col-xs-9" style="margin-top: 5%">
     <router-outlet></router-outlet>
 </div>

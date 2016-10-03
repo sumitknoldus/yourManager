@@ -5,6 +5,7 @@ import {AssetService} from "./asset.service";
 import {OnInit} from "angular2/core";
 import {GridOptions} from "ag-grid/main";
 import {Asset} from "../shared/model/asset";
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   moduleId:module.id,
@@ -35,13 +36,17 @@ export class UserComponent {
       }
     });
 
+    let param;
+
     this.route.params.forEach((params: Params) => {
-      this.newUserMessage = params['user'];
+      param = params['user'];
     });
 
-    if(this.newUserMessage == 'new'){
+    if(param === 'new'){
       let name = JSON.parse(localStorage.getItem('user')).firstName;
-      this.newUserMessage = "Welcome " + name + ". You have successfully signed up"
+      this.newUserMessage = "Welcome " + name + ", you have successfully signed up !!!"
+      let timer = Observable.timer(2000)
+      timer.subscribe(data => this.newUserMessage = "")
     }
 
   }

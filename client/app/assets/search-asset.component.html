@@ -1,9 +1,11 @@
 <!--<ym-header-shared></ym-header-shared>-->
-
-<h2 *ngIf="newUserMessage">{{newUserMessage}}</h2>
+<div *ngIf="newUserMessage" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{newUserMessage}}</strong>
+</div>
 
 <div class="row" style="padding-top: 70px;">
-    <div class="col-xs-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+    <div class="col-xs-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
         <ag-grid-ng2 style="width: 100%; height: 70%;" #agGrid class="ag-material"
                      [gridOptions]="gridOptions"
                      [rowData]="rowData"

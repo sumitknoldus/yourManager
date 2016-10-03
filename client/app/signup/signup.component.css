@@ -22,14 +22,17 @@
     margin-left: 29%;
 }
 
+.submit{
+    float: left;
+}
+.signup-btn{
+    color: white;
+    background-color: #26A69A;
+}
+
 .login-button{
     background-color: #26A69A;
     color: white;
-}
-.signup-button{
-    background-color: #26A69A;
-    color: white;
-    font-size: 19px;
 }
 
 .title{
