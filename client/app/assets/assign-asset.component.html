@@ -7,7 +7,7 @@
 
                 <div *ngIf="!isEdit" class="form-group">
                     Choose Hardware type
-                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.assetType" #hardwareType = "ngModel" required>
+                    <select name="hardwareType" class="form-control" [(ngModel)]="asset.assetType" #hardwareType = "ngModel" (click)="getAvailableAssetList(hardwareType.value)"  required>
                         <option *ngFor="let hardware of hardwareTypes" [value]="hardware">{{hardware}}</option>
                     </select>
                 </div>
@@ -22,45 +22,45 @@
 
 
                         <div>
-                        <div class="form-group">
-                            <div class="col-xs-5">
-                                <label for="">Employee ID: </label>
-                            </div>
-                            <div class="col-xs-7">
-                                <select name="employee" class="form-control" [(ngModel)]="selectedEmployee.empId" required #empId="ngModel" (click)="verifyUserRequest()">
-                                    <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
-                                </select>
-                            </div>
-                            <div *ngIf="!errorMsg" class="col-xs-12" [hidden]="empId.valid || empId.pristine"
-                                 class="alert alert-danger">
-                                Employee Id is required
-                            </div>
-                            <div class="col-xs-12 alert alert-danger" *ngIf="errorMsg">
-                                Cannot assign asset, user already have an asset
-                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-5">
+                                    <label for="">Employee ID: </label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <select name="employee" class="form-control" [(ngModel)]="selectedEmployee.empId" required #empId="ngModel" (click)="verifyUserRequest()">
+                                        <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="!errorMsg" class="col-xs-12" [hidden]="empId.valid || empId.pristine"
+                                     class="alert alert-danger">
+                                    Employee Id is required
+                                </div>
+                                <div class="col-xs-12 alert alert-danger" *ngIf="errorMsg">
+                                    Cannot assign asset, user already have an asset
+                                </div>
 
-                        </div>
-                        <!--<div class="form-group">-->
+                            </div>
+                            <!--<div class="form-group">-->
                             <!--<div class="col-xs-5">-->
-                                <!--<label for="">Employee Name : </label>-->
+                            <!--<label for="">Employee Name : </label>-->
                             <!--</div>-->
                             <!--<div class="col-xs-7">-->
-                                <!--<select name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required #empName="ngModel">-->
-                                    <!--<option *ngFor="let user of users" [value]="user.email">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>-->
-                                <!--</select>-->
+                            <!--<select name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required #empName="ngModel">-->
+                            <!--<option *ngFor="let user of users" [value]="user.email">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>-->
+                            <!--</select>-->
                             <!--</div>-->
                             <!--<div class="col-xs-12" [hidden]="empName.valid || empName.pristine"-->
-                                 <!--class="alert alert-danger">-->
-                                <!--Employee Name is required-->
+                            <!--class="alert alert-danger">-->
+                            <!--Employee Name is required-->
                             <!--</div>-->
-                        <!--</div>-->
+                            <!--</div>-->
                         </div>
                         <div class="form-group">
                             <div class="col-xs-5">
                                 <label for="assetCodeAssign">Asset Code : </label>
                             </div>
                             <div *ngIf = "availableAssets" class="col-xs-7">
-                                <div *ngIf="isAssets">
+                                <div *ngIf="isAssets" >
                                     <select  style="margin-top: 3%;" name="assetCode" id="assetCodeAssign" class="form-control" [(ngModel)]="asset.assetCode" #assetCode = "ngModel" (click) = "getAsset(assetCode.value)">
                                         <option *ngFor="let asset of availableAssets.assetList" [value]="asset.assetCode">{{asset.assetCode}}</option>
 
@@ -72,13 +72,13 @@
                                     </div>
                                 </div>
 
-                                <select  *ngIf="!isAssets" style="margin-top: 3%;" id="noAssetData" class="form-control">
+                                <select [disabled]="true" *ngIf="!isAssets" style="margin-top: 3%;" id="noAssetData" class="form-control">
                                     <option>No Assets Found</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div *ngIf="isAssets" class="form-group">
                             <div class="col-xs-5">
                                 <label for="dateOfIssue">Date of Issue : </label>
                             </div>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div *ngIf="isAssets"   class="form-group">
                         <div class="col-xs-5">
                             <label for="model">Model : </label>
                         </div>
@@ -120,7 +120,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div *ngIf="isAssets" class="form-group">
                         <div class="col-xs-5">
                             <label for="shippingDate">Shipping Date : </label>
                         </div>

@@ -21,17 +21,19 @@ export class UserComponent {
 
   constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
-
+  isResult = false;
+  noResultIcon ='';
+  noResultFound='';
   ngOnInit() {
     this.route.data.forEach((data: { assets: Asset[]}) => {
       if(data.assets.length > 0) {
         this.columnDefs = this.createColumnDefs(data.assets[0]);
         this.rowData = this.createDataRows(data.assets)
+        this.isResult = true;
       } else {
-        console.log("erorrrrrrrrrrrrrrrrrrrrrrrr")
-        swal(
-          'No Data Found'
-        )
+        this.noResultIcon = "../../assets/images/warning.png";
+        this.noResultFound = "../../assets/images/no-result.png";
+        this.isResult = false;
       }
     });
   }

@@ -23,6 +23,9 @@ import {ClickableComponent} from "./clickable-update.component";
 
 export class SearchAssetComponent implements OnInit {
   @Input() public allocatedAssetsList: Asset[] = [];
+  isResult = false;
+  noResultIcon ='';
+  noResultFound='';
   mode = 'Observable';
   public errorMessage = '';
   public selectedId: string;
@@ -39,15 +42,13 @@ export class SearchAssetComponent implements OnInit {
   ngOnInit() {
     this.route.data.forEach((data: { assets: Asset[]}) => {
       if(data.assets.length > 0){
-        console.log(JSON.stringify(data.assets))
+        this.isResult = true;
         this.columnDefs = this.createColumnDefs(data.assets[0]);
         this.rowData = this.createDataRows(data.assets);
       } else {
-        swal(
-          'Error !!!',
-          'No Record Found',
-          'error'
-        )
+        this.noResultIcon = "../../assets/images/warning.png";
+        this.noResultFound = "../../assets/images/no-result.png";
+        this.isResult = false;
       }
     });
 

@@ -64,19 +64,20 @@ export class AddAssetComponent {
    * it calls the service method to get all the available assets of that type.
    * @param asset
    */
-  getAvailableAssetList(asset: string){
-    if(asset != ""){
-      this.assetService.getAvailableAssetList(asset).subscribe(
-        data => {
-          this.availableAssets = data;
-        },
-        error => swal(
-          'error',
-          ''+JSON.stringify(error),
-          'error'
-        )
-      )
-    }
-  }
+  //getAvailableAssetList(asset: string){
+  //  if(asset != ""){
+  //    this.assetService.getAvailableAssetList(asset).subscribe(
+  //      data => {
+  //        console.log("++"+JSON.stringify(availableAssets));
+  //        this.availableAssets = data;
+  //      },
+  //      error => swal(
+  //        'error',
+  //        ''+JSON.stringify(error),
+  //        'error'
+  //      )
+  //    )
+  //  }
+  //}
 
 }
