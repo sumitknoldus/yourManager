@@ -27,7 +27,9 @@ export class ListComponent implements OnInit{
   @Input()
   public allocatedAssetsList: Asset[] = [];
   cell:any;
-
+  isResult = false;
+    noResultIcon ='';
+    noResultFound='';
   mode = 'Observable';
   public errorMessage = '';
   public selectedId: string;
@@ -43,13 +45,12 @@ export class ListComponent implements OnInit{
     this.route.data.forEach((data: { assets: Asset[]}) => {
       if(data.assets.length > 0) {
         this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
-        this.gridOptions.rowData = this.createDataRows(data.assets)
+        this.gridOptions.rowData = this.createDataRows(data.assets);
+        this.isResult= true;
       } else {
-        swal(
-          'Error !!!',
-          'No Record Found',
-          'error'
-        )
+          this.noResultIcon = "../../assets/images/warning.png";
+          this.noResultFound = "../../assets/images/no-result.png";
+        this.isResult = false;
       }
     });
   }
