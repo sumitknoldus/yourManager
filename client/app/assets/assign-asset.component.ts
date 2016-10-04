@@ -8,7 +8,7 @@ import 'rxjs/add/observable/throw';
 @Component({
   moduleId:module.id,
   selector: 'ym-assign-asset',
-  templateUrl: 'add-asset.component.html',
+  templateUrl: 'assign-asset.component.html',
   styleUrls: ['add-asset.component.css']
 })
 
@@ -19,7 +19,7 @@ export class AssignAssetComponent{
    ngOnInit(){
        this.getAllEmp();
    }
-
+    isAssets: boolean= true;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
   isAssign: boolean = true;
 
@@ -101,8 +101,16 @@ export class AssignAssetComponent{
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
         data => {
+            this.availableAssets = data;
+            if(this.availableAssets.availableStock === 0){
+                this.isAssets = false;
+            }
+            else{
+                this.isAssets = true;
 
-          this.availableAssets = data;
+                console.log("++"+JSON.stringify(this.availableAssets));
+            }
+
         },
         error => swal(
           'error',

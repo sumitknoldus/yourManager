@@ -15,43 +15,44 @@ import {ClickableComponent} from "./clickable-update.component";
 
 
 @Component({
-    moduleId:module.id,
-    selector: 'ym-admin',
-    templateUrl: 'search-asset.component.html',
-    styleUrls:['search-asset.component.css'],
+  moduleId:module.id,
+  selector: 'ym-admin',
+  templateUrl: 'search-asset.component.html',
+  styleUrls:['search-asset.component.css'],
 })
 
 export class SearchAssetComponent implements OnInit {
-   @Input() public allocatedAssetsList: Asset[] = [];
-    mode = 'Observable';
-    public errorMessage = '';
-    public selectedId: string;
-    private gridOptions:GridOptions = <GridOptions>{};
+  @Input() public allocatedAssetsList: Asset[] = [];
+  isResult = false;
+  noResultIcon ='';
+  noResultFound='';
+  mode = 'Observable';
+  public errorMessage = '';
+  public selectedId: string;
+  private gridOptions:GridOptions = <GridOptions>{};
   columnDefs = [];
   rowData = [];
   headers = [];
 
 
   constructor(private assetService: AssetService,
-                private router: Router,
-                private route: ActivatedRoute) {}
+              private router: Router,
+              private route: ActivatedRoute) {}
 
-    ngOnInit() {
-      this.route.data.forEach((data: { assets: Asset[]}) => {
-        if(data.assets.length > 0){
-          console.log(JSON.stringify(data.assets))
-          this.columnDefs = this.createColumnDefs(data.assets[0]);
-          this.rowData = this.createDataRows(data.assets);
-        } else {
-          swal(
-            'Error !!!',
-            'No Record Found',
-          'error'
-          )
-        }
-      });
+  ngOnInit() {
+    this.route.data.forEach((data: { assets: Asset[]}) => {
+      if(data.assets.length > 0){
+        this.isResult = true;
+        this.columnDefs = this.createColumnDefs(data.assets[0]);
+        this.rowData = this.createDataRows(data.assets);
+      } else {
+        this.noResultIcon = "../../assets/images/warning.png";
+        this.noResultFound = "../../assets/images/no-result.png";
+        this.isResult = false;
+      }
+    });
 
-    }
+  }
 
   /**
    * This method returns column headers for ag-Grid
