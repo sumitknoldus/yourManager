@@ -73,7 +73,7 @@ export function verficationEmail(req, res, next){
     newUser = new User(req.body);
     verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
     var mailOptions = {
-        from: '"Admin ?" <yourmanager.knoldus@gmail.com>', // sender address
+        from: '"Admin" <yourmanager.knoldus@gmail.com>', // sender address
         to: newUser.email, // list of receivers
         subject: 'Account Verification', // Subject line
        text: "Your Verification Token is: " + verifyTokenNo, // plaintext body
