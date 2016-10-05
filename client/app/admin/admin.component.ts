@@ -30,13 +30,4 @@ export class AdminComponent{
     }
   }
 
-  //addHardware() {
-  //  this.router.navigate(['/admin/asset/add']);
-  //}
-
-
-  //logout() {
-  //  localStorage.removeItem('user');
-  //  this.router.navigate(['/login']);
-  //}
 }

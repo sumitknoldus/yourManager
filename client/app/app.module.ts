@@ -31,7 +31,7 @@ import {AdminModule} from "./admin/admin.module";
     DashboardModule,
     HomeModule,
     AssetModule,
-    AdminModule
+    AdminModule,
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],

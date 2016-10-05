@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 
-import {Router, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute, Params} from "@angular/router";
 import {AssetService} from "./asset.service";
 import {OnInit} from "angular2/core";
 import {GridOptions} from "ag-grid/main";
 import {Asset} from "../shared/model/asset";
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   moduleId:module.id,
@@ -18,6 +19,7 @@ export class UserComponent {
   private gridOptions:GridOptions =  <GridOptions>{};
   private columnDefs = [];
   private rowData = [];
+  newUserMessage = "";
 
   constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
@@ -36,6 +38,20 @@ export class UserComponent {
         this.isResult = false;
       }
     });
+
+    let param;
+
+    this.route.params.forEach((params: Params) => {
+      param = params['user'];
+    });
+
+    if(param === 'new'){
+      let name = JSON.parse(localStorage.getItem('user')).firstName;
+      this.newUserMessage = "Welcome " + name + ", you have successfully signed up !!!"
+      let timer = Observable.timer(2000);
+      timer.subscribe(data => this.newUserMessage = "")
+    }
+
   }
 
   /**

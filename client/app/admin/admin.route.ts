@@ -64,6 +64,13 @@ const routes:Routes = [
                 resolve: {
                     assets: UserResolve
                 }
+            },{
+                path: 'user/:user',
+                component: UserComponent,
+                canActivate: [UserGuard],
+                resolve: {
+                    assets: UserResolve
+                }
             },
         ]
     }

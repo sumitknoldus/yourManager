@@ -14,10 +14,10 @@
                         </div>
                         <div class="col-sm-10 col-xs-7">
                             <input [(ngModel)]="user.firstName" class="form-control" id="fName"
-                                   type="text" name="firstName" required #fName="ngModel">
+                                   type="text" name="firstName" required #fName="ngModel" pattern="[A-z]{3,20}">
                             <div [hidden]="fName.valid || fName.pristine"
                                  class="alert alert-danger">
-                                First Name is required
+                                Enter a valid first name.(Range : 3-20 characters)
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,11 @@
                         </div>
                         <div class="col-sm-4 col-xs-7">
                             <input [(ngModel)]="user.middleName" class="form-control" id="mName"
-                                   type="text" name="middleName">
+                                   type="text" name="middleName" #mName="ngModel" pattern="[A-z]{3,20}">
+                            <div [hidden]="mName.valid || mName.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid middle name.(Range : 3-20 characters)
+                            </div>
                         </div>
                         <div class="col-sm-2 col-xs-5">
                             <label for="lName">Last Name: </label>
@@ -36,10 +40,10 @@
                         <div class="col-sm-4 col-xs-7">
 
                             <input [(ngModel)]="user.lastName" class="form-control" id="lName"
-                                   type="text" name="lastName" required #lName="ngModel">
+                                   type="text" name="lastName" required #lName="ngModel" pattern="[A-z]{3,20}">
                             <div [hidden]="lName.valid || lName.pristine"
                                  class="alert alert-danger">
-                                Last Name is required
+                                Enter a valid last name.(Range : 3-20 characters)
                             </div>
                         </div>
                     </div>
@@ -50,32 +54,21 @@
                         </div>
                         <div class="col-sm-4 col-xs-7">
                             <input [(ngModel)]="user.number" class=" form-control" id="number"
-                                   type="number" name="number" required #number="ngModel">
+                                   type="test" name="number" required #number="ngModel" pattern="[0-9]{10}">
                             <div [hidden]="number.valid || number.pristine"
                                  class="alert alert-danger">
-                                Phone Number is required
+                                Enter a valid phone number(10 digits)
                             </div>
                         </div>
-                        <div class="col-sm-2 col-xs-5  ">
-                            <label for="number">Employee Id: </label>
-                        </div>
-                        <div class="col-sm-4 col-xs-7">
-                            <input [(ngModel)]="user.empId" class=" form-control" id="empCode"
-                                   type="text" name="empId" required #empId="ngModel">
-                            <div [hidden]="empId.valid || empId.pristine"
-                                 class="alert alert-danger">
-                                Employee Id is required
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <div class="col-sm-2 col-xs-5  ">
                             <label for="gender">Gender: </label>
                         </div>
-                        <div class="col-sm-10 col-xs-7">
-                            <input [(ngModel)]="user.gender" class=" form-control" id="gender"
-                                   type="text" name="gender" required #gender="ngModel">
+                        <div class="col-sm-4 col-xs-7">
+                            <select [(ngModel)]="user.gender" class=" form-control" id="gender"
+                                    type="text" name="gender" required #gender="ngModel">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                             <div [hidden]="gender.valid || gender.pristine"
                                  class="alert alert-danger">
                                 Gender is required
@@ -89,11 +82,11 @@
                         </div>
 
                         <div class="col-sm-10 col-xs-7">
-                            <input [(ngModel)]="user.email" class="  form-control" id="email"
-                                   type="email" name="email" required #email="ngModel">
+                            <input [(ngModel)]="user.email" class="  form-control" id="email" type="text" name="email"
+                                   required #email="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@knoldus.+(com|in)$">
                             <div [hidden]="email.valid || email.pristine"
                                  class="alert alert-danger">
-                                Email is required
+                                Enter a valid knoldus email id
                             </div>
                         </div>
                     </div>
@@ -105,10 +98,10 @@
                         </div>
                         <div class="col-sm-10 col-xs-7">
                             <input [(ngModel)]="user.password" class="  form-control" id="password"
-                                   type="password" name="password" required #password="ngModel">
+                                   type="password" name="password" required #password="ngModel" pattern="[A-z0-9]{8,}">
                             <div [hidden]="password.valid || password.pristine"
                                  class="alert alert-danger">
-                                Password is required
+                                Enter a valid password(must be greater than 8 characters)
                             </div>
                         </div>
                     </div>
@@ -116,8 +109,8 @@
                     <div class="col-xs-3 text-center ">
                         <button class="btn btn-warning" (click)="goBack()" type="button">Back</button>
                     </div>
-                    <div class="col-xs-3 col-xs-offset-6  ">
-                        <button class="btn waves-effect waves-light" type="submit" name="action"
+                    <div class="col-xs-3 col-xs-offset-6" style="float: left">
+                        <button class="btn waves-effect waves-light signup-btn" type="submit" name="action"
                                 [disabled]="!signupForm.form.valid">Sign Up
                         </button>
                     </div>
