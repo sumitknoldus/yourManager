@@ -34,6 +34,7 @@ export class SignupComponent {
    */
     signup(selectedUser:User) {
       selectedUser.role = 'user';
+      selectedUser.empId = '';
       console.log("--------selected user" + JSON.stringify(selectedUser))
         this.signupService.verification(selectedUser)
             .subscribe(data => {
