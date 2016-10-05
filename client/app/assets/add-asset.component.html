@@ -127,7 +127,6 @@
                         <div class="col-xs-7">
                             <input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>
                         </div>
-                        <p *ngIf="field.errors?.date">error message</p>
                         <div [hidden]="shippingDate.valid || shippingDate.pristine"
                              class="alert alert-danger">
                             Shipping Date Id is required

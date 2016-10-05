@@ -48,7 +48,7 @@ export class UserComponent {
     if(param === 'new'){
       let name = JSON.parse(localStorage.getItem('user')).firstName;
       this.newUserMessage = "Welcome " + name + ", you have successfully signed up !!!"
-      let timer = Observable.timer(2000)
+      let timer = Observable.timer(2000);
       timer.subscribe(data => this.newUserMessage = "")
     }
 
