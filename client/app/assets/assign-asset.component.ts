@@ -33,42 +33,19 @@ export class AssignAssetComponent{
 
   objectId = "";
 
-  asset = {
-    empId:"",
-    empName: "",
-    assetType: "",
-    model: "",
-    assetCode: "",
-    shippingDate: "",
-    dateOfIssue: "",
-    dateOfReturn: "",
-    warrantyEndDate:"",
-    lastMaintenanceDate:"",
-    specs:{
-      RAM:"",
-      HD:"",
-      Processor:""
-    },
-    isAvailable:""
-  };
+  asset:Asset = new Asset;
+
     users = [{}];
     selectedEmployee = {email:'',empId:''};
     errorMsg = false;
-    users:User = {
-        empId:'',
-        empName:'',
-        email:'',
-        firstName:'',
-        lastName:'',
-        middleName:''
-    }
+    users:User = new User;
 
     verifyUserRequest(){
         this.selectedEmployee.assetType = this.asset.assetType;
         this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
             if(data.status === 203){
                 this.errorMsg = true;
-
+              //this.asset = {}
             }
             else{
                 this.errorMsg = false;
@@ -98,6 +75,10 @@ export class AssignAssetComponent{
    * @param asset
    */
   getAvailableAssetList(asset: string){
+    this.asset = new Asset;
+    this.asset.assetType = asset;
+    this.selectedEmployee.empId = '';
+    this.errorMsg = false;
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
         data => {
@@ -107,10 +88,7 @@ export class AssignAssetComponent{
             }
             else{
                 this.isAssets = true;
-
-                console.log("++"+JSON.stringify(this.availableAssets));
             }
-
         },
         error => swal(
           'error',
