@@ -56,7 +56,17 @@ export function listAssets(req, res, next) {
 
     return Assets.find({}).exec()
         .then(users => {
-            res.status(200).json(users);
+            var result= [];
+            for(var i=0;i<users.length;i++){
+                if(users[i].empId === ""){
+
+                }
+                else{
+
+                    result.push(users[i])
+                }
+            }
+            res.status(200).json(result);
         })
         .catch(handleError(res));
 }

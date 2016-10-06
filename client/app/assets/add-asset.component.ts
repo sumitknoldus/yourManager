@@ -50,8 +50,15 @@ export class AddAssetComponent {
    * @param asset
    */
   submit(asset: Asset){
+
+    asset.assetCode = asset.assetCode.replace(/[\s]/g, '');
     this.assetService.addAsset(asset).subscribe(
-      res => this.router.navigate(['admin/asset/list']),
+      res => {
+          this.router.navigate(['admin/asset/list'])
+          swal({   title: "Asset successfully added.",   text: "I will close in 1 seconds.",   timer: 1000,   showConfirmButton: false });
+
+      },
+
       error =>  swal(
         'Error',
         ''+JSON.stringify(error),
@@ -59,25 +66,5 @@ export class AddAssetComponent {
       ))
   }
 
-  /**
-   * This method is called when user selects an asset type,
-   * it calls the service method to get all the available assets of that type.
-   * @param asset
-   */
-  //getAvailableAssetList(asset: string){
-  //  if(asset != ""){
-  //    this.assetService.getAvailableAssetList(asset).subscribe(
-  //      data => {
-  //        console.log("++"+JSON.stringify(availableAssets));
-  //        this.availableAssets = data;
-  //      },
-  //      error => swal(
-  //        'error',
-  //        ''+JSON.stringify(error),
-  //        'error'
-  //      )
-  //    )
-  //  }
-  //}
 
 }

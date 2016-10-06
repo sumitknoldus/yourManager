@@ -13,8 +13,8 @@ var smtpConfig = {
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: 'yourmanager.knoldus@gmail.com',
-        pass: 'yourmanager'
+        user: 'sumit@knoldus.com',
+        pass: 'hrhk@1234'
     }
 };
 // create reusable transporter object using the default SMTP transport
@@ -72,13 +72,83 @@ export function getAllEmps(req, res) {
 export function verficationEmail(req, res, next){
     newUser = new User(req.body);
     verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
+    var userName = newUser.firstName +" "+ newUser.lastName;
+    //fs.readFile("verification.html", function(err, data){
+    //
+    //});
+
     var mailOptions = {
-        from: '"Admin ?" <yourmanager.knoldus@gmail.com>', // sender address
+        from: '"Admin" <sumit@knoldus.com>', // sender address
         to: newUser.email, // list of receivers
         subject: 'Account Verification', // Subject line
-       text: "Your Verification Token is: " + verifyTokenNo, // plaintext body
-       // html:'<b>verifyTokenNo</b>'
-        //html: ' your token is: " +verifyTokenNo+ " ' // html body
+//        html: '<h3> hi </h3>'+ '<h3>'+ userName +'</h3>' + '<b>'+verifyTokenNo+'</b>'
+        html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Code Squad</title>
+</head>
+<body style="font-size:12px; padding:0; font-family:Arial,Helvetica,sans-serif;color:#333;margin:0" text-align="left">
+<table class="main" style="max-width: 100%; margin:15px; display: block; padding: 20px; text-align:left; border: #aaa solid 1px;" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        <h1 style="color:#26A69A;">YourManager</h1>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>`
+                         + '<h3> hi ' + userName + ',</h3>' +
+
+                        '<b> Your verification token is: '+verifyTokenNo+'</b>' +
+                    `</td>
+                </tr>
+                <tr>
+                    <td>
+                        If you have any questions or need assistance, feel free to email us at <a href="mailto:admin@knoldus.freshdesk.com">admin@knoldus.freshdesk.com</a>
+                        <br>
+                        <br> Regards<br>
+                        Admin, <br/>
+                        Knoldus Software LLP.
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<table width="100%" align="left" style="padding:0 20px;border:0">
+    <tr>
+        <td>
+            <address style="font-style:normal;">
+                <strong><span style="color:#4078C0;">YourManager</span></strong><br/>
+                SDF L-11, Noida Special Economic Zone<br/>
+                Sector 81<br/>
+                Noida, Uttar Pradesh 201305<br/>
+                India<br/>
+                <abbr title="Phone">P:</abbr> +91 - 1142316525
+            </address>
+        </td>
+        <td>
+            Follow YourManager<br>
+            <div>
+                <a href="https://www.facebook.com/KnoldusSoftware/">
+                    <div style="width: 24px; margin-right:2%; font-weight:bold; height: 24px; line-height:23px; background: #00A9E0; color:white; font:bold; -moz-border-radius: 3%; -webkit-border-radius: 3%; border-radius: 80%; float:left;"><center>f</center></div>
+                </a>
+                <a href="https://twitter.com/Knolspeak/media">
+                    <div style="width: 24px; margin-right:2%; font-weight:bold; height: 24px; line-height:23px; background: #00A9E0; color:white; font:bold; -moz-border-radius: 3%; -webkit-border-radius: 3%; border-radius: 80%; float:left;"><center>t</center></div>
+                </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+    </tr>
+</table>
+</body>
+</html>`
     };
 
     User.findOne({email:newUser.email}).then(user => {
@@ -97,9 +167,6 @@ export function verficationEmail(req, res, next){
         else{
             res.status(409).send({'status':'Duplicate record'});
         }
-
-
-
     })
     .catch(validationError(res));
 
