@@ -5,11 +5,25 @@ export class Asset {
     assetType: string;
     model: string;
     assetCode: string;
-    shippingDate: Date;
+    shippingDate: string;
     dateOfIssue: string;
     dateOfReturn: string;
-    warrantyEndDate:string;
+    warrantyEndDate: string;
     lastMaintenanceDate:string;
     specs:Specs;
     isAvailable:boolean;
+
+    constructor(){
+        this.empId = '';
+        this.empName = '';
+        this.assetType = '';
+        this.model = '';
+        this.assetCode = '';
+        this.shippingDate ='';
+        this.dateOfIssue = '';
+        this.dateOfReturn = '';
+        this.lastMaintenanceDate = '';
+        this.specs = new Specs;
+        this.isAvailable = true;
+    }
 }
