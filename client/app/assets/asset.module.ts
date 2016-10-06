@@ -13,7 +13,6 @@ import {AgGridModule} from "ag-grid-ng2/main";
 import {ListAssetResolve} from "./list-asset-resolve";
 import {ClickableComponent} from "./clickable-update.component";
 import {UserComponent} from "./user.component";
-import {UserResolve} from "./user-resolve";
 import {UserGuard} from "../user.guard";
 import {AdminGuard} from "../admin.guard";
 //import {NewUserComponent} from "./new-employee.component";
@@ -22,6 +21,6 @@ import {AdminGuard} from "../admin.guard";
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
   declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
-  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, UserResolve ]
+  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve ]
 })
 export class AssetModule {}

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Rx';
 @Component({
   moduleId:module.id,
   selector: 'user',
-  templateUrl: 'search-asset.component.html',
+  templateUrl: 'user.component.html',
   styleUrls:['search-asset.component.css'],
 })
 
@@ -19,7 +19,8 @@ export class UserComponent {
   private gridOptions:GridOptions =  <GridOptions>{};
   private columnDefs = [];
   private rowData = [];
-  newUserMessage = "";
+  message = "";
+  id;
 
   constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
@@ -27,31 +28,32 @@ export class UserComponent {
   noResultIcon ='';
   noResultFound='';
   ngOnInit() {
-    this.route.data.forEach((data: { assets: Asset[]}) => {
-      if(data.assets.length > 0) {
-        this.columnDefs = this.createColumnDefs(data.assets[0]);
-        this.rowData = this.createDataRows(data.assets)
-        this.isResult = true;
-      } else {
-        this.noResultIcon = "../../assets/images/warning.png";
-        this.noResultFound = "../../assets/images/no-result.png";
-        this.isResult = false;
-      }
-    });
-
-    let param;
-
-    this.route.params.forEach((params: Params) => {
-      param = params['user'];
-    });
-
-    if(param === 'new'){
+    this.id = JSON.parse(localStorage.getItem('user')).empId;
+    if(this.id != ''){
+      this.assetService.getAllocatedAssets(this.id).subscribe(
+        assets => {
+          if(assets.length > 0) {
+            this.columnDefs = this.createColumnDefs(assets[0]);
+            this.rowData = this.createDataRows(assets);
+            this.isResult = true;
+          } else {
+            this.noResultIcon = "../../assets/images/warning.png";
+            this.noResultFound = "../../assets/images/no-result.png";
+            this.isResult = false;
+          }
+        },
+        error => alert(error)
+      )
+    } else{
       let name = JSON.parse(localStorage.getItem('user')).firstName;
-      this.newUserMessage = "Welcome " + name + ", you have successfully signed up !!!"
-      let timer = Observable.timer(2000);
-      timer.subscribe(data => this.newUserMessage = "")
+      if(JSON.parse(localStorage.getItem('user')).showMessage){
+        this.message = "Welcome " + name + ", you have successfully signed up.";
+      }
+      let timer = Observable.timer(5000);
+      timer.subscribe(data => this.message = "")
+      this.noResultIcon = "../../assets/images/warning.png";
+      this.noResultFound = "../../assets/images/no-result.png";
     }
-
   }
 
   /**

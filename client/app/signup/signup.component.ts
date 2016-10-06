@@ -51,7 +51,7 @@ export class SignupComponent {
                         this.signupService.signup(password)
                             .subscribe(data => {
                                     localStorage.setItem('user', JSON.stringify(data));
-                                    this.router.navigate(['admin/user','new']);
+                                    this.router.navigate(['admin/user']);
                                 },
                                 error => swal(
                                   'error',

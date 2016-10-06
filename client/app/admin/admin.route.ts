@@ -7,7 +7,6 @@ import {SearchAssetResolve} from "../assets/search-asset-resolve";
 import {SearchAssetComponent} from "../assets/search-asset.component";
 import {AssignAssetComponent} from "../assets/assign-asset.component";
 import {AddAssetComponent} from "../assets/add-asset.component";
-import {UserResolve} from "../assets/user-resolve";
 import {UserComponent} from "../assets/user.component";
 import {UserGuard} from "../user.guard";
 //import {NewUserComponent} from "../assets/new-employee.component";
@@ -60,20 +59,9 @@ const routes:Routes = [
             {
                 path: 'user',
                 component: UserComponent,
-                canActivate: [UserGuard],
-                resolve: {
-                    assets: UserResolve
-                }
-            },{
-                path: 'user/:user',
-                component: UserComponent,
-                canActivate: [UserGuard],
-                resolve: {
-                    assets: UserResolve
-                }
-            },
+                canActivate: [UserGuard]
+            }
         ]
     }
 ];
 export const adminRouting = RouterModule.forChild(routes);
-
