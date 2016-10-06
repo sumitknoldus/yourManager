@@ -73,15 +73,10 @@ export function verficationEmail(req, res, next){
     newUser = new User(req.body);
     verifyTokenNo = ""+Math.floor(100000 + Math.random() * 900000);
     var userName = newUser.firstName +" "+ newUser.lastName;
-    //fs.readFile("verification.html", function(err, data){
-    //
-    //});
-
     var mailOptions = {
         from: '"Admin" <sumit@knoldus.com>', // sender address
         to: newUser.email, // list of receivers
         subject: 'Account Verification', // Subject line
-//        html: '<h3> hi </h3>'+ '<h3>'+ userName +'</h3>' + '<b>'+verifyTokenNo+'</b>'
         html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -102,7 +97,7 @@ export function verficationEmail(req, res, next){
                 </tr>
                 <tr>
                     <td>`
-                         + '<h3> hi ' + userName + ',</h3>' +
+                         + '<h3> Hi ' + userName + ',</h3>' +
 
                         '<b> Your verification token is: '+verifyTokenNo+'</b>' +
                     `</td>

@@ -122,10 +122,15 @@
 
                     <div class="form-group">
                         <div class="col-xs-5">
-                            <label for="shippingDate">Shipping Date : </label>
+                            <label>Shipping Date : </label>
                         </div>
                         <div class="col-xs-7">
-                            <input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>
+                            <!--<input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>-->
+                            <input name="shippingDate"
+                                    [(ngModel)]="asset.shippingDate" ng2-datetime-picker
+                                   date-only="true"
+                                   #shippingDate="ngModel"
+                            />
                         </div>
                         <div [hidden]="shippingDate.valid || shippingDate.pristine"
                              class="alert alert-danger">

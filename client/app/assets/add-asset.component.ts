@@ -9,7 +9,7 @@ import 'rxjs/add/observable/throw';
   moduleId:module.id,
   selector: 'ym-add-asset',
   templateUrl: 'add-asset.component.html',
-  styleUrls: ['add-asset.component.css']
+  styleUrls: ['add-asset.component.css'],
 })
 
 export class AddAssetComponent {
