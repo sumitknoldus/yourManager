@@ -66,8 +66,8 @@
                         <div class="col-sm-4 col-xs-7">
                             <select [(ngModel)]="user.gender" class=" form-control" id="gender"
                                     type="text" name="gender" required #gender="ngModel">
-                                <option value="Male">Male</option>
                                 <option value="Female">Female</option>
+                                <option value="Male">Male</option>
                             </select>
                             <div [hidden]="gender.valid || gender.pristine"
                                  class="alert alert-danger">

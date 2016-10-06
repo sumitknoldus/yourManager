@@ -1,0 +1,24 @@
+
+<div *ngIf="message" class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>{{message}}</strong>
+</div>
+
+<div *ngIf="!isResult">
+    <img style="margin-top:7%; margin-left: 28%" [src]="noResultIcon">
+    <img style="margin-top:-13%; margin-left: 43%" [src]="noResultFound">
+</div>
+
+<div *ngIf="isResult" class="row" style="padding-top: 70px;">
+
+    <ag-grid-ng2 style="width: 100%; height: 70%;" #agGrid class="ag-material"
+                 [gridOptions]="gridOptions"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 enableSorting
+                 enableFilter
+                 rowHeight="50"
+                 rowSelection="multiple">
+    </ag-grid-ng2>
+
+</div>

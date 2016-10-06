@@ -15,3 +15,10 @@ table {
     border: 1px solid #ddd;
 }
 
+.alert-success {
+    color: white;
+    background: #26A69A;
+    /*background-color: #26A69A;*/
+    border-color: #26A69A;
+}
+
