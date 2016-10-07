@@ -19,8 +19,6 @@ import {AdminGuard} from "./admin.guard";
 import {UserGuard} from "./user.guard";
 import {LoginGuard} from "./login.guard";
 import {AdminModule} from "./admin/admin.module";
-//noinspection TypeScriptCheckImport
-
 
 
 @NgModule({
