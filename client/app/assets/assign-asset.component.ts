@@ -106,7 +106,14 @@ export class AssignAssetComponent{
    */
   submit(asset: Asset) {
     this.asset.empId = this.selectedEmployee.empId;
-    //this.asset.empName =;
+
+    DateTime.parse = (str: any) => moment(str).toDate();
+    let doi = DateTime.parse(asset.dateOfIssue);
+    asset.dateOfIssue = DateTime.formatDate(doi, true)
+    let dor = DateTime.parse(asset.dateOfIssue);
+    asset.dateOfReturn = DateTime.formatDate(dor, true)
+    let wed = DateTime.parse(asset.dateOfIssue);
+    asset.warrantyEndDate = DateTime.formatDate(wed, true)
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);

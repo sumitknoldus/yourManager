@@ -38,6 +38,7 @@ export class AddAssetComponent {
    */
   submit(asset: Asset){
     asset.assetCode = asset.assetCode.replace(/[\s]/g, '');
+
     this.assetService.addAsset(asset).subscribe(
       res => {
           this.router.navigate(['admin/asset/list']);
