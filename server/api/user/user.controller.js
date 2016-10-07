@@ -182,7 +182,8 @@ export function create(req, res, next) {
                     expiresIn: 60 * 60 * 5
                 });
 
-                res.json( user );
+                res.status(200).send( {'message':true,'user':user});
+
             })
             .catch(validationError(res));
     }
