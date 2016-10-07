@@ -83,7 +83,7 @@
 
                         <div class="col-sm-10 col-xs-7">
                             <input [(ngModel)]="user.email" class="  form-control" id="email" type="text" name="email"
-                                   required #email="ngModel" pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@knoldus.+(com|in)$">
+                                   required #email="ngModel" pattern="^[a-zA-Z0-9.$%&’*+\/=?^_`{|}~-]+@knoldus.+(com|in)$">
                             <div [hidden]="email.valid || email.pristine"
                                  class="alert alert-danger">
                                 Enter a valid knoldus email id

@@ -4,6 +4,7 @@ import {Asset} from "../shared/model/asset";
 import {User} from "../shared/model/user";
 import {AssetService} from "./asset.service";
 import 'rxjs/add/observable/throw';
+import {DateTime} from "ng2-datetime-picker";
 
 @Component({
   moduleId:module.id,
@@ -16,10 +17,10 @@ export class AssignAssetComponent{
 
   constructor(private assetService: AssetService, private router: Router){}
 
-   ngOnInit(){
-       this.getAllEmp();
-   }
-    isAssets: boolean= true;
+  ngOnInit(){
+    this.getAllEmp();
+  }
+  isAssets: boolean= true;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
   isAssign: boolean = true;
 
@@ -35,38 +36,38 @@ export class AssignAssetComponent{
 
   asset:Asset = new Asset;
 
-    users = [{}];
-    selectedEmployee = {email:'',empId:''};
-    errorMsg = false;
-    users:User = new User;
+  users = [{}];
+  selectedEmployee = {email:'',empId:''};
+  errorMsg = false;
+  users:User = new User;
 
-    verifyUserRequest(){
-        this.selectedEmployee.assetType = this.asset.assetType;
-        this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
-            if(data.status === 203){
-                this.errorMsg = true;
-              //this.asset = {}
-            }
-            else{
-                this.errorMsg = false;
-            }
-        },error => swal(
-            'error',
-            ''+JSON.stringify(error),
-            'error'
-        ))
-    }
+  verifyUserRequest(){
+    this.selectedEmployee.assetType = this.asset.assetType;
+    this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
+      if(data.status === 203){
+        this.errorMsg = true;
+        //this.asset = {}
+      }
+      else{
+        this.errorMsg = false;
+      }
+    },error => swal(
+      'error',
+      ''+JSON.stringify(error),
+      'error'
+    ))
+  }
 
-    getAllEmp(){
+  getAllEmp(){
 
-      this.assetService.getAllEmp().subscribe(data => {
-           this.users = data;
+    this.assetService.getAllEmp().subscribe(data => {
+      this.users = data;
 
-      },error => swal(
-          'error',
-          ''+JSON.stringify(error),
-          'error'
-      ))
+    },error => swal(
+      'error',
+      ''+JSON.stringify(error),
+      'error'
+    ))
   }
 
   /**
@@ -82,13 +83,13 @@ export class AssignAssetComponent{
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
         data => {
-            this.availableAssets = data;
-            if(this.availableAssets.availableStock === 0){
-                this.isAssets = false;
-            }
-            else{
-                this.isAssets = true;
-            }
+          this.availableAssets = data;
+          if(this.availableAssets.availableStock === 0){
+            this.isAssets = false;
+          }
+          else{
+            this.isAssets = true;
+          }
         },
         error => swal(
           'error',
@@ -104,8 +105,8 @@ export class AssignAssetComponent{
    * @param asset
    */
   submit(asset: Asset) {
-      this.asset.empId = this.selectedEmployee.empId;
-      //this.asset.empName =;
+    this.asset.empId = this.selectedEmployee.empId;
+    //this.asset.empName =;
     this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);
@@ -127,12 +128,17 @@ export class AssignAssetComponent{
     if(assetCode != ""){
       let objId = this.availableAssets.assetList.find(record => record.assetCode === assetCode)._id
       this.assetService.getById(objId).subscribe(data =>{
-          this.asset.shippingDate = data.shippingDate;
           this.asset.model= data.model;
-          this.asset.warrantyEndDate= data.warrantyEndDate;
-          this.asset.lastMaintenanceDate= data.lastMaintenanceDate;
           this.asset.specs= data.specs;
           this.objectId = data._id;
+          DateTime.formatDate = (date: Date) => moment(date).format('DD-MM-YYYY');
+          this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
+          if(data.lastMaintenanceDate != "") {
+            this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true);
+          }
+          if(data.warrantyEndDate!= "") {
+            this.asset.warrantyEndDate = DateTime.formatDate(data.warrantyEndDate, true);
+          }
         },
         error => swal(
           'error',

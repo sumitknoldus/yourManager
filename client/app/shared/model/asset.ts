@@ -19,7 +19,7 @@ export class Asset {
         this.assetType = '';
         this.model = '';
         this.assetCode = '';
-        this.shippingDate ='';
+        this.shippingDate = '';
         this.dateOfIssue = '';
         this.dateOfReturn = '';
         this.lastMaintenanceDate = '';

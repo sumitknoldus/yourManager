@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {AssetService} from "./asset.service";
 import 'rxjs/add/observable/throw';
+import {DateTime} from "ng2-datetime-picker";
 
 @Component({
   moduleId:module.id,
@@ -17,7 +18,7 @@ export class EditAssetComponent{
   isAssign: boolean = false;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
   isEdit= true;
-  asset = {};
+  asset = new Asset();
   selectedHardwareType = '';
 
 
@@ -33,8 +34,14 @@ export class EditAssetComponent{
    * @param id
    */
   getData(id:string){
-    this.assetService.getById(id).subscribe(data =>
-      this.asset = data,
+    this.assetService.getById(id).subscribe(data =>{
+        this.asset = data;
+        DateTime.formatDate = (date: Date) => moment(date).format('DD-MM-YYYY');
+        this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
+        this.asset.dateOfIssue = DateTime.formatDate(data.dateOfIssue, true);
+        this.asset.dateOfReturn = DateTime.formatDate(data.dateOfReturn, true);
+        this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true)
+      },
       error => swal(
         'error',
         ''+JSON.stringify(error),

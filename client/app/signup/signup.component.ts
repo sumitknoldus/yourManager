@@ -50,7 +50,7 @@ export class SignupComponent {
 
                         this.signupService.signup(password)
                             .subscribe(data => {
-                                    localStorage.setItem('user', JSON.stringify(data));
+                                    localStorage.setItem('user', JSON.stringify(data.user));
                                     this.router.navigate(['admin/user']);
                                 },
                                 error => swal(
