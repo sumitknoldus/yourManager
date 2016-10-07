@@ -28,6 +28,7 @@ export class UserComponent {
   noResultIcon ='';
   noResultFound='';
   ngOnInit() {
+
     this.id = JSON.parse(localStorage.getItem('user')).empId;
     if(this.id != ''){
       this.assetService.getAllocatedAssets(this.id).subscribe(
@@ -46,11 +47,12 @@ export class UserComponent {
       )
     } else{
       let name = JSON.parse(localStorage.getItem('user')).firstName;
-      if(JSON.parse(localStorage.getItem('user')).showMessage){
+      if(localStorage.getItem('message') === true){
         this.message = "Welcome " + name + ", you have successfully signed up.";
+          localStorage.removeItem('message');
       }
       let timer = Observable.timer(5000);
-      timer.subscribe(data => this.message = "")
+      timer.subscribe(data => this.message = "");
       this.noResultIcon = "../../assets/images/warning.png";
       this.noResultFound = "../../assets/images/no-result.png";
     }

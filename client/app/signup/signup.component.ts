@@ -35,7 +35,6 @@ export class SignupComponent {
     signup(selectedUser:User) {
       selectedUser.role = 'user';
       selectedUser.empId = '';
-      console.log("--------selected user" + JSON.stringify(selectedUser))
         this.signupService.verification(selectedUser)
             .subscribe(data => {
                     swal({
@@ -50,7 +49,8 @@ export class SignupComponent {
 
                         this.signupService.signup(password)
                             .subscribe(data => {
-                                    localStorage.setItem('user', JSON.stringify(data));
+                                    localStorage.setItem('user', JSON.stringify(data.user));
+                                    localStorage.setItem('message', data.message);
                                     this.router.navigate(['admin/user']);
                                 },
                                 error => swal(
