@@ -47,11 +47,10 @@ export class UserComponent {
       )
     } else{
       let name = JSON.parse(localStorage.getItem('user')).firstName;
-      if(localStorage.getItem('message') === true){
+      if(localStorage.getItem('message')){
         this.message = "Welcome " + name + ", you have successfully signed up.";
-          localStorage.removeItem('message');
       }
-      let timer = Observable.timer(5000);
+      let timer = Observable.timer(3000);
       timer.subscribe(data => this.message = "");
       this.noResultIcon = "../../assets/images/warning.png";
       this.noResultFound = "../../assets/images/no-result.png";

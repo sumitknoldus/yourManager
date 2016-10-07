@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-sm-4 col-xs-7">
                             <input [(ngModel)]="user.middleName" class="form-control" id="mName"
-                                   type="text" name="middleName" #mName="ngModel" pattern="[A-z]{3,20}">
+                                   type="text" name="middleName" #mName="ngModel">
                             <div [hidden]="mName.valid || mName.pristine"
                                  class="alert alert-danger">
                                 Enter a valid middle name.(Range : 3-20 characters)
