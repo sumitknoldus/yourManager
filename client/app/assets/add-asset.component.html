@@ -127,6 +127,7 @@
                         <div class="col-xs-7">
                             <!--<input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>-->
                             <input name="shippingDate" ng2-datetime-picker
+                                   date-format="DD-MM-YYYY"
                                    class="form-control"
                                    [(ngModel)]="asset.shippingDate"
                                    date-only="true"
@@ -143,10 +144,17 @@
                     <div *ngIf = "asset.assetType === 'Laptop'" class="form-group">
                         <div class="form-group">
                             <div class="col-xs-5">
-                                <label for="warrantyEndDate">Warranty End Date : </label>
+                                <label>Warranty End Date : </label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="date" name="warrantyEndDate" id="warrantyEndDate" class="form-control" [(ngModel)] = "asset.warrantyEndDate" #warrantyEndDate="ngModel" required>
+                                <input name="warrantyEndDate" ng2-datetime-picker
+                                       date-format="DD-MM-YYYY"
+                                       class="form-control"
+                                       [(ngModel)]="asset.warrantyEndDate"
+                                       date-only="true"
+                                       #warrantyEndDate="ngModel"
+                                       required
+                                />
                             </div>
                             <div [hidden]="warrantyEndDate.valid || warrantyEndDate.pristine"
                                  class="alert alert-danger">
@@ -156,10 +164,15 @@
 
                         <div class="form-group">
                             <div class="col-xs-5">
-                                <label for="lastMaintenanceDate">Last Maintainance Date : </label>
+                                <label>Last Maintainance Date : </label>
                             </div>
                             <div class="col-xs-7">
-                                <input type="date" name="lastMaintenanceDate" id="lastMaintenanceDate" class="form-control" [(ngModel)] = "asset.lastMaintenanceDate">
+                                <input name="lastMaintenanceDate" ng2-datetime-picker
+                                       date-format="DD-MM-YYYY"
+                                       class="form-control"
+                                       [(ngModel)]="asset.lastMaintenanceDate"
+                                       date-only="true"
+                                />
                             </div>
                         </div>
 
