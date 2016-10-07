@@ -16,10 +16,11 @@ import {UserComponent} from "./user.component";
 import {UserGuard} from "../user.guard";
 import {AdminGuard} from "../admin.guard";
 //import {NewUserComponent} from "./new-employee.component";
+import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
 
 
 @NgModule({
-  imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot() ],
+  imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot(), Ng2DatetimePickerModule ],
   declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
   providers:    [ AssetService, SearchAssetResolve, ListAssetResolve ]
 })

@@ -20,7 +20,6 @@ import {UserGuard} from "./user.guard";
 import {LoginGuard} from "./login.guard";
 import {AdminModule} from "./admin/admin.module";
 //noinspection TypeScriptCheckImport
-import { Ng2DatetimePickerModule, DateTime } from 'ng2-datetime-picker';
 
 
 
@@ -33,8 +32,7 @@ import { Ng2DatetimePickerModule, DateTime } from 'ng2-datetime-picker';
     DashboardModule,
     HomeModule,
     AssetModule,
-    AdminModule,
-    Ng2DatetimePickerModule
+    AdminModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ],
