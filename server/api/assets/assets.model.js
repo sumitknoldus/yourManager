@@ -13,7 +13,7 @@ var AssetsSchema = new Schema({
     assetType: String,
     model: String,
     assetCode:String,
-    shippingDate: String,
+    shippingDate: Date,
     dateOfIssue: Date,
     dateOfReturn: Date,
     warrantyEndDate: Date,

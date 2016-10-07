@@ -78,6 +78,7 @@ export function listAssets(req, res, next) {
 export function addAssets(req, res, next) {
 
     var newAssets = new Assets(req.body);
+
     Assets.findOne({assetCode:req.body.assetCode}).exec().then(function(asset){
         if(asset){
             res.status(401).send({"message": "Asset already exist."});
@@ -120,7 +121,22 @@ export function verifyUserAsset(req, res) {
  * restriction: 'admin'
  */
 export function getAssetById(req, res, next) {
-
+    //function dateFormat (date, fstr, utc) {
+    //    utc = utc ? 'getUTC' : 'get';
+    //    return fstr.replace (/%[YmdHMS]/g, function (m) {
+    //        switch (m) {
+    //            case '%Y': return date[utc + 'FullYear'] (); // no leading zeros required
+    //            case '%m': m = 1 + date[utc + 'Month'] (); break;
+    //            case '%d': m = date[utc + 'Date'] (); break;
+    //            case '%H': m = date[utc + 'Hours'] (); break;
+    //            case '%M': m = date[utc + 'Minutes'] (); break;
+    //            case '%S': m = date[utc + 'Seconds'] (); break;
+    //            default: return m.slice (1); // unknown code, remove %
+    //        }
+    //        // add leading zero if required
+    //        return ('0' + m).slice (-2);
+    //    });
+    //}
     return Assets.findOne({_id: new ObjectId(req.body._id)}).exec()//({"username" : {$regex : ".*son.*"}});
         .then(user => {
             if (!user) {
