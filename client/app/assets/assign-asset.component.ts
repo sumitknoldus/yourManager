@@ -104,17 +104,28 @@ export class AssignAssetComponent{
    * This method calls the service method to assign an asset
    * @param asset
    */
-  submit(asset: Asset) {
-    this.asset.empId = this.selectedEmployee.empId;
+  submit() {
+    let user = this.users.find(user => user.empId === this.asset.empId)
+    if(user.middleName == null) {
+      this.asset.empName = user.firstName + ' ' +user.lastName;
+    } else {
+      this.asset.empName = user.firstName + ' ' + user.middleName + ' ' +user.lastName;
+    }
+    this.asset.isAvailable = false;
+
+    console.log("selected:::::::::" + JSON.stringify(this.asset))
 
     DateTime.parse = (str: any) => moment(str).toDate();
-    let doi = DateTime.parse(asset.dateOfIssue);
-    asset.dateOfIssue = DateTime.formatDate(doi, true)
-    let dor = DateTime.parse(asset.dateOfIssue);
-    asset.dateOfReturn = DateTime.formatDate(dor, true)
-    let wed = DateTime.parse(asset.dateOfIssue);
-    asset.warrantyEndDate = DateTime.formatDate(wed, true)
-    this.assetService.assignAsset(this.objectId, asset).subscribe(data =>
+    let doi = DateTime.parse(this.asset.dateOfIssue);
+    this.asset.dateOfIssue = DateTime.formatDate(doi, true);
+
+    if(this.asset.assetType == 'Laptop'){
+      let wed = DateTime.parse(this.asset.warrantyEndDate);
+      this.asset.warrantyEndDate = DateTime.formatDate(wed, true);
+    } else{
+      this.asset.warrantyEndDate = "";
+    }
+    this.assetService.assignAsset(this.objectId, this.asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);
       },

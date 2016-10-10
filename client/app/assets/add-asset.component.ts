@@ -19,7 +19,7 @@ export class AddAssetComponent {
   constructor(private assetService: AssetService, private router: Router){}
 
 
-  hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
+  hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
   isAssign: boolean = false;
   availableAssets = {
     availableStock: "",
@@ -30,7 +30,7 @@ export class AddAssetComponent {
   };
 
   @Input()
-  asset = new Asset()
+  asset = new Asset();
 
   /**
    * This method calls the service method to add a new asset
@@ -38,7 +38,7 @@ export class AddAssetComponent {
    */
   submit(asset: Asset){
     asset.assetCode = asset.assetCode.replace(/[\s]/g, '');
-
+    asset.isAvailable = true;
     this.assetService.addAsset(asset).subscribe(
       res => {
           this.router.navigate(['admin/asset/list']);

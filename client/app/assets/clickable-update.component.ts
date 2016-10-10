@@ -13,13 +13,13 @@ import 'rxjs/add/observable/throw';
    <button (click)="returnAsset()" [disabled]="isReturned" class="btn btn-danger btn-sm">Return</button>
     `
 })
-export class ClickableComponent implements AgRendererComponent {
+export class ClickableComponent {
   constructor(private router: Router, private assetService: AssetService){}
   private params:any;
     isReturned:boolean = false;
   agInit(params:any):void {
     this.params = params;
-        if(this.params.data.dateOfReturn !== null){
+        if(this.params.data.dateOfReturn != null){
             this.isReturned= true;
         }
       else{

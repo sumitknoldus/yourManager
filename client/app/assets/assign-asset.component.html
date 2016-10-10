@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-body">
-            <form (ngSubmit) = submit(asset) #assetForm = "ngForm">
+            <form (ngSubmit) = submit() #assetForm = "ngForm">
 
                 <div class="form-group">
                     Choose Hardware type
@@ -19,7 +19,7 @@
                                     <label>Employee ID: </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <select name="employee" class="form-control" [(ngModel)]="selectedEmployee.empId" required #empId="ngModel" (click)="verifyUserRequest()">
+                                    <select name="employee" class="form-control" [(ngModel)]="asset.empId" required #empId="ngModel" (click)="verifyUserRequest()">
                                         <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
                                     </select>
                                 </div>

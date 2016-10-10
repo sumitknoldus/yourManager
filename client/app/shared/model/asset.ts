@@ -23,6 +23,7 @@ export class Asset {
         this.dateOfIssue = '';
         this.dateOfReturn = '';
         this.lastMaintenanceDate = '';
+        this.warrantyEndDate = '';
         this.specs = new Specs;
         this.isAvailable = true;
     }
