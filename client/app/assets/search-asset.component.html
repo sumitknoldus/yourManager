@@ -1,6 +1,7 @@
-<div *ngIf="!isResult">
-    <img style="margin-top:7%; margin-left: 28%" [src]="noResultIcon">
-    <img style="margin-top:-13%; margin-left: 43%" [src]="noResultFound">
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <img style="margin-top:30%;" class="img-responsive" [src]="noResultFound">
+    </div>
 </div>
 
 <div *ngIf="isResult" class="row" style="padding-top: 70px;">

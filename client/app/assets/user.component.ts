@@ -20,6 +20,7 @@ export class UserComponent {
   private columnDefs = [];
   private rowData = [];
   message = "";
+  adminMessage = "";
   id;
 
   constructor(private assetService: AssetService, private route: ActivatedRoute){}
@@ -38,6 +39,7 @@ export class UserComponent {
             this.rowData = this.createDataRows(assets);
             this.isResult = true;
           } else {
+            this.adminMessage = "Contact Admin to get your records added."
             this.noResultIcon = "../../assets/images/warning.png";
             this.noResultFound = "../../assets/images/no-result.png";
             this.isResult = false;
@@ -55,6 +57,7 @@ export class UserComponent {
       this.noResultIcon = "../../assets/images/warning.png";
       this.noResultFound = "../../assets/images/no-result.png";
     }
+
   }
 
   /**
