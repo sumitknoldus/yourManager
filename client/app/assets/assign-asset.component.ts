@@ -37,12 +37,14 @@ export class AssignAssetComponent{
   asset:Asset = new Asset;
 
   users = [{}];
-  selectedEmployee = {email:'',empId:''};
+  selectedEmployee = {assetType:'',empId:''};
   errorMsg = false;
   users:User = new User;
 
   verifyUserRequest(){
+    this.selectedEmployee.empId = this.asset.empId;
     this.selectedEmployee.assetType = this.asset.assetType;
+    console.log(JSON.stringify(this.selectedEmployee));
     this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
       if(data.status === 203){
         this.errorMsg = true;
@@ -59,10 +61,8 @@ export class AssignAssetComponent{
   }
 
   getAllEmp(){
-
     this.assetService.getAllEmp().subscribe(data => {
       this.users = data;
-
     },error => swal(
       'error',
       ''+JSON.stringify(error),
