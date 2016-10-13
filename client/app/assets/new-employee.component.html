@@ -22,7 +22,7 @@
                                 <label for="empId">Employee ID: </label>
                             </div>
                             <div class="col-xs-7" >
-                                <input [disabled]="!isEmpId" type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required>
+                                <input [disabled]="!isEmpId" type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required pattern="[A-z0-9\-]{0,10}">
                             </div>
                             <!--<div class="col-xs-12" class="alert alert-danger">-->
                                 <!--Employee Id is required-->
