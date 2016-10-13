@@ -50,12 +50,18 @@ export class SignupComponent {
               'maxlength': 10,
               'autocapitalize': 'off',
               'autocorrect': 'off'
-            }
+            },
+              inputValidator: function(value) {
+                  console.log(JSON.stringify(value));
+                  return new Promise(function(resolve, reject) {
+                      if (value !== '') {
+                          resolve();
+                      } else {
+                          reject('You cant left this field empty..!!');
+                      }
+                  });
+              }
           }).then(password => {
-            if(password == "") {
-              console.log("empty")
-              //  swal.title = 'sasdssa'
-            } else{
               this.signupService.signup(password)
                 .subscribe(data => {
                     localStorage.setItem('user', JSON.stringify(data.user));
@@ -67,7 +73,6 @@ export class SignupComponent {
                     ''+JSON.stringify(error),
                     'error'
                   ));
-            }
           })
         },
         error => swal(
