@@ -5,20 +5,20 @@
     </div>
 </div>
 
-<div *ngIf="adminMessage" class="row">
-    <div class="alert alert-success col-sm-12">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>{{adminMessage}}</strong>
-    </div>
-</div>
-
 <div *ngIf="!isResult">
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-4 col-sm-offset-4">
             <img style="margin-top:30%;" class="img-responsive" [src]="noResultFound">
         </div>
     </div>
 
+</div>
+
+<div *ngIf="adminMessage" style="margin-top:10%;" class="row">
+    <div class="alert alert-success col-sm-12">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{adminMessage}}</strong>
+    </div>
 </div>
 
 <div *ngIf="isResult" class="row" style="padding-top: 70px;">

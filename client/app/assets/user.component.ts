@@ -34,12 +34,14 @@ export class UserComponent {
     if(this.id != ''){
       this.assetService.getAllocatedAssets(this.id).subscribe(
         assets => {
+          console.log(JSON.stringify(assets))
           if(assets.length > 0) {
             this.columnDefs = this.createColumnDefs(assets[0]);
             this.rowData = this.createDataRows(assets);
             this.isResult = true;
           } else {
-            this.adminMessage = "Contact Admin to get your records added."
+            this.adminMessage = "Contact Admin to get your records added.";
+            console.log("zzzzzzzzzzz" + this.adminMessage)
             this.noResultIcon = "../../assets/images/warning.png";
             this.noResultFound = "../../assets/images/no-result.png";
             this.isResult = false;
@@ -48,6 +50,7 @@ export class UserComponent {
         error => alert(error)
       )
     } else{
+      this.adminMessage = "Contact Admin to get your records added.";
       let name = JSON.parse(localStorage.getItem('user')).firstName;
       if(localStorage.getItem('message')){
         this.message = "Welcome " + name + ", you have successfully signed up.";
