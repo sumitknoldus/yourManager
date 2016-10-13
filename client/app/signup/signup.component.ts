@@ -38,13 +38,14 @@ export class SignupComponent {
 
     swal({
       title: 'Loading...',
+        input:'info',
       showConfirmButton: false
     });
 
     this.signupService.verification(selectedUser)
       .subscribe(data => {
           swal({
-            title: 'Verification token has been sent on your Email.',
+            title: '<h4>Verification token has been sent on your Email.</h4>',
             input: 'password',
             inputAttributes: {
               'maxlength': 10,
@@ -52,7 +53,6 @@ export class SignupComponent {
               'autocorrect': 'off'
             },
               inputValidator: function(value) {
-                  console.log(JSON.stringify(value));
                   return new Promise(function(resolve, reject) {
                       if (value !== '') {
                           resolve();
@@ -69,15 +69,15 @@ export class SignupComponent {
                     this.router.navigate(['admin/user']);
                   },
                   error => swal(
-                    'error',
-                    ''+JSON.stringify(error),
+                    'Error',
+                    ''+error,
                     'error'
                   ));
           })
         },
         error => swal(
-          'error',
-          ''+JSON.stringify(error),
+          'Error',
+          ''+error,
           'error'
         ));
   }
