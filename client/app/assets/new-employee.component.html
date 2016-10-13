@@ -21,8 +21,8 @@
                             <div class="col-xs-5">
                                 <label for="empId">Employee ID: </label>
                             </div>
-                            <div class="col-xs-7">
-                                <input type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required>
+                            <div class="col-xs-7" >
+                                <input [disabled]="!isEmpId" type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required>
                             </div>
                             <!--<div class="col-xs-12" class="alert alert-danger">-->
                                 <!--Employee Id is required-->

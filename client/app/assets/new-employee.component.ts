@@ -18,7 +18,7 @@ export class NewEmployeeComponent {
 
     users = [];
     selectedEmployee = {};
-    isEmpId : boolean= true;
+    isEmpId : boolean= false;
     ngOnInit(){
         this.assetService.listEmpEmail().subscribe(
             data => {
