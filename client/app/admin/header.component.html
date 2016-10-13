@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-inverse navbar-fixed-top" >
     <div class="container-fluid">
         <div class="navbar-header col-lg-2 col-xs-7">
@@ -11,7 +10,7 @@
                         <span class="glyphicon glyphicon-user"></span>
                         <strong>{{user.firstName}}</strong>
                     </a>
-                    <ul class="dropdown-menu" style="margin-left:-290%;">
+                    <ul class="dropdown-menu" style="margin-left:-150%;">
                         <li>
                             <div class="navbar-login">
                                 <div class="row">
@@ -31,7 +30,7 @@
                             </div>
                         </li>
 
-                        <li><a (click)="logout()">Sign Out <span class="glyphicon pull-right"></span></a></li>
+                        <li><a (click)="logout()" style="cursor:pointer;" >Sign Out <span  class="glyphicon pull-right"></span></a></li>
                     </ul>
                 </li>
 
