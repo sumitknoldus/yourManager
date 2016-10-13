@@ -45,6 +45,16 @@ export class SignupComponent {
                             'autocapitalize': 'off',
                             'autocorrect': 'off'
                         }
+                        //},
+                        //inputValidator: function(value) {
+                        //    return new Promise(function(resolve, reject) {
+                        //        if (value !== '') {
+                        //            resolve();
+                        //        } else {
+                        //            reject('You need to select Ukraine :)');
+                        //        }
+                        //    });
+                        //}
                     }).then(password => {
 
                         this.signupService.signup(password)
@@ -54,7 +64,7 @@ export class SignupComponent {
                                     this.router.navigate(['admin/user']);
                                 },
                                 error => swal(
-                                  'error',
+                                  'Error',
                                   ''+JSON.stringify(error),
                                   'error'
                                 ));
