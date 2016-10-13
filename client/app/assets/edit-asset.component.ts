@@ -36,11 +36,17 @@ export class EditAssetComponent{
   getData(id:string){
     this.assetService.getById(id).subscribe(data =>{
         this.asset = data;
-        DateTime.formatDate = (date: Date) => moment(date).format('DD-MM-YYYY');
+        DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
         this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
-        this.asset.dateOfIssue = DateTime.formatDate(data.dateOfIssue, true);
-        this.asset.dateOfReturn = DateTime.formatDate(data.dateOfReturn, true);
-        this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true)
+        if(data.lastMaintenanceDate != null){
+          this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true)
+        }
+        if(data.shippingDate != null){
+          this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true)
+        }
+        if(data.warrantyEndDate != null){
+          this.asset.warrantyEndDate = DateTime.formatDate(data.warrantyEndDate, true)
+        }
       },
       error => swal(
         'error',
@@ -55,6 +61,7 @@ export class EditAssetComponent{
    * @param asset
    */
   submit(asset: Asset){
+    console.log("edit::::::::::::::" + JSON.stringify(asset))
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin/asset/list']),
       error => swal(
