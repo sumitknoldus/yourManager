@@ -44,7 +44,7 @@ export class SignupComponent {
     this.signupService.verification(selectedUser)
       .subscribe(data => {
           swal({
-            title: 'Verify token sent on your Email.',
+            title: 'Verification token has been sent on your Email.',
             input: 'password',
             inputAttributes: {
               'maxlength': 10,
