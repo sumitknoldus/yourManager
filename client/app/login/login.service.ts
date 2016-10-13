@@ -33,7 +33,7 @@ export class LoginService {
    * @returns {ErrorObservable}
    */
   private handleError(error: any) {
-    let errMsg = (error.message) ? error.message :
+    let errMsg = (error._body) ? error._body :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     return Promise.reject(errMsg);
