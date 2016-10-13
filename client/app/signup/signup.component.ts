@@ -11,76 +11,86 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/throw';
 
 @Component({
-    moduleId: module.id,
-    selector: 'ym-signup',
-    templateUrl: 'signup.component.html',
-    styleUrls: ['signup.component.css'],
-    providers: [SignupService]
+  moduleId: module.id,
+  selector: 'ym-signup',
+  templateUrl: 'signup.component.html',
+  styleUrls: ['signup.component.css'],
+  providers: [SignupService]
 })
 
 export class SignupComponent {
 
-    @Input()
-    user = {};
+  @Input()
+  user = {};
 
-    constructor(private router:Router, private signupService:SignupService) {
+  constructor(private router:Router, private signupService:SignupService) {
 
-    }
+  }
 
   /**
    * This method calls the service to verify the email and then calls the service
    * to get the user signed up
    * @param selectedUser
    */
-    signup(selectedUser:User) {
-      selectedUser.role = 'user';
-      selectedUser.empId = '';
-        this.signupService.verification(selectedUser)
-            .subscribe(data => {
-                    swal({
-                        title: 'Verify token sent on your Email.',
-                        input: 'password',
-                        inputAttributes: {
-                            'maxlength': 10,
-                            'autocapitalize': 'off',
-                            'autocorrect': 'off'
-                        }
-                        //},
-                        //inputValidator: function(value) {
-                        //    return new Promise(function(resolve, reject) {
-                        //        if (value !== '') {
-                        //            resolve();
-                        //        } else {
-                        //            reject('You need to select Ukraine :)');
-                        //        }
-                        //    });
-                        //}
-                    }).then(password => {
 
-                        this.signupService.signup(password)
-                            .subscribe(data => {
-                                    localStorage.setItem('user', JSON.stringify(data.user));
-                                    localStorage.setItem('message', data.message);
-                                    this.router.navigate(['admin/user']);
-                                },
-                                error => swal(
-                                  'Error',
-                                  ''+JSON.stringify(error),
-                                  'error'
-                                ));
-                    })
-                },
-                error => swal(
-                  'error',
-                  ''+JSON.stringify(error),
-                  'error'
-                ));
-    }
+  signup(selectedUser:User) {
+    selectedUser.role = 'user';
+    selectedUser.empId = '';
+
+    swal({
+      title: 'Loading...',
+      showConfirmButton: false
+    });
+
+    this.signupService.verification(selectedUser)
+      .subscribe(data => {
+          swal({
+            title: 'Verification token has been sent on your Email.',
+            input: 'password',
+            inputAttributes: {
+              'maxlength': 10,
+              'autocapitalize': 'off',
+              'autocorrect': 'off'
+            }
+              //inputValidator: function(value) {
+              //    return new Promise(function(resolve, reject) {
+              //        if (value !== '') {
+              //            resolve();
+              //        } else {
+              //            reject('You need to select Ukraine :)');
+              //        }
+              //    });
+              //}
+          }).then(password => {
+            if(password == "") {
+              console.log("empty")
+              //  swal.title = 'sasdssa'
+            } else{
+              this.signupService.signup(password)
+                .subscribe(data => {
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    localStorage.setItem('message', data.message);
+                    this.router.navigate(['admin/user']);
+                  },
+                  error => swal(
+                    'error',
+                    ''+JSON.stringify(error),
+                    'error'
+                  ));
+            }
+          })
+        },
+        error => swal(
+          'error',
+          ''+JSON.stringify(error),
+          'error'
+        ));
+  }
 
   /**
    * This method navigates the user to the login page
    */
-    goBack() {
-        this.router.navigate(['login']);
-    }
+  goBack() {
+    this.router.navigate(['login']);
+  }
 }

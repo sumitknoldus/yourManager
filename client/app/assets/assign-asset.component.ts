@@ -44,7 +44,6 @@ export class AssignAssetComponent{
   verifyUserRequest(){
     this.selectedEmployee.empId = this.asset.empId;
     this.selectedEmployee.assetType = this.asset.assetType;
-    console.log(JSON.stringify(this.selectedEmployee));
     this.assetService.verifyUserRequest(this.selectedEmployee).subscribe(data => {
       if(data.status === 203){
         this.errorMsg = true;
@@ -106,6 +105,7 @@ export class AssignAssetComponent{
    */
   submit() {
     let user = this.users.find(user => user.empId === this.asset.empId)
+
     if(user.middleName == null) {
       this.asset.empName = user.firstName + ' ' +user.lastName;
     } else {
@@ -113,11 +113,15 @@ export class AssignAssetComponent{
     }
     this.asset.isAvailable = false;
 
-    console.log("selected:::::::::" + JSON.stringify(this.asset))
-
     DateTime.parse = (str: any) => moment(str).toDate();
+
+
     let doi = DateTime.parse(this.asset.dateOfIssue);
     this.asset.dateOfIssue = DateTime.formatDate(doi, true);
+
+
+    let sd = DateTime.parse(this.asset.shippingDate);
+    this.asset.shippingDate = DateTime.formatDate(sd, true);
 
     if(this.asset.assetType == 'Laptop'){
       let wed = DateTime.parse(this.asset.warrantyEndDate);
@@ -125,6 +129,13 @@ export class AssignAssetComponent{
     } else{
       this.asset.warrantyEndDate = "";
     }
+
+
+    if(this.asset.lastMaintenanceDate != ""){
+      let lmt = DateTime.parse(this.asset.lastMaintenanceDate);
+      this.asset.lastMaintenanceDate = DateTime.formatDate(lmt, true);
+    }
+
     this.assetService.assignAsset(this.objectId, this.asset).subscribe(data =>
       {
         this.router.navigate(['admin/asset/list']);
@@ -149,7 +160,7 @@ export class AssignAssetComponent{
           this.asset.model= data.model;
           this.asset.specs= data.specs;
           this.objectId = data._id;
-          DateTime.formatDate = (date: Date) => moment(date).format('DD-MM-YYYY');
+          DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
           this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
           if(data.lastMaintenanceDate != "") {
             this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true);
