@@ -53,7 +53,7 @@ export class AssignAssetComponent{
         this.errorMsg = false;
       }
     },error => swal(
-      'error',
+      'Error',
       ''+JSON.stringify(error),
       'error'
     ))
@@ -63,7 +63,7 @@ export class AssignAssetComponent{
     this.assetService.getAllEmp().subscribe(data => {
       this.users = data;
     },error => swal(
-      'error',
+      'Error',
       ''+JSON.stringify(error),
       'error'
     ))

@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         let role = JSON.parse(localStorage.getItem('user')).role;
-        console.log("=================" + role);
+
         if (role === 'user') this.showSidebar = false
     }
 

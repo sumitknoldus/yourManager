@@ -106,7 +106,7 @@ export function verifyUserAsset(req, res) {
     return Assets.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
         .then(users => {
             if(users.length > 0){
-               res.status(203).send('Cannot assign asset, user already have an asset.');
+               res.status(203).send({status:'Cannot assign asset, user already have an asset.'});
             }
             else{
                 res.status(200).send({status:'success'});
