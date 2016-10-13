@@ -18,11 +18,16 @@ export class NewEmployeeComponent {
 
     users = [];
     selectedEmployee = {};
-
+    isEmpId : boolean= true;
     ngOnInit(){
         this.assetService.listEmpEmail().subscribe(
             data => {
-                this.users = data;
+                if(data.length > 0){
+                    this.users = data;
+                    this.isEmpId = true;
+                } else{
+                    this.isEmpId = false;
+                }
             },
             error => swal(
               'error',
@@ -39,20 +44,26 @@ export class NewEmployeeComponent {
                     'Employee ID assigned!',
                     'success'
                 );
-                this.selectedEmployee = {};
+
+                this.selectedEmployee = {empId:''};
                 this.assetService.listEmpEmail().subscribe(
                     data => {
-                        this.users = data;
+                        if(data.length > 0){
+                            this.users = data;
+                            this.isEmpId = true;
+                        } else{
+                            this.isEmpId = false;
+                        }
                     },
                     error => swal(
-                        'error',
+                        'Error',
                         ''+JSON.stringify(error),
                         'error'
                     )
                 )
             },
             errMsg => swal(
-                'error',
+                'Error',
                 ''+JSON.stringify(errMsg),
                 'error'
             )

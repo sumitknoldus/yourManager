@@ -202,7 +202,7 @@ export function assignEmpId(req, res, next) {
     User.findOne({'empId':req.body.empId})
         .then(function(user) {
             if(user){
-                res.status(409).send({'message':'Duplicate record.'});
+                res.status(409).send('This ID has already been assigned.');
             }else {
                 User.findOneAndUpdate({'email':req.body.email},{empId:req.body.empId})
                     .then(function(user) {
