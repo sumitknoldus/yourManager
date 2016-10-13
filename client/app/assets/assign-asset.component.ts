@@ -162,10 +162,10 @@ export class AssignAssetComponent{
           this.objectId = data._id;
           DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
           this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
-          if(data.lastMaintenanceDate != "") {
+          if(data.lastMaintenanceDate != null) {
             this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true);
           }
-          if(data.warrantyEndDate!= "") {
+          if(data.warrantyEndDate!= null) {
             this.asset.warrantyEndDate = DateTime.formatDate(data.warrantyEndDate, true);
           }
         },

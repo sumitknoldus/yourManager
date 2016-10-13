@@ -91,11 +91,11 @@
                                 <label for="model">Model : </label>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required readonly>
+                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required readonly pattern="[A-z0-9\-]{0,10}">
                             </div>
                             <div class="col-sm-12" [hidden]="model.valid || model.pristine"
                                  class="alert alert-danger">
-                                Model is required
+                                Model is required (Max : 10 characters)
                             </div>
                         </div>
                     </div>
@@ -180,11 +180,11 @@
                                     <label for="ram">RAM : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required>
+                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required readonly pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="ram.valid || ram.pristine"
                                      class="alert alert-danger">
-                                    Ram is required
+                                    Ram is required (Max : 10 characters)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -192,11 +192,11 @@
                                     <label for="hd">HD : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required>
+                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required readonly pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="hd.valid || hd.pristine"
                                      class="alert alert-danger">
-                                    Hard disk is required
+                                    Hard disk is required (Max : 10 characters)
                                 </div>
                             </div>
                             <div class="form-group">
@@ -204,11 +204,11 @@
                                     <label for="processor">Processor : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required>
+                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required readonly pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="processor.valid || processor.pristine"
                                      class="alert alert-danger">
-                                    Processor is required
+                                    Processor is required (Max : 10 characters)
                                 </div>
                             </div>
                         </div>

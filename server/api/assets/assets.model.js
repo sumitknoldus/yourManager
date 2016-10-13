@@ -17,7 +17,7 @@ var AssetsSchema = new Schema({
     dateOfIssue: Date,
     dateOfReturn: Date,
     warrantyEndDate: Date,
-    lastMaintenanceDate: String,
+    lastMaintenanceDate: Date,
     isAvailable:Boolean,
     specs: {}
 });

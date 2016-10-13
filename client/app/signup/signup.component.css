@@ -35,15 +35,15 @@
     color: white;
 }
 
+
 .title{
     width: 100%;
-    height: 10%;
     font-size: 28px;
     color: white;
-    padding: 0px;
+    padding: 5px;
     background: #26A69A;
-    margin-top: 5%;
 }
+
 
 .panel-body{
     padding: 15px;

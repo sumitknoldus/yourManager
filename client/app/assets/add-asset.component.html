@@ -18,85 +18,6 @@
                     </select>
                 </div>
                 <div *ngIf= "asset.assetType">
-                    <div *ngIf="isAssign">
-
-
-                        <div class="row">
-
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label>Employee ID: </label>
-                                </div>
-                                <div class="col-md-6">
-                                    <select name="employee" class="form-control" [(ngModel)]="selectedEmployee.empId" required #empId="ngModel" (click)="verifyUserRequest()">
-                                        <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
-                                    </select>
-                                </div>
-                                <div *ngIf="!errorMsg" class="col-md-12" [hidden]="empId.valid || empId.pristine"
-                                     class="alert alert-danger">
-                                    Employee Id is required
-                                </div>
-                                <div class="col-md-12 alert alert-danger" *ngIf="errorMsg">
-                                    Cannot assign asset, user already have an asset
-                                </div>
-
-                            </div>
-                            <!--<div class="form-group">-->
-                            <!--<div class="col-md-6">-->
-                            <!--<label for="">Employee Name : </label>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-6">-->
-                            <!--<select name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required #empName="ngModel">-->
-                            <!--<option *ngFor="let user of users" [value]="user.email">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>-->
-                            <!--</select>-->
-                            <!--</div>-->
-                            <!--<div class="col-md-12" [hidden]="empName.valid || empName.pristine"-->
-                            <!--class="alert alert-danger">-->
-                            <!--Employee Name is required-->
-                            <!--</div>-->
-                            <!--</div>-->
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="assetCodeAssign">Asset Code : </label>
-                                </div>
-                                <div *ngIf = "availableAssets" class="col-md-6">
-                                    <div *ngIf="isAssets">
-                                        <select  style="margin-top: 3%;" name="assetCode" id="assetCodeAssign" class="form-control" [(ngModel)]="asset.assetCode" #assetCode = "ngModel" (click) = "getAsset(assetCode.value)">
-                                            <option *ngFor="let asset of availableAssets.assetList" [value]="asset.assetCode">{{asset.assetCode}}</option>
-
-                                        </select>
-
-                                        <div [hidden]="assetCode.valid || model.pristine"
-                                             class="alert alert-danger">
-                                            Asset Code is required
-                                        </div>
-                                    </div>
-
-                                    <select  *ngIf="!isAssets" style="margin-top: 3%;" id="noAssetData" class="form-control">
-                                        <option>No Assets Found</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="dateOfIssue">Date of Issue : </label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="date" name="dateOfIssue" id="dateOfIssue" class="form-control" [(ngModel)] = "asset.dateOfIssue" #dateOfIssue="ngModel" required>
-                                </div>
-                                <div [hidden]="dateOfIssue.valid || dateOfIssue.pristine"
-                                     class="alert alert-danger">
-                                    Date of issue Id is required
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div *ngIf = "!isAssign">
                         <div class="row">
@@ -105,11 +26,11 @@
                                     <label for="assetCodeAdd">Asset Code : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required>
+                                    <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="assetCode.valid || model.pristine"
                                      class="alert alert-danger">
-                                    Asset Code is required
+                                    Asset Code is required (Max : 10 characters)
                                 </div>
                             </div>
                         </div>
@@ -121,11 +42,11 @@
                                 <label for="model">Model : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required>
+                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required pattern="[A-z0-9\-]{0,10}">
                             </div>
                             <div class="col-md-12" [hidden]="model.valid || model.pristine"
                                  class="alert alert-danger">
-                                Model is required
+                                Model is required (Max : 10 characters)
                             </div>
                         </div>
                     </div>
@@ -136,7 +57,6 @@
                                 <label>Shipping Date : </label>
                             </div>
                             <div class="col-md-6">
-                                <!--<input type="date" name="shippingDate" id="shippingDate" class="form-control" [(ngModel)] = "asset.shippingDate" #shippingDate="ngModel" required>-->
                                 <input readonly name="shippingDate" ng2-datetime-picker
                                        placeholder="Click to select date."
                                        class="form-control"
@@ -208,11 +128,11 @@
                                     <label for="ram">RAM : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required>
+                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="ram.valid || ram.pristine"
                                      class="alert alert-danger">
-                                    Ram is required
+                                    Ram is required (Max : 10 characters)
                                 </div>
                             </div>
                         </div>
@@ -223,11 +143,11 @@
                                     <label for="hd">HD : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required>
+                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="hd.valid || hd.pristine"
                                      class="alert alert-danger">
-                                    Hard disk is required
+                                    Hard disk is required (Max : 10 characters)
                                 </div>
                             </div>
                         </div>
@@ -238,11 +158,11 @@
                                     <label for="processor">Processor : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required>
+                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required pattern="[A-z0-9\-]{0,10}">
                                 </div>
                                 <div [hidden]="processor.valid || processor.pristine"
                                      class="alert alert-danger">
-                                    Processor is required
+                                    Processor is required (Max : 10 characters)
                                 </div>
                             </div>
                         </div>
@@ -250,7 +170,7 @@
 
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-8 form-group">
-                            <button type="submit"  class="btn btn-default pull-right" [disabled] = "!assetForm.form.valid || errorMsg || !isAssets">Assign Asset</button>
+                            <button type="submit"  class="btn btn-default pull-right" [disabled] = "!assetForm.form.valid">Assign Asset</button>
                         </div>
                     </div>
                 </div>
