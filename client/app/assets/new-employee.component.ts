@@ -35,10 +35,11 @@ export class NewEmployeeComponent {
     submit() {
         this.assetService.assignEmpId(this.selectedEmployee).subscribe(data => {
                 swal(
-                    'Good job!',
-                    'You clicked the button!',
+                    'Success!',
+                    'Employee ID assigned!',
                     'success'
                 );
+                this.selectedEmployee = {};
                 this.assetService.listEmpEmail().subscribe(
                     data => {
                         this.users = data;
