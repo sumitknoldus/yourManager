@@ -160,7 +160,7 @@ export function verficationEmail(req, res, next){
         }
 
         else{
-            res.status(409).send({'status':'Duplicate record'});
+            res.status(409).send('User already exist.');
         }
     })
     .catch(validationError(res));
