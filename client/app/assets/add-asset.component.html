@@ -19,20 +19,35 @@
                 </div>
                 <div *ngIf= "asset.assetType">
 
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <label for="assetCodeAdd">Asset Code : </label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required pattern="[A-z0-9\-]{0,10}">
-                                </div>
-                                <div [hidden]="assetCode.valid || model.pristine"
-                                     class="alert alert-danger">
-                                    Asset Code is required (Max : 10 characters)
-                                </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="assetCodeAdd">Asset Code : </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                            </div>
+                            <div [hidden]="assetCode.valid || model.pristine"
+                                 class="alert alert-danger">
+                                Asset Code is required (Max : 10 characters)
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="serialNumber">Serial number : </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" required pattern="[A-z0-9\-]{0,20}">
+                            </div>
+                            <div [hidden]="serialNumber.valid || serialNumber.pristine"
+                                 class="alert alert-danger">
+                                Serial Number is required (Max : 10 characters)
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="form-group">

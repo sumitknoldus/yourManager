@@ -97,6 +97,7 @@ export class SearchAssetComponent implements OnInit {
         assetType: assets[i].assetType,
         model: assets[i].model,
         assetCode: assets[i].assetCode,
+        serialNumber: assets[i].serialNumber,
         shippingDate: assets[i].shippingDate,
         dateOfIssue: assets[i].dateOfIssue,
         dateOfReturn: assets[i].dateOfReturn,

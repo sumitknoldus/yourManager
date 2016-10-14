@@ -159,6 +159,7 @@ export class AssignAssetComponent{
       this.assetService.getById(objId).subscribe(data =>{
           this.asset.model= data.model;
           this.asset.specs= data.specs;
+          this.asset.serialNumber= data.serialNumber;
           this.objectId = data._id;
           DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
           this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);

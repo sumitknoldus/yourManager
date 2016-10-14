@@ -99,6 +99,21 @@
 
                     <div class="row">
                         <div class="form-group">
+                            <div class="col-md-6">
+                                <label for="serialNumber">Serial number : </label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" readonly required pattern="[A-z0-9\-]{0,20}">
+                            </div>
+                            <div [hidden]="serialNumber.valid || serialNumber.pristine"
+                                 class="alert alert-danger">
+                                Serial Number is required (Max : 10 characters)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
                             <div class="col-sm-6">
                                 <label>Shipping Date : </label>
                             </div>
