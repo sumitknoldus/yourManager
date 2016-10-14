@@ -61,7 +61,7 @@ export class EditAssetComponent{
    * @param asset
    */
   submit(asset: Asset){
-    console.log("edit::::::::::::::" + JSON.stringify(asset))
+      console.log(">>>>>>>>>>>>>"+JSON.stringify(asset));
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin/asset/list']),
       error => swal(

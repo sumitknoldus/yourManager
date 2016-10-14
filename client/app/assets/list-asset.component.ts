@@ -67,7 +67,7 @@ export class ListComponent implements OnInit{
       headers.push({
         headerName: key,
         field: key,
-        width: 100
+        width: 140
       })
     });
 
@@ -79,7 +79,7 @@ export class ListComponent implements OnInit{
         component: ClickableComponent
       },
       pinned: 'right',
-      width: 120
+      width: 140
     });
     return headers;
   }
