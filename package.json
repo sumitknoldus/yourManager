@@ -72,6 +72,7 @@
     "lusca": "^1.4.1",
     "method-override": "^2.3.6",
     "mongoose": "^4.5.6",
+    "mongoose-long": "^0.1.0",
     "morgan": "^1.7.0",
     "ng2-datepicker": "^1.1.0",
     "ng2-datetime-picker": "^0.9.6",
