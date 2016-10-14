@@ -5,6 +5,7 @@ export class Asset {
     assetType: string;
     model: string;
     assetCode: string;
+    serialNumber: string;
     shippingDate: string;
     dateOfIssue: string;
     dateOfReturn: string;
@@ -19,6 +20,7 @@ export class Asset {
         this.assetType = '';
         this.model = '';
         this.assetCode = '';
+        this.serialNumber = '';
         this.shippingDate = '';
         this.dateOfIssue = '';
         this.dateOfReturn = '';

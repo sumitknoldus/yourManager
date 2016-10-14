@@ -12,13 +12,14 @@ var AssetsSchema = new Schema({
     empName: String,
     assetType: String,
     model: String,
-    assetCode:String,
+    assetCode: String,
+    serialNumber: String,
     shippingDate: Date,
     dateOfIssue: Date,
     dateOfReturn: Date,
     warrantyEndDate: Date,
     lastMaintenanceDate: Date,
-    isAvailable:Boolean,
+    isAvailable: Boolean,
     specs: {}
 });
 
