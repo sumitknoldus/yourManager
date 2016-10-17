@@ -72,6 +72,19 @@ export function listAssets(req, res, next) {
 }
 
 /**
+ * Get list of newly added Assets
+ * restriction: 'admin'
+ */
+export function listNewAssets(req, res, next) {
+
+    return Assets.find({ "empId" : "", "empName" : "", "isAvailable" : true}).exec()
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(handleError(res));
+}
+
+/**
  * Get add of Assets
  * restriction: 'admin'
  */

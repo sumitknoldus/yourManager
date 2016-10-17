@@ -5,7 +5,7 @@ import {AssetService} from "./asset.service";
 import {Asset} from "../shared/model/asset";
 
 @Injectable()
-export class ListAssetResolve implements Resolve<Asset[]> {
+export class ListNewAssetResolve implements Resolve<Asset[]> {
 
   constructor(private assetService: AssetService, private router: Router) {}
 
@@ -15,7 +15,7 @@ export class ListAssetResolve implements Resolve<Asset[]> {
    * @returns {any}
    */
   resolve(route: ActivatedRouteSnapshot): Observable<> | Promise<any> | any {
-    return this.assetService.listAllAsset().map( assets => {
+    return this.assetService.listNewAssets().map( assets => {
         if (assets) {
           return assets
         } else {
