@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from "@angular/router";
 import {Asset} from "../shared/model/asset";
 import {GridOptions} from "ag-grid/main";
 import {ClickableComponent} from "./clickable-update.component";
+import {ClickableAssignComponent} from "./clickable-assign.component";
 
 @Component({
   moduleId:module.id,
@@ -54,7 +55,16 @@ export class ListNewAssetComponent {
       })
     });
 
-
+    headers.push({
+      headerName: 'update',
+      field: 'Assign Asset',
+      cellRendererFramework: {
+        //template: '<button (click) = "editAsset()"> Edit </button>'
+        component: ClickableAssignComponent
+      },
+      pinned: 'right',
+      width: 140
+    });
 
     return headers;
 
@@ -88,6 +98,5 @@ export class ListNewAssetComponent {
     }
     return updatedAssets;
   }
-
 
 }

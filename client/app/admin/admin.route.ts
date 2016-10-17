@@ -62,6 +62,11 @@ const routes:Routes = [
                 component: AssignAssetComponent,
             },
             {
+                path: 'asset/assign/:assetCode',
+                canActivate: [AdminGuard],
+                component: AssignAssetComponent,
+            },
+            {
                 path: 'new/emp',
                 canActivate: [AdminGuard],
                 component: NewEmployeeComponent,

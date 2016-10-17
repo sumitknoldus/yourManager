@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import {Asset} from "../shared/model/asset";
 import {User} from "../shared/model/user";
 import {AssetService} from "./asset.service";
@@ -14,23 +14,30 @@ import {DateTime} from "ng2-datetime-picker";
 })
 
 export class AssignAssetComponent{
-
-  constructor(private assetService: AssetService, private router: Router){}
+  assetCode = "";
+  objId = "";
+  assignExistingAsset = false;
+  constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit(){
     this.getAllEmp();
+
+    this.route.params.forEach((params: Params) => {
+      if(params['assetCode'] != null) {
+        this.objId = params['assetCode'];
+        this.assignExistingAsset = true;
+      }
+    });
+
+    if(this.objId != ""){
+      this.getAsset(this.objId)
+    }
   }
   isAssets: boolean= true;
   hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"]
   isAssign: boolean = true;
 
-  availableAssets = {
-    availableStock: "",
-    assetList:[{
-      assetCode: "",
-      _id:""
-    }]
-  };
+  availableAssets = {};
 
   objectId = "";
 
@@ -154,13 +161,23 @@ export class AssignAssetComponent{
    * @param assetCode
    */
   getAsset(assetCode: string) {
+    let objId;
     if(assetCode != ""){
-      let objId = this.availableAssets.assetList.find(record => record.assetCode === assetCode)._id
+      if(this.objId == ""){
+        objId = this.availableAssets.assetList.find(record => record.assetCode === assetCode)._id
+      } else {
+        objId = this.objId
+      }
       this.assetService.getById(objId).subscribe(data =>{
+          this.asset.assetType= data.assetType;
           this.asset.model= data.model;
-          this.asset.specs= data.specs;
+          this.asset.specs.HD = data.specs.HD;
+          this.asset.specs.Processor = data.specs.Processor;
+          this.asset.specs.RAM = data.specs.RAM;
           this.asset.serialNumber= data.serialNumber;
           this.objectId = data._id;
+
+          if(this.assignExistingAsset == true) this.asset.assetCode = data.assetCode;
           DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
           this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
           if(data.lastMaintenanceDate != null) {
