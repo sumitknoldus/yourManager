@@ -16,7 +16,7 @@ import {DateTime} from "ng2-datetime-picker";
 export class AssignAssetComponent{
   assetCode = "";
   objId = "";
-  assignExistingAsset = false;
+  assignNewAsset = false;
   constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit(){
@@ -25,7 +25,7 @@ export class AssignAssetComponent{
     this.route.params.forEach((params: Params) => {
       if(params['assetCode'] != null) {
         this.objId = params['assetCode'];
-        this.assignExistingAsset = true;
+        this.assignNewAsset = true;
       }
     });
 
@@ -85,7 +85,7 @@ export class AssignAssetComponent{
     this.asset = new Asset;
     this.asset.assetType = asset;
     this.selectedEmployee.empId = '';
-    this.assignExistingAsset = false;
+    this.assignNewAsset = false;
     this.errorMsg = false;
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
@@ -178,7 +178,7 @@ export class AssignAssetComponent{
           this.asset.serialNumber= data.serialNumber;
           this.objectId = data._id;
 
-          if(this.assignExistingAsset == true) this.asset.assetCode = data.assetCode;
+          if(this.assignNewAsset == true) this.asset.assetCode = data.assetCode;
           DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
           this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
           if(data.lastMaintenanceDate != null) {

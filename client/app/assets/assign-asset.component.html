@@ -39,7 +39,7 @@
                                 <div class="col-sm-6 col-xs-12">
                                     <label for="assetCodeAssign">Asset Code : </label>
                                 </div>
-                                <div *ngIf = "!assignExistingAsset" class="col-sm-6 col-xs-12">
+                                <div *ngIf = "!assignNewAsset" class="col-sm-6 col-xs-12">
                                     <div *ngIf="isAssets" >
                                         <select  style="margin-top: 3%;" name="assetCode" id="assetCodeAssign" class="form-control" [(ngModel)]="asset.assetCode" #assetCode = "ngModel" (click) = "getAsset(assetCode.value)">
                                             <option *ngFor="let asset of availableAssets.assetList" [value]="asset.assetCode">{{asset.assetCode}}</option>
@@ -55,7 +55,7 @@
                                         <option value="" disabled selected>No records found</option>
                                     </select>
                                 </div>
-                                <div *ngIf = "assignExistingAsset">
+                                <div *ngIf = "assignNewAsset">
                                     <div class="col-sm-6">
                                         <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required readonly pattern="[A-z0-9\-]{0,10}">
                                     </div>

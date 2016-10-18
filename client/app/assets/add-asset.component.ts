@@ -43,7 +43,7 @@ export class AddAssetComponent {
     this.assetService.addAsset(asset).subscribe(
       res => {
           this.router.navigate(['admin/asset/list-new']);
-          swal({   title: "Asset successfully added.",   text: "I will close in 1 second.",   timer: Observable.timer(1000),   showConfirmButton: false });
+          swal({   title: "Asset successfully added.",   text: "I will close in 1 second.",   timer: 1000,   showConfirmButton: false });
       },
 
       error =>  swal(

@@ -101,42 +101,46 @@ export function saveAssetById(req, res, next) {
 
     var currentAssetCode;
 
-
-    Assets.findOne({_id: req.body._id}).exec()
-        .then(user => {
-            if (!user) {
-                return res.status(404).end();
-            }
-
-            return Assets.update({
-                    assetCode: user.assetCode
-                },
-                {
-                    $set: {
-                        assetCode: req.body.assetCode,
-                        serialNumber: req.body.serialNumber,
-                        model: req.body.model,
-                        shippingDate: req.body.shippingDate,
-                        warrantyEndDate: req.body.warrantyEndDate,
-                        lastMaintenanceDate: req.body.lastMaintenanceDate,
-                        specs: req.body.specs
-                    }
-                },
-                {
-                    multi : true
-                }
-            ).exec()
+    Assets.findOne({assetCode:req.body.assetCode}).exec().then(function(asset) {
+        if (asset) {
+            res.status(401).send("Asset code already exist.");
+        } else {
+            Assets.findOne({_id: req.body._id}).exec()
                 .then(user => {
                     if (!user) {
                         return res.status(404).end();
                     }
-                    res.json({'status': 'success'});
+
+                    return Assets.update({
+                            assetCode: user.assetCode
+                        },
+                        {
+                            $set: {
+                                assetCode: req.body.assetCode,
+                                serialNumber: req.body.serialNumber,
+                                model: req.body.model,
+                                shippingDate: req.body.shippingDate,
+                                warrantyEndDate: req.body.warrantyEndDate,
+                                lastMaintenanceDate: req.body.lastMaintenanceDate,
+                                specs: req.body.specs
+                            }
+                        },
+                        {
+                            multi: true
+                        }
+                    ).exec()
+                        .then(user => {
+                            if (!user) {
+                                return res.status(404).end();
+                            }
+                            res.json({'status': 'success'});
+                        })
+                        .catch(err => next(err));
+
                 })
                 .catch(err => next(err));
-
-        })
-        .catch(err => next(err));
-
+        }
+    }).catch(err => next(err));
 }
 
 /**
