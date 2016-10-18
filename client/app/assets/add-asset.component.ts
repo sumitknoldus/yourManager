@@ -5,6 +5,7 @@ import {AssetService} from "./asset.service";
 import 'rxjs/add/observable/throw';
 import {DatePipe} from "angular2/common";
 import {DateTime} from "ng2-datetime-picker";
+import { Observable } from 'rxjs/Rx';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class AddAssetComponent {
     this.assetService.addAsset(asset).subscribe(
       res => {
           this.router.navigate(['admin/asset/list-new']);
-          swal({   title: "Asset successfully added.",   text: "I will close in 1 second.",   timer: 1000,   showConfirmButton: false });
+          swal({   title: "Asset successfully added.",   text: "I will close in 1 second.",   timer: Observable.timer(1000),   showConfirmButton: false });
       },
 
       error =>  swal(

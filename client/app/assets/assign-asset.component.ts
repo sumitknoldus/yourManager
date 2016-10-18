@@ -85,6 +85,7 @@ export class AssignAssetComponent{
     this.asset = new Asset;
     this.asset.assetType = asset;
     this.selectedEmployee.empId = '';
+    this.assignExistingAsset = false;
     this.errorMsg = false;
     if(asset!=""){
       this.assetService.getAvailableAssetList(asset).subscribe(
