@@ -105,7 +105,6 @@ export class AssetService {
       'Content-Type': 'application/json'
     });
 
-    console.log("edit-====================" + JSON.stringify(asset))
 
     return this.http
       .post(this.editAssetUrl, JSON.stringify(asset), {headers: headers})

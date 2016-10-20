@@ -14,12 +14,12 @@
 
                 <div *ngIf= "asset.assetType">
                     <div *ngIf="isAssign">
-                        <div class="row">
+                        <div *ngIf="isEmpDataAvailable" class="row">
                             <div class="form-group">
                                 <div class="col-sm-6 col-xs-12">
                                     <label>Employee ID: </label>
                                 </div>
-                                <div class="col-sm-6 col-xs-12">
+                                <div  class="col-sm-6 col-xs-12">
                                     <select name="employee" class="form-control" [(ngModel)]="asset.empId" required #empId="ngModel" (click)="verifyUserRequest()">
                                         <option *ngFor="let user of users" [value]="user.empId">{{user.empId}} | {{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
                                     </select>
@@ -55,6 +55,7 @@
                                         <option value="" disabled selected>No records found</option>
                                     </select>
                                 </div>
+
                                 <div *ngIf = "assignNewAsset">
                                     <div class="col-sm-6">
                                         <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required readonly pattern="[A-z0-9\-]{0,10}">

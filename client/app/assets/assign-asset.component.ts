@@ -16,11 +16,15 @@ import {DateTime} from "ng2-datetime-picker";
 export class AssignAssetComponent{
   assetCode = "";
   objId = "";
+  isEmpDataAvailable = false;
   assignNewAsset = false;
   constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.getAllEmp();
+    this.route.data.forEach(data => {
+      this.isEmpDataAvailable = true;
+      this.users = data.assets;
+    });
 
     this.route.params.forEach((params: Params) => {
       if(params['assetCode'] != null) {
@@ -66,15 +70,6 @@ export class AssignAssetComponent{
     ))
   }
 
-  getAllEmp(){
-    this.assetService.getAllEmp().subscribe(data => {
-      this.users = data;
-    },error => swal(
-      'Error',
-      ''+JSON.stringify(error),
-      'error'
-    ))
-  }
 
   /**
    * This method is called when user selects an asset type,

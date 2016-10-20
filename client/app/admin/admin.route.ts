@@ -14,6 +14,7 @@ import {EditAssetComponent} from "../assets/edit-asset.component";
 import {NewEmployeeComponent} from "../assets/new-employee.component";
 import {ListNewAssetResolve} from "../assets/list-new-asset-resolve";
 import {ListNewAssetComponent} from "../assets/list-new-asset.component";
+import {AssignAssetResolve} from "../assets/asset-assign-resolve";
 
 const routes:Routes = [
     {
@@ -60,11 +61,17 @@ const routes:Routes = [
                 path: 'asset/assign',
                 canActivate: [AdminGuard],
                 component: AssignAssetComponent,
+                resolve: {
+                    assets: AssignAssetResolve
+                }
             },
             {
                 path: 'asset/assign/:assetCode',
                 canActivate: [AdminGuard],
                 component: AssignAssetComponent,
+                resolve: {
+                    assets: AssignAssetResolve
+                }
             },
             {
                 path: 'new/emp',
