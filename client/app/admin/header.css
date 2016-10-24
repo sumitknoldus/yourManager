@@ -40,6 +40,25 @@
     font-size: small;
 }
 
+.nav{
+    background-color: #2d2d2d;
+    height: 100%;
+}
+
+.glyph-sidebar{
+    margin-right: 3%;
+}
+
+a{
+    color: #e5e5e5;
+    font-size: medium;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #26A69A;
+    color: white;
+}
+
 .search-btn{
     background: #26A69A;
 }
