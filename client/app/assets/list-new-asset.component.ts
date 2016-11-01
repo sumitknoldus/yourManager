@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {DatePipe} from "@angular/common";
 import {AssetService} from "./asset.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Asset} from "../shared/model/asset";
@@ -22,7 +23,8 @@ export class ListNewAssetComponent {
 
   constructor(private assetService: AssetService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -49,14 +51,14 @@ export class ListNewAssetComponent {
     keyNames.filter(key => key != '__v' && key != '_id' && key != 'empId' &&
     key != 'empName' && key != 'dateOfIssue' && key != 'dateOfReturn').map(key => {
       headers.push({
-        headerName: key,
+        headerName: this.getHeaderName(key).toUpperCase(),
         field: key,
         width: 140
       })
     });
 
     headers.push({
-      headerName: 'update',
+      headerName: 'UPDATE',
       field: 'Assign Asset',
       cellRendererFramework: {
         //template: '<button (click) = "editAsset()"> Edit </button>'
@@ -68,6 +70,16 @@ export class ListNewAssetComponent {
 
     return headers;
 
+  }
+
+  getHeaderName(key: string) {
+    let newKey = key;
+    let capsLetterArray  = key.match(/[A-Z]/);
+    if(capsLetterArray != null){
+      capsLetterArray.map(capitalLetter => key = key.replace(capitalLetter, ' '+capitalLetter.toLowerCase()));
+      newKey = this.getHeaderName(key)
+    }
+    return newKey;
   }
 
   /**
@@ -86,11 +98,11 @@ export class ListNewAssetComponent {
         model: assets[i].model,
         assetCode: assets[i].assetCode,
         serialNumber: assets[i].serialNumber,
-        shippingDate: assets[i].shippingDate,
-        dateOfIssue: assets[i].dateOfIssue,
-        dateOfReturn: assets[i].dateOfReturn,
-        warrantyEndDate:assets[i].warrantyEndDate,
-        lastMaintenanceDate:assets[i].lastMaintenanceDate,
+        shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
+        dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
+        dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
+        warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
+        lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
         specs: JSON.stringify(assets[i].specs),
         isAvailable:assets[i].isAvailable,
         update:assets[i].update

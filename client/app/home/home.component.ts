@@ -5,15 +5,20 @@ import { Router } from '@angular/router';
     moduleId:module.id,
     selector: 'ym-home',
     templateUrl:'home.component.html',
+    styleUrls : ['home.css']
 })
 
 export class HomeComponent implements OnInit {
 
-    constructor(private router: Router) {}
-    public fullpath:string;
+    constructor(private router: Router) {
+    }
 
-    ngOnInit() {
-        this.fullpath = 'assets/images/your.jpg';
+    goToLogin(){
+        this.router.navigate(['home/login'])
+    }
+
+    goToSignUp(){
+        this.router.navigate(['home/signup'])
     }
 
 }

@@ -1,6 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
+import {LoginGuard} from "./login.guard";
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/home',
+    canActivate: [LoginGuard],
+    pathMatch: 'full'
+  }
   //{
   //  path: 'home',
   //  loadChildren: 'app/home/home.module#HomeModule'},

@@ -1,32 +1,32 @@
-<!--<nav class="navbar navbar-inverse navbar-fixed-top" >-->
-    <!--<div class="container-fluid">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="#">Your Manager</a>-->
-        <!--</div>-->
-        <!--<ul class="nav navbar-nav pull-right" >-->
-            <!--<li> <a routerLink="/home" routerLinkActive="active">Home</a></li>-->
-            <!--<li> <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>-->
-            <!--<li><a (click)="logout()">logout</a></li>-->
+<div class="background">
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header col-lg-2 col-xs-7">
+                <a class="navbar-brand">Your Manager</a>
+            </div>
 
-        <!--</ul>-->
-    <!--</div>-->
-<!--</nav>-->
-<!--<ym-header-shared></ym-header-shared>-->
-<div class="container" style="padding-top: 70px;">
-    <div class="content">
-                    <span> <h1>Welcome to Your manager Application...</h1>
-                    <p>
-                        This application is basically the assets management system. Which manages you're assets automatically.
-                        Thanxx...
-                    </p>
-                    </span>
-        <br />
+        </div>
+    </nav>
 
+
+    <div class="container">
+        <div class="row" style="margin-top: 6%">
+            <div class="col-md-2 col-md-offset-4">
+                <span>
+                <button (click) = "goToLogin()" class="home-btn btn btn-default btn-lg btn-block">LOGIN</button>
+                </span>
+            </div>
+            <div class="col-md-2">
+                <span>
+                <button (click) = "goToSignUp()" class="home-btn btn btn-default btn-lg btn-block">SIGN UP</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" style="margin-top: 3%">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
-
-
-</div>
-
-<div>
-    <img style="width:100%; height:60%"  [src]= "fullpath">
 </div>

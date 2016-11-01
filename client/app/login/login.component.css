@@ -5,6 +5,12 @@
 	/*box-shadow: 2px 3px 15px -8px;*/
 /*}*/
 
+input {
+	background-color: transparent;
+	color: #8D9194;
+	border: 1px solid #8D9194;
+}
+
 .content{
 	height:250px;
 	text-align: center;
@@ -18,11 +24,6 @@
 .input-box{
 	padding:4px;
 	margin-bottom: 5%;
-}
-
-.login-panel{
-	margin-top: 10%;
-	margin-left: 29%;
 }
 
 .login-button{
@@ -43,8 +44,9 @@
 }
 
 .panel-body{
+	background-color: #f9f9f9;
 	padding: 15px;
-	box-shadow: 2px 3px 15px -8px;
+	box-shadow: 10px 10px 20px 0;
 }
 
 .panel-body span{

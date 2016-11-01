@@ -14,6 +14,7 @@ import {GridOptions} from "ag-grid/main";
 import {AgRendererComponent} from "ag-grid-ng2/main";
 import {ClickableComponent} from "./clickable-update.component";
 import {AssetModule} from "../app.module";
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class ListComponent implements OnInit{
 
   constructor(private assetService: AssetService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -65,14 +67,14 @@ export class ListComponent implements OnInit{
     let headers = [];
     keyNames.filter(key => key != '__v' && key != '_id').map(key => {
       headers.push({
-        headerName: key,
+        headerName: this.getHeaderName(key).toLocaleUpperCase(),
         field: key,
         width: 140
       })
     });
 
     headers.push({
-      headerName: 'update',
+      headerName: 'UPDATE',
       field: 'update',
       cellRendererFramework: {
         //template: '<button (onClicked) = "editAsset()"> Edit </button>'
@@ -82,6 +84,16 @@ export class ListComponent implements OnInit{
       width: 140
     });
     return headers;
+  }
+
+  getHeaderName(key: string) {
+    let newKey = key;
+    let capsLetterArray  = key.match(/[A-Z]/);
+    if(capsLetterArray != null){
+      capsLetterArray.map(capitalLetter => key = key.replace(capitalLetter, ' '+capitalLetter.toLowerCase()));
+      newKey = this.getHeaderName(key)
+    }
+      return newKey;
   }
 
   /**
@@ -100,11 +112,11 @@ export class ListComponent implements OnInit{
         model: assets[i].model,
         assetCode: assets[i].assetCode,
         serialNumber: assets[i].serialNumber,
-        shippingDate: assets[i].shippingDate,
-        dateOfIssue: assets[i].dateOfIssue,
-        dateOfReturn: assets[i].dateOfReturn,
-        warrantyEndDate:assets[i].warrantyEndDate,
-        lastMaintenanceDate:assets[i].lastMaintenanceDate,
+        shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
+        dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
+        dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
+        warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
+        lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
         specs: JSON.stringify(assets[i].specs),
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
