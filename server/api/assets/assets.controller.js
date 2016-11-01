@@ -72,6 +72,106 @@ export function listAssets(req, res, next) {
 }
 
 /**
+ * Get list of newly added Assets
+ * restriction: 'admin'
+ */
+export function listNewAssets(req, res, next) {
+
+    return Assets.find({ "empId" : "", "empName" : "", "isAvailable" : true}).exec()
+        .then(users => {
+            res.status(200).json(users);
+        })
+        .catch(handleError(res));
+}
+
+/**
+ * Get edit of Assets
+ * restriction: 'admin'
+ */
+export function saveAssetById(req, res, next) {
+
+    /* return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},req.body).exec()//({"username" : {$regex : ".*son.*"}});
+     .then(user => {
+     if (!user) {
+     return res.status(404).end();
+     }
+     res.json({'status':'success'});
+     })
+     .catch(err => next(err));*/
+
+
+    Assets.findOne({_id: req.body._id}).exec()
+        .then(user => {
+            if (!user) {
+                return res.status(404).end();
+            }
+
+            if (user.assetCode != req.body.assetCode) {
+                Assets.findOne({assetCode: req.body.assetCode}).exec().then(function (asset) {
+                    if (asset) {
+                        res.status(401).send("Asset code already exist.");
+                    } else {
+                        return Assets.update({
+                                assetCode: user.assetCode
+                            },
+                            {
+                                $set: {
+                                    assetCode: req.body.assetCode,
+                                    serialNumber: req.body.serialNumber,
+                                    model: req.body.model,
+                                    shippingDate: req.body.shippingDate,
+                                    warrantyEndDate: req.body.warrantyEndDate,
+                                    lastMaintenanceDate: req.body.lastMaintenanceDate,
+                                    specs: req.body.specs
+                                }
+                            },
+                            {
+                                multi: true
+                            }
+                        ).exec()
+                            .then(user => {
+                                if (!user) {
+                                    return res.status(404).end();
+                                }
+                                res.json({'status': 'success'});
+                            })
+                            .catch(err => next(err));
+
+                    }
+                })
+            } else {
+                return Assets.update({
+                        assetCode: user.assetCode
+                    },
+                    {
+                        $set: {
+                            assetCode: req.body.assetCode,
+                            serialNumber: req.body.serialNumber,
+                            model: req.body.model,
+                            shippingDate: req.body.shippingDate,
+                            warrantyEndDate: req.body.warrantyEndDate,
+                            lastMaintenanceDate: req.body.lastMaintenanceDate,
+                            specs: req.body.specs
+                        }
+                    },
+                    {
+                        multi: true
+                    }
+                ).exec()
+                    .then(user => {
+                        if (!user) {
+                            return res.status(404).end();
+                        }
+                        res.json({'status': 'success'});
+                    })
+                    .catch(err => next(err));
+
+            }
+        })
+        .catch(err => next(err));
+}
+
+/**
  * Get add of Assets
  * restriction: 'admin'
  */
@@ -80,23 +180,22 @@ export function addAssets(req, res, next) {
     var newAssets = new Assets(req.body);
 
     Assets.findOne({assetCode:req.body.assetCode}).exec().then(function(asset){
-        if(asset){
-            res.status(401).send("Asset already exist.");
-        } else {
-            return newAssets.save()
-                .then(function (user) {
-                    var token = jwt.sign({_id: user._id}, config.secrets.session, {
-                        expiresIn: 60 * 60 * 5
-                    });
-                    res.status(200).send({"status": "success"});
-                })
-                .catch(validationError(res));
-        }
-    })
+            if(asset){
+                res.status(401).send("Asset already exist.");
+            } else {
+                return newAssets.save()
+                    .then(function (user) {
+                        var token = jwt.sign({_id: user._id}, config.secrets.session, {
+                            expiresIn: 60 * 60 * 5
+                        });
+                        res.status(200).send({"status": "success"});
+                    })
+                    .catch(validationError(res));
+            }
+        })
 
         .catch(validationError(res));
 }
-
 
 /**
  * verify user asset
@@ -106,7 +205,7 @@ export function verifyUserAsset(req, res) {
     return Assets.find({empId:req.body.empId, assetType:req.body.assetType, isAvailable:false, dateOfReturn:null}).exec()
         .then(users => {
             if(users.length > 0){
-               res.status(203).send({status:'Cannot assign asset, user already have an asset.'});
+                res.status(203).send({status:'Cannot assign asset, user already have an asset.'});
             }
             else{
                 res.status(200).send({status:'success'});
@@ -146,21 +245,6 @@ export function getAssetById(req, res, next) {
         .catch(err => next(err));
 }
 
-/**
- * Get edit of Assets
- * restriction: 'admin'
- */
-export function saveAssetById(req, res, next) {
-
-    return Assets.findOneAndUpdate({_id: new ObjectId(req.body._id)},req.body).exec()//({"username" : {$regex : ".*son.*"}});
-        .then(user => {
-            if (!user) {
-                return res.status(404).end();
-            }
-            res.json({'status':'success'});
-        })
-        .catch(err => next(err));
-}
 
 /**
  * Get delete of Assets
@@ -247,7 +331,7 @@ export function assignAsset(req, res, next) {
                     })
                     .catch(validationError(res));
             }
-          //  res.status(200).send({"status":"success"});
+            //  res.status(200).send({"status":"success"});
         })
 }
 //

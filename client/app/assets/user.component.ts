@@ -34,14 +34,12 @@ export class UserComponent {
     if(this.id != ''){
       this.assetService.getAllocatedAssets(this.id).subscribe(
         assets => {
-          console.log(JSON.stringify(assets))
           if(assets.length > 0) {
             this.columnDefs = this.createColumnDefs(assets[0]);
             this.rowData = this.createDataRows(assets);
             this.isResult = true;
           } else {
             this.adminMessage = "Contact Admin to get your records added.";
-            console.log("zzzzzzzzzzz" + this.adminMessage)
             this.noResultIcon = "../../assets/images/warning.png";
             this.noResultFound = "../../assets/images/no-result.png";
             this.isResult = false;

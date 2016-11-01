@@ -7,7 +7,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <span style="color: white; font-size: x-large;" class="glyphicon glyphicon-user"></span>
                         <strong>{{user.firstName}}</strong>
                     </a>
                     <ul class="dropdown-menu" style="margin-left:-150%;">
@@ -16,12 +16,12 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <p class="text-center">
-                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                            <span style="color: white" class="glyphicon glyphicon-user icon-size"></span>
                                         </p>
                                     </div>
                                     <div class="col-lg-8">
-                                        <p class="text-left"><strong>{{user.firstName}}</strong></p>
-                                        <p class="text-left small">{{user.email}}</p>
+                                        <p style="color: white" class="text-left"><strong>{{user.firstName}}</strong></p>
+                                        <p style="color: white" class="text-left small">{{user.email}}</p>
                                         <!--<p class="text-left">-->
                                             <!--<a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>-->
                                         <!--</p>-->
@@ -30,7 +30,7 @@
                             </div>
                         </li>
 
-                        <li><a (click)="logout()" style="cursor:pointer;" >Sign Out <span  class="glyphicon pull-right"></span></a></li>
+                        <li><a (click)="logout()" style="cursor:pointer; color: white" >Sign Out <span  class="glyphicon pull-right"></span></a></li>
                     </ul>
                 </li>
 

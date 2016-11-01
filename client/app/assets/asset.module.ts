@@ -17,11 +17,15 @@ import {UserGuard} from "../user.guard";
 import {AdminGuard} from "../admin.guard";
 
 import { Ng2DatetimePickerModule } from 'ng2-datetime-picker';
+import {ListNewAssetComponent} from "./list-new-asset.component";
+import {ListNewAssetResolve} from "./list-new-asset-resolve";
+import {AssignAssetResolve} from "./asset-assign-resolve";
 
 
 @NgModule({
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot(), Ng2DatetimePickerModule ],
-  declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent, AssignAssetComponent, ListComponent, UserComponent],
-  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve ]
+  declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent,
+    AssignAssetComponent, ListComponent, UserComponent, ListNewAssetComponent],
+  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, ListNewAssetResolve, AssignAssetResolve ]
 })
 export class AssetModule {}

@@ -11,7 +11,10 @@ import 'rxjs/add/observable/throw';
   template: `
    <button (click)="editAsset()" class="btn btn-default btn-sm"> Edit </button>
    <button (click)="returnAsset()" [disabled]="isReturned" class="btn btn-danger btn-sm">Return</button>
-    `
+    `,
+  styles: ['.btn-danger {font-size: inherit; color: white;margin-top: -6%;}',
+    '.btn-default {font-size: inherit; color: black;margin-top: -6%;}']
+
 })
 export class ClickableComponent {
   constructor(private router: Router, private assetService: AssetService){}

@@ -40,6 +40,38 @@
     font-size: small;
 }
 
+.nav{
+    background-color: #2d2d2d;
+    height: 100%;
+}
+
+.glyph-sidebar{
+    margin-right: 3%;
+}
+
+a{
+    color: white;
+    font-size: medium;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #26A69A !important;
+    color: white;
+}
+
+.dropdown-menu {
+    background: #222222;
+}
+
+.dropdown-menu>li>a:hover {
+    text-decoration: none;
+    background-color: #26A69A;
+}
+
+.navbar-brand:hover {
+    background-color: #26A69A;
+}
+
 .search-btn{
     background: #26A69A;
 }
@@ -55,4 +87,8 @@
 .input-group-btn{
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
+}
+
+.submenu {
+    background-color: #26A69A;
 }

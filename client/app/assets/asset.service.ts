@@ -14,19 +14,20 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class AssetService {
 
-    private listAssetsURL = '/api/assets/list/';  // URL to web API
-    private addAssetUrl = '/api/assets/add';
-    private getAssetUrl = '/api/assets/get';
-    private editAssetUrl = '/api/assets/save';
-    private returnAssetUrl = '/api/assets/return';
-    private fetchAvailableAssetUrl = '/api/assets/fetch/';
-    private assignAssetUrl = '/api/assets/assign';
-    private listAllAssetUrl = '/api/assets/listall';
-    private listEmail = '/api/users/listemail';
-    private assignEmpIdUrl = '/api/users/assignempid';
-    //private empWithoutAssetType = '/api/users/emps/noassets/';
-    private listAllEmp = '/api/users/getallemps';
-    private verifyUserAsset = '/api/assets/verifyuserasset';
+  private listAssetsURL = '/api/assets/list/';
+  private listNewAssetsUrl = '/api/assets/list-new/';
+  private addAssetUrl = '/api/assets/add';
+  private getAssetUrl = '/api/assets/get';
+  private editAssetUrl = '/api/assets/save';
+  private returnAssetUrl = '/api/assets/return';
+  private fetchAvailableAssetUrl = '/api/assets/fetch/';
+  private assignAssetUrl = '/api/assets/assign';
+  private listAllAssetUrl = '/api/assets/listall';
+  private listEmail = '/api/users/listemail';
+  private assignEmpIdUrl = '/api/users/assignempid';
+  //private empWithoutAssetType = '/api/users/emps/noassets/';
+  private listAllEmp = '/api/users/getallemps';
+  private verifyUserAsset = '/api/assets/verifyuserasset';
 
 
   constructor (private http: Http) {}
@@ -42,21 +43,21 @@ export class AssetService {
       .catch(this.handleError);
   }
 
-    getAllEmp(): Observable<> {
+  getAllEmp(): Observable<> {
 
-        return this.http.get(this.listAllEmp )
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
+    return this.http.get(this.listAllEmp )
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
-    verifyUserRequest(employee:{}): Observable<> {
-        let headers = new Headers({
-            'Content-Type': 'application/json'
-        });
-        return this.http.post(this.verifyUserAsset, employee,{headers: headers})
-            .map(this.extractCompleteData)
-            .catch(this.handleError);
-    }
+  verifyUserRequest(employee:{}): Observable<> {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(this.verifyUserAsset, employee,{headers: headers})
+      .map(this.extractCompleteData)
+      .catch(this.handleError);
+  }
 
   /**
    * Makes a post request to add a new asset.
@@ -79,7 +80,7 @@ export class AssetService {
 
 
 
-    /**
+  /**
    * Makes a post request to get an Asset by the object ID
    * @param _id
    * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
@@ -103,6 +104,8 @@ export class AssetService {
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
+
+
     return this.http
       .post(this.editAssetUrl, JSON.stringify(asset), {headers: headers})
       .map(this.extractData)
@@ -116,6 +119,13 @@ export class AssetService {
   listAllAsset(): Observable<> {
     return this.http
       .get(this.listAllAssetUrl)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  listNewAssets(): Observable<> {
+    return this.http
+      .get(this.listNewAssetsUrl)
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -135,15 +145,15 @@ export class AssetService {
    * @param objId
    * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
    */
-    returnAsset(objId: string) {
-        let headers = new Headers({
-            'Content-Type': 'application/json'
-        });
-        return this.http
-          .post(this.returnAssetUrl, JSON.stringify({"_id" : objId}), {headers: headers})
-          .map(this.extractData)
-          .catch(this.handleError);
-    }
+  returnAsset(objId: string) {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http
+      .post(this.returnAssetUrl, JSON.stringify({"_id" : objId}), {headers: headers})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
   /**
    * Makes a get request to get all Assets whose 'isAvailable' is true
@@ -157,21 +167,21 @@ export class AssetService {
       .catch(this.handleError);
   }
 
-    /**
-     * Makes a post request to assign empId to newly signedUp employees
-     * @param employee object
-     * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
-     */
+  /**
+   * Makes a post request to assign empId to newly signedUp employees
+   * @param employee object
+   * @returns {Observable<R>|Promise<ErrorObservable>|Promise<R>|Promise<T>|any}
+   */
 
-    assignEmpId(employee:{}) {
-        let headers = new Headers({
-            'Content-Type': 'application/json'
-        });
-        return this.http
-            .post(this.assignEmpIdUrl, employee, {headers: headers})
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
+  assignEmpId(employee:{}) {
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    return this.http
+      .post(this.assignEmpIdUrl, employee, {headers: headers})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
   /**
    * Makes a post request to assign an available asset to an Employee
@@ -199,10 +209,10 @@ export class AssetService {
     return body || {};
   }
 
-    private extractCompleteData(res: Response) {
-        let body = {result:res.json(), status:res.status, statusText:res.statusText};
-        return body || {};
-    }
+  private extractCompleteData(res: Response) {
+    let body = {result:res.json(), status:res.status, statusText:res.statusText};
+    return body || {};
+  }
 
 
 
@@ -211,10 +221,10 @@ export class AssetService {
    * @param error
    * @returns {ErrorObservable}
    */
-    private handleError (error: any) {
-        let errMsg = (error._body) ? error._body : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        return Observable.throw(errMsg);
-    }
+  private handleError (error: any) {
+    let errMsg = (error._body) ? error._body : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    return Observable.throw(errMsg);
+  }
 
 
 }

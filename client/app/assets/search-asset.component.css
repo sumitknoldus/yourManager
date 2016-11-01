@@ -21,3 +21,11 @@ table {
     /*background-color: #26A69A;*/
     border-color: #26A69A;
 }
+
+.ag-header-cell-label{
+    text-align: center;
+}
+
+.ag-cell-value{
+    text-align: center;
+}

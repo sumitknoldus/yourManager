@@ -4,40 +4,45 @@
     <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-body">
             <form (ngSubmit) = submit() #assetForm = "ngForm">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            Choose Employee
+                            <select *ngIf="isEmpId"  name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required>
+                                <option *ngFor="let user of users" [value]="user.email">{{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
+                            </select>
 
-                <div class="form-group">
-                    Choose Employee
-                    <select *ngIf="isEmpId"  name="employee" class="form-control" [(ngModel)]="selectedEmployee.email" required>
-                        <option *ngFor="let user of users" [value]="user.email">{{user.firstName}} {{user.middleName}} {{user.lastName}} | {{user.email}}</option>
-                    </select>
-
-                    <select  [disabled]="true" *ngIf="!isEmpId" style="margin-top: 3%;" id="noAssetData" class="form-control" required>
-                        <option value="" disabled selected>No records found</option>
-                    </select>
-                </div>
-                <div>
-                    <div>
-                        <div class="form-group">
-                            <div class="col-xs-5">
-                                <label for="empId">Employee ID: </label>
-                            </div>
-                            <div class="col-xs-7" >
-                                <input [disabled]="!isEmpId" type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required pattern="[A-z0-9\-]{0,10}">
-                            </div>
-                            <!--<div class="col-xs-12" class="alert alert-danger">-->
-                                <!--Employee Id is required-->
-                            <!--</div>-->
-                            <!--<div class="col-xs-12" [hidden]="empId.valid || empId.pristine"-->
-                                 <!--class="alert alert-danger">-->
-                                <!--Employee Id is required-->
-                            <!--</div>-->
+                            <select *ngIf="!isEmpId" [disabled]="true" style="margin-top: 3%;" id="noAssetData" class="form-control" required>
+                                <option value="" disabled selected>No records found</option>
+                            </select>
                         </div>
-                   </div>
+                    </div>
+                </div>
 
-                    <div class="col-xs-3 col-xs-offset-9">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-5">
+                            <label for="empId">Employee ID: </label>
+                        </div>
+                        <div class="col-md-7" >
+                            <input [disabled]="!isEmpId" type="text" name="empId"  id="empId" class="form-control" [(ngModel)] = "selectedEmployee.empId" #empId="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                        </div>
+                        <!--<div class="col-xs-12" class="alert alert-danger">-->
+                        <!--Employee Id is required-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-12" [hidden]="empId.valid || empId.pristine"-->
+                        <!--class="alert alert-danger">-->
+                        <!--Employee Id is required-->
+                        <!--</div>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-9">
                         <button style="margin-top: 10%; float: right" type="submit"  class="btn btn-default" [disabled] = "!assetForm.form.valid">Assign ID</button>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
