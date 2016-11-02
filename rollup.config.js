@@ -27,10 +27,10 @@ export default {
             //include: 'node_modules/**',
             //exclude:  ['../node_modules/ag-grid-ng2/main.js', '../node_modules/ng2-datetime-picker/**'],
             // if true then uses of `global` won't be dealt with by this plugin
-            ignoreGlobal: false,  // Default: false
+            //ignoreGlobal: false,  // Default: false
 
             // if false then skip sourceMap generation for CommonJS modules
-            sourceMap: false,  // Default: true,
+            //sourceMap: true,  // Default: true,
             namedExports: {
                 // left-hand side can be an absolute path, a path
                 // relative to the current directory, or the name
