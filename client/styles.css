@@ -6,6 +6,10 @@
     position: relative;
 }
 
-#agHeaderCellLabel, .ag-cell{
+#agHeaderCellLabel, .ag-cell, .ag-header-group-cell-label{
     text-align: center;
+}
+
+.ag-header-cell-text {
+    margin-left: 15%;
 }

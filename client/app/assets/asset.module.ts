@@ -12,7 +12,6 @@ import {AssignAssetComponent} from "./assign-asset.component";
 import {ListComponent} from "./list-asset.component";
 import {AgGridModule} from "ag-grid-ng2/main";
 import {ListAssetResolve} from "./list-asset-resolve";
-import {ClickableComponent} from "./clickable-update.component";
 import {UserComponent} from "./user.component";
 import {UserGuard} from "../user.guard";
 import {AdminGuard} from "../admin.guard";

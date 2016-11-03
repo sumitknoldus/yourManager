@@ -4,7 +4,6 @@ import {AssetService} from "./asset.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Asset} from "../shared/model/asset";
 import {GridOptions} from "ag-grid/main";
-import {ClickableComponent} from "./clickable-update.component";
 import {ClickableAssignComponent} from "./clickable-assign.component";
 
 @Component({
@@ -50,11 +49,22 @@ export class ListNewAssetComponent {
     let headers = [];
     keyNames.filter(key => key != '__v' && key != '_id' && key != 'empId' &&
     key != 'empName' && key != 'dateOfIssue' && key != 'dateOfReturn').map(key => {
-      headers.push({
-        headerName: this.getHeaderName(key).toUpperCase(),
-        field: key,
-        width: 140
-      })
+      if(key == 'specs') {
+        headers.push({
+          headerName: 'SPECIFICATIONS',
+          children: [
+            {headerName : 'HD', field : 'specs.HD', width : 100},
+            {headerName : 'RAM', field : 'specs.RAM', width : 100},
+            {headerName : 'PROCESSOR', field : 'specs.Processor', width : 100}
+          ]
+        });
+      } else {
+        headers.push({
+          headerName: this.getHeaderName(key).toUpperCase(),
+          field: key,
+          width: 140
+        })
+      }
     });
 
     headers.push({
@@ -103,7 +113,7 @@ export class ListNewAssetComponent {
         dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
         warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
         lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
-        specs: JSON.stringify(assets[i].specs),
+        specs: assets[i].specs,
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
       })

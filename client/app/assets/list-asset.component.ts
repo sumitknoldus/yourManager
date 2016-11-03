@@ -1,4 +1,4 @@
-import { Component, Input,Output, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, Input,Output, OnInit, OnDestroy, EventEmitter, NgZone } from '@angular/core';
 import {AssetService} from './asset.service';
 import {Asset} from '../shared/model/asset';
 import {Specs} from '../shared/model/specs';
@@ -12,7 +12,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {error} from "util";
 import {GridOptions} from "ag-grid/main";
 import {AgRendererComponent} from "ag-grid-ng2/main";
-import {ClickableComponent} from "./clickable-update.component";
 import {AssetModule} from "../app.module";
 import { DatePipe } from '@angular/common';
 
@@ -29,8 +28,8 @@ export class ListComponent implements OnInit{
   public allocatedAssetsList: Asset[] = [];
   cell:any;
   isResult = false;
-    noResultIcon ='';
-    noResultFound='';
+  noResultIcon ='';
+  noResultFound='';
   mode = 'Observable';
   public errorMessage = '';
   public selectedId: string;
@@ -44,14 +43,22 @@ export class ListComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.gridOptions.context = {
+      assetService: this.assetService,
+      gridOptions: this.gridOptions,
+      datePipe : this.datePipe,
+      createDataRows : this.createDataRows,
+      router : this.router
+    };
+
     this.route.data.forEach((data: { assets: Asset[]}) => {
       if(data.assets.length > 0) {
         this.gridOptions.columnDefs = this.createColumnDefs(data.assets[0]);
         this.gridOptions.rowData = this.createDataRows(data.assets);
         this.isResult= true;
       } else {
-          this.noResultIcon = "../../assets/images/warning.png";
-          this.noResultFound = "../../assets/images/no-result.png";
+        this.noResultIcon = "../../assets/images/warning.png";
+        this.noResultFound = "../../assets/images/no-result.png";
         this.isResult = false;
       }
     });
@@ -66,24 +73,73 @@ export class ListComponent implements OnInit{
     let keyNames = Object.keys(asset);
     let headers = [];
     keyNames.filter(key => key != '__v' && key != '_id').map(key => {
-      headers.push({
-        headerName: this.getHeaderName(key).toLocaleUpperCase(),
-        field: key,
-        width: 140
-      })
+      if(key == 'specs') {
+        headers.push({
+          headerName: 'SPECIFICATIONS',
+          children: [
+            {headerName : 'HD', field : 'specs.HD', width : 100},
+            {headerName : 'RAM', field : 'specs.RAM', width : 100},
+            {headerName : 'PROCESSOR', field : 'specs.Processor', width : 100}
+          ]
+        });
+      } else{
+        headers.push({
+          headerName: this.getHeaderName(key).toLocaleUpperCase(),
+          field: key,
+          width: 140
+        })
+      }
     });
 
     headers.push({
       headerName: 'UPDATE',
       field: 'update',
-      cellRendererFramework: {
-        //template: '<button (onClicked) = "editAsset()"> Edit </button>'
-        component: ClickableComponent
-      },
+      cellRenderer : this.editAsset,
       pinned: 'right',
       width: 140
     });
     return headers;
+  }
+
+  editAsset(params) {
+    var eDiv = document.createElement('div');
+    eDiv.innerHTML = '<button style="font-size: inherit; margin-top: -6%;" class="btn btn-sm btn-default btn-simple">Edit' +
+      '</button><button style = "margin-left: 3%; font-size: inherit; color: white;margin-top: -6%;" class="btn btn-sm btn-danger return">Return</button>';
+    var eButton = eDiv.querySelectorAll('.btn-simple')[0];
+    var rButton = eDiv.querySelectorAll('.return')[0];
+
+    if(params.data.dateOfReturn != null){
+      rButton.setAttribute('disabled', 'true')
+    }
+
+    eButton.addEventListener('click', function() {
+      params.context.router.navigate(['/admin/asset/edit', params.data._id]);
+    });
+
+    rButton.addEventListener('click', function() {
+      rButton.removeAttribute('disabled');
+      params.context.assetService.returnAsset(params.data._id).subscribe(data => {
+          params.context.assetService.listAllAsset().subscribe(rows => {
+              let dataRows = params.context.createDataRows(rows);
+              params.context.gridOptions.api.setRowData(dataRows)
+            },
+            error => {
+              swal(
+                'error',
+                ''+JSON.stringify(error),
+                'error'
+              )
+            });
+        },
+        error =>{
+          swal(
+            'error',
+            ''+JSON.stringify(error),
+            'error'
+          )
+        })
+    });
+    return eDiv;
   }
 
   getHeaderName(key: string) {
@@ -93,7 +149,7 @@ export class ListComponent implements OnInit{
       capsLetterArray.map(capitalLetter => key = key.replace(capitalLetter, ' '+capitalLetter.toLowerCase()));
       newKey = this.getHeaderName(key)
     }
-      return newKey;
+    return newKey;
   }
 
   /**
@@ -117,7 +173,7 @@ export class ListComponent implements OnInit{
         dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
         warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
         lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
-        specs: JSON.stringify(assets[i].specs),
+        specs: assets[i].specs,
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
       })
