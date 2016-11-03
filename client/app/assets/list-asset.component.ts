@@ -122,6 +122,7 @@ export class ListComponent implements OnInit{
           params.context.assetService.listAllAsset().subscribe(rows => {
               let dataRows = params.context.createDataRows(rows);
               params.context.gridOptions.api.setRowData(dataRows)
+              swal({   title: "Asset Returned Successfully.",   text: "Auto close in 1 second.",   timer: 1000,   showConfirmButton: false }).done();
             },
             error => {
               swal(
