@@ -1,0 +1,37 @@
+<div *ngIf="showSidebar" style="height: 100%; overflow: hidden;" class="column col-md-2  col-sm-2 col-xs-3 sidebar-offcanvas no-padding" id="sidebar">
+    <ul class="nav">
+        <li style="margin-top: 30%" >
+           <span class="inline-block">
+               <div class="input-group">
+                   <input type="text" placeholder="Search by Id/Name" class="search form-control" required
+                          [(ngModel)]="search.value" (keyup.enter) = "searchAsset()" name="search" />
+                   <div class="input-group-btn search-btn">
+                       <button class="btn search-btn" (click) = "searchAsset()">
+                           <span class="glyphicon glyphicon-search search-btn"></span>
+                       </button>
+                   </div>
+               </div>
+
+           </span>
+        </li>
+
+        <li [@heroState]="l1" style="margin-top: 5%" (click) = "setStyle('a1')"><a #a1 routerLink="/admin/new/emp"><span class="glyphicon glyph-sidebar glyphicon-user"></span>New Employee</a></li>
+        <li [@heroState]="l2" (click) = "setStyle('a2')"><a #a2 routerLink="/admin/asset/add"><span class="glyphicon glyph-sidebar glyphicon-plus"></span>Add Hardware</a></li>
+        <li [@heroState]="l3" (click) = "setStyle('a3')"><a #a3 routerLink="/admin/asset/assign"><span class="glyphicon glyph-sidebar glyphicon-ok"></span>Assign Existing Asset</a></li>
+        <li [@heroState]="l4" (click) = "setStyle('a4')"><a #a4 routerLink="/admin/asset/list"><span class="glyphicon glyph-sidebar glyphicon-list-alt"></span>List Assigned Assets</a></li>
+        <li [@heroState]="l5" (click) = "setStyle('a5')"><a #a5 routerLink="/admin/asset/list-new"><span class="glyphicon glyph-sidebar glyphicon-list-alt"></span>List New Assets</a></li>
+
+    </ul>
+</div>
+
+<div *ngIf="showSidebar">
+    <div class="col-md-10 col-sm-10 col-xs-9" style="margin-top: 6%">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div *ngIf="!showSidebar">
+    <div class="col-md-10 col-lg-offset-1" style="margin-top: 6%">
+        <router-outlet></router-outlet>
+    </div>
+</div>

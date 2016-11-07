@@ -1,0 +1,115 @@
+<!--<ym-header-shared></ym-header-shared>-->
+
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="panel panel-body">
+            <form (ngSubmit)="signup(user)" #signupForm="ngForm" class="form-horizontal">
+
+                <div class="row" style="margin-top: 6%">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.firstName" class="form-control" id="fName" placeholder="First Name"
+                                   type="text" name="firstName" required #fName="ngModel" pattern="[A-z]{3,20}">
+                            <div [hidden]="fName.valid || fName.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid first name.(Range : 3-20 characters)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.middleName" class="form-control" id="mName" placeholder="Middle Name"
+                                   type="text" name="middleName" #mName="ngModel" pattern="[A-z]{0,20}">
+                            <div [hidden]="mName.valid || mName.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid middle name.(max : 20 characters)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.lastName" class="form-control" id="lName" placeholder="Last Name"
+                                   type="text" name="lastName" required #lName="ngModel" pattern="[A-z]{3,20}">
+                            <div [hidden]="lName.valid || lName.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid last name.(Range : 3-20 characters)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group input-field">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.number" class=" form-control" id="number" placeholder="Phone number"
+                                   type="test" name="number" required #number="ngModel" pattern="[0-9]{10}">
+                            <div [hidden]="number.valid || number.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid phone number(10 digits)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group input-field">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <select [(ngModel)]="user.gender" class=" form-control" id="gender"
+                                    type="text" name="gender" required #gender="ngModel">
+                                <option selected disabled hidden>Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <div [hidden]="gender.valid || gender.pristine"
+                                 class="alert alert-danger">
+                                Gender is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.email" placeholder="Email ID" class="form-control" id="email" type="text" name="email"
+                                   required #email="ngModel" pattern="^[a-zA-Z0-9.$%&’*+\/=?^_`{|}~-]+@knoldus.+(com|in)$">
+                            <div [hidden]="email.valid || email.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid knoldus email id
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <input [(ngModel)]="user.password" placeholder="Password" class="form-control" id="password"
+                                   type="password" name="password" required #password="ngModel" pattern=".{8,}">
+                            <div [hidden]="password.valid || password.pristine"
+                                 class="alert alert-danger">
+                                Enter a valid password(must be greater than 8 characters)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <button class="btn btn-sm signup-btn btn-block" type="submit" name="action"
+                                    [disabled]="!signupForm.form.valid">Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

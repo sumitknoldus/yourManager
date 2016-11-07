@@ -7,5 +7,6 @@ gulpfiletemp.js
 gulpfile1.js
 gulp.config.js
 samplegulpfile.js
-dist
+dist/temp
+dist/prod
 client/dist

@@ -1,0 +1,32 @@
+<div class="background">
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="container-fluid">
+            <div class="navbar-header col-lg-2 col-xs-7">
+                <a class="navbar-brand">Your Manager</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="row" style="margin-top: 7%">
+            <div class="col-md-2 col-md-offset-4">
+                <span>
+                <button (click) = "goToLogin()" class="home-btn btn btn-default btn-lg btn-block">LOGIN</button>
+                </span>
+            </div>
+            <div class="col-md-2">
+                <span>
+                <button (click) = "goToSignUp()" class="home-btn btn btn-default btn-lg btn-block">SIGN UP</button>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" style="margin-top: 3%">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
