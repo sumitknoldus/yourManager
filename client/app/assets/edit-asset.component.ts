@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import {Asset} from "../shared/model/asset";
-import {AssetService} from "./asset.service";
+import {Asset} from '../shared/model/asset';
+import {AssetService} from './asset.service';
 import 'rxjs/add/observable/throw';
-import {DateTime} from "ng2-datetime-picker";
+import {DateTime} from 'ng2-datetime-picker';
 
 @Component({
   moduleId:module.id,
@@ -12,20 +12,18 @@ import {DateTime} from "ng2-datetime-picker";
   styleUrls: ['add-asset.component.css']
 })
 
-export class EditAssetComponent{
-
-  constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute){}
-  isAssign: boolean = false;
-  hardwareTypes = [ "Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
+export class EditAssetComponent {
+    isAssign: boolean = false;
+  hardwareTypes = [ 'Mouse', 'Keyboard', 'Laptop', 'Monitor', 'Adapter', 'Laptop Stand', 'Bag'];
   isEdit= true;
   asset = new Asset();
   selectedHardwareType = '';
-
+    constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       let id = params['id'];
-      this.getData(id)
+      this.getData(id);
     });
   }
 
@@ -33,19 +31,19 @@ export class EditAssetComponent{
    * This method calls the service get asset by object ID
    * @param id
    */
-  getData(id:string){
-    this.assetService.getById(id).subscribe(data =>{
+  getData(id:string) {
+    this.assetService.getById(id).subscribe(data => {
         this.asset = data;
         DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
         this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
-        if(data.lastMaintenanceDate != null){
-          this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true)
+        if(data.lastMaintenanceDate !== null) {
+          this.asset.lastMaintenanceDate = DateTime.formatDate(data.lastMaintenanceDate, true);
         }
-        if(data.shippingDate != null){
-          this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true)
+        if(data.shippingDate !== null) {
+          this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
         }
-        if(data.warrantyEndDate != null){
-          this.asset.warrantyEndDate = DateTime.formatDate(data.warrantyEndDate, true)
+        if(data.warrantyEndDate !== null) {
+          this.asset.warrantyEndDate = DateTime.formatDate(data.warrantyEndDate, true);
         }
       },
       error => swal(
@@ -53,14 +51,14 @@ export class EditAssetComponent{
         ''+JSON.stringify(error),
         'error'
       )
-    )
+    );
   }
 
   /**
    * This method calls the service method to edit a new asset
    * @param asset
    */
-  submit(asset: Asset){
+  submit(asset: Asset) {
     this.assetService.editAsset(asset).subscribe(
       data => this.router.navigate(['admin/asset/list']),
       error => swal(
@@ -68,7 +66,7 @@ export class EditAssetComponent{
         ''+JSON.stringify(error),
         'error'
       )
-    )
+    );
   }
 
 }

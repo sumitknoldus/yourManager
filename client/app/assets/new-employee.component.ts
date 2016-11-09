@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {Asset} from "../shared/model/asset";
-import {AssetService} from "./asset.service";
+import {AssetService} from './asset.service';
 import 'rxjs/add/observable/throw';
 
 
@@ -14,18 +13,18 @@ import 'rxjs/add/observable/throw';
 
 export class NewEmployeeComponent {
 
-    constructor(private router: Router, private assetService: AssetService){}
 
     users = [];
     selectedEmployee = {};
     isEmpId : boolean= false;
-    ngOnInit(){
+    constructor(private router: Router, private assetService: AssetService) {}
+    ngOnInit() {
         this.assetService.listEmpEmail().subscribe(
             data => {
-                if(data.length > 0){
+                if(data.length > 0) {
                     this.users = data;
                     this.isEmpId = true;
-                } else{
+                } else {
                     this.isEmpId = false;
                 }
             },
@@ -34,7 +33,7 @@ export class NewEmployeeComponent {
               ''+JSON.stringify(error),
               'error'
             )
-        )
+        );
     }
 
     submit() {
@@ -48,10 +47,10 @@ export class NewEmployeeComponent {
                 this.selectedEmployee = {empId:''};
                 this.assetService.listEmpEmail().subscribe(
                     data => {
-                        if(data.length > 0){
+                        if(data.length > 0) {
                             this.users = data;
                             this.isEmpId = true;
-                        } else{
+                        } else {
                             this.isEmpId = false;
                         }
                     },
@@ -60,13 +59,13 @@ export class NewEmployeeComponent {
                         ''+JSON.stringify(error),
                         'error'
                     )
-                )
+                );
             },
             errMsg => swal(
                 'Error',
                 ''+JSON.stringify(errMsg),
                 'error'
             )
-        )
+        );
     }
 }

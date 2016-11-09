@@ -29,9 +29,9 @@ export class LoginComponent {
       .then(data => {
           if(JSON.stringify(data) !== '{}') {
             localStorage.setItem('user', JSON.stringify(data));
-            if(data.role === 'user'){
+            if(data.role === 'user') {
               this.router.navigate(['admin/user']);
-            }else{
+            }else {
               this.router.navigate(['admin/asset/list']);
             }
           } else {
@@ -43,7 +43,7 @@ export class LoginComponent {
           'Invalid Username or Password',
           'error'
         )
-      )
+      );
 
   }
 
@@ -54,3 +54,4 @@ export class LoginComponent {
     this.router.navigate(['signup']);
   }
 }
+

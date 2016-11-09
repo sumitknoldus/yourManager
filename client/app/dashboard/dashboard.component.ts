@@ -7,7 +7,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
-import {User} from "../shared/model/user";
 
 @Component({
     moduleId:module.id,
@@ -25,19 +24,19 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.fullpath = 'assets/images/sample.png';
-        this.router.navigate(['asset/list'])
+        this.router.navigate(['asset/list']);
     }
 
     addHardware() {
-        this.router.navigate(['asset/add'])
+        this.router.navigate(['asset/add']);
     }
 
     goToListAllAsset() {
-        this.router.navigate(['asset/list'])
+        this.router.navigate(['asset/list']);
     }
 
-    goToAssignAsset(){
-        this.router.navigate(['asset/assign'])
+    goToAssignAsset() {
+        this.router.navigate(['asset/assign']);
 
     }
     onSubmit() {

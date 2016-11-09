@@ -14,11 +14,11 @@ import {LoginModule} from './login/login.module';
 import {AssetModule} from './assets/asset.module';
 import {HomeModule} from './home/home.module';
 import {DashboardModule} from './dashboard/dashboard.module';
-import {SignupModule} from "./signup/signup.module";
-import {AdminGuard} from "./admin.guard";
-import {UserGuard} from "./user.guard";
-import {LoginGuard} from "./login.guard";
-import {AdminModule} from "./admin/admin.module";
+import {SignupModule} from './signup/signup.module';
+import {AdminGuard} from './admin.guard';
+import {UserGuard} from './user.guard';
+import {LoginGuard} from './login.guard';
+import {AdminModule} from './admin/admin.module';
 
 
 @NgModule({

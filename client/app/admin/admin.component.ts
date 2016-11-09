@@ -1,6 +1,6 @@
-import {Component, Input} from "@angular/core";
-import {Router} from "@angular/router";
-import {User} from "../shared/model/user";
+import {Component, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {User} from '../shared/model/user';
 
 @Component({
   moduleId:module.id,
@@ -23,7 +23,7 @@ export class AdminComponent{
       this.show = false;
     } else {
       this.show= true;
-      if(JSON.parse(localStorage.getItem('user')).role === 'user'){
+      if(JSON.parse(localStorage.getItem('user')).role === 'user') {
         this.showSidebar = false;
       }
       this.user= JSON.parse(localStorage.getItem('user'));

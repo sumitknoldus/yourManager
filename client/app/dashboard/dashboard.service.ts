@@ -1,8 +1,6 @@
 import { Injectable }     from '@angular/core';
 import { Http, Response } from '@angular/http';
-
 import { Observable }     from 'rxjs/Observable';
-//import { Headers, RequestOptions } from '@angular/http';
 import {Asset} from '../shared/model/asset';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,14 +12,11 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SearchService {
+    private listAssetsURL = '/api/Asset/list/';  // URL to web API
     constructor (private http: Http) {}
     getAllocatedAssets (empId: string): Observable<Asset[]> {
 
         this.listAssetsURL+= empId;
-        //let body = JSON.stringify({ empId });
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
-
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
             .catch(this.handleError);
@@ -43,5 +38,5 @@ export class SearchService {
         return Observable.throw(errMsg);
     }
 
-    private listAssetsURL = '/api/Asset/list/';  // URL to web API
+
 }

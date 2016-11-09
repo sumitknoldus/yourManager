@@ -1,6 +1,6 @@
 import {Component,Input, OnInit, Renderer, ElementRef, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
-import {User} from "../shared/model/user";
+import {User} from '../shared/model/user';
 
 @Component({
     moduleId:module.id,
@@ -27,7 +27,9 @@ export class SidebarComponent implements OnInit {
     ngOnInit() {
         let role = JSON.parse(localStorage.getItem('user')).role;
 
-        if (role === 'user') this.showSidebar = false
+        if (role === 'user') {
+            this.showSidebar = false;
+        }
     }
 
     searchAsset() {
@@ -43,15 +45,15 @@ export class SidebarComponent implements OnInit {
         this.renderer.setElementStyle(this.a5.nativeElement, 'backgroundColor', '#2d2d2d');
         this.renderer.setElementStyle(this.a4.nativeElement, 'backgroundColor', '#2d2d2d');
 
-        if(element == 'a1') {
+        if(element === 'a1') {
             this.renderer.setElementStyle(this.a1.nativeElement, 'backgroundColor', '#26A69A');
-        } else if(element == 'a2') {
+        } else if(element === 'a2') {
             this.renderer.setElementStyle(this.a2.nativeElement, 'backgroundColor', '#26A69A');
-        } else if(element == 'a3') {
+        } else if(element === 'a3') {
             this.renderer.setElementStyle(this.a3.nativeElement, 'backgroundColor', '#26A69A');
-        } else if(element == 'a4') {
+        } else if(element === 'a4') {
             this.renderer.setElementStyle(this.a4.nativeElement, 'backgroundColor', '#26A69A');
-        } else if(element == 'a5') {
+        } else if(element === 'a5') {
             this.renderer.setElementStyle(this.a5.nativeElement, 'backgroundColor', '#26A69A');
         }
     }

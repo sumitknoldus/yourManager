@@ -73,7 +73,7 @@ export class SignupComponent {
                     ''+error,
                     'error'
                   ));
-          })
+          });
         },
         error => swal(
           'Error',

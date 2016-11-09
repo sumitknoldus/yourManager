@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { LoginService } from './login/login.service';
+
 
 @Injectable()
 export class AdminGuard implements CanActivate {
@@ -12,13 +12,13 @@ export class AdminGuard implements CanActivate {
    * @returns {boolean}
    */
   canActivate() {
-    if(localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'admin') {
-      return true
-    } else if (localStorage.getItem('user') === null){
-      this.router.navigate(['login'])
+    if(localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'admin') {
+      return true;
+    } else if (localStorage.getItem('user') === null) {
+      this.router.navigate(['login']);
     } else {
-      this.router.navigate(['admin/user'])
-      return false
+      this.router.navigate(['admin/user']);
+      return false;
     }
   }
 }

@@ -1,7 +1,6 @@
-import { Component, Input,Output, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import {AssetService} from './asset.service';
 import {Asset} from '../shared/model/asset';
-import {Specs} from '../shared/model/specs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
@@ -9,12 +8,8 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
-import {error} from "util";
-import {GridOptions} from "ag-grid/main";
-import {AgRendererComponent} from "ag-grid-ng2/main";
-import {ClickableComponent} from "./clickable-update.component";
-import {AssetModule} from "../app.module";
-
+import {GridOptions} from 'ag-grid/main';
+import {ClickableComponent} from './clickable-update.component';
 
 @Component({
   moduleId:module.id,
@@ -23,7 +18,7 @@ import {AssetModule} from "../app.module";
   styleUrls:['search-asset.component.css'],
 })
 
-export class ListComponent implements OnInit{
+export class ListComponent implements OnInit {
   @Input()
   public allocatedAssetsList: Asset[] = [];
   cell:any;
@@ -48,8 +43,8 @@ export class ListComponent implements OnInit{
         this.gridOptions.rowData = this.createDataRows(data.assets);
         this.isResult= true;
       } else {
-          this.noResultIcon = "../../assets/images/warning.png";
-          this.noResultFound = "../../assets/images/no-result.png";
+            this.noResultIcon = '../../assets/images/warning.png';
+          this.noResultFound = '../../assets/images/no-result.png';
         this.isResult = false;
       }
     });
@@ -63,19 +58,19 @@ export class ListComponent implements OnInit{
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
     let headers = [];
-    keyNames.filter(key => key != '__v' && key != '_id').map(key => {
+    keyNames.filter(key => key !== '__v' && key !== '_id').map(key => {
       headers.push({
         headerName: key,
         field: key,
         width: 140
-      })
+      });
     });
 
     headers.push({
       headerName: 'update',
       field: 'update',
       cellRendererFramework: {
-        //template: '<button (onClicked) = "editAsset()"> Edit </button>'
+        //template: '<button (onClicked) = 'editAsset()'> Edit </button>'
         component: ClickableComponent
       },
       pinned: 'right',
@@ -91,7 +86,7 @@ export class ListComponent implements OnInit{
    */
   private createDataRows(assets) {
     let updatedAssets = [];
-    for(let i in assets){
+    for(let i in assets) {
       updatedAssets.push({
         _id:assets[i]._id,
         empId:assets[i].empId,
@@ -108,7 +103,7 @@ export class ListComponent implements OnInit{
         specs: JSON.stringify(assets[i].specs),
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
-      })
+      });
     }
     return updatedAssets;
   }

@@ -1,10 +1,9 @@
-import {Component} from "@angular/core";
-import {AssetService} from "./asset.service";
-import {Router, ActivatedRoute} from "@angular/router";
-import {Asset} from "../shared/model/asset";
-import {GridOptions} from "ag-grid/main";
-import {ClickableComponent} from "./clickable-update.component";
-import {ClickableAssignComponent} from "./clickable-assign.component";
+import {Component} from '@angular/core';
+import {AssetService} from './asset.service';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Asset} from '../shared/model/asset';
+import {GridOptions} from 'ag-grid/main';
+import {ClickableAssignComponent} from './clickable-assign.component';
 
 @Component({
   moduleId:module.id,
@@ -14,12 +13,9 @@ import {ClickableAssignComponent} from "./clickable-assign.component";
 })
 
 export class ListNewAssetComponent {
-
-  private gridOptions:GridOptions =  <GridOptions>{};
-
   isResult;
   noResultFound;
-
+  private gridOptions:GridOptions =  <GridOptions>{};
   constructor(private assetService: AssetService,
               private router: Router,
               private route: ActivatedRoute) {
@@ -32,7 +28,7 @@ export class ListNewAssetComponent {
         this.gridOptions.rowData = this.createDataRows(data.assets);
         this.isResult= true;
       } else {
-        this.noResultFound = "../../assets/images/no-result.png";
+        this.noResultFound = '../../assets/images/no-result.png';
         this.isResult = false;
       }
     });
@@ -46,20 +42,20 @@ export class ListNewAssetComponent {
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
     let headers = [];
-    keyNames.filter(key => key != '__v' && key != '_id' && key != 'empId' &&
-    key != 'empName' && key != 'dateOfIssue' && key != 'dateOfReturn').map(key => {
+    keyNames.filter(key => key !== '__v' && key !== '_id' && key !== 'empId' &&
+    key !== 'empName' && key !== 'dateOfIssue' && key !== 'dateOfReturn').map(key => {
       headers.push({
         headerName: key,
         field: key,
         width: 140
-      })
+      });
     });
 
     headers.push({
       headerName: 'update',
       field: 'Assign Asset',
       cellRendererFramework: {
-        //template: '<button (click) = "editAsset()"> Edit </button>'
+        //template: '<button (click) = 'editAsset()'> Edit </button>'
         component: ClickableAssignComponent
       },
       pinned: 'right',
@@ -77,7 +73,7 @@ export class ListNewAssetComponent {
    */
   private createDataRows(assets) {
     let updatedAssets = [];
-    for(let i in assets){
+    for(let i in assets) {
       updatedAssets.push({
         _id:assets[i]._id,
         empId:assets[i].empId,
@@ -94,7 +90,7 @@ export class ListNewAssetComponent {
         specs: JSON.stringify(assets[i].specs),
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
-      })
+      });
     }
     return updatedAssets;
   }

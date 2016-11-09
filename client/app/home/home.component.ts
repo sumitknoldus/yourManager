@@ -9,8 +9,9 @@ import { Router } from '@angular/router';
 
 export class HomeComponent implements OnInit {
 
-    constructor(private router: Router) {}
     public fullpath:string;
+    constructor(private router: Router) {}
+
 
     ngOnInit() {
         this.fullpath = 'assets/images/your.jpg';

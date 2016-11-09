@@ -1,8 +1,8 @@
 import { Injectable }             from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable }             from 'rxjs/Observable';
-import {AssetService} from "./asset.service";
-import {Asset} from "../shared/model/asset";
+import {AssetService} from './asset.service';
+import {Asset} from '../shared/model/asset';
 
 @Injectable()
 export class ListNewAssetResolve implements Resolve<Asset[]> {
@@ -17,11 +17,11 @@ export class ListNewAssetResolve implements Resolve<Asset[]> {
   resolve(route: ActivatedRouteSnapshot): Observable<> | Promise<any> | any {
     return this.assetService.listNewAssets().map( assets => {
         if (assets) {
-          return assets
+          return assets;
         } else {
-          return false
+          return false;
         }
       }
-    )
+    );
   }
 }

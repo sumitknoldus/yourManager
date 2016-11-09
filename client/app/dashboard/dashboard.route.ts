@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes,RouterModule } from '@angular/router';
 import { DashboardComponent }    from './dashboard.component';
-import {AdminGuard} from "../admin.guard";
+import {AdminGuard} from '../admin.guard';
 
 const dashboardRoutes: Routes = [
     {

@@ -1,6 +1,6 @@
 import {Component,Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {User} from "../shared/model/user";
+import {User} from '../shared/model/user';
 
 @Component({
     moduleId:module.id,

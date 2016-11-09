@@ -1,4 +1,4 @@
-import {Specs} from "./specs";
+import {Specs} from './specs';
 export class Asset {
     empId:string;
     empName: string;

@@ -13,13 +13,15 @@ export class LoginGuard implements CanActivate {
    */
   canActivate() {
     if(localStorage.getItem('user') === null) {
-      return true
+      return true;
     } else if (JSON.parse(localStorage.getItem('user')).role === 'admin') {
       this.router.navigate(['admin/asset/list']);
-      return false
+      return false;
     } else if (JSON.parse(localStorage.getItem('user')).role === 'user') {
       this.router.navigate(['admin/user']);
-      return false
-    } else return false
+      return false;
+    } else {
+      return false;
+    }
   }
 }

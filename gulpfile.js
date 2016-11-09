@@ -167,7 +167,7 @@ gulp.task('start-server-prod', function () {
     nodemon({
         script: 'dist/prod/server/index.js'
         , ext: 'js html'
-        , env: { 'NODE_ENV': 'production' }
+        , env: { 'NODE_ENV': 'deveopment' }
     })
 });
 
@@ -296,9 +296,9 @@ gulp.task('bundle-app',function (done) {
     return gulp.src('dist/dev/client/app/boot.js')
         .pipe(browserify({
             insertGlobals: true,
-            debug: false,
-            mangle:false,
-            compress:false
+            debug: true,
+            mangle:true,
+            compress:true
         }))
 
         //.pipe(jsminify())
