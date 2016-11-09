@@ -293,12 +293,14 @@ gulp.task('build-prod', function(callback) {
 
 gulp.task('bundle-app',function (done) {
 
-    return gulp.src('dist/dev/client/app/boot.js')
+    return gulp.src('dist/prod/client/app/bundle.js')
         .pipe(browserify({
+
             insertGlobals: true,
             debug: true,
             mangle:true,
             compress:true
+
         }))
 
         //.pipe(jsminify())

@@ -33,7 +33,8 @@ export class SearchAssetComponent implements OnInit {
   private gridOptions:GridOptions = <GridOptions>{};
   constructor(private assetService: AssetService,
               private router: Router,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private datePipe: DatePipe) {}
 
   ngOnInit() {
     this.route.data.forEach((data: { assets: Asset[]}) => {
@@ -55,15 +56,41 @@ export class SearchAssetComponent implements OnInit {
    * @param asset
    * @returns {Array}
    */
+
+
+  getHeaderName(key: string) {
+    let newKey = key;
+    let capsLetterArray  = key.match(/[A-Z]/);
+    if(capsLetterArray !== null) {
+      capsLetterArray.map(capitalLetter => key = key.replace(capitalLetter, ' '+capitalLetter.toLowerCase()));
+      newKey = this.getHeaderName(key);
+    }
+    return newKey;
+  }
+
   private createColumnDefs(asset) {
     let keyNames = Object.keys(asset);
     let headers = [];
+
     keyNames.filter(key => key !== '__v' && key !== '_id').map(key => {
-      headers.push({
-        headerName: key,
-        field: key,
-        width: 100
-      });
+
+      if(key == 'specs') {
+        headers.push({
+          headerName: 'SPECIFICATIONS',
+          children: [
+            {headerName : 'HD', field : 'specs.HD', width : 100},
+            {headerName : 'RAM', field : 'specs.RAM', width : 100},
+            {headerName : 'PROCESSOR', field : 'specs.Processor', width : 100}
+          ]
+        });
+      } else {
+        headers.push({
+          headerName: this.getHeaderName(key).toLocaleUpperCase(),
+          field: key,
+          width: 140
+        })
+      };
+
     });
 
     headers.push({
@@ -94,12 +121,12 @@ export class SearchAssetComponent implements OnInit {
         model: assets[i].model,
         assetCode: assets[i].assetCode,
         serialNumber: assets[i].serialNumber,
-        shippingDate: assets[i].shippingDate,
-        dateOfIssue: assets[i].dateOfIssue,
-        dateOfReturn: assets[i].dateOfReturn,
-        warrantyEndDate:assets[i].warrantyEndDate,
-        lastMaintenanceDate:assets[i].lastMaintenanceDate,
-        specs: JSON.stringify(assets[i].specs),
+        shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
+        dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
+        dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
+        warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
+        lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
+        specs: assets[i].specs,
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
       });

@@ -37,7 +37,7 @@
 }
 
 .search{
-    font-size: small;
+    font-size: medium;
 }
 
 .nav{
@@ -46,7 +46,8 @@
 }
 
 .glyph-sidebar{
-    margin-right: 3%;
+    margin-right: 6%;
+    margin-left: 2%;
 }
 
 a{
@@ -54,9 +55,13 @@ a{
     font-size: medium;
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
+.nav>li>a:focus, .nav>li>a:hover{
     background-color: #26A69A !important;
     color: white;
+}
+
+.nav>li>a {
+    background-color: #2d2d2d;
 }
 
 .dropdown-menu {
@@ -73,6 +78,7 @@ a{
 }
 
 .search-btn{
+    color: white;
     background: #26A69A;
 }
 

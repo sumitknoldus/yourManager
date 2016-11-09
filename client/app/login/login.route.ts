@@ -4,7 +4,7 @@ import { LoginComponent }    from './login.component';
 import {LoginGuard} from '../login.guard';
 
 const loginRoutes: Routes = [
-    {
+    /*{
         path: 'login',
         component: LoginComponent,
         canActivate: [LoginGuard]
@@ -15,6 +15,6 @@ const loginRoutes: Routes = [
         redirectTo: '/login',
         canActivate: [LoginGuard],
         pathMatch: 'full'
-    }
+    }*/
 ];
 export const loginRouting: ModuleWithProviders = RouterModule.forChild(loginRoutes);

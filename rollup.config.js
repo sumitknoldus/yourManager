@@ -15,7 +15,11 @@ const rollupNG2 = (config) => new RollupNG2(config);
 
 export default {
     entry: './dist/temp/client/app/boot.js',
+<<<<<<< HEAD
    // format:'iife',
+=======
+    // format:'iife',
+>>>>>>> sprint12
     sourceMap: true,
     moduleName: 'main',
     plugins: [

@@ -11,13 +11,15 @@ export class UserGuard implements CanActivate {
    * @returns {boolean}
    */
   canActivate() {
+
     if(localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'user') {
       return true;
     } else if (localStorage.getItem('user') === null) {
-      this.router.navigate(['login']);
+      this.router.navigate(['home']);
     } else {
       this.router.navigate(['admin/asset/list']);
       return false;
+
     }
   }
 }

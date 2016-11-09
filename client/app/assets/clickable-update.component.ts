@@ -12,7 +12,6 @@ import 'rxjs/add/observable/throw';
     `,
   styles: ['.btn-danger {font-size: inherit; color: white;margin-top: -6%;}',
     '.btn-default {font-size: inherit; color: black;margin-top: -6%;}']
-
 })
 export class ClickableComponent {
   isReturned:boolean = false;

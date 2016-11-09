@@ -1,5 +1,6 @@
 .panel-body{
-    box-shadow: 2px 3px 15px -8px;
+    background-color: #f9f9f9;
+    box-shadow: 10px 10px 20px 0;
 }
 
 .content{
@@ -10,6 +11,17 @@
 
 .content span{
     margin-bottom: 30px;
+}
+
+input {
+    background-color: transparent;
+    color: #8D9194;
+    border: 1px solid #8D9194;
+}
+select {
+    background-color: transparent;
+    color: #8D9194;
+    border: 1px solid #8D9194;
 }
 
 .input-box{
@@ -25,14 +37,11 @@
 .submit{
     float: left;
 }
-.signup-btn{
-    color: white;
-    background-color: #26A69A;
-}
 
-.login-button{
+.signup-btn{
     background-color: #26A69A;
     color: white;
+    font-size: 19px;
 }
 
 

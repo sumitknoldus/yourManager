@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import { DatePipe }      from '@angular/common';
 import { HttpModule }  from '@angular/http';
 import { SearchAssetComponent }    from './search-asset.component';
 import { AssetService } from './asset.service';
@@ -22,6 +23,6 @@ import {AssignAssetResolve} from './asset-assign-resolve';
   imports:      [ SharedModule, assetRouting, HttpModule, AgGridModule.forRoot(), Ng2DatetimePickerModule ],
   declarations: [ SearchAssetComponent, AddAssetComponent, EditAssetComponent,
     AssignAssetComponent, ListComponent, UserComponent, ListNewAssetComponent],
-  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, ListNewAssetResolve, AssignAssetResolve ]
+  providers:    [ AssetService, SearchAssetResolve, ListAssetResolve, ListNewAssetResolve, AssignAssetResolve, DatePipe]
 })
 export class AssetModule {}
