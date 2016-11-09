@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import { Router, ActivatedRoute } from '@angular/router';
 import {GridOptions} from 'ag-grid/main';
 import {ClickableComponent} from './clickable-update.component';
+import {DatePipe} from '@angular/common';
 
 
 @Component({

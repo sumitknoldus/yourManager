@@ -4,6 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Asset} from '../shared/model/asset';
 import {GridOptions} from 'ag-grid/main';
 import {ClickableAssignComponent} from './clickable-assign.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   moduleId:module.id,
