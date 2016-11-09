@@ -125,9 +125,6 @@ export class AssetService {
     }
 
     listEmpEmail():Observable<> {
-        headers = new Headers({
-            'Content-Type': 'application/json'
-        });
         return this.http
             .get(this.listEmail)
             .map(this.extractData)

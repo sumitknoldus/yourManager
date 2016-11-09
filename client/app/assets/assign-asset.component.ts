@@ -39,17 +39,18 @@ export class AssignAssetComponent {
         });
 
         this.route.params.forEach((params:Params) => {
-            if (params['assetCode'] !== null) {
+            if (params.assetCode) {
                 this.objId = params['assetCode'];
                 this.assignNewAsset = true;
             }
         });
 
+        console.log('---------' + this.objId +'+++++++')
+
         if (this.objId !== '') {
             this.getAsset(this.objId);
         }
     }
-
     verifyUserRequest() {
         this.selectedEmployee.empId = this.asset.empId;
         this.selectedEmployee.assetType = this.asset.assetType;
