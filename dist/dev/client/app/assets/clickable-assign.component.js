@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require("@angular/router");
-var asset_service_1 = require("./asset.service");
+var router_1 = require('@angular/router');
+var asset_service_1 = require('./asset.service');
 require('rxjs/add/observable/throw');
 var ClickableAssignComponent = (function () {
     function ClickableAssignComponent(router, assetService) {
@@ -20,7 +20,6 @@ var ClickableAssignComponent = (function () {
     ClickableAssignComponent.prototype.agInit = function (params) {
         this.params = params;
     };
-    //isReturn = false;
     /**
      * This method redirects to the assign asset form
      */
@@ -30,7 +29,7 @@ var ClickableAssignComponent = (function () {
     ClickableAssignComponent = __decorate([
         core_1.Component({
             selector: 'clickable-assign-cell',
-            template: "\n   <button (click)=\"assignAsset()\" class=\"btn btn-default btn-sm\">Assign Asset</button>\n    ",
+            template: "\n   <button (click)='assignAsset()' class='btn btn-default btn-sm'>Assign Asset</button>\n    ",
             styles: ['.btn {font-size: inherit; background-color: #26A69A; color: white;margin-top: -6%;}']
         }), 
         __metadata('design:paramtypes', [router_1.Router, asset_service_1.AssetService])

@@ -1,9 +1,9 @@
 "use strict";
 var router_1 = require('@angular/router');
 var home_component_1 = require('./home.component');
-var login_guard_1 = require("../login.guard");
-var login_component_1 = require("../login/login.component");
-var signup_component_1 = require("../signup/signup.component");
+var login_guard_1 = require('../login.guard');
+var login_component_1 = require('../login/login.component');
+var signup_component_1 = require('../signup/signup.component');
 exports.homeRoutes = [
     {
         path: 'home',

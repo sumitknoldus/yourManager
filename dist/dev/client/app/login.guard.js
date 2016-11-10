@@ -31,8 +31,9 @@ var LoginGuard = (function () {
             this.router.navigate(['admin/user']);
             return false;
         }
-        else
+        else {
             return false;
+        }
     };
     LoginGuard = __decorate([
         core_1.Injectable(), 

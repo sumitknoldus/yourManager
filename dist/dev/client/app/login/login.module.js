@@ -13,7 +13,7 @@ var http_1 = require('@angular/http');
 var login_component_1 = require('./login.component');
 var login_service_1 = require('./login.service');
 var login_route_1 = require('./login.route');
-var shared_module_1 = require("../shared/shared.module");
+var shared_module_1 = require('../shared/shared.module');
 var LoginModule = (function () {
     function LoginModule() {
     }

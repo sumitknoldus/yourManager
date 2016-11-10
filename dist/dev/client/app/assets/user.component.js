@@ -9,13 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require("@angular/router");
-var asset_service_1 = require("./asset.service");
+var router_1 = require('@angular/router');
+var asset_service_1 = require('./asset.service');
 var Rx_1 = require('rxjs/Rx');
+var common_1 = require('@angular/common');
 var UserComponent = (function () {
-    function UserComponent(assetService, route) {
+    function UserComponent(assetService, route, datePipe) {
         this.assetService = assetService;
         this.route = route;
+        this.datePipe = datePipe;
         this.gridOptions = {};
         this.columnDefs = [];
         this.rowData = [];
@@ -62,16 +64,39 @@ var UserComponent = (function () {
      * @returns {Array}
      */
     UserComponent.prototype.createColumnDefs = function (asset) {
+        var _this = this;
         var keyNames = Object.keys(asset);
         var headers = [];
         keyNames.filter(function (key) { return key != '__v' && key != '_id'; }).map(function (key) {
-            headers.push({
-                headerName: key,
-                field: key,
-                width: 100
-            });
+            if (key == 'specs') {
+                headers.push({
+                    headerName: 'SPECIFICATIONS',
+                    children: [
+                        { headerName: 'HD', field: 'specs.HD', width: 100 },
+                        { headerName: 'RAM', field: 'specs.RAM', width: 100 },
+                        { headerName: 'PROCESSOR', field: 'specs.Processor', width: 100 }
+                    ]
+                });
+            }
+            else {
+                headers.push({
+                    headerName: _this.getHeaderName(key).toLocaleUpperCase(),
+                    field: key,
+                    width: 140
+                });
+            }
+            ;
         });
         return headers;
+    };
+    UserComponent.prototype.getHeaderName = function (key) {
+        var newKey = key;
+        var capsLetterArray = key.match(/[A-Z]/);
+        if (capsLetterArray !== null) {
+            capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
+            newKey = this.getHeaderName(key);
+        }
+        return newKey;
     };
     /**
      * This method returns rows for the ag-Grid
@@ -88,11 +113,11 @@ var UserComponent = (function () {
                 assetType: assets[i].assetType,
                 model: assets[i].model,
                 assetCode: assets[i].assetCode,
-                shippingDate: assets[i].shippingDate,
-                dateOfIssue: assets[i].dateOfIssue,
-                dateOfReturn: assets[i].dateOfReturn,
-                warrantyEndDate: assets[i].warrantyEndDate,
-                lastMaintenanceDate: assets[i].lastMaintenanceDate,
+                shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
+                dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
+                dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
+                warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
+                lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
                 specs: JSON.stringify(assets[i].specs),
                 isAvailable: assets[i].isAvailable,
                 update: assets[i].update
@@ -107,7 +132,7 @@ var UserComponent = (function () {
             templateUrl: 'user.component.html',
             styleUrls: ['search-asset.component.css'],
         }), 
-        __metadata('design:paramtypes', [asset_service_1.AssetService, router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [asset_service_1.AssetService, router_1.ActivatedRoute, common_1.DatePipe])
     ], UserComponent);
     return UserComponent;
 }());

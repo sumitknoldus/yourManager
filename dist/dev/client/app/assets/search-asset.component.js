@@ -17,7 +17,7 @@ require('rxjs/add/operator/distinctUntilChanged');
 require('rxjs/add/operator/switchMap');
 require('rxjs/add/operator/toPromise');
 var router_1 = require('@angular/router');
-var common_1 = require("@angular/common");
+var common_1 = require('@angular/common');
 var SearchAssetComponent = (function () {
     function SearchAssetComponent(assetService, router, route, datePipe) {
         this.assetService = assetService;
@@ -29,14 +29,21 @@ var SearchAssetComponent = (function () {
         this.noResultIcon = '';
         this.noResultFound = '';
         this.mode = 'Observable';
-        this.errorMessage = '';
-        this.gridOptions = {};
         this.columnDefs = [];
         this.rowData = [];
         this.headers = [];
+        this.errorMessage = '';
+        this.gridOptions = {};
     }
     SearchAssetComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.gridOptions.context = {
+            assetService: this.assetService,
+            gridOptions: this.gridOptions,
+            datePipe: this.datePipe,
+            createDataRows: this.createDataRows,
+            router: this.router
+        };
         this.route.data.forEach(function (data) {
             if (data.assets.length > 0) {
                 _this.isResult = true;
@@ -44,8 +51,8 @@ var SearchAssetComponent = (function () {
                 _this.rowData = _this.createDataRows(data.assets);
             }
             else {
-                _this.noResultIcon = "../../assets/images/warning.png";
-                _this.noResultFound = "../../assets/images/no-result.png";
+                _this.noResultIcon = '../../assets/images/warning.png';
+                _this.noResultFound = '../../assets/images/no-result.png';
                 _this.isResult = false;
             }
         });
@@ -55,11 +62,20 @@ var SearchAssetComponent = (function () {
      * @param asset
      * @returns {Array}
      */
+    SearchAssetComponent.prototype.getHeaderName = function (key) {
+        var newKey = key;
+        var capsLetterArray = key.match(/[A-Z]/);
+        if (capsLetterArray !== null) {
+            capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
+            newKey = this.getHeaderName(key);
+        }
+        return newKey;
+    };
     SearchAssetComponent.prototype.createColumnDefs = function (asset) {
         var _this = this;
         var keyNames = Object.keys(asset);
         var headers = [];
-        keyNames.filter(function (key) { return key != '__v' && key != '_id'; }).map(function (key) {
+        keyNames.filter(function (key) { return key !== '__v' && key !== '_id'; }).map(function (key) {
             if (key == 'specs') {
                 headers.push({
                     headerName: 'SPECIFICATIONS',
@@ -77,26 +93,49 @@ var SearchAssetComponent = (function () {
                     width: 140
                 });
             }
+            ;
         });
         headers.push({
-            headerName: 'update',
+            headerName: 'UPDATE',
             field: 'update',
-            cellRendererFramework: {
-                component: ClickableComponent
-            },
+            cellRenderer: this.editAsset,
             pinned: 'right',
-            width: 120
+            width: 140
         });
         return headers;
     };
-    SearchAssetComponent.prototype.getHeaderName = function (key) {
-        var newKey = key;
-        var capsLetterArray = key.match(/[A-Z]/);
-        if (capsLetterArray != null) {
-            capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
-            newKey = this.getHeaderName(key);
+    SearchAssetComponent.prototype.editAsset = function (params) {
+        var eDiv = document.createElement('div');
+        eDiv.innerHTML = '<button style="font-size: inherit; margin-top: -6%;" class="btn btn-sm btn-default btn-simple">Edit' +
+            '</button><button style = "margin-left: 3%; font-size: inherit; color: white;margin-top: -6%;" class="btn btn-sm btn-danger return">Return</button>';
+        var eButton = eDiv.querySelectorAll('.btn-simple')[0];
+        var rButton = eDiv.querySelectorAll('.return')[0];
+        if (params.data.dateOfReturn !== null) {
+            rButton.setAttribute('disabled', 'true');
         }
-        return newKey;
+        eButton.addEventListener('click', function () {
+            params.context.router.navigate(['/admin/asset/edit', params.data._id]);
+        });
+        rButton.addEventListener('click', function () {
+            rButton.removeAttribute('disabled');
+            params.context.assetService.returnAsset(params.data._id).subscribe(function (data) {
+                params.context.assetService.listAllAsset().subscribe(function (rows) {
+                    var dataRows = params.context.createDataRows(rows);
+                    params.context.gridOptions.api.setRowData(dataRows);
+                    swal({
+                        title: 'Asset Returned Successfully.',
+                        text: 'Auto close in 1 second.',
+                        timer: 1000,
+                        showConfirmButton: false
+                    }).done();
+                }, function (error) {
+                    swal('error', '' + JSON.stringify(error), 'error');
+                });
+            }, function (error) {
+                swal('error', '' + JSON.stringify(error), 'error');
+            });
+        });
+        return eDiv;
     };
     /**
      * This method returns rows for the ag-Grid

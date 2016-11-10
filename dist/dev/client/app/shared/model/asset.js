@@ -1,5 +1,5 @@
 "use strict";
-var specs_1 = require("./specs");
+var specs_1 = require('./specs');
 var Asset = (function () {
     function Asset() {
         this.empId = '';

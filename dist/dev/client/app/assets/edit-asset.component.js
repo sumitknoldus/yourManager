@@ -10,17 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var asset_1 = require("../shared/model/asset");
-var asset_service_1 = require("./asset.service");
+var asset_1 = require('../shared/model/asset');
+var asset_service_1 = require('./asset.service');
 require('rxjs/add/observable/throw');
-var ng2_datetime_picker_1 = require("ng2-datetime-picker");
+var ng2_datetime_picker_1 = require('ng2-datetime-picker');
 var EditAssetComponent = (function () {
     function EditAssetComponent(assetService, router, route) {
         this.assetService = assetService;
         this.router = router;
         this.route = route;
         this.isAssign = false;
-        this.hardwareTypes = ["Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
+        this.hardwareTypes = ['Mouse', 'Keyboard', 'Laptop', 'Monitor', 'Adapter', 'Laptop Stand', 'Bag'];
         this.isEdit = true;
         this.asset = new asset_1.Asset();
         this.selectedHardwareType = '';
@@ -42,13 +42,13 @@ var EditAssetComponent = (function () {
             _this.asset = data;
             ng2_datetime_picker_1.DateTime.formatDate = function (date) { return moment(date).format('YYYY-MM-DD'); };
             _this.asset.shippingDate = ng2_datetime_picker_1.DateTime.formatDate(data.shippingDate, true);
-            if (data.lastMaintenanceDate != null) {
+            if (data.lastMaintenanceDate !== null) {
                 _this.asset.lastMaintenanceDate = ng2_datetime_picker_1.DateTime.formatDate(data.lastMaintenanceDate, true);
             }
-            if (data.shippingDate != null) {
+            if (data.shippingDate !== null) {
                 _this.asset.shippingDate = ng2_datetime_picker_1.DateTime.formatDate(data.shippingDate, true);
             }
-            if (data.warrantyEndDate != null) {
+            if (data.warrantyEndDate !== null) {
                 _this.asset.warrantyEndDate = ng2_datetime_picker_1.DateTime.formatDate(data.warrantyEndDate, true);
             }
         }, function (error) { return swal('error', '' + JSON.stringify(error), 'error'); });

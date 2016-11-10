@@ -1,21 +1,21 @@
 "use strict";
 var router_1 = require('@angular/router');
-var admin_component_1 = require("./admin.component");
-var list_asset_component_1 = require("../assets/list-asset.component");
-var admin_guard_1 = require("../admin.guard");
-var list_asset_resolve_1 = require("../assets/list-asset-resolve");
-var search_asset_resolve_1 = require("../assets/search-asset-resolve");
-var search_asset_component_1 = require("../assets/search-asset.component");
-var assign_asset_component_1 = require("../assets/assign-asset.component");
-var add_asset_component_1 = require("../assets/add-asset.component");
-var user_component_1 = require("../assets/user.component");
-var user_guard_1 = require("../user.guard");
-//import {NewUserComponent} from "../assets/new-employee.component";
-var edit_asset_component_1 = require("../assets/edit-asset.component");
-var new_employee_component_1 = require("../assets/new-employee.component");
-var list_new_asset_resolve_1 = require("../assets/list-new-asset-resolve");
-var list_new_asset_component_1 = require("../assets/list-new-asset.component");
-var asset_assign_resolve_1 = require("../assets/asset-assign-resolve");
+var admin_component_1 = require('./admin.component');
+var list_asset_component_1 = require('../assets/list-asset.component');
+var admin_guard_1 = require('../admin.guard');
+var list_asset_resolve_1 = require('../assets/list-asset-resolve');
+var search_asset_resolve_1 = require('../assets/search-asset-resolve');
+var search_asset_component_1 = require('../assets/search-asset.component');
+var assign_asset_component_1 = require('../assets/assign-asset.component');
+var add_asset_component_1 = require('../assets/add-asset.component');
+var user_component_1 = require('../assets/user.component');
+var user_guard_1 = require('../user.guard');
+//import {NewUserComponent} from '../assets/new-employee.component';
+var edit_asset_component_1 = require('../assets/edit-asset.component');
+var new_employee_component_1 = require('../assets/new-employee.component');
+var list_new_asset_resolve_1 = require('../assets/list-new-asset-resolve');
+var list_new_asset_component_1 = require('../assets/list-new-asset.component');
+var asset_assign_resolve_1 = require('../assets/asset-assign-resolve');
 var routes = [
     {
         path: 'admin',

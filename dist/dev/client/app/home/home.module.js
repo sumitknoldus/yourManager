@@ -9,9 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var shared_module_1 = require("../shared/shared.module");
-var home_route_1 = require("./home.route");
-var home_component_1 = require("./home.component");
+var shared_module_1 = require('../shared/shared.module');
+var home_route_1 = require('./home.route');
+var home_component_1 = require('./home.component');
 var HomeModule = (function () {
     function HomeModule() {
     }

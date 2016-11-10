@@ -20,7 +20,7 @@ var UserGuard = (function () {
      * @returns {boolean}
      */
     UserGuard.prototype.canActivate = function () {
-        if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'user') {
+        if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'user') {
             return true;
         }
         else if (localStorage.getItem('user') === null) {

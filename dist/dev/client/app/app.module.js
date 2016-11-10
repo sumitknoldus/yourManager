@@ -20,11 +20,11 @@ var login_module_1 = require('./login/login.module');
 var asset_module_1 = require('./assets/asset.module');
 var home_module_1 = require('./home/home.module');
 var dashboard_module_1 = require('./dashboard/dashboard.module');
-var signup_module_1 = require("./signup/signup.module");
-var admin_guard_1 = require("./admin.guard");
-var user_guard_1 = require("./user.guard");
-var login_guard_1 = require("./login.guard");
-var admin_module_1 = require("./admin/admin.module");
+var signup_module_1 = require('./signup/signup.module');
+var admin_guard_1 = require('./admin.guard');
+var user_guard_1 = require('./user.guard');
+var login_guard_1 = require('./login.guard');
+var admin_module_1 = require('./admin/admin.module');
 var AppModule = (function () {
     function AppModule() {
     }

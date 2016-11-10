@@ -24,9 +24,6 @@ var SearchService = (function () {
     }
     SearchService.prototype.getAllocatedAssets = function (empId) {
         this.listAssetsURL += empId;
-        //let body = JSON.stringify({ empId });
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
         return this.http.get(this.listAssetsURL)
             .map(this.extractData)
             .catch(this.handleError);

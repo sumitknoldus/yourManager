@@ -20,7 +20,7 @@ var AdminGuard = (function () {
      * @returns {boolean}
      */
     AdminGuard.prototype.canActivate = function () {
-        if (localStorage.getItem('user') != null && JSON.parse(localStorage.getItem('user')).role === 'admin') {
+        if (localStorage.getItem('user') !== null && JSON.parse(localStorage.getItem('user')).role === 'admin') {
             return true;
         }
         else if (localStorage.getItem('user') === null) {

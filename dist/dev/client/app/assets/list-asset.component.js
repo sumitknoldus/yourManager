@@ -48,48 +48,11 @@ var ListComponent = (function () {
                 _this.isResult = true;
             }
             else {
-                _this.noResultIcon = "../../assets/images/warning.png";
-                _this.noResultFound = "../../assets/images/no-result.png";
+                _this.noResultIcon = '../../assets/images/warning.png';
+                _this.noResultFound = '../../assets/images/no-result.png';
                 _this.isResult = false;
             }
         });
-    };
-    /**
-     * This method returns column headers for ag-Grid
-     * @param asset
-     * @returns {Array}
-     */
-    ListComponent.prototype.createColumnDefs = function (asset) {
-        var _this = this;
-        var keyNames = Object.keys(asset);
-        var headers = [];
-        keyNames.filter(function (key) { return key != '__v' && key != '_id'; }).map(function (key) {
-            if (key == 'specs') {
-                headers.push({
-                    headerName: 'SPECIFICATIONS',
-                    children: [
-                        { headerName: 'HD', field: 'specs.HD', width: 100 },
-                        { headerName: 'RAM', field: 'specs.RAM', width: 100 },
-                        { headerName: 'PROCESSOR', field: 'specs.Processor', width: 100 }
-                    ]
-                });
-            }
-            else {
-                headers.push({
-                    headerName: _this.getHeaderName(key).toLocaleUpperCase(),
-                    field: key,
-                    width: 140
-                });
-            }
-        });
-        headers.push({
-            headerName: 'UPDATE',
-            field: 'update',
-            cellRenderer: this.editAsset,
-            pinned: 'right',
-            width: 140
-        });
-        return headers;
     };
     ListComponent.prototype.editAsset = function (params) {
         var eDiv = document.createElement('div');
@@ -97,7 +60,7 @@ var ListComponent = (function () {
             '</button><button style = "margin-left: 3%; font-size: inherit; color: white;margin-top: -6%;" class="btn btn-sm btn-danger return">Return</button>';
         var eButton = eDiv.querySelectorAll('.btn-simple')[0];
         var rButton = eDiv.querySelectorAll('.return')[0];
-        if (params.data.dateOfReturn != null) {
+        if (params.data.dateOfReturn !== null) {
             rButton.setAttribute('disabled', 'true');
         }
         eButton.addEventListener('click', function () {
@@ -109,7 +72,12 @@ var ListComponent = (function () {
                 params.context.assetService.listAllAsset().subscribe(function (rows) {
                     var dataRows = params.context.createDataRows(rows);
                     params.context.gridOptions.api.setRowData(dataRows);
-                    swal({ title: "Asset Returned Successfully.", text: "Auto close in 1 second.", timer: 1000, showConfirmButton: false }).done();
+                    swal({
+                        title: 'Asset Returned Successfully.',
+                        text: 'Auto close in 1 second.',
+                        timer: 1000,
+                        showConfirmButton: false
+                    }).done();
                 }, function (error) {
                     swal('error', '' + JSON.stringify(error), 'error');
                 });
@@ -122,7 +90,7 @@ var ListComponent = (function () {
     ListComponent.prototype.getHeaderName = function (key) {
         var newKey = key;
         var capsLetterArray = key.match(/[A-Z]/);
-        if (capsLetterArray != null) {
+        if (capsLetterArray !== null) {
             capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
             newKey = this.getHeaderName(key);
         }
@@ -155,6 +123,43 @@ var ListComponent = (function () {
             });
         }
         return updatedAssets;
+    };
+    /**
+     * This method returns column headers for ag-Grid
+     * @param asset
+     * @returns {Array}
+     */
+    ListComponent.prototype.createColumnDefs = function (asset) {
+        var _this = this;
+        var keyNames = Object.keys(asset);
+        var headers = [];
+        keyNames.filter(function (key) { return key !== '__v' && key !== '_id'; }).map(function (key) {
+            if (key === 'specs') {
+                headers.push({
+                    headerName: 'SPECIFICATIONS',
+                    children: [
+                        { headerName: 'HD', field: 'specs.HD', width: 100 },
+                        { headerName: 'RAM', field: 'specs.RAM', width: 100 },
+                        { headerName: 'PROCESSOR', field: 'specs.Processor', width: 100 }
+                    ]
+                });
+            }
+            else {
+                headers.push({
+                    headerName: _this.getHeaderName(key).toLocaleUpperCase(),
+                    field: key,
+                    width: 140
+                });
+            }
+        });
+        headers.push({
+            headerName: 'UPDATE',
+            field: 'update',
+            cellRenderer: this.editAsset,
+            pinned: 'right',
+            width: 140
+        });
+        return headers;
     };
     __decorate([
         core_1.Input(), 

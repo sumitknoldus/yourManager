@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var user_1 = require("../shared/model/user");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var user_1 = require('../shared/model/user');
 var AdminComponent = (function () {
     function AdminComponent(router) {
         this.router = router;

@@ -10,23 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var asset_1 = require("../shared/model/asset");
-var asset_service_1 = require("./asset.service");
+var asset_1 = require('../shared/model/asset');
+var asset_service_1 = require('./asset.service');
 require('rxjs/add/observable/throw');
 var AddAssetComponent = (function () {
     function AddAssetComponent(assetService, router) {
         this.assetService = assetService;
         this.router = router;
-        this.hardwareTypes = ["Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
+        this.hardwareTypes = ['Mouse', 'Keyboard', 'Laptop', 'Monitor', 'Adapter', 'Laptop Stand', 'Bag'];
         this.isAssign = false;
+        this.asset = new asset_1.Asset();
         this.availableAssets = {
-            availableStock: "",
+            availableStock: '',
             assetList: [{
-                    assetCode: "",
-                    _id: ""
+                    assetCode: '',
+                    _id: ''
                 }]
         };
-        this.asset = new asset_1.Asset();
     }
     /**
      * This method calls the service method to add a new asset
@@ -38,7 +38,12 @@ var AddAssetComponent = (function () {
         asset.isAvailable = true;
         this.assetService.addAsset(asset).subscribe(function (res) {
             _this.router.navigate(['admin/asset/list-new']);
-            swal({ title: "Asset successfully added.", text: "Auto close in 1 second.", timer: 1000, showConfirmButton: false }).done();
+            swal({
+                title: 'Asset successfully added.',
+                text: 'Auto close in 1 second.',
+                timer: 1000,
+                showConfirmButton: false
+            }).done();
         }, function (error) { return swal('Error', '' + JSON.stringify(error), 'error'); });
     };
     __decorate([

@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var dashboard_component_1 = require('./dashboard.component');
 var dashboard_service_1 = require('./dashboard.service');
 var dashboard_route_1 = require('./dashboard.route');
-var shared_module_1 = require("../shared/shared.module");
+var shared_module_1 = require('../shared/shared.module');
 var http_1 = require('@angular/http');
 var DashboardModule = (function () {
     function DashboardModule() {

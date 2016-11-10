@@ -10,12 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var admin_component_1 = require("./admin.component");
-var admin_route_1 = require("./admin.route");
-var shared_module_1 = require("../shared/shared.module");
-var header_component_1 = require("./header.component");
-var sidebar_component_1 = require("./sidebar.component");
-var new_employee_component_1 = require("../assets/new-employee.component");
+var admin_component_1 = require('./admin.component');
+var admin_route_1 = require('./admin.route');
+var shared_module_1 = require('../shared/shared.module');
+var header_component_1 = require('./header.component');
+var sidebar_component_1 = require('./sidebar.component');
+var new_employee_component_1 = require('../assets/new-employee.component');
 var AdminModule = (function () {
     function AdminModule() {
     }

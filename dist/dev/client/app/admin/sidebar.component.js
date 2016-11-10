@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var user_1 = require("../shared/model/user");
+var user_1 = require('../shared/model/user');
 var SidebarComponent = (function () {
     function SidebarComponent(router, el, renderer) {
         this.router = router;
@@ -29,8 +29,9 @@ var SidebarComponent = (function () {
     ;
     SidebarComponent.prototype.ngOnInit = function () {
         var role = JSON.parse(localStorage.getItem('user')).role;
-        if (role === 'user')
+        if (role === 'user') {
             this.showSidebar = false;
+        }
     };
     SidebarComponent.prototype.searchAsset = function () {
         var val = this.search.value;

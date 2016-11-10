@@ -31,7 +31,6 @@ var AssetService = (function () {
         this.listAllAssetUrl = '/api/assets/listall';
         this.listEmail = '/api/users/listemail';
         this.assignEmpIdUrl = '/api/users/assignempid';
-        //private empWithoutAssetType = '/api/users/emps/noassets/';
         this.listAllEmp = '/api/users/getallemps';
         this.verifyUserAsset = '/api/assets/verifyuserasset';
     }
@@ -118,9 +117,6 @@ var AssetService = (function () {
             .catch(this.handleError);
     };
     AssetService.prototype.listEmpEmail = function () {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json'
-        });
         return this.http
             .get(this.listEmail)
             .map(this.extractData)
@@ -136,7 +132,7 @@ var AssetService = (function () {
             'Content-Type': 'application/json'
         });
         return this.http
-            .post(this.returnAssetUrl, JSON.stringify({ "_id": objId }), { headers: headers })
+            .post(this.returnAssetUrl, JSON.stringify({ '_id': objId }), { headers: headers })
             .map(this.extractData)
             .catch(this.handleError);
     };
@@ -176,7 +172,7 @@ var AssetService = (function () {
             'Content-Type': 'application/json'
         });
         return this.http
-            .post(this.assignAssetUrl, { "_id": objectId, "assetData": asset }, { headers: headers })
+            .post(this.assignAssetUrl, { '_id': objectId, 'assetData': asset }, { headers: headers })
             .map(this.extractData)
             .catch(this.handleError);
     };

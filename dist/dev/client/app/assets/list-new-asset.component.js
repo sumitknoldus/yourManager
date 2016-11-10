@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var common_1 = require("@angular/common");
-var asset_service_1 = require("./asset.service");
-var router_1 = require("@angular/router");
-var clickable_assign_component_1 = require("./clickable-assign.component");
+var core_1 = require('@angular/core');
+var asset_service_1 = require('./asset.service');
+var router_1 = require('@angular/router');
+var clickable_assign_component_1 = require('./clickable-assign.component');
+var common_1 = require('@angular/common');
 var ListNewAssetComponent = (function () {
     function ListNewAssetComponent(assetService, router, route, datePipe) {
         this.assetService = assetService;
@@ -30,10 +30,19 @@ var ListNewAssetComponent = (function () {
                 _this.isResult = true;
             }
             else {
-                _this.noResultFound = "../../assets/images/no-result.png";
+                _this.noResultFound = '../../assets/images/no-result.png';
                 _this.isResult = false;
             }
         });
+    };
+    ListNewAssetComponent.prototype.getHeaderName = function (key) {
+        var newKey = key;
+        var capsLetterArray = key.match(/[A-Z]/);
+        if (capsLetterArray !== null) {
+            capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
+            newKey = this.getHeaderName(key);
+        }
+        return newKey;
     };
     /**
      * This method returns column headers for ag-Grid
@@ -44,9 +53,9 @@ var ListNewAssetComponent = (function () {
         var _this = this;
         var keyNames = Object.keys(asset);
         var headers = [];
-        keyNames.filter(function (key) { return key != '__v' && key != '_id' && key != 'empId' &&
-            key != 'empName' && key != 'dateOfIssue' && key != 'dateOfReturn'; }).map(function (key) {
-            if (key == 'specs') {
+        keyNames.filter(function (key) { return key !== '__v' && key !== '_id' && key !== 'empId' &&
+            key != 'empName' && key !== 'dateOfIssue' && key !== 'dateOfReturn'; }).map(function (key) {
+            if (key === 'specs') {
                 headers.push({
                     headerName: 'SPECIFICATIONS',
                     children: [
@@ -68,22 +77,13 @@ var ListNewAssetComponent = (function () {
             headerName: 'UPDATE',
             field: 'Assign Asset',
             cellRendererFramework: {
-                //template: '<button (click) = "editAsset()"> Edit </button>'
+                //template: '<button (click) = 'editAsset()'> Edit </button>'
                 component: clickable_assign_component_1.ClickableAssignComponent
             },
             pinned: 'right',
             width: 140
         });
         return headers;
-    };
-    ListNewAssetComponent.prototype.getHeaderName = function (key) {
-        var newKey = key;
-        var capsLetterArray = key.match(/[A-Z]/);
-        if (capsLetterArray != null) {
-            capsLetterArray.map(function (capitalLetter) { return key = key.replace(capitalLetter, ' ' + capitalLetter.toLowerCase()); });
-            newKey = this.getHeaderName(key);
-        }
-        return newKey;
     };
     /**
      * This method returns rows for the ag-Grid

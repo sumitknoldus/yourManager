@@ -10,26 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var asset_1 = require("../shared/model/asset");
-var user_1 = require("../shared/model/user");
-var asset_service_1 = require("./asset.service");
+var asset_1 = require('../shared/model/asset');
+var user_1 = require('../shared/model/user');
+var asset_service_1 = require('./asset.service');
 require('rxjs/add/observable/throw');
-var ng2_datetime_picker_1 = require("ng2-datetime-picker");
+var ng2_datetime_picker_1 = require('ng2-datetime-picker');
 var AssignAssetComponent = (function () {
     function AssignAssetComponent(assetService, router, route) {
         this.assetService = assetService;
         this.router = router;
         this.route = route;
-        this.assetCode = "";
-        this.objId = "";
-        this.isEmpDataAvailable = false;
-        this.assignNewAsset = false;
         this.isAssets = true;
-        this.hardwareTypes = ["Mouse", "Keyboard", "Laptop", "Monitor", "Adapter", "Laptop Stand", "Bag"];
+        this.hardwareTypes = ['Mouse', 'Keyboard', 'Laptop', 'Monitor', 'Adapter', 'Laptop Stand', 'Bag'];
         this.isAssign = true;
         this.availableAssets = {};
-        this.objectId = "";
+        this.objectId = '';
         this.asset = new asset_1.Asset;
+        this.assetCode = '';
+        this.objId = '';
+        this.isEmpDataAvailable = false;
+        this.assignNewAsset = false;
         this.users = [{}];
         this.selectedEmployee = { assetType: '', empId: '' };
         this.errorMsg = false;
@@ -42,12 +42,13 @@ var AssignAssetComponent = (function () {
             _this.users = data.assets;
         });
         this.route.params.forEach(function (params) {
-            if (params['assetCode'] != null) {
+            if (params.assetCode) {
                 _this.objId = params['assetCode'];
                 _this.assignNewAsset = true;
             }
         });
-        if (this.objId != "") {
+        console.log('---------' + this.objId + '+++++++');
+        if (this.objId !== '') {
             this.getAsset(this.objId);
         }
     };
@@ -76,7 +77,7 @@ var AssignAssetComponent = (function () {
         this.selectedEmployee.empId = '';
         this.assignNewAsset = false;
         this.errorMsg = false;
-        if (asset != "") {
+        if (asset !== '') {
             this.assetService.getAvailableAssetList(asset).subscribe(function (data) {
                 _this.availableAssets = data;
                 if (_this.availableAssets.availableStock === 0) {
@@ -95,7 +96,7 @@ var AssignAssetComponent = (function () {
     AssignAssetComponent.prototype.submit = function () {
         var _this = this;
         var user = this.users.find(function (user) { return user.empId === _this.asset.empId; });
-        if (user.middleName == null) {
+        if (!user.middleName) {
             this.asset.empName = user.firstName + ' ' + user.lastName;
         }
         else {
@@ -107,14 +108,14 @@ var AssignAssetComponent = (function () {
         this.asset.dateOfIssue = ng2_datetime_picker_1.DateTime.formatDate(doi, true);
         var sd = ng2_datetime_picker_1.DateTime.parse(this.asset.shippingDate);
         this.asset.shippingDate = ng2_datetime_picker_1.DateTime.formatDate(sd, true);
-        if (this.asset.assetType == 'Laptop') {
+        if (this.asset.assetType === 'Laptop') {
             var wed = ng2_datetime_picker_1.DateTime.parse(this.asset.warrantyEndDate);
             this.asset.warrantyEndDate = ng2_datetime_picker_1.DateTime.formatDate(wed, true);
         }
         else {
-            this.asset.warrantyEndDate = "";
+            this.asset.warrantyEndDate = '';
         }
-        if (this.asset.lastMaintenanceDate != "") {
+        if (this.asset.lastMaintenanceDate !== '') {
             var lmt = ng2_datetime_picker_1.DateTime.parse(this.asset.lastMaintenanceDate);
             this.asset.lastMaintenanceDate = ng2_datetime_picker_1.DateTime.formatDate(lmt, true);
         }
@@ -130,8 +131,8 @@ var AssignAssetComponent = (function () {
     AssignAssetComponent.prototype.getAsset = function (assetCode) {
         var _this = this;
         var objId;
-        if (assetCode != "") {
-            if (this.objId == "") {
+        if (assetCode !== '') {
+            if (this.objId === '') {
                 objId = this.availableAssets.assetList.find(function (record) { return record.assetCode === assetCode; })._id;
             }
             else {
@@ -145,14 +146,14 @@ var AssignAssetComponent = (function () {
                 _this.asset.specs.RAM = data.specs.RAM;
                 _this.asset.serialNumber = data.serialNumber;
                 _this.objectId = data._id;
-                if (_this.assignNewAsset == true)
+                if (_this.assignNewAsset === true)
                     _this.asset.assetCode = data.assetCode;
                 ng2_datetime_picker_1.DateTime.formatDate = function (date) { return moment(date).format('YYYY-MM-DD'); };
                 _this.asset.shippingDate = ng2_datetime_picker_1.DateTime.formatDate(data.shippingDate, true);
-                if (data.lastMaintenanceDate != null) {
+                if (data.lastMaintenanceDate !== null) {
                     _this.asset.lastMaintenanceDate = ng2_datetime_picker_1.DateTime.formatDate(data.lastMaintenanceDate, true);
                 }
-                if (data.warrantyEndDate != null) {
+                if (data.warrantyEndDate !== null) {
                     _this.asset.warrantyEndDate = ng2_datetime_picker_1.DateTime.formatDate(data.warrantyEndDate, true);
                 }
             }, function (error) { return swal('error', '' + JSON.stringify(error), 'error'); });
