@@ -25,9 +25,9 @@
                                 <label for="assetCodeAdd">Asset Code : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                                <input type="text" name="assetCode" id="assetCodeAdd" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required pattern="[A-z0-9\- ]{0,10}">
                             </div>
-                            <div [hidden]="assetCode.valid || model.pristine"
+                            <div [hidden]="assetCode.valid || assetCode.pristine"
                                  class="alert alert-danger">
                                 Asset Code is required (Max : 10 characters)
                             </div>
@@ -40,7 +40,7 @@
                                 <label for="serialNumber">Serial number : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" pattern="[A-z0-9\-]{0,20}">
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" pattern="[A-z0-9\- ]{0,20}">
                             </div>
                             <div [hidden]="serialNumber.valid || serialNumber.pristine"
                                  class="alert alert-danger">
@@ -55,7 +55,7 @@
                                 <label for="model">Model : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required pattern="[A-z0-9\-]{0,20}">
+                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required pattern="[A-z0-9\- ]{0,20}">
                             </div>
                             <div class="col-md-12" [hidden]="model.valid || model.pristine"
                                  class="alert alert-danger">
@@ -138,7 +138,7 @@
                                     <label for="ram">RAM : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required pattern="[A-z0-9\- ]{0,10}">
                                 </div>
                                 <div [hidden]="ram.valid || ram.pristine"
                                      class="alert alert-danger">
@@ -153,7 +153,7 @@
                                     <label for="hd">HD : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required pattern="[A-z0-9\- ]{0,10}">
                                 </div>
                                 <div [hidden]="hd.valid || hd.pristine"
                                      class="alert alert-danger">
