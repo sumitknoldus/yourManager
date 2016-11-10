@@ -168,11 +168,11 @@
                                     <label for="processor">Processor : </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required pattern="[A-z0-9\-]{0,20}">
+                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required pattern="[A-z0-9\- ]{0,25}">
                                 </div>
                                 <div [hidden]="processor.valid || processor.pristine"
                                      class="alert alert-danger">
-                                    Processor is required (Max : 20 characters)
+                                    Processor is required (Max : 25 characters)
                                 </div>
                             </div>
                         </div>
