@@ -40,11 +40,11 @@
                                 <label for="serialNumber">Serial number : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" required pattern="[A-z0-9\-]{0,20}">
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" pattern="[A-z0-9\-]{0,20}">
                             </div>
                             <div [hidden]="serialNumber.valid || serialNumber.pristine"
                                  class="alert alert-danger">
-                                Serial Number is required (Max : 10 characters)
+                                Serial Number is required (Max : 20 characters)
                             </div>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                                 <label for="model">Model : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required pattern="[A-z0-9\-]{0,10}">
+                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required pattern="[A-z0-9\-]{0,20}">
                             </div>
                             <div class="col-md-12" [hidden]="model.valid || model.pristine"
                                  class="alert alert-danger">
-                                Model is required (Max : 10 characters)
+                                Model is required (Max : 20 characters)
                             </div>
                         </div>
                     </div>
