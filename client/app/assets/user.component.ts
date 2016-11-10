@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 
-import {Router, ActivatedRoute, Params} from "@angular/router";
-import {AssetService} from "./asset.service";
-import {OnInit} from "angular2/core";
-import {GridOptions} from "ag-grid/main";
-import {Asset} from "../shared/model/asset";
+import {Router, ActivatedRoute} from '@angular/router';
+import {AssetService} from './asset.service';
+import {GridOptions} from 'ag-grid/main';
 import { Observable } from 'rxjs/Rx';
+import {DatePipe} from '@angular/common';
 
 @Component({
   moduleId:module.id,
@@ -22,12 +21,13 @@ export class UserComponent {
   message = "";
   adminMessage = "";
   id;
-
-  constructor(private assetService: AssetService, private route: ActivatedRoute){}
   headers = [];
   isResult = false;
   noResultIcon ='';
   noResultFound='';
+
+  constructor(private assetService: AssetService, private route: ActivatedRoute, private datePipe: DatePipe){}
+
   ngOnInit() {
 
     this.id = JSON.parse(localStorage.getItem('user')).empId;
@@ -70,14 +70,35 @@ export class UserComponent {
     let keyNames = Object.keys(asset);
     let headers = [];
     keyNames.filter(key => key != '__v' && key != '_id').map(key => {
-      headers.push({
-        headerName: key,
-        field: key,
-        width: 100
-      })
+      if(key == 'specs') {
+        headers.push({
+          headerName: 'SPECIFICATIONS',
+          children: [
+            {headerName : 'HD', field : 'specs.HD', width : 100},
+            {headerName : 'RAM', field : 'specs.RAM', width : 100},
+            {headerName : 'PROCESSOR', field : 'specs.Processor', width : 100}
+          ]
+        });
+      } else {
+        headers.push({
+          headerName: this.getHeaderName(key).toLocaleUpperCase(),
+          field: key,
+          width: 140
+        });
+      };
     });
 
     return headers;
+  }
+
+  getHeaderName(key: string) {
+    let newKey = key;
+    let capsLetterArray  = key.match(/[A-Z]/);
+    if(capsLetterArray !== null) {
+      capsLetterArray.map(capitalLetter => key = key.replace(capitalLetter, ' '+capitalLetter.toLowerCase()));
+      newKey = this.getHeaderName(key);
+    }
+    return newKey;
   }
 
   /**
@@ -95,15 +116,15 @@ export class UserComponent {
         assetType: assets[i].assetType,
         model: assets[i].model,
         assetCode: assets[i].assetCode,
-        shippingDate: assets[i].shippingDate,
-        dateOfIssue: assets[i].dateOfIssue,
-        dateOfReturn: assets[i].dateOfReturn,
-        warrantyEndDate:assets[i].warrantyEndDate,
-        lastMaintenanceDate:assets[i].lastMaintenanceDate,
+        shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
+        dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
+        dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),
+        warrantyEndDate: this.datePipe.transform(assets[i].warrantyEndDate, 'yyyy-MM-dd'),
+        lastMaintenanceDate: this.datePipe.transform(assets[i].lastMaintenanceDate, 'yyyy-MM-dd'),
         specs: JSON.stringify(assets[i].specs),
         isAvailable:assets[i].isAvailable,
         update:assets[i].update
-      })
+      });
     }
     return updatedAssets;
   }
