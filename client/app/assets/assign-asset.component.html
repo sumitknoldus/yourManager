@@ -58,7 +58,7 @@
 
                                 <div *ngIf = "assignNewAsset">
                                     <div class="col-sm-6">
-                                        <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required readonly pattern="[A-z0-9\- ]{0,10}">
+                                        <input type="text" name="assetCode" id="assetCode" class="form-control" [(ngModel)] = "asset.assetCode" #assetCode="ngModel" required readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,9}$">
                                     </div>
                                     <div class="col-sm-12" [hidden]="assetCode.valid || assetCode.pristine"
                                          class="alert alert-danger">
@@ -98,7 +98,7 @@
                                 <label for="model">Model : </label>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required readonly pattern="[A-z0-9\- ]{0,20}">
+                                <input type="text" name="model" id="model" class="form-control" [(ngModel)] = "asset.model" #model="ngModel" required readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,19}$">
                             </div>
                             <div class="col-sm-12" [hidden]="model.valid || model.pristine"
                                  class="alert alert-danger">
@@ -113,7 +113,7 @@
                                 <label for="serialNumber">Serial number : </label>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" readonly pattern="[A-z0-9\- ]{0,20}">
+                                <input type="text" name="serialNumber" id="serialNumber" class="form-control" [(ngModel)] = "asset.serialNumber" #serialNumber="ngModel" readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,19}$">
                             </div>
                             <div [hidden]="serialNumber.valid || serialNumber.pristine"
                                  class="alert alert-danger">
@@ -197,7 +197,7 @@
                                     <label for="ram">RAM : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required readonly pattern="[A-z0-9\- ]{0,10}">
+                                    <input type="text" name="ram" id="ram" class="form-control" [(ngModel)] = "asset.specs.RAM" #ram="ngModel" required readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,9}$">
                                 </div>
                                 <div [hidden]="ram.valid || ram.pristine"
                                      class="alert alert-danger">
@@ -209,7 +209,7 @@
                                     <label for="hd">HD : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required readonly pattern="[A-z0-9\- ]{0,10}">
+                                    <input type="text" name="hd" id="hd" class="form-control" [(ngModel)] = "asset.specs.HD" #hd="ngModel" required readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,9}$">
                                 </div>
                                 <div [hidden]="hd.valid || hd.pristine"
                                      class="alert alert-danger">
@@ -221,7 +221,7 @@
                                     <label for="processor">Processor : </label>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required readonly pattern="[A-z0-9\- ]{0,25}">
+                                    <input type="text" name="processor" id="processor" class="form-control" [(ngModel)] = "asset.specs.Processor" #processor = "ngModel" required readonly pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,24}$">
                                 </div>
                                 <div [hidden]="processor.valid || processor.pristine"
                                      class="alert alert-danger">
