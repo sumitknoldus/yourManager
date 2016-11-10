@@ -105,7 +105,7 @@ export class AssignAssetComponent {
     submit() {
         let user = this.users.find(user => user.empId === this.asset.empId);
 
-        if (user.middleName === null) {
+        if (!user.middleName) {
             this.asset.empName = user.firstName + ' ' + user.lastName;
         } else {
             this.asset.empName = user.firstName + ' ' + user.middleName + ' ' + user.lastName;
