@@ -38,6 +38,15 @@ export class SearchAssetComponent implements OnInit {
               private datePipe: DatePipe) {}
 
   ngOnInit() {
+
+    this.gridOptions.context = {
+      assetService: this.assetService,
+      gridOptions: this.gridOptions,
+      datePipe: this.datePipe,
+      createDataRows: this.createDataRows,
+      router: this.router
+    };
+
     this.route.data.forEach((data: { assets: Asset[]}) => {
       if(data.assets.length > 0) {
         this.isResult = true;
@@ -89,22 +98,69 @@ export class SearchAssetComponent implements OnInit {
           headerName: this.getHeaderName(key).toLocaleUpperCase(),
           field: key,
           width: 140
-        })
+        });
       };
 
     });
 
     headers.push({
-      headerName: 'update',
+      headerName: 'UPDATE',
       field: 'update',
-      cellRendererFramework: {
-        component: ClickableComponent
-      },
+      cellRenderer: this.editAsset,
       pinned: 'right',
-      width: 120
+      width: 140
     });
+
     return headers;
   }
+
+  editAsset(params) {
+    var eDiv = document.createElement('div');
+    eDiv.innerHTML = '<button style="font-size: inherit; margin-top: -6%;" class="btn btn-sm btn-default btn-simple">Edit' +
+      '</button><button style = "margin-left: 3%; font-size: inherit; color: white;margin-top: -6%;" class="btn btn-sm btn-danger return">Return</button>';
+    var eButton = eDiv.querySelectorAll('.btn-simple')[0];
+    var rButton = eDiv.querySelectorAll('.return')[0];
+
+    if (params.data.dateOfReturn !== null) {
+      rButton.setAttribute('disabled', 'true');
+    }
+
+    eButton.addEventListener('click', function () {
+      params.context.router.navigate(['/admin/asset/edit', params.data._id]);
+    });
+
+    rButton.addEventListener('click', function () {
+      rButton.removeAttribute('disabled');
+      params.context.assetService.returnAsset(params.data._id).subscribe(data => {
+          params.context.assetService.listAllAsset().subscribe(rows => {
+              let dataRows = params.context.createDataRows(rows);
+              params.context.gridOptions.api.setRowData(dataRows)
+              swal({
+                title: 'Asset Returned Successfully.',
+                text: 'Auto close in 1 second.',
+                timer: 1000,
+                showConfirmButton: false
+              }).done();
+            },
+            error => {
+              swal(
+                'error',
+                '' + JSON.stringify(error),
+                'error'
+              );
+            });
+        },
+        error => {
+          swal(
+            'error',
+            '' + JSON.stringify(error),
+            'error'
+          );
+        });
+    });
+    return eDiv;
+  }
+
 
   /**
    * This method returns rows for the ag-Grid
