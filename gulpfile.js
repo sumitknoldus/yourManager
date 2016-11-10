@@ -38,9 +38,9 @@ var lib = [
     'node_modules/zone.js/dist/zone.js',
     'node_modules/reflect-metadata/Reflect.js',
     'node_modules/systemjs/dist/system.src.js',
-    './client/bower_components/jquery/dist/jquery.min.js',
-    './client/bower_components/bootstrap/dist/js/bootstrap.min.js',
-    './client/bower_components/bootstrap/dist/css/bootstrap.min.css'
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/bootstrap/dist/js/bootstrap.min.js',
+    'node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 ];
 
