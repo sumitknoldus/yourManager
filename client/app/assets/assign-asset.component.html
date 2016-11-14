@@ -145,8 +145,44 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div *ngIf = "asset.assetType === 'Laptop' || asset.assetType === 'Monitor'">
 
+                        <div *ngIf="asset.adapterCode === ''">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="adapterSerialNumber">Adapter S.No. : </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="adapterSerialNumber" id="adapterSerialNumber" class="form-control" [(ngModel)] = "asset.adapterSerialNumber" #adapterSerialNumber="ngModel" required pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,19}$">
+                                    </div>
+                                    <div [hidden]="adapterSerialNumber.valid || adapterSerialNumber.pristine"
+                                         class="alert alert-danger">
+                                        Adapter S.No. is required (Max : 20 characters)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="asset.adapterSerialNumber === ''">
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-6">
+                                        <label for="adapterCode">Adapter Code : </label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="adapterCode" id="adapterCode" class="form-control" [(ngModel)] = "asset.adapterCode" #adapterCode="ngModel" required pattern="^[a-zA-Z0-9\-_](\s?[a-zA-Z0-9\-_]){0,19}$">
+                                    </div>
+                                    <div [hidden]="adapterCode.valid || adapterCode.pristine"
+                                         class="alert alert-danger">
+                                        Adapter Code is required (Max : 20 characters)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div *ngIf = "asset.assetType === 'Laptop'" class="form-group">
                             <div class="form-group">
                                 <div class="col-sm-6">
@@ -230,8 +266,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-sm-4 col-sm-offset-8 form-group">
+                        <div class="col-sm-4 form-group">
+                            <button (click)="goBack()" class="btn btn-warning pull-left">Back</button>
+                        </div>
+
+                        <div class="col-sm-4 col-sm-offset-4 form-group">
                             <button type="submit"  class="btn btn-default pull-right" [disabled] = "!assetForm.form.valid || errorMsg || !isAssets">Assign Asset</button>
                         </div>
                     </div>

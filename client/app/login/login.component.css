@@ -27,7 +27,8 @@ input {
 }
 
 .login-button{
-	background-color: #26A69A;
+	/*background-color: #26A69A;*/
+	background-color: #A15E2C;
 	color: white;
 	font-size: 19px;
 }
@@ -44,7 +45,7 @@ input {
 }
 
 .panel-body{
-	background-color: #f9f9f9;
+	background-color: #FEFDCE;
 	padding: 15px;
 	box-shadow: 10px 10px 20px 0;
 }

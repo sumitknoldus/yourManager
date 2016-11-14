@@ -18,6 +18,8 @@ var AssetsSchema = new Schema({
     dateOfIssue: Date,
     dateOfReturn: Date,
     warrantyEndDate: Date,
+    adapterSerialNumber: String,
+    adapterCode: String,
     lastMaintenanceDate: Date,
     isAvailable: Boolean,
     specs: {}

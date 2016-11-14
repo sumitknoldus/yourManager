@@ -135,6 +135,8 @@ export class ListComponent implements OnInit {
                 model: assets[i].model,
                 assetCode: assets[i].assetCode,
                 serialNumber: assets[i].serialNumber,
+                adapterCode: assets[i].adapterCode,
+                adapterSerialNumber: assets[i].adapterSerialNumber,
                 shippingDate: this.datePipe.transform(assets[i].shippingDate, 'yyyy-MM-dd'),
                 dateOfIssue: this.datePipe.transform(assets[i].dateOfIssue, 'yyyy-MM-dd'),
                 dateOfReturn: this.datePipe.transform(assets[i].dateOfReturn, 'yyyy-MM-dd'),

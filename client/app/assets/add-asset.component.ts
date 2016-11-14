@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import {Asset} from '../shared/model/asset';
 import {AssetService} from './asset.service';
+import { Location } from '@angular/common';
 import 'rxjs/add/observable/throw';
 
 
@@ -24,7 +25,7 @@ export class AddAssetComponent {
             _id:''
         }]
     };
-  constructor(private assetService: AssetService, private router: Router) { }
+  constructor(private assetService: AssetService, private router: Router, private location: Location) { }
 
   /**
    * This method calls the service method to add a new asset
@@ -53,6 +54,10 @@ export class AddAssetComponent {
         ''+JSON.stringify(error),
         'error'
       ));
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 

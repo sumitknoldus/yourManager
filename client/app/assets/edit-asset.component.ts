@@ -4,6 +4,7 @@ import {Asset} from '../shared/model/asset';
 import {AssetService} from './asset.service';
 import 'rxjs/add/observable/throw';
 import {DateTime} from 'ng2-datetime-picker';
+import { Location } from '@angular/common';
 
 @Component({
   moduleId:module.id,
@@ -18,7 +19,10 @@ export class EditAssetComponent {
   isEdit= true;
   asset = new Asset();
   selectedHardwareType = '';
-    constructor(private assetService: AssetService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private assetService: AssetService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private location: Location) {}
 
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
@@ -34,6 +38,7 @@ export class EditAssetComponent {
   getData(id:string) {
     this.assetService.getById(id).subscribe(data => {
         this.asset = data;
+        console.log("----" + JSON.stringify(data));
         DateTime.formatDate = (date: Date) => moment(date).format('YYYY-MM-DD');
         this.asset.shippingDate = DateTime.formatDate(data.shippingDate, true);
         if(data.lastMaintenanceDate !== null) {
@@ -67,6 +72,13 @@ export class EditAssetComponent {
         'error'
       )
     );
+  }
+
+  /**
+   *this method navigates the user to the page he/she came from.
+   */
+  goBack() {
+    this.location.back();
   }
 
 }

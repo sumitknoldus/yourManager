@@ -5,6 +5,7 @@ import {User} from '../shared/model/user';
 import {AssetService} from './asset.service';
 import 'rxjs/add/observable/throw';
 import {DateTime} from 'ng2-datetime-picker';
+import { Location } from '@angular/common'
 
 @Component({
     moduleId: module.id,
@@ -29,8 +30,10 @@ export class AssignAssetComponent {
     errorMsg = false;
     users:User = new User;
 
-    constructor(private assetService:AssetService, private router:Router, private route:ActivatedRoute) {
-    }
+    constructor(private assetService:AssetService,
+                private router:Router,
+                private route:ActivatedRoute,
+                private location: Location) {}
 
     ngOnInit() {
         this.route.data.forEach(data => {
@@ -166,6 +169,8 @@ export class AssignAssetComponent {
                     this.asset.specs.Processor = data.specs.Processor;
                     this.asset.specs.RAM = data.specs.RAM;
                     this.asset.serialNumber = data.serialNumber;
+                    this.asset.adapterCode = data.adapterCode;
+                    this.asset.adapterSerialNumber = data.serialNumber;
                     this.objectId = data._id;
 
                     if (this.assignNewAsset === true) this.asset.assetCode = data.assetCode;
@@ -185,6 +190,13 @@ export class AssignAssetComponent {
                 )
             );
         }
+    }
+
+  /**
+   * this method navigates the user to the page he/she came from.
+   */
+  goBack() {
+        this.location.back();
     }
 
 }

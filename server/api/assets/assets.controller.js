@@ -122,7 +122,9 @@ export function saveAssetById(req, res, next) {
                                     shippingDate: req.body.shippingDate,
                                     warrantyEndDate: req.body.warrantyEndDate,
                                     lastMaintenanceDate: req.body.lastMaintenanceDate,
-                                    specs: req.body.specs
+                                    specs: req.body.specs,
+                                    adapterCode: req.body.adapterCode,
+                                    adapterSerialNumber: req.body.adapterSerialNumber
                                 }
                             },
                             {
@@ -151,7 +153,9 @@ export function saveAssetById(req, res, next) {
                             shippingDate: req.body.shippingDate,
                             warrantyEndDate: req.body.warrantyEndDate,
                             lastMaintenanceDate: req.body.lastMaintenanceDate,
-                            specs: req.body.specs
+                            specs: req.body.specs,
+                            adapterCode: req.body.adapterCode,
+                            adapterSerialNumber: req.body.adapterSerialNumber
                         }
                     },
                     {

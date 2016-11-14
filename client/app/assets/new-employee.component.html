@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="col-lg-6 col-lg-offset-3">
         <div class="panel panel-body">
-            <form (ngSubmit) = submit() #assetForm = "ngForm">
+            <form (ngSubmit)="submit()" #assetForm = "ngForm">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -38,8 +38,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3 col-md-offset-9">
-                        <button style="margin-top: 10%; float: right" type="submit"  class="btn btn-default" [disabled] = "!assetForm.form.valid">Assign ID</button>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <button type="button" (click)="goBack()" class="btn btn-warning pull-left">Back</button>
+                        </div>
+
+                        <div class="col-md-4 col-md-offset-4">
+                            <button type="submit"  class="btn btn-default pull-right" [disabled] = "!assetForm.form.valid">Assign ID</button>
+                        </div>
                     </div>
                 </div>
 
@@ -48,5 +54,3 @@
     </div>
 </div>
 
-
-<!--#selectedEmployee = "ngModel"-->

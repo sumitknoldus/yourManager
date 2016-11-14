@@ -10,9 +10,11 @@ export class Asset {
     dateOfIssue: string;
     dateOfReturn: string;
     warrantyEndDate: string;
-    lastMaintenanceDate:string;
-    specs:Specs;
-    isAvailable:boolean;
+    lastMaintenanceDate: string;
+    adapterSerialNumber: string;
+    adapterCode: string;
+    specs: Specs;
+    isAvailable: boolean;
 
     constructor(){
         this.empId = '';
@@ -25,6 +27,8 @@ export class Asset {
         this.dateOfIssue = '';
         this.dateOfReturn = '';
         this.lastMaintenanceDate = '';
+        this.adapterSerialNumber = '';
+        this.adapterCode = '';
         this.warrantyEndDate = '';
         this.specs = new Specs;
         this.isAvailable = true;
