@@ -87,18 +87,17 @@
                             </div>
                         </div>
                     </div>
-<!--
-
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            <p>You can enter either Adapter code or Adapter S.No.,
-                                leave either of them empty to get the option to add the other one.</p>
-                        </div>
-                    </div>
--->
-
 
                     <div *ngIf = "asset.assetType === 'Laptop' || asset.assetType === 'Monitor'">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class = "alert alert-info btn-block" style="font-size: small; margin-top: 1%; margin-bottom: 0px">
+                                    <strong>Important !!! </strong>You can enter either Adapter code or Adapter S.No.
+                                    Empty the text box to get the option to add the other one.
+                                </div>
+                            </div>
+                        </div>
 
                         <div *ngIf="asset.adapterCode === ''">
                             <div class="row">
@@ -238,4 +237,5 @@
             </form>
         </div>
     </div>
+
 </div>
