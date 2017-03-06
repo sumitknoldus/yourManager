@@ -7,13 +7,16 @@ import {SignupComponent} from '../signup/signup.component';
 
 export const homeRoutes: Routes = [
     {
+        path: '',
+        redirectTo: '/home',
+        canActivate: [LoginGuard],
+        pathMatch: 'full'
+    },
+    {
         path: 'home',
         component : HomeComponent,
         canActivate: [LoginGuard],
         children : [
-            {
-                path: ''
-            },
             {
                 path: 'login',
                 component: LoginComponent,
