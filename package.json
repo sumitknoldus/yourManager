@@ -66,6 +66,7 @@
     "express-jwt": "^3.4.0",
     "express-session": "^1.14.0",
     "fs": "0.0.1-security",
+    "gulp-gzip": "^1.4.0",
     "http": "0.0.0",
     "jquery": "^3.1.0",
     "jsonwebtoken": "^7.1.6",
@@ -145,7 +146,7 @@
     "run-sequence": "^1.2.2",
     "rxjs-es": "^5.0.0-beta.12",
     "tsify": "^1.0.3",
-    "typescript": "^1.8.10",
+    "typescript": "1.8.10",
     "typings": "^1.0.4",
     "vinyl-source-stream": "^1.1.0"
   }
